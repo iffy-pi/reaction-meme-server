@@ -50,6 +50,8 @@ class PushBulletFileServer():
     PUSHBULLET_API = 'https://api.pushbullet.com/v2'
     __INDEX_PUSH_TITLE = 'PushBullet File Server File Index'
     __INDEX_FILE_NAME = 'PBFS_File_Index.json'
+    __MODEL_INDEX_TAG = 'PBFS_INDEX'
+
     VERSION = 1.0
     DEVICE_MANUFACTURER = 'PushBullet File Server'
     
@@ -81,17 +83,19 @@ class PushBulletFileServer():
         self.__persistentStorage = persistentStorage
 
         self.__index = {}
+        self.__indexIden = None
 
         if index is not None:
             self.__index = index
         
         elif loadIndexFromServer or persistentStorage:
-            retrievedIndex = self.__getIndexFromServer()
+            retrievedIndex, iden = self.__getIndexFromServer()
             if retrievedIndex is not None:
                 self.__index = retrievedIndex
+                self.__indexIden = iden
 
-        print('Server Index:')
-        print(self.__index)
+        # print('Server Index:')
+        # print(self.__index)
 
     def __getServerIden(self, name, iden, createServer):
         if iden is not None:
@@ -116,32 +120,30 @@ class PushBulletFileServer():
         Returns the index uploaded to the file server if any,
         Returns None if nothing was found
         '''
-
-        # index should be last push to the server, of type note and title 'pbfs_index'
-        pushes = self.getLatestPushes(limit=1)
-
-        if len(pushes) == 0:
-            return None
-
-        # get the contents
-
-        indexPush = pushes[-1]
-
-        if indexPush['type'] != 'file':
-            return None
-
-        if indexPush['file_name'] != (PushBulletFileServer.__INDEX_FILE_NAME):
-            # it is not the correct title
-            return None
+        svrDev = self.getPBFSDevice(iden=self.__serverIden)
+        if svrDev is None:
+            return None, None
         
-        fileContent = requests.get(indexPush['file_url']).content
+        model = svrDev['model']
+        if not model.startswith(PushBulletFileServer.__MODEL_INDEX_TAG):
+            return None, None
+        
+        indexIden = model.split(':')[1]
 
-        return json.loads(fileContent.decode('utf-8'))
+        if indexIden == 'None' or indexIden == '':
+            return None, None
+        
+        # get the file index using the identifier
+        indexFile = self.__pull(indexIden)
 
-    def checkForSuccess(response:requests.Response, returnBool=False):
+        return json.loads(indexFile['content'].decode('utf-8')), indexIden
+
+    def successfulHTTPResponse(response:requests.Response):
+        return 200 <= response.status_code and response.status_code <= 299
+
+    def errIfBadResponse(response:requests.Response):
         # based on https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-        if not (200 <= response.status_code <= 299):
-            if returnBool: return False
+        if not PushBulletFileServer.successfulHTTPResponse(response):
             # raise a bad server response error
             try:
                 msg = response.json()
@@ -152,12 +154,12 @@ class PushBulletFileServer():
         return True
 
     def __push(self, text=None, link: str = None, title: str=None, filepath: str =None, file=None, limitFileSize: bool = True) -> dict:
-        '''
+        """
         Pushes text, URLS (links) and files to the pushbullet server
         - `filepath` is the path to the file on the local system
         - `file` is a tuple which is in the format of ( <file name>, <file binary content> )
         - `limit_file_size` is a boolean which limits file sizes to 25 MB, set to false if you use pushbullet premium
-        '''
+        """
         if text is None and link is None and filepath is None and file is None:
             # Nothing to push
             raise exceptions.InvalidParameters('Nothing to push!')
@@ -230,7 +232,7 @@ class PushBulletFileServer():
                 }
             )
 
-            PushBulletFileServer.checkForSuccess(response)
+            PushBulletFileServer.errIfBadResponse(response)
 
             # get upload url from upload request
             # and us to upload acutal file
@@ -245,7 +247,7 @@ class PushBulletFileServer():
                     'file' : fileContents
                 }
             )
-            PushBulletFileServer.checkForSuccess(response)
+            PushBulletFileServer.errIfBadResponse(response)
 
             # populate push body
             pushBody['type'] = 'file'
@@ -255,7 +257,7 @@ class PushBulletFileServer():
         
         # push the contents
         response = requests.post('{}/pushes'.format(PushBulletFileServer.PUSHBULLET_API), headers=pushRequest['headers'], json=pushBody)
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
         # return good success
         return response.json()
@@ -274,7 +276,7 @@ class PushBulletFileServer():
         '''
         # get the response from the request
         response = requests.get('{}/pushes/{}'.format(PushBulletFileServer.PUSHBULLET_API, identifier), headers=self.__makeRequestHeader())
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
         res = response.json()
 
@@ -307,7 +309,7 @@ class PushBulletFileServer():
         '''
         res = requests.delete( '{}/pushes/{}'.format(PushBulletFileServer.PUSHBULLET_API, identifier), headers = self.__makeRequestHeader())
 
-        PushBulletFileServer.checkForSuccess(res)
+        PushBulletFileServer.errIfBadResponse(res)
 
     def __check_path( path:str):
         if not path.startswith('/'):
@@ -403,11 +405,11 @@ class PushBulletFileServer():
 
 
     def getLatestPushes(self, limit:int=None, modifiedAfter:int=None):
-        '''
+        """
         Gets latest pushes from the server
         - `limit` is the maximum number of pushes to retrieve
         - `modified_after` is to retrieve pushes only modified after this time
-        '''
+        """
         # index should be last push to the server, of type note and title 'pbfs_index'
         body = {
             'active': 'true'
@@ -422,18 +424,18 @@ class PushBulletFileServer():
         # make the request
         response = requests.get('{}/pushes'.format(PushBulletFileServer.PUSHBULLET_API), headers = self.__makeRequestHeader(), params = body)
 
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
         return response.json()['pushes']
 
     def clear_server_from_time(self, dt:datetime=None, dtstr:str=None) -> int:
-        '''
+        """
         Clears any pushes to the server from this device made after the specified time. This does not update the file index and is only intended for easy server debugging and maintenance.
         Pushes will be deleted only if there is a device assigned to the PBFS object
         - `date_time` is a datetime object containing the specified time
         - `date_time_str` is a string of the specified time following the format: `%b %d %Y %H:%M` e.g. `Dec 29 2022 07:50`, `Oct 03 2011 21:43` etc
         - Returns the number of pushes deleted
-        '''
+        """
 
         if dt is None:
             if dtstr is None:
@@ -471,7 +473,7 @@ class PushBulletFileServer():
 
         body = {
             'nickname': name,
-            'model': 'PBFS v{}'.format(PushBulletFileServer.VERSION),
+            'model': f'{PushBulletFileServer.__MODEL_INDEX_TAG}:None',
             'manufacturer': PushBulletFileServer.DEVICE_MANUFACTURER,
             'push_token': '',
             'icon': 'system',
@@ -479,7 +481,7 @@ class PushBulletFileServer():
         }
 
         response = requests.post('{}/devices'.format(PushBulletFileServer.PUSHBULLET_API), headers=headers, json=body)
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
         return response.json()
 
@@ -494,21 +496,15 @@ class PushBulletFileServer():
             raise exceptions.InvalidParameters('Undetermined device search query (both name and identifier are set)')
 
         headers =  self.__makeRequestHeader()
-        
-        if iden is not None:
-            response = requests.get('{}/devices/{}'.format(PushBulletFileServer.PUSHBULLET_API, iden), headers=headers)
-            PushBulletFileServer.checkForSuccess(response)
 
-            return response.json()
-
-        # filter by name
+        # filter by name and iden if they exist
         response = requests.get('{}/devices'.format(PushBulletFileServer.PUSHBULLET_API), headers=headers)
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
         devices = response.json()['devices']
 
         applicable_devices = list(filter(
-        lambda dev: (dev.get('manufacturer') == PushBulletFileServer.DEVICE_MANUFACTURER) and ( dev.get('nickname') == name), 
+        lambda dev: (dev.get('manufacturer') == PushBulletFileServer.DEVICE_MANUFACTURER) and (name is None or dev.get('nickname') == name) and (iden is None or dev.get('iden') == iden), 
         devices))
 
         if len(applicable_devices) != 1:
@@ -528,7 +524,7 @@ class PushBulletFileServer():
         devIden = devInfo['iden']
 
         response = requests.delete('{}/devices/{}'.format(PushBulletFileServer.PUSHBULLET_API, devIden), headers=self.__makeRequestHeader())
-        PushBulletFileServer.checkForSuccess(response)
+        PushBulletFileServer.errIfBadResponse(response)
 
     def pathExistsInIndex(self, path:str) -> bool:
         ''' Checks if the given path exists in the index'''
@@ -655,9 +651,30 @@ class PushBulletFileServer():
         '''
         Uploads the latest version of the index to the server, allows for persisitent file storage
         (Makes the server now act like actual storage instead of RAM)
+        Also deletes an older version if it exists
         '''
-        # num = int(input('Enter Number: '))
-        self.__push(file=(PushBulletFileServer.__INDEX_FILE_NAME, json.dumps(self.__index).encode()))
+        # Push the current version of the index and get the identifier
+        resp = self.__push(file=(PushBulletFileServer.__INDEX_FILE_NAME, json.dumps(self.__index).encode()))
+        newIden = resp['iden']
+
+
+        # Store the identifier in the model of the server (JANK AF)
+        updatedDevice = {
+            'model': f'{PushBulletFileServer.__MODEL_INDEX_TAG}:{newIden}'
+        }
+        requests.post(f'{PushBulletFileServer.PUSHBULLET_API}/devices/{self.__serverIden}', headers=self.__makeRequestHeader(), json=updatedDevice)
+        
+        if self.__indexIden is not None:
+            self.__delete(self.__indexIden)
+            self.__indexIden = newIden
+        
+
+    def resetIndex(self):
+        '''
+        Resets the file index to an empty repository
+        '''
+        self.__index = {}
+        self.uploadFileIndex()
 
     def writeFrom(self, local_path, server_path):
         '''
