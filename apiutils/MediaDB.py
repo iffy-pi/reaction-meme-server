@@ -72,6 +72,8 @@ class MediaDB:
                                      name=item[MediaDB.DBFields.ItemFields.Name],
                                      tags=','.join(item[MediaDB.DBFields.ItemFields.Tags]))
 
+    # TODO: Make singleton class!
+    # TODO: Decouple db controller from MediaDB? (all this schema stuff should move)
     def __init__(self, fileServer:MediaDBFileServer, dbIndex=None, testing=True):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
@@ -111,10 +113,10 @@ class MediaDB:
         self.__fileServer.writeJSONDB(self.db)
 
     def __addItemToDB(self, name, fileExt, tags, cloudID, cloudURL):
-        elemId = str(self.db[MediaDB.DBFields.ItemCount])
+        itemId = str(self.db[MediaDB.DBFields.ItemCount])
 
-        self.db[MediaDB.DBFields.Items][elemId] = {
-            MediaDB.DBFields.ItemFields.ID           : elemId,
+        self.db[MediaDB.DBFields.Items][itemId] = {
+            MediaDB.DBFields.ItemFields.ID           : itemId,
             MediaDB.DBFields.ItemFields.Name         : name,
             MediaDB.DBFields.ItemFields.FileExt      : fileExt,
             MediaDB.DBFields.ItemFields.Tags         : tags,
@@ -122,16 +124,56 @@ class MediaDB:
             MediaDB.DBFields.ItemFields.CloudURL     : cloudURL
         }
         self.db[MediaDB.DBFields.ItemCount] += 1
+        return itemId
+
+    def __getPropertyForItem(self, itemID:str, propField):
+        """
+        Gets the element property for the given ID
+        :param propField: The element property to retrieve
+        :param itemID: The DB id for the media
+        :return: The cloudinary URL
+        """
+        return self.getItem(itemID).get(propField)
+
+    def __updatePropertyForItem(self, itemID:str, propField, propValue):
+        self.getItem(itemID)[propField] = propValue
+
+    def hasItem(self, itemID):
+        return str(itemID) in self.db[MediaDB.DBFields.Items]
+
+    def getItem(self, itemID):
+        """
+        Returns the db item for the given item ID
+        :param itemID:
+        :return: the database item
+        """
+        itemID = str(itemID)
+        if not self.hasItem(itemID):
+            raise Exception(f'Element ID: "{itemID}" not in database')
+
+        return self.db.get(MediaDB.DBFields.Items).get(itemID)
+
+    def createNewItem(self, name='', fileExt='', tags='', cloudID='', cloudURL=''):
+        """
+        Creates a new item in the database with the available fields
+        :return: The item ID in the database
+        """
+        return self.__addItemToDB(name, fileExt, tags, cloudID, cloudURL)
 
     def __mockUploader(self, mediaBinary, fileExt):
+
+        def filePathToLink(fp):
+            # replace backslashes with forward slashes
+            return "file:///{}".format(fp.replace('\\', '/'))
+
         # saves them to local location
-        mockLocation = "C:\\local\\GitRepos\\reaction-meme-server\\mockCloudinary"
+        mockLocation = os.path.join(PROJECT_ROOT, 'data', 'mock_cloud')
         fileId = str(uuid.uuid4())
         filePath = os.path.join(mockLocation, f'{fileId}.{fileExt}')
         with open( filePath, 'wb') as file:
             file.write(mediaBinary)
 
-        return fileId, filePath
+        return fileId, filePathToLink(filePath)
 
     def __realUploader(self, mediaBinary):
         # Actually uploads the files to cloudinary
@@ -140,7 +182,7 @@ class MediaDB:
         deliveryURL = cloudinary.CloudinaryImage(mediaID).build_url()
         return mediaID, deliveryURL
 
-    def __uploadMediaToCloudinary(self, mediaBinary, fileExt):
+    def uploadMediaToCloud(self, mediaBinary, fileExt):
         """
         Uploads the binary to cloudinary and returns the URL for delivery
         """
@@ -149,16 +191,29 @@ class MediaDB:
         else:
             return self.__realUploader(mediaBinary)
 
+    def uploadItemMedia(self, itemId, mediaBinary):
+        """
+        Uploads the media binary to the cloud and associates it with the item pointed to by the item ID
+        :param itemId: The id of the item in the database
+        :param mediaBinary: The binary data of the media to be uploaded
+        :return: The cloud URL
+        """
+        cloudId, cloudURL = self.uploadMediaToCloud(mediaBinary, self.getItemFileExt(itemId))
+        self.updateItemProperty(itemId, cloudID=cloudId, cloudURL=cloudURL)
+        return cloudURL
+
     def addMedia(self, mediaBinary, name, fileExt, tags, reIndexDB=False):
         # upload to cloudinary
-        cloudId, cloudURL = self.__uploadMediaToCloudinary(mediaBinary, fileExt)
+        cloudId, cloudURL = self.uploadMediaToCloud(mediaBinary, fileExt)
 
         # add to DB
-        self.__addItemToDB(name, fileExt, tags, cloudId, cloudURL)
+        itemId = self.__addItemToDB(name, fileExt, tags, cloudId, cloudURL)
 
-        # reindex the DB if requested
-        if reIndexDB:
-            self.indexDB()
+        # add item to index if requested
+        if reIndexDB and self.dbIndex is not None:
+            writer = self.dbIndex.writer()
+            MediaDB.IndexingManager.addItemToWriter(writer, self.getItem(itemId))
+            writer.commit()
 
     def addMediaFrom(self, filePath, name, tags, reIndexDB=False):
         # first upload the file to cloudinary
@@ -249,24 +304,36 @@ class MediaDB:
 
     def findItemURLsFor(self, query:str, limit:int=25):
         res = self.findItemIDsFor(query, limit=limit)
-        return [ self.getPropertyForItemID(itemId, MediaDB.DBFields.ItemFields.CloudURL) for itemId in res ]
+        return [self.getItemURL(itemId) for itemId in res]
+
+    def getItemName(self, itemId):
+        return self.__getPropertyForItem(itemId, MediaDB.DBFields.ItemFields.Name)
+
+    def getItemTags(self, itemId):
+        return self.__getPropertyForItem(itemId, MediaDB.DBFields.ItemFields.Tags)
+
+    def getItemFileExt(self, itemId):
+        return self.__getPropertyForItem(itemId, MediaDB.DBFields.ItemFields.FileExt)
+
+    def getItemCloudID(self, itemId):
+        return self.__getPropertyForItem(itemId, MediaDB.DBFields.ItemFields.CloudID)
+
+    def getItemURL(self, itemId):
+        return self.__getPropertyForItem(itemId, MediaDB.DBFields.ItemFields.CloudURL)
 
 
-    def hasItem(self, itemID):
-        return str(itemID) in self.db[MediaDB.DBFields.Items]
-
-    def getPropertyForItemID(self, itemID:str, elemProperty):
-        """
-        Gets the element property for the given ID
-        :param elemProperty: The element property to retrieve
-        :param itemID: The DB id for the media
-        :return: The cloudinary URL
-        """
-        if not self.hasItem(itemID):
-            raise Exception(f'Element ID: "{itemID}" not in database')
-
-        return self.db[MediaDB.DBFields.Items][itemID][elemProperty]
-
+    def updateItemProperty(self, itemId, name:str=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ):
+        item = self.getItem(itemId)
+        if name is not None:
+            item[MediaDB.DBFields.ItemFields.Name] = name
+        if tags is not None:
+            item[MediaDB.DBFields.ItemFields.Tags] = tags
+        if fileExt is not None:
+            item[MediaDB.DBFields.ItemFields.FileExt] = fileExt
+        if cloudID is not None:
+            item[MediaDB.DBFields.ItemFields.CloudID] = cloudID
+        if cloudURL is not None:
+            item[MediaDB.DBFields.ItemFields.CloudURL] = cloudURL
 
 
 

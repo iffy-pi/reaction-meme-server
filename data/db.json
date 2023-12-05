@@ -1,5 +1,5 @@
 {
-    "itemCount": 69,
+    "itemCount": 70,
     "items": {
         "0": {
             "id": "0",
@@ -1022,6 +1022,25 @@
             ],
             "cloudID": "70",
             "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_70.jpg"
+        },
+        "69": {
+            "id": "69",
+            "name": "beluga whale scaring child",
+            "fileExt": "jpg",
+            "tags": [
+                "beluga whale",
+                "scare",
+                "evil",
+                "satisfied",
+                "petty",
+                "child",
+                "crying",
+                "aquarium",
+                "fish",
+                "water"
+            ],
+            "cloudID": "f21e0d9e-70b1-4df3-92da-e8bd1baf913d",
+            "cloudURL": "file:///C:/Users/omnic/local/GitRepos/reaction-meme-server/data/mock_cloud/f21e0d9e-70b1-4df3-92da-e8bd1baf913d.jpg"
         }
     }
 }
