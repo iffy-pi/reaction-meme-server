@@ -236,7 +236,7 @@ class MediaDB:
         finally:
             searcher.close()
 
-    def searchDB(self, query:str, limit:int = 15):
+    def findItemIDsFor(self, query:str, limit:int = 15):
         """
         Searches the indexed database with whoosh.
         Returns the list of Ids that match the query
@@ -247,11 +247,15 @@ class MediaDB:
             results = s.search(q)
             return [ r[MediaDB.IndexingManager.SchemaFields.FileID] for r in results ]
 
+    def findItemURLsFor(self, query:str, limit:int=25):
+        res = self.findItemIDsFor(query, limit=limit)
+        return [ self.getPropertyForItemID(itemId, MediaDB.DBFields.ItemFields.CloudURL) for itemId in res ]
+
 
     def hasItem(self, itemID):
         return str(itemID) in self.db[MediaDB.DBFields.Items]
 
-    def getPropertyForItemID(self, itemID:str, elemProperty:DBFields.ItemFields):
+    def getPropertyForItemID(self, itemID:str, elemProperty):
         """
         Gets the element property for the given ID
         :param elemProperty: The element property to retrieve

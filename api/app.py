@@ -48,7 +48,7 @@ def route_console():
 #         as_attachment=True
 #     )
 
-@app.route('/memes/<int:memeID>', methods=['GET'])
+@app.route('/memes/get/<int:memeID>', methods=['GET'])
 def route_get_meme(memeID):
     memeID = str(memeID)
     if not mdb.hasItem(memeID):
@@ -56,6 +56,20 @@ def route_get_meme(memeID):
 
     memeURL = mdb.getPropertyForItemID(memeID, MediaDB.DBFields.ItemFields.CloudURL)
     return redirect(memeURL)
+
+@app.route('/memes/search', methods=['GET'])
+def route_meme_search():
+    query = request.args.get("query")
+    if query is None or query == "":
+        return error_response(400, 'No query found, use "query" for the URL parameter')
+
+    results = mdb.findItemIDsFor(query)
+    collated = [ {
+        'name': mdb.getPropertyForItemID(itemId, MediaDB.DBFields.ItemFields.Name),
+        'url': mdb.getPropertyForItemID(itemId, MediaDB.DBFields.ItemFields.CloudURL) }
+    for itemId in results]
+
+    return make_json_response({ 'results' : collated})
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
