@@ -1,11 +1,11 @@
 import os
 import json
-from apiutils.MediaDB_File_Servers.MediaDBFileServer import MediaDBFileServer
-DB_FILE = "C:\\local\\GitRepos\\reaction-meme-server\\db.json"
+from apiutils.FileServers.MediaDBFileServer import MediaDBFileServer
+from apiutils.configs.config import PROJECT_ROOT
 
 class LocalDBFileServer(MediaDBFileServer):
     def __init__(self):
-        self.dbFilePath = DB_FILE
+        self.dbFilePath = os.path.join(PROJECT_ROOT, 'data', 'db.json')
 
     def loadDBFromJSON(self):
         with open(self.dbFilePath, 'r') as file:

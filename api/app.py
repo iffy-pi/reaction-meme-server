@@ -9,12 +9,19 @@ from flask import (Flask, flash, redirect, render_template, request, send_file,
                    session, url_for, Response)
 from flask_cors import CORS 
 from apiutils.HTTPResponses import *
+from apiutils.MediaDB import MediaDB
+from apiutils.FileServers.LocalDBFileServer import LocalDBFileServer
 
 # initialize app flask object
 app = Flask(__name__)
 CORS(app)
 
 app.config['SECRET_KEY'] = "helloworld"
+
+lfs = LocalDBFileServer()
+mdb = MediaDB(lfs)
+mdb.initDBToCatalog()
+mdb.indexDB()
 
 # UTILITIES --------------------------------------------------------------------------------------------------------
 @app.route('/myConsole', methods=['GET', 'POST'])
@@ -41,6 +48,14 @@ def route_console():
 #         as_attachment=True
 #     )
 
+@app.route('/memes/<int:memeID>', methods=['GET'])
+def route_get_meme(memeID):
+    memeID = str(memeID)
+    if not mdb.hasItem(memeID):
+        return error_response(400, message=f"ID {memeID} does not exist in database")
+
+    memeURL = mdb.getPropertyForItemID(memeID, MediaDB.DBFields.ItemFields.CloudURL)
+    return redirect(memeURL)
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')

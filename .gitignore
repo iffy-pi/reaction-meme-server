@@ -3,5 +3,5 @@ __pycache__
 .vscode
 test.py
 .idea
-mockCloudinary/
+data/mockCloudinary/
 indexdir
