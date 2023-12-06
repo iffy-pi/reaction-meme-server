@@ -11,26 +11,34 @@ class UploadSessionManager:
             UploadSessionManager.instance = UploadSessionManager()
         return UploadSessionManager.instance
 
-    def newSession(self, itemId):
+
+    def newUploadKey(self, itemId:int):
         """
         Adds a new session key for the given item ID, creates it with uuid
         :param itemId:
         :return: the session key
         """
-        self.activeSessionKeys[str(itemId)] = str(uuid.uuid4())
-        return self.activeSessionKeys[str(itemId)]
+        uploadKey = str(uuid.uuid4())
+        self.activeSessionKeys[uploadKey] = itemId
+        return uploadKey
 
-    def getSession(self, itemId):
-        if itemId not in self.activeSessionKeys:
+    def getIDForKey(self, uploadKey:str):
+        """
+        Retrieves the itemID mapped to the given upload key
+        :param uploadKey:
+        :return:
+        """
+        if uploadKey not in self.activeSessionKeys:
             return None
-        return self.activeSessionKeys[str(itemId)]
+        return self.activeSessionKeys[uploadKey]
+    def validUploadSession(self, uploadKey:str):
+        return uploadKey in self.activeSessionKeys
 
-    def clearSession(self, itemId):
-        itemId = str(itemId)
-        if itemId in self.activeSessionKeys:
-            self.activeSessionKeys.pop(itemId)
+    def clearUploadKey(self, uploadKey:str):
+        if uploadKey in self.activeSessionKeys:
+            self.activeSessionKeys.pop(uploadKey)
 
-    def clearAllSessions(self):
+    def clearAllKeys(self):
         self.activeSessionKeys.clear()
 
 

@@ -1,5 +1,5 @@
 {
-    "itemCount": 70,
+    "itemCount": 69,
     "items": {
         "0": {
             "id": "0",
@@ -12,7 +12,7 @@
                 "professional clown"
             ],
             "cloudID": "1",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_1.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_1.mp4"
         },
         "1": {
             "id": "1",
@@ -26,7 +26,7 @@
                 "reacting"
             ],
             "cloudID": "2",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_2.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_2.jpg"
         },
         "2": {
             "id": "2",
@@ -40,11 +40,11 @@
                 "fight back"
             ],
             "cloudID": "3",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_3.mov"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_3.mov"
         },
         "3": {
             "id": "3",
-            "name": "im looking through my bible here and don\u2019t see anything about your opinion",
+            "name": "im looking through my bible here and don't see anything about your opinion",
             "fileExt": "mp4",
             "tags": [
                 "priest",
@@ -53,7 +53,7 @@
                 "gagged"
             ],
             "cloudID": "4",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_4.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_4.mp4"
         },
         "4": {
             "id": "4",
@@ -67,7 +67,7 @@
                 "huh"
             ],
             "cloudID": "5",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_5.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_5.mp4"
         },
         "5": {
             "id": "5",
@@ -84,7 +84,7 @@
                 "waiting"
             ],
             "cloudID": "6",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_6.mov"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_6.mov"
         },
         "6": {
             "id": "6",
@@ -99,7 +99,7 @@
                 "satisfied"
             ],
             "cloudID": "7",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_7.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_7.jpg"
         },
         "7": {
             "id": "7",
@@ -113,7 +113,7 @@
                 "flute song"
             ],
             "cloudID": "8",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_8.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_8.mp4"
         },
         "8": {
             "id": "8",
@@ -127,7 +127,7 @@
                 "gagging"
             ],
             "cloudID": "9",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_9.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_9.mp4"
         },
         "9": {
             "id": "9",
@@ -141,7 +141,7 @@
                 "laughing"
             ],
             "cloudID": "10",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_10.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_10.mp4"
         },
         "10": {
             "id": "10",
@@ -154,7 +154,7 @@
                 "just give us a break"
             ],
             "cloudID": "11",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_11.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_11.mp4"
         },
         "11": {
             "id": "11",
@@ -169,7 +169,7 @@
                 "walking away"
             ],
             "cloudID": "12",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_12.mov"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_12.mov"
         },
         "12": {
             "id": "12",
@@ -184,11 +184,11 @@
                 "giggling"
             ],
             "cloudID": "13",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_13.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_13.mp4"
         },
         "13": {
             "id": "13",
-            "name": "oh that\u2019s not thinking she cleared",
+            "name": "oh that's not thinking she cleared",
             "fileExt": "mp4",
             "tags": [
                 "oh thats not",
@@ -200,7 +200,7 @@
                 "trump"
             ],
             "cloudID": "14",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_14.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_14.mp4"
         },
         "14": {
             "id": "14",
@@ -214,7 +214,7 @@
                 "questioning"
             ],
             "cloudID": "15",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_15.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_15.mp4"
         },
         "15": {
             "id": "15",
@@ -230,7 +230,7 @@
                 "sorry"
             ],
             "cloudID": "16",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_16.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_16.jpg"
         },
         "16": {
             "id": "16",
@@ -250,7 +250,7 @@
                 "film commentary"
             ],
             "cloudID": "17",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_17.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_17.mp4"
         },
         "17": {
             "id": "17",
@@ -267,7 +267,7 @@
                 "temu"
             ],
             "cloudID": "18",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_18.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_18.mp4"
         },
         "18": {
             "id": "18",
@@ -281,7 +281,7 @@
                 "no items"
             ],
             "cloudID": "19",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_19.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_19.mp4"
         },
         "19": {
             "id": "19",
@@ -297,21 +297,21 @@
                 "happening"
             ],
             "cloudID": "20",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_20.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_20.mp4"
         },
         "20": {
             "id": "20",
-            "name": "I thought this was a classy party",
+            "name": "i thought this was a classy party",
             "fileExt": "mp4",
             "tags": [
                 "surprised",
                 "party",
                 "gagged",
                 "classy party",
-                "I thought this was a classy party"
+                "i thought this was a classy party"
             ],
             "cloudID": "21",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_21.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_21.mp4"
         },
         "21": {
             "id": "21",
@@ -327,7 +327,7 @@
                 "searching"
             ],
             "cloudID": "22",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_22.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_22.mp4"
         },
         "22": {
             "id": "22",
@@ -342,11 +342,11 @@
                 "happy"
             ],
             "cloudID": "23",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_23.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_23.mp4"
         },
         "23": {
             "id": "23",
-            "name": "wwe presenter sad I don\u2019t wanna talk about it",
+            "name": "wwe main presenter sad i don't wanna talk about it",
             "fileExt": "mp4",
             "tags": [
                 "wwe",
@@ -359,7 +359,7 @@
                 "tearing up"
             ],
             "cloudID": "24",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_24.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_24.mp4"
         },
         "24": {
             "id": "24",
@@ -375,11 +375,11 @@
                 "gagged"
             ],
             "cloudID": "26",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_26.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_26.mp4"
         },
         "25": {
             "id": "25",
-            "name": "omniman I will burn this planet down",
+            "name": "omniman i will burn this planet down",
             "fileExt": "mp4",
             "tags": [
                 "omniman",
@@ -390,7 +390,7 @@
                 "hate"
             ],
             "cloudID": "27",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_27.mp4"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_27.mp4"
         },
         "26": {
             "id": "26",
@@ -404,7 +404,7 @@
                 "clown"
             ],
             "cloudID": "28",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_28.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_28.png"
         },
         "27": {
             "id": "27",
@@ -418,7 +418,7 @@
                 "not what it looks like"
             ],
             "cloudID": "29",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_29.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_29.png"
         },
         "28": {
             "id": "28",
@@ -432,7 +432,7 @@
                 "confused"
             ],
             "cloudID": "30",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_30.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_30.png"
         },
         "29": {
             "id": "29",
@@ -445,7 +445,7 @@
                 "yoda"
             ],
             "cloudID": "31",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_31.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_31.png"
         },
         "30": {
             "id": "30",
@@ -462,7 +462,7 @@
                 "stupid"
             ],
             "cloudID": "32",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_32.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_32.png"
         },
         "31": {
             "id": "31",
@@ -476,7 +476,7 @@
                 "phone"
             ],
             "cloudID": "33",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_33.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_33.png"
         },
         "32": {
             "id": "32",
@@ -491,7 +491,7 @@
                 "shrek"
             ],
             "cloudID": "34",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_34.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_34.png"
         },
         "33": {
             "id": "33",
@@ -506,11 +506,11 @@
                 "teen titans go"
             ],
             "cloudID": "35",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_35.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_35.png"
         },
         "34": {
             "id": "34",
-            "name": "Kamala staring down someone",
+            "name": "kamala staring down someone",
             "fileExt": "png",
             "tags": [
                 "kamala",
@@ -521,7 +521,7 @@
                 "intimiidating"
             ],
             "cloudID": "36",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_36.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_36.png"
         },
         "35": {
             "id": "35",
@@ -535,7 +535,7 @@
                 "part of the team"
             ],
             "cloudID": "37",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_37.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_37.png"
         },
         "36": {
             "id": "36",
@@ -549,7 +549,7 @@
                 "costume"
             ],
             "cloudID": "38",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_38.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_38.png"
         },
         "37": {
             "id": "37",
@@ -566,7 +566,7 @@
                 "romantic"
             ],
             "cloudID": "39",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_39.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_39.png"
         },
         "38": {
             "id": "38",
@@ -583,7 +583,7 @@
                 "mcu"
             ],
             "cloudID": "40",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_40.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_40.png"
         },
         "39": {
             "id": "39",
@@ -599,7 +599,7 @@
                 "satisfied"
             ],
             "cloudID": "41",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_41.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_41.png"
         },
         "40": {
             "id": "40",
@@ -614,7 +614,7 @@
                 "lips"
             ],
             "cloudID": "42",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_42.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_42.png"
         },
         "41": {
             "id": "41",
@@ -628,7 +628,7 @@
                 "pun"
             ],
             "cloudID": "43",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_43.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_43.png"
         },
         "42": {
             "id": "42",
@@ -643,7 +643,7 @@
                 "over it"
             ],
             "cloudID": "44",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_44.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_44.png"
         },
         "43": {
             "id": "43",
@@ -657,7 +657,7 @@
                 "spiderverse"
             ],
             "cloudID": "45",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_45.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_45.png"
         },
         "44": {
             "id": "44",
@@ -671,7 +671,7 @@
                 "staring"
             ],
             "cloudID": "46",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_46.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_46.png"
         },
         "45": {
             "id": "45",
@@ -686,7 +686,7 @@
                 "in my head"
             ],
             "cloudID": "47",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_47.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_47.png"
         },
         "46": {
             "id": "46",
@@ -701,7 +701,7 @@
                 "winter soldier"
             ],
             "cloudID": "48",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_48.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_48.png"
         },
         "47": {
             "id": "47",
@@ -715,7 +715,7 @@
                 "wine"
             ],
             "cloudID": "49",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_49.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_49.png"
         },
         "48": {
             "id": "48",
@@ -728,7 +728,7 @@
                 "not surprised"
             ],
             "cloudID": "50",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_50.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_50.png"
         },
         "49": {
             "id": "49",
@@ -743,7 +743,7 @@
                 "shrek"
             ],
             "cloudID": "51",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_51.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_51.png"
         },
         "50": {
             "id": "50",
@@ -759,7 +759,7 @@
                 "sorry"
             ],
             "cloudID": "52",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_52.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_52.png"
         },
         "51": {
             "id": "51",
@@ -775,7 +775,7 @@
                 "cunty"
             ],
             "cloudID": "53",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_53.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_53.png"
         },
         "52": {
             "id": "52",
@@ -792,7 +792,7 @@
                 "water"
             ],
             "cloudID": "54",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_54.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_54.png"
         },
         "53": {
             "id": "53",
@@ -805,7 +805,7 @@
                 "sony"
             ],
             "cloudID": "55",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_55.png"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_55.png"
         },
         "54": {
             "id": "54",
@@ -820,7 +820,7 @@
                 "mental illness"
             ],
             "cloudID": "56",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_56.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_56.jpg"
         },
         "55": {
             "id": "55",
@@ -829,12 +829,12 @@
             "tags": [
                 "ice spice",
                 "nelson mandela",
-                "I have a dream",
+                "i have a dream",
                 "crowd",
                 "celebration"
             ],
             "cloudID": "57",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_57.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_57.jpg"
         },
         "56": {
             "id": "56",
@@ -847,7 +847,7 @@
                 "typing"
             ],
             "cloudID": "58",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_58.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_58.jpg"
         },
         "57": {
             "id": "57",
@@ -863,7 +863,7 @@
                 "planning"
             ],
             "cloudID": "59",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_59.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_59.jpg"
         },
         "58": {
             "id": "58",
@@ -879,11 +879,11 @@
                 "headphones"
             ],
             "cloudID": "60",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_60.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_60.jpg"
         },
         "59": {
             "id": "59",
-            "name": "I am cringe but I am free cow on water",
+            "name": "i am cringe but i am free cow on water",
             "fileExt": "jpg",
             "tags": [
                 "cringe",
@@ -894,7 +894,7 @@
                 "happy"
             ],
             "cloudID": "61",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_61.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_61.jpg"
         },
         "60": {
             "id": "60",
@@ -911,7 +911,7 @@
                 "court"
             ],
             "cloudID": "62",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_62.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_62.jpg"
         },
         "61": {
             "id": "61",
@@ -926,7 +926,7 @@
                 "smiling"
             ],
             "cloudID": "63",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_63.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_63.jpg"
         },
         "62": {
             "id": "62",
@@ -938,7 +938,7 @@
                 "mother"
             ],
             "cloudID": "64",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_64.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_64.jpg"
         },
         "63": {
             "id": "63",
@@ -953,7 +953,7 @@
                 "jail"
             ],
             "cloudID": "65",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_65.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_65.jpg"
         },
         "64": {
             "id": "64",
@@ -968,7 +968,7 @@
                 "rich"
             ],
             "cloudID": "66",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_66.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_66.jpg"
         },
         "65": {
             "id": "65",
@@ -984,7 +984,7 @@
                 "puckered lips"
             ],
             "cloudID": "67",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_67.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_67.jpg"
         },
         "66": {
             "id": "66",
@@ -997,7 +997,7 @@
                 "who let him cook"
             ],
             "cloudID": "68",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_68.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_68.jpg"
         },
         "67": {
             "id": "67",
@@ -1009,7 +1009,7 @@
                 "trademarks"
             ],
             "cloudID": "69",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_69.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_69.jpg"
         },
         "68": {
             "id": "68",
@@ -1021,26 +1021,7 @@
                 "trademarks"
             ],
             "cloudID": "70",
-            "cloudURL": "file:///C:/Users/omnic/local/reaction-memes/meme_70.jpg"
-        },
-        "69": {
-            "id": "69",
-            "name": "beluga whale scaring child",
-            "fileExt": "jpg",
-            "tags": [
-                "beluga whale",
-                "scare",
-                "evil",
-                "satisfied",
-                "petty",
-                "child",
-                "crying",
-                "aquarium",
-                "fish",
-                "water"
-            ],
-            "cloudID": "f21e0d9e-70b1-4df3-92da-e8bd1baf913d",
-            "cloudURL": "file:///C:/Users/omnic/local/GitRepos/reaction-meme-server/data/mock_cloud/f21e0d9e-70b1-4df3-92da-e8bd1baf913d.jpg"
+            "cloudURL": "file:///c:/users/omnic/local/reaction-memes/meme_70.jpg"
         }
     }
 }
