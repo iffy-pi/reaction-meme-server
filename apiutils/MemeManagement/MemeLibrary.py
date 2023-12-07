@@ -10,6 +10,7 @@ from whoosh.analysis import StemmingAnalyzer
 from whoosh.fields import Schema, TEXT, KEYWORD, STORED
 from whoosh import index
 from whoosh.qparser import OrGroup, MultifieldParser
+from whoosh.filedb.filestore import RamStorage
 
 from apiutils.configs.config import PROJECT_ROOT
 from apiutils.DBClasses.MediaDB import MediaDB
@@ -75,6 +76,7 @@ class MemeLibrary:
 
         self.dbIndex = None
         self.dbIndexDir = os.path.join(PROJECT_ROOT, 'data', 'indexdir')
+        self.__indexStorage = RamStorage()
         self.__indexLock = False
 
         # Configure cloudinary
@@ -207,7 +209,7 @@ class MemeLibrary:
                 self.db.addMemeToDB(MemeLibraryItem(None, name, fileExt, tags, cloudId, cloudURL))
 
         # write the db
-        self.db.writeDB()
+        # self.db.writeDB()
 
     # TODO: Is our mutex/semaphore lock stuff configured correctly, ELEC 377 review
     # TODO: Do DB locks in db class
@@ -231,11 +233,9 @@ class MemeLibrary:
         :return:
         """
         self.getIndexLock()
-        if not os.path.exists(self.dbIndexDir):
-            os.makedirs(self.dbIndexDir)
 
         # Creates a fresh index
-        self.dbIndex = index.create_in(self.dbIndexDir, self.dbSchema)
+        self.dbIndex = self.__indexStorage.create_index(self.dbSchema)
 
         # open the writer to add documents to the index
         writer = self.dbIndex.writer()
