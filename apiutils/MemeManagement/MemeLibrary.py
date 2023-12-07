@@ -63,7 +63,6 @@ class MemeLibrary:
                                      name=item.getName(),
                                      tags=','.join(item.getTags()))
 
-    # TODO: Make singleton class!
     def __init__(self, db:MediaDB, testing):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
@@ -77,7 +76,6 @@ class MemeLibrary:
         self.dbIndex = None
         self.dbIndexDir = os.path.join(PROJECT_ROOT, 'data', 'indexdir')
         self.__indexLock = False
-        self.__saveLock = False
 
         # Configure cloudinary
         # cloudinary.configs(
@@ -144,9 +142,7 @@ class MemeLibrary:
         """
         cloudId, cloudURL = self.uploadMediaToCloud(mediaBinary, self.getMeme(itemId).getFileExt())
 
-        self.getSaveLock()
         self.db.updateItem(itemId, MemeLibraryItem(cloudID=cloudId, cloudURL=cloudURL))
-        self.releaseSaveLock()
 
         return cloudURL
 
@@ -157,9 +153,7 @@ class MemeLibrary:
         """
         meme = MemeLibraryItem(id=None, name=name, fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
 
-        self.getSaveLock()
         self.db.addMemeToDB(meme)
-        self.releaseSaveLock()
 
         if reIndexLibrary and self.dbIndex is not None:
             self.indexMeme(meme)
@@ -216,6 +210,7 @@ class MemeLibrary:
         self.db.writeDB()
 
     # TODO: Is our mutex/semaphore lock stuff configured correctly, ELEC 377 review
+    # TODO: Do DB locks in db class
     def isIndexLocked(self):
         return self.__indexLock
 
@@ -228,17 +223,6 @@ class MemeLibrary:
 
     def releaseIndexLock(self):
         self.__indexLock = False
-
-    def isSaveLocked(self):
-        return self.__saveLock
-
-    def getSaveLock(self):
-        while self.isSaveLocked():
-            pass
-        self.__saveLock = True
-
-    def releaseSaveLock(self):
-        self.__saveLock = False
 
 
     def indexLibrary(self):
@@ -304,6 +288,4 @@ class MemeLibrary:
         return [ self.getMeme(memeId) for memeId in ids ]
 
     def saveLibrary(self):
-        self.getSaveLock()
         self.db.writeDB()
-        self.releaseSaveLock()
