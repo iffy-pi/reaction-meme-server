@@ -5,18 +5,21 @@ from time import sleep
 from flask import (Flask, redirect, render_template, request, url_for)
 from flask_cors import CORS
 
+from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.HTTPResponses import *
 from apiutils.DBClasses.JSONMediaDB import JSONMediaDB
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
-from apiutils.configs.config import ALLOWED_ACCESS_TOKENS, PROJECT_ROOT
+from apiutils.configs.config import ALLOWED_ACCESS_TOKENS, PROJECT_ROOT, PBFS_ACCESS_TOKEN, PBFS_SERVER_IDENTIFIER
 
 # initialize app flask object
 app = Flask(__name__)
 CORS(app)
 
 # TODO: Fix this mess of initialization
-MemeLibrary.initSingleton(JSONMediaDB.getInstance(), testing=True)
+JSONMediaDB.initSingleton(PBFSFileStorage(PBFS_ACCESS_TOKEN, PBFS_SERVER_IDENTIFIER))
+MemeLibrary.initSingleton(JSONMediaDB.getSingleton(), testing=True)
+
 
 memeLib = MemeLibrary.getSingleton()
 memeLib.makeLibraryFromCSV(os.path.join(PROJECT_ROOT, 'data', 'catalog.csv'))

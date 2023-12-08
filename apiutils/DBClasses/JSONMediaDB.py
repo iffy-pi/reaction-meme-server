@@ -2,6 +2,7 @@ import json
 import os
 
 from apiutils.DBClasses.MediaDB import MediaDB
+from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 from apiutils.configs.config import PROJECT_ROOT
 
@@ -19,17 +20,20 @@ class JSONMediaDB(MediaDB):
             CloudID = "cloudID"
             CloudURL = "cloudURL"
 
-    def __init__(self):
-        self.dbFilePath = os.path.join(PROJECT_ROOT, 'data', 'db.json')
+    def __init__(self, fileStorage:JSONDBFileStorage):
         self.db = None
         self.__dbLock = False
+        self.fileStorage = fileStorage
 
     @staticmethod
-    def getInstance():
+    def getSingleton():
         if JSONMediaDB.instance is None:
-            JSONMediaDB.instance = JSONMediaDB()
+            raise Exception('Instance not initialized')
         return JSONMediaDB.instance
 
+    @staticmethod
+    def initSingleton(fileStorage:JSONDBFileStorage):
+        JSONMediaDB.instance = JSONMediaDB(fileStorage)
     def initDB(self) -> None:
         self.__getDBLock()
         self.db = {
@@ -40,14 +44,12 @@ class JSONMediaDB(MediaDB):
 
     def loadDB(self) -> None:
         self.__getDBLock()
-        with open(self.dbFilePath, 'r') as file:
-            self.db = json.load(file)
+        self.db = self.fileStorage.getJSONDB()
         self.__releaseDBLock()
 
     def writeDB(self) -> None:
         self.__getDBLock()
-        with open(self.dbFilePath, 'w') as file:
-            json.dump(self.db, file, indent=4)
+        self.fileStorage.writeJSONDB(self.db)
         self.__releaseDBLock()
 
     def hasItem(self, itemID:int) -> bool:
