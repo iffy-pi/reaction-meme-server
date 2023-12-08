@@ -111,12 +111,11 @@ class MemeLibrary:
             return "file:///{}".format(fp.replace('\\', '/'))
 
         # saves them to local location
-        mockLocation = os.path.join(PROJECT_ROOT, 'data', 'mock_cloud')
+        mockLocation = os.path.join('data', 'mock_cloud')
         fileId = str(uuid.uuid4())
         filePath = os.path.join(mockLocation, f'{fileId}.{fileExt}')
-        with open( filePath, 'wb') as file:
-            file.write(mediaBinary)
-
+        # with open( filePath, 'wb') as file:
+        #     file.write(mediaBinary)
         return fileId, filePathToLink(filePath)
 
     def __realUploader(self, mediaBinary):
