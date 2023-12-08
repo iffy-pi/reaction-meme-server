@@ -288,4 +288,5 @@ class MemeLibrary:
         return [ self.getMeme(memeId) for memeId in ids ]
 
     def saveLibrary(self):
-        self.db.writeDB()
+        pass
+        # self.db.writeDB()
