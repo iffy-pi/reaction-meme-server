@@ -4,8 +4,6 @@ import os
 from apiutils.DBClasses.MediaDB import MediaDB
 from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
-from apiutils.configs.config import PROJECT_ROOT
-
 
 class JSONMediaDB(MediaDB):
     instance = None

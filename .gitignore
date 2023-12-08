@@ -1,8 +1,9 @@
 __pycache__
 *.pyc
 .vscode
-test.py
+devenv/test.py
 .idea
 data/mock_cloud/
 data/indexdir/
 testing/
+devenv/

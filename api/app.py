@@ -1,6 +1,5 @@
 import os
 import threading
-from time import sleep
 
 from flask import (Flask, redirect, render_template, request, url_for)
 from flask_cors import CORS
@@ -10,19 +9,28 @@ from apiutils.HTTPResponses import *
 from apiutils.DBClasses.JSONMediaDB import JSONMediaDB
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
-from apiutils.configs.config import ALLOWED_ACCESS_TOKENS, PROJECT_ROOT, PBFS_ACCESS_TOKEN, PBFS_SERVER_IDENTIFIER
+from apiutils.configs.ServerConfig import ServerConfig
+
+# Initialize our server config
+if os.environ.get('JSON_ENV') is not None:
+    print('Loading Environment From JSON: '+ os.environ.get('JSON_ENV'))
+    ServerConfig.setConfigFromJSON(os.environ.get('JSON_ENV'))
+else:
+    ServerConfig.setConfigFromEnv()
+
+if ServerConfig.isDevEnv():
+    print('Development environment is being used!')
 
 # initialize app flask object
 app = Flask(__name__)
 CORS(app)
 
 # TODO: Fix this mess of initialization
-JSONMediaDB.initSingleton(PBFSFileStorage(PBFS_ACCESS_TOKEN, PBFS_SERVER_IDENTIFIER))
+JSONMediaDB.initSingleton(PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER))
 MemeLibrary.initSingleton(JSONMediaDB.getSingleton(), testing=True)
 
-
 memeLib = MemeLibrary.getSingleton()
-memeLib.makeLibraryFromCSV(os.path.join(PROJECT_ROOT, 'data', 'catalog.csv'))
+memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
 memeLib.indexLibrary()
 
 
@@ -35,7 +43,7 @@ def validAccess(req:request):
     accToken = req.headers.get('Access-Token')
     if accToken is None:
         return False
-    if accToken not in ALLOWED_ACCESS_TOKENS:
+    if accToken not in ServerConfig.ALLOWED_ACCESS_TOKENS:
         return False
     return True
 

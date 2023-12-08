@@ -12,7 +12,6 @@ from whoosh import index
 from whoosh.qparser import OrGroup, MultifieldParser
 from whoosh.filedb.filestore import RamStorage
 
-from apiutils.configs.config import PROJECT_ROOT
 from apiutils.DBClasses.MediaDB import MediaDB
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
@@ -75,7 +74,6 @@ class MemeLibrary:
         self.searchQueryParser = MemeLibrary.IndexingManager.createQueryParser(self.dbSchema)
 
         self.dbIndex = None
-        self.dbIndexDir = os.path.join(PROJECT_ROOT, 'data', 'indexdir')
         self.__indexStorage = RamStorage()
         self.__indexLock = False
 
