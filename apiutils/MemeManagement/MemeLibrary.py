@@ -64,7 +64,7 @@ class MemeLibrary:
 
     def addAndUploadMeme(self, mediaBinary, name:str, fileExt:str, tags:list[str], reIndexLibrary:bool=False):
         # upload to cloudinary
-        cloudId, cloudURL = self.uploadMediaToCloud(mediaBinary, fileExt)
+        cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, fileExt)
         # add to library
         meme = self.makeMemeAndAddToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, reIndexLibrary=reIndexLibrary)
 

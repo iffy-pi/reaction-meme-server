@@ -19,6 +19,12 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
+    def unloadDB(self) -> None:
+        """
+        Unloads the database (all its objects and memory) from system
+        """
+        raise Exception("Must implement in subclass")
+
     def writeDB(self) -> None:
         """
         Writes the database object to the actual database file

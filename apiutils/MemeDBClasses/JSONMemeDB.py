@@ -29,6 +29,7 @@ class JSONMemeDB(MemeDBInterface):
     @staticmethod
     def initSingleton(fileStorage:JSONDBFileStorage):
         JSONMemeDB.instance = JSONMemeDB(fileStorage)
+
     def initDB(self) -> None:
         self.__getDBLock()
         self.db = {
@@ -41,6 +42,14 @@ class JSONMemeDB(MemeDBInterface):
         self.__getDBLock()
         self.db = self.fileStorage.getJSONDB()
         self.__releaseDBLock()
+
+    def unloadDB(self) -> None:
+        if self.db is None:
+            return
+
+        # removes all the keys in the dict
+        self.db.clear()
+        self.db = None
 
     def writeDB(self) -> None:
         self.__getDBLock()
