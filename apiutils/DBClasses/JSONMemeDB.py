@@ -1,11 +1,8 @@
-import json
-import os
-
-from apiutils.DBClasses.MediaDB import MediaDB
+from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
-class JSONMediaDB(MediaDB):
+class JSONMemeDB(MemeDBInterface):
     instance = None
     class DBFields:
         ItemCount = "itemCount"
@@ -25,18 +22,18 @@ class JSONMediaDB(MediaDB):
 
     @staticmethod
     def getSingleton():
-        if JSONMediaDB.instance is None:
+        if JSONMemeDB.instance is None:
             raise Exception('Instance not initialized')
-        return JSONMediaDB.instance
+        return JSONMemeDB.instance
 
     @staticmethod
     def initSingleton(fileStorage:JSONDBFileStorage):
-        JSONMediaDB.instance = JSONMediaDB(fileStorage)
+        JSONMemeDB.instance = JSONMemeDB(fileStorage)
     def initDB(self) -> None:
         self.__getDBLock()
         self.db = {
-            JSONMediaDB.DBFields.ItemCount: 0,
-            JSONMediaDB.DBFields.Items: {}
+            JSONMemeDB.DBFields.ItemCount: 0,
+            JSONMemeDB.DBFields.Items: {}
         }
         self.__releaseDBLock()
 
@@ -51,12 +48,12 @@ class JSONMediaDB(MediaDB):
         self.__releaseDBLock()
 
     def hasItem(self, itemID:int) -> bool:
-        return str(itemID) in self.db[JSONMediaDB.DBFields.Items]
+        return str(itemID) in self.db[JSONMemeDB.DBFields.Items]
 
     def __getJSONItem(self, itemId, lockDB=True):
         if lockDB:
             self.__getDBLock()
-        it = self.db.get(JSONMediaDB.DBFields.Items).get(str(itemId))
+        it = self.db.get(JSONMemeDB.DBFields.Items).get(str(itemId))
 
         if lockDB:
             self.__releaseDBLock()
@@ -64,12 +61,12 @@ class JSONMediaDB(MediaDB):
 
     def __createMemeFromJSONItem(self, jsonItem):
         return MemeLibraryItem(
-            id=jsonItem[JSONMediaDB.DBFields.ItemFields.ID],
-            name=jsonItem[JSONMediaDB.DBFields.ItemFields.Name],
-            tags=jsonItem[JSONMediaDB.DBFields.ItemFields.Tags],
-            fileExt=jsonItem[JSONMediaDB.DBFields.ItemFields.FileExt],
-            cloudID=jsonItem[JSONMediaDB.DBFields.ItemFields.CloudID],
-            cloudURL=jsonItem[JSONMediaDB.DBFields.ItemFields.CloudURL]
+            id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
+            name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
+            tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
+            fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
+            cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],
+            cloudURL=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudURL]
             )
 
     def getMemeItem(self, itemID:int) -> MemeLibraryItem:
@@ -77,16 +74,16 @@ class JSONMediaDB(MediaDB):
 
     def __addItemToDB(self, name, fileExt, tags, cloudID, cloudURL):
         self.__getDBLock()
-        itemId = str(self.db[JSONMediaDB.DBFields.ItemCount])
-        self.db[JSONMediaDB.DBFields.Items][itemId] = {
-            JSONMediaDB.DBFields.ItemFields.ID           : itemId,
-            JSONMediaDB.DBFields.ItemFields.Name         : name,
-            JSONMediaDB.DBFields.ItemFields.FileExt      : fileExt,
-            JSONMediaDB.DBFields.ItemFields.Tags         : tags,
-            JSONMediaDB.DBFields.ItemFields.CloudID      : cloudID,
-            JSONMediaDB.DBFields.ItemFields.CloudURL     : cloudURL
+        itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
+        self.db[JSONMemeDB.DBFields.Items][itemId] = {
+            JSONMemeDB.DBFields.ItemFields.ID           : itemId,
+            JSONMemeDB.DBFields.ItemFields.Name         : name,
+            JSONMemeDB.DBFields.ItemFields.FileExt      : fileExt,
+            JSONMemeDB.DBFields.ItemFields.Tags         : tags,
+            JSONMemeDB.DBFields.ItemFields.CloudID      : cloudID,
+            JSONMemeDB.DBFields.ItemFields.CloudURL     : cloudURL
         }
-        self.db[JSONMediaDB.DBFields.ItemCount] += 1
+        self.db[JSONMemeDB.DBFields.ItemCount] += 1
         self.__releaseDBLock()
         return itemId
 
@@ -111,15 +108,15 @@ class JSONMediaDB(MediaDB):
         self.__getDBLock()
         item = self.__getJSONItem(itemId, lockDB=False)
         if name is not None:
-            item[JSONMediaDB.DBFields.ItemFields.Name] = name
+            item[JSONMemeDB.DBFields.ItemFields.Name] = name
         if tags is not None:
-            item[JSONMediaDB.DBFields.ItemFields.Tags] = tags
+            item[JSONMemeDB.DBFields.ItemFields.Tags] = tags
         if fileExt is not None:
-            item[JSONMediaDB.DBFields.ItemFields.FileExt] = fileExt
+            item[JSONMemeDB.DBFields.ItemFields.FileExt] = fileExt
         if cloudID is not None:
-            item[JSONMediaDB.DBFields.ItemFields.CloudID] = cloudID
+            item[JSONMemeDB.DBFields.ItemFields.CloudID] = cloudID
         if cloudURL is not None:
-            item[JSONMediaDB.DBFields.ItemFields.CloudURL] = cloudURL
+            item[JSONMemeDB.DBFields.ItemFields.CloudURL] = cloudURL
         self.__releaseDBLock()
 
     def updateItem(self, itemId:int, item:MemeLibraryItem):
@@ -136,7 +133,7 @@ class JSONMediaDB(MediaDB):
         self.__getDBLock()
         res = [
             self.__createMemeFromJSONItem(it)
-            for it in self.db.get(JSONMediaDB.DBFields.Items).values()
+            for it in self.db.get(JSONMemeDB.DBFields.Items).values()
         ]
         self.__releaseDBLock()
         return res

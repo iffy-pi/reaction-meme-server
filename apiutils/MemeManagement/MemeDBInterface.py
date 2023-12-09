@@ -1,6 +1,9 @@
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
-class MediaDB:
+class MemeDBInterface:
+    """
+    Interface that must be implemented by classes which host the database for the MemeLibrary
+    """
     def __init__(self):
         pass
 

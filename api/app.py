@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.HTTPResponses import *
-from apiutils.DBClasses.JSONMediaDB import JSONMediaDB
+from apiutils.DBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ServerConfig import ServerConfig
@@ -26,8 +26,8 @@ app = Flask(__name__)
 CORS(app)
 
 # TODO: Fix this mess of initialization
-JSONMediaDB.initSingleton(PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER))
-MemeLibrary.initSingleton(JSONMediaDB.getSingleton(), testing=True)
+JSONMemeDB.initSingleton(PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER))
+MemeLibrary.initSingleton(JSONMemeDB.getSingleton(), testing=True)
 
 memeLib = MemeLibrary.getSingleton()
 memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
@@ -70,7 +70,7 @@ def route_meme_search():
     if query is None or query == "":
         return error_response(400, 'No query found, use "query" for the URL parameter')
 
-    matchedMemes = memeLib.findMemesFor(query)
+    matchedMemes = memeLib.findMemes(query)
     collated = [ {
         'name': meme.getName(),
         'url': meme.getURL() }

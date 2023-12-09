@@ -1,81 +1,25 @@
 import os
-import time
 import uuid
 import csv
-from contextlib import contextmanager
 
 import cloudinary
 import cloudinary.uploader
-from whoosh.analysis import StemmingAnalyzer
-from whoosh.fields import Schema, TEXT, KEYWORD, STORED
-from whoosh import index
-from whoosh.qparser import OrGroup, MultifieldParser
-from whoosh.filedb.filestore import RamStorage
 
-from apiutils.DBClasses.MediaDB import MediaDB
+from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
+
 
 class MemeLibrary:
     instance = None
-    class IndexingManager:
-        # Manages everything to do with the schemas used when indexing the db
-        # Including the fields, creating the schema, adding items to an index, creating the parser
-        class SchemaFields:
-            """
-            The field names used in the schema, see DBSchemaManager.createDBSchema() for their properties
-            """
-            FileID = "fileID"
-            Name = "name"
-            Tags = "tags"
 
-
-        @staticmethod
-        def createDBSchema():
-            """
-            Creates the whoosh schema for the DB with the indexable fields configured
-            :return: The created
-            """
-            # indexing schema, searchable by the file name and its comma separated tags (see SchemaFields)
-            # fileID and name is stored so it is returned with results
-            return Schema(fileID=STORED,
-                          name=TEXT(stored=True, analyzer=StemmingAnalyzer()),
-                          tags=KEYWORD(lowercase=True, scorable=True, commas=True, analyzer=StemmingAnalyzer()))
-
-        @staticmethod
-        def createQueryParser(schemaIn):
-            """
-            Creates the query parser for the db. Parser is configured to use the fields in the schema returned from DBSchemaManager.createDBSchema()
-            :return: The created parser
-            """
-            # Designed to search in both names and tag field, using an or-ing of results
-            return MultifieldParser([MemeLibrary.IndexingManager.SchemaFields.Name, MemeLibrary.IndexingManager.SchemaFields.Tags],
-                                    schema=schemaIn,
-                                    group=OrGroup)
-
-        @staticmethod
-        def addMemeToWriter(indexWriter, item:MemeLibraryItem):
-            """
-            Adds the dbElement to the index written to by indexWriter
-            :param indexWriter: An instance of whoosh.index.writer()
-            :param item: An object of db, containing fields from MediaDB.DBFields.ElementFields
-            """
-            indexWriter.add_document(fileID=item.getID(),
-                                     name=item.getName(),
-                                     tags=','.join(item.getTags()))
-
-    def __init__(self, db:MediaDB, testing):
+    def __init__(self, db:MemeDBInterface, testing):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
         """
         self.db = db
         self.testing = testing
-
-        self.dbSchema = MemeLibrary.IndexingManager.createDBSchema()
-        self.searchQueryParser = MemeLibrary.IndexingManager.createQueryParser(self.dbSchema)
-
-        self.dbIndex = None
-        self.__indexStorage = RamStorage()
-        self.__indexLock = False
+        self.libSearcher = MemeLibrarySearcher()
 
         # Configure cloudinary
         # cloudinary.configs(
@@ -85,7 +29,7 @@ class MemeLibrary:
         # )
 
     @staticmethod
-    def initSingleton(db:MediaDB, testing=True):
+    def initSingleton(db:MemeDBInterface, testing=True):
         MemeLibrary.instance = MemeLibrary(db, testing)
 
     @staticmethod
@@ -154,7 +98,7 @@ class MemeLibrary:
 
         self.db.addMemeToDB(meme)
 
-        if reIndexLibrary and self.dbIndex is not None:
+        if reIndexLibrary and not self.libSearcher.hasIndex():
             self.indexMeme(meme)
         return meme
 
@@ -208,80 +152,27 @@ class MemeLibrary:
         # write the db
         # self.db.writeDB()
 
-    # TODO: Is our mutex/semaphore lock stuff configured correctly, ELEC 377 review
-    # TODO: Do DB locks in db class
-    def isIndexLocked(self):
-        return self.__indexLock
-
-    def getIndexLock(self):
-        # wait till index unlocks
-        while self.isIndexLocked():
-            pass
-
-        self.__indexLock = True
-
-    def releaseIndexLock(self):
-        self.__indexLock = False
-
-
     def indexLibrary(self):
         """
         Indexes all the memes in the library, if index already exists, it is re-indexed
-        :return:
         """
-        self.getIndexLock()
-
-        # Creates a fresh index
-        self.dbIndex = self.__indexStorage.create_index(self.dbSchema)
-
-        # open the writer to add documents to the index
-        writer = self.dbIndex.writer()
-        for item in self.db.getAllDBMemes():
-            MemeLibrary.IndexingManager.addMemeToWriter(writer, item)
-        writer.commit()
-
-        # release the lock
-        self.releaseIndexLock()
+        self.libSearcher.indexMemeList(self.db.getAllDBMemes())
 
     def indexMeme(self, meme:MemeLibraryItem):
         """
         Adds the given meme to the library index, if index is not present, then the library is indexed again
         """
-        if self.dbIndex is None:
+        if not self.libSearcher.hasIndex():
             self.indexLibrary()
 
-        self.getIndexLock()
-        writer = self.dbIndex.writer()
-        MemeLibrary.IndexingManager.addMemeToWriter(writer, meme)
-        writer.commit()
-        self.releaseIndexLock()
+        self.libSearcher.indexMeme(meme)
 
-    @contextmanager
-    def getDBSearcher(self):
-        if self.dbIndex is None:
-            raise Exception('Database has not been indexed')
+    def findMemeURLs(self, query: str, limit: int = 15):
+        return [ self.libSearcher.getSearchResultAttr(res, memeURL=True) for res in self.libSearcher.search(query, limit) ]
 
-        self.getIndexLock()
-        searcher = self.dbIndex.searcher()
-        try:
-            yield searcher
-        finally:
-            searcher.close()
-            self.releaseIndexLock()
-
-    def __findMemeIDs(self, query:str, limit:int = 15):
-        """
-        Searches the indexed database with whoosh.
-        Returns the list of Ids that match the query
-        :return:
-        """
-        q = self.searchQueryParser.parse(query)
-        with self.getDBSearcher() as s:
-            results = s.search(q)
-            return [r[MemeLibrary.IndexingManager.SchemaFields.FileID] for r in results]
-
-    def findMemesFor(self, query:str, limit:int = 15):
-        ids = self.__findMemeIDs(query, limit=limit)
+    def findMemes(self, query:str, limit:int = 15):
+        results = self.libSearcher.search(query, limit)
+        ids = [ self.libSearcher.getSearchResultAttr(res, memeID=True) for res in results ]
         return [ self.getMeme(memeId) for memeId in ids ]
 
     def saveLibrary(self):
