@@ -1,36 +1,27 @@
 import os
-import uuid
 import csv
-
-import cloudinary
-import cloudinary.uploader
 
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
+from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
 
 
 class MemeLibrary:
     instance = None
 
-    def __init__(self, db:MemeDBInterface, testing):
+    def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface, testing):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
         """
         self.db = db
         self.testing = testing
         self.libSearcher = MemeLibrarySearcher()
-
-        # Configure cloudinary
-        # cloudinary.configs(
-        #     cloud_name = CLOUD_NAME,
-        #     api_key = API_KEY,
-        #     api_secret = API_SECRET,
-        # )
+        self.uploader = uploader
 
     @staticmethod
-    def initSingleton(db:MemeDBInterface, testing=True):
-        MemeLibrary.instance = MemeLibrary(db, testing)
+    def initSingleton(db:MemeDBInterface, uploader:MemeUploaderInterface, testing=True):
+        MemeLibrary.instance = MemeLibrary(db, uploader, testing)
 
     @staticmethod
     def getSingleton():
@@ -46,36 +37,6 @@ class MemeLibrary:
             raise Exception("Item ID does not exist in db")
         return self.db.getMemeItem(itemId)
 
-    def __mockUploader(self, mediaBinary, fileExt):
-
-        def filePathToLink(fp):
-            # replace backslashes with forward slashes
-            return "file:///{}".format(fp.replace('\\', '/'))
-
-        # saves them to local location
-        mockLocation = os.path.join('data', 'mock_cloud')
-        fileId = str(uuid.uuid4())
-        filePath = os.path.join(mockLocation, f'{fileId}.{fileExt}')
-        # with open( filePath, 'wb') as file:
-        #     file.write(mediaBinary)
-        return fileId, filePathToLink(filePath)
-
-    def __realUploader(self, mediaBinary):
-        # Actually uploads the files to cloudinary
-        resp = cloudinary.uploader.upload(mediaBinary, unique_filename=False, overwrite=True)
-        mediaID = resp['public_id']
-        deliveryURL = cloudinary.CloudinaryImage(mediaID).build_url()
-        return mediaID, deliveryURL
-
-    def uploadMediaToCloud(self, mediaBinary, fileExt):
-        """
-        Uploads the binary to cloudinary and returns the URL for delivery
-        """
-        if self.testing:
-            return self.__mockUploader(mediaBinary, fileExt)
-        else:
-            return self.__realUploader(mediaBinary)
-
     def uploadItemMedia(self, itemId:int, mediaBinary):
         """
         Uploads the media binary to the cloud and associates it with the item pointed to by the item ID
@@ -83,8 +44,7 @@ class MemeLibrary:
         :param mediaBinary: The binary data of the media to be uploaded
         :return: The cloud URL
         """
-        cloudId, cloudURL = self.uploadMediaToCloud(mediaBinary, self.getMeme(itemId).getFileExt())
-
+        cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())
         self.db.updateItem(itemId, MemeLibraryItem(cloudID=cloudId, cloudURL=cloudURL))
 
         return cloudURL

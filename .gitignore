@@ -2,7 +2,6 @@ __pycache__
 *.pyc
 .vscode
 devenv/test.py
-.idea
 data/mock_cloud/
 data/indexdir/
 testing/

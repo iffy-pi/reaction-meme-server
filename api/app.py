@@ -6,10 +6,11 @@ from flask_cors import CORS
 
 from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.HTTPResponses import *
-from apiutils.DBClasses.JSONMemeDB import JSONMemeDB
+from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ServerConfig import ServerConfig
+from apiutils.MemeUploaderClasses.LocalStorageUploader import LocalStorageUploader
 
 # Initialize our server config
 if os.environ.get('JSON_ENV') is not None:
@@ -26,17 +27,17 @@ app = Flask(__name__)
 CORS(app)
 
 # TODO: Fix this mess of initialization
+# Initialize the JSON Meme DB with PBFS File storage
 JSONMemeDB.initSingleton(PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER))
-MemeLibrary.initSingleton(JSONMemeDB.getSingleton(), testing=True)
+
+# Initialize Meme Library with JSON DB and local storage uploader
+uploader = LocalStorageUploader()
+MemeLibrary.initSingleton(JSONMemeDB.getSingleton(), uploader, testing=True)
 
 memeLib = MemeLibrary.getSingleton()
+
 memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
 memeLib.indexLibrary()
-
-
-# @app.route('/myConsole', methods=['GET', 'POST'])
-# def route_console():
-#     return render_template('console.html', content=app.config['ALLOWED_EXTENSIONS'])
 
 
 def validAccess(req:request):
@@ -55,6 +56,7 @@ def saveAndReIndexLibrary():
     memeLib.saveLibrary()
     memeLib.indexLibrary()
 
+
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
 def route_get_meme(memeID):
     memeID = int(memeID)
@@ -63,6 +65,7 @@ def route_get_meme(memeID):
 
     memeURL = memeLib.getMeme(memeID).getURL()
     return redirect(memeURL)
+
 
 @app.route('/memes/search', methods=['GET'])
 def route_meme_search():
@@ -77,6 +80,8 @@ def route_meme_search():
     for meme in matchedMemes]
 
     return make_json_response({ 'results' : collated})
+
+
 @app.route('/memes/add', methods=['GET', 'POST'])
 def route_add_new_meme():
     # Only people with valid access tokens are allowed
@@ -102,6 +107,7 @@ def route_add_new_meme():
             "uploadURL": url_for("upload_meme", uploadKey=UploadSessionManager.getInstance().newUploadKey(meme.getID()), _external=True),
         }
     )
+
 
 @app.route('/memes/upload/<uploadKey>', methods=['GET', 'POST'])
 def upload_meme(uploadKey):
