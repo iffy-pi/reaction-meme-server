@@ -9,9 +9,20 @@ class LocalStorageUploader(MemeUploaderInterface):
     """
     Uploads to devenv/localmemes
     """
-    def __init__(self):
-        self.configFile = os.path.join(ServerConfig.PROJECT_ROOT, "devenv", "localmemes", "config.json")
-        self.memeDir = os.path.join(ServerConfig.PROJECT_ROOT, "devenv", "localmemes")
+    def __init__(self, configJSONFilePath:str, memeDir:str, addUploadedFlag=False):
+        """
+        Initializes the local storage uploader
+        :param configJSONFilePath: The path to the config JSON file, this JSON file must contain a nextID key
+        :param memeDir: The path to the directory where all the memes are stored.
+        :param addUploadedFlag : Set to true and memes uploaded using the uploader object will be named meme_<id>_uploaded, instead of just meme_<id>
+
+        The class works in the following way:
+            The config file is used to keep track of the next ID to assign to a newly uploaded meme
+            When a new meme is uploaded, it is written to the memeDir with the naming format meme_{id}.{fileExt} (or with uploaded appended as mentioned above)
+            The config file is also updated when a new meme is added, the value of next ID is incremented.
+        """
+        self.configFile = configJSONFilePath
+        self.memeDir = memeDir
 
 
     def uploadMedia(self, mediaBinary:bytes, fileExt) -> tuple[str, str]:

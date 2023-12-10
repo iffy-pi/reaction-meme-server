@@ -10,7 +10,7 @@ from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ServerConfig import ServerConfig
-from apiutils.MemeUploaderClasses.LocalStorageUploader import LocalStorageUploader
+from localMemeStorageServer.utils.storageServerUtils import makeLocalStorageUploader
 
 # Initialize our server config
 if os.environ.get('JSON_ENV') is not None:
@@ -33,7 +33,7 @@ JSONMemeDB.initSingleton(fileStorage)
 
 # Initialize Meme Library with JSON DB and local storage uploader
 memeDB = JSONMemeDB.getSingleton()
-memeUploader = LocalStorageUploader()
+memeUploader = makeLocalStorageUploader()
 memeLib = MemeLibrary(memeDB, memeUploader)
 
 # Load the library from the database and index it
@@ -67,7 +67,8 @@ def route_get_meme(memeID):
     memeURL = memeLib.getMeme(memeID).getURL()
     return redirect(memeURL)
 
-
+# TODO: Add support for limit argument
+# TODO: Add support for search pages
 @app.route('/memes/search', methods=['GET'])
 def route_meme_search():
     query = request.args.get("query")
@@ -76,6 +77,7 @@ def route_meme_search():
 
     matchedMemes = memeLib.findMemes(query)
     collated = [ {
+        'id': meme.getID(),
         'name': meme.getName(),
         'url': meme.getURL() }
     for meme in matchedMemes]

@@ -2,14 +2,14 @@ import os
 
 from flask import (Flask,  send_from_directory)
 from flask_cors import CORS
-
+from localMemeStorageServer.utils.storageServerUtils import getMemeDir
 from apiutils.HTTPResponses import *
 
 # initialize app flask object
 app = Flask(__name__)
 CORS(app)
 
-memeDir = "C:\\local\\GitRepos\\reaction-meme-server\\devenv\\localmemes"
+memeDir = getMemeDir()
 
 def getMemeFileName(id):
     for filename in os.listdir(memeDir):

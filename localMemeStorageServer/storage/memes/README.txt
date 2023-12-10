@@ -1,0 +1,1 @@
+This is the meme directory, it has been configured such that git ignores every file except this one when uploading
