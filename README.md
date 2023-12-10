@@ -118,7 +118,7 @@ There are two classes which implement the MemeUploader interface:
 ### Local media hosting with `LocalStorageUploader`
 LocalStorageUploader is designed to work with the local meme storage server configuration which allows me to mimic cloud hosting but instead saving locally. Read more in `localMemeStorage\README.md`
 
-## MemeDBInterface
+## `MemeDBInterface`
 This interface provides the similar plug-and-play solution but instead for the database used within MemeLibrary. The meme database stores the related information for each meme, which includes the meme's:
 - ID: The unique ID in the database for the meme entry
 - Name: A descriptive name for the meme
