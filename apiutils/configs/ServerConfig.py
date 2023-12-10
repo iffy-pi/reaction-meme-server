@@ -2,7 +2,7 @@ import json
 import os
 class ServerConfig:
     # When a new config is added, also update get from JSON as well
-    PROJECT_ROOT = None
+    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..', '..'))
     PROJECT_ENVIRONMENT = None
     CLOUDINARY_CLOUD_NAME = None
     CLOUDINARY_API_KEY = None
@@ -13,7 +13,7 @@ class ServerConfig:
 
     @staticmethod
     def setConfigFromEnv():
-        ServerConfig.PROJECT_ROOT = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..', '..'))
+        #ServerConfig.PROJECT_ROOT = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..', '..'))
         ServerConfig.PROJECT_ENVIRONMENT = os.environ.get('RMSVR_PROJECT_ENV')
         ServerConfig.CLOUDINARY_CLOUD_NAME = os.environ.get('RMSVR_CLOUDINARY_CLOUD_NAME')
         ServerConfig.CLOUDINARY_API_KEY = os.environ.get('RMSVR_CLOUDINARY_API_KEY')
@@ -32,7 +32,7 @@ class ServerConfig:
         with open(jsonFile, "r") as file:
             loadedEnv = json.load(file)
 
-        ServerConfig.PROJECT_ROOT = loadedEnv['PROJECT_ROOT']
+        #ServerConfig.PROJECT_ROOT = loadedEnv['PROJECT_ROOT']
         ServerConfig.PROJECT_ENVIRONMENT = loadedEnv['PROJECT_ENVIRONMENT']
         ServerConfig.CLOUDINARY_CLOUD_NAME = loadedEnv['CLOUDINARY_CLOUD_NAME']
         ServerConfig.CLOUDINARY_API_KEY = loadedEnv['CLOUDINARY_API_KEY']
