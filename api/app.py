@@ -26,19 +26,20 @@ if ServerConfig.isDevEnv():
 app = Flask(__name__)
 CORS(app)
 
-# TODO: Fix this mess of initialization
+
 # Initialize the JSON Meme DB with PBFS File storage
-JSONMemeDB.initSingleton(PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER))
+fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+JSONMemeDB.initSingleton(fileStorage)
 
 # Initialize Meme Library with JSON DB and local storage uploader
-uploader = LocalStorageUploader()
-MemeLibrary.initSingleton(JSONMemeDB.getSingleton(), uploader, testing=True)
+memeDB = JSONMemeDB.getSingleton()
+memeUploader = LocalStorageUploader()
+memeLib = MemeLibrary(memeDB, memeUploader)
 
-memeLib = MemeLibrary.getSingleton()
-
-memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
+# Load the library from the database and index it
+memeLib.loadLibrary()
+# memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
 memeLib.indexLibrary()
-
 
 def validAccess(req:request):
     accToken = req.headers.get('Access-Token')

@@ -8,26 +8,13 @@ from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
 
 
 class MemeLibrary:
-    instance = None
-
-    def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface, testing):
+    def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
         """
         self.db = db
-        self.testing = testing
         self.libSearcher = MemeLibrarySearcher()
         self.uploader = uploader
-
-    @staticmethod
-    def initSingleton(db:MemeDBInterface, uploader:MemeUploaderInterface, testing=True):
-        MemeLibrary.instance = MemeLibrary(db, uploader, testing)
-
-    @staticmethod
-    def getSingleton():
-        if MemeLibrary.instance is None:
-            raise Exception('Uinitialized library!')
-        return MemeLibrary.instance
 
     def hasMeme(self, itemId:int):
         return self.db.hasItem(itemId)
