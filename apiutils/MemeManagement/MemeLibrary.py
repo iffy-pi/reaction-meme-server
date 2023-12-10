@@ -114,6 +114,7 @@ class MemeLibrary:
 
         self.libSearcher.indexMeme(meme)
 
+    # TODO: Add docs to these  fuctions
     def findMemeURLs(self, query: str, limit: int = 15):
         return [ self.libSearcher.getSearchResultAttr(res, memeURL=True) for res in self.libSearcher.search(query, limit) ]
 
