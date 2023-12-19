@@ -37,8 +37,8 @@ memeUploader = makeLocalStorageUploader()
 memeLib = MemeLibrary(memeDB, memeUploader)
 
 # Load the library from the database and index it
-memeLib.loadLibrary()
-# memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
+# memeLib.loadLibrary()
+memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
 memeLib.indexLibrary()
 
 def validAccess(req:request):
@@ -67,23 +67,51 @@ def route_get_meme(memeID):
     memeURL = memeLib.getMeme(memeID).getURL()
     return redirect(memeURL)
 
-# TODO: Add support for limit argument
-# TODO: Add support for search pages
+
 @app.route('/memes/search', methods=['GET'])
 def route_meme_search():
     query = request.args.get("query")
+
     if query is None or query == "":
         return error_response(400, 'No query found, use "query" for the URL parameter')
 
-    matchedMemes = memeLib.findMemes(query)
+    itemsPerPage = request.args.get("per_page")
+    pageNo = request.args.get("page")
+
+    itemsPerPage = int(itemsPerPage) if itemsPerPage is not None else 10
+    pageNo = int(pageNo) if pageNo is not None else 1
+
+    matchedMemes = memeLib.findMemes(query, itemsPerPage=itemsPerPage, pageNo=pageNo)
     collated = [ {
         'id': meme.getID(),
         'name': meme.getName(),
         'url': meme.getURL() }
     for meme in matchedMemes]
 
-    return make_json_response({ 'results' : collated})
+    return make_json_response({ 'results' : collated, 'itemsPerPage': itemsPerPage, 'pageNo' : pageNo})
 
+@app.route('/memes/browse', methods=['GET'])
+def route_meme_browse():
+    itemsPerPage = request.args.get("per_page")
+    pageNo = request.args.get("page")
+
+    if itemsPerPage is None:
+        return error_response(400, '"per_page" is not included as a URL parameter')
+
+    if pageNo is None:
+        return error_response(400, '"page" is not included as a URL parameter')
+
+    itemsPerPage = int(itemsPerPage)
+    pageNo = int(pageNo)
+
+    memes = memeLib.browseMemes(itemsPerPage, pageNo)
+    collated = [{
+        'id': meme.getID(),
+        'name': meme.getName(),
+        'url': meme.getURL()}
+        for meme in memes]
+
+    return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'pageNo' : pageNo})
 
 @app.route('/memes/add', methods=['GET', 'POST'])
 def route_add_new_meme():
@@ -142,7 +170,6 @@ def upload_meme(uploadKey):
     # Meme library has index mutex to synchronize requests for searching or adding to the index
     threading.Thread(target=saveAndReIndexLibrary).start()
     return make_json_response({'url': cloudURL})
-
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')

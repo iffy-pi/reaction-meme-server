@@ -66,6 +66,16 @@ class MemeDBInterface:
         """
         raise Exception('Must implement in subclass')
 
+
+    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeLibraryItem]:
+        """
+        Gets a set of memes from a given page
+        :param itemsPerPage: The number of memes per page
+        :param pageNo: The page number
+        :return: The list of Memes retrieved
+        """
+        raise Exception('Must implement in subclass')
+
     def getAllDBMemes(self) -> list[MemeLibraryItem]:
         """
         Returns a list of all the memes in the database

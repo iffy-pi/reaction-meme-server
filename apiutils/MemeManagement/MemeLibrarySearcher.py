@@ -111,11 +111,14 @@ class MemeLibrarySearcher:
                   "memeURL": hit["memeURL"],
                   }
 
-    def search(self, query:str, limit:int):
+    def __parseResults(self, results):
+        return [ self.__hitToSearchResult(hit) for hit in results ]
+
+    def search(self, query:str, itemsPerPage, pageNo):
         q = self.__queryParser.parse(query)
         with self.getSearcher() as s:
-            results = s.search(q, limit=limit)
-            return [ self.__hitToSearchResult(hit) for hit in results ]
+            results = s.search_page(q, pageNo, pagelen=itemsPerPage)
+            return self.__parseResults(results)
 
     def getSearchResultAttr(self, result, memeID:bool=False, name:bool=False, memeURL:bool=False):
         """

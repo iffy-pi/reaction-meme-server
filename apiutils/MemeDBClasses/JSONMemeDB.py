@@ -138,6 +138,18 @@ class JSONMemeDB(MemeDBInterface):
                                   fileExt=item.getFileExt(), cloudID=item.getCloudID(),
                                   cloudURL=item.getURL())
 
+    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeLibraryItem]:
+        itemIds = list(self.db.get(JSONMemeDB.DBFields.Items).keys())
+        itemCount = len(itemIds)
+        startOffset = (pageNo-1)  * itemsPerPage
+
+        if startOffset >= itemCount:
+            return []
+
+
+        selectedIds = itemIds[startOffset: min(itemCount, startOffset+itemsPerPage)]
+        return [ self.getMemeItem(i) for i in selectedIds]
+
     def getAllDBMemes(self) -> list[MemeLibraryItem]:
         self.__getDBLock()
         res = [
