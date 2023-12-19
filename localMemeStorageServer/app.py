@@ -1,8 +1,8 @@
 import os
 
-from flask import (Flask,  send_from_directory)
+from flask import (Flask,  send_from_directory, request)
 from flask_cors import CORS
-from localMemeStorageServer.utils.storageServerUtils import getMemeDir
+from localMemeStorageServer.utils.storageServerUtils import getMemeDir, makeLocalStorageUploader
 from apiutils.HTTPResponses import *
 
 # initialize app flask object
@@ -30,6 +30,15 @@ def get_meme(id):
 @app.route('/')
 def index():
     return make_json_response({ 'message': 'Hello World'})
+
+@app.route('/local/meme/upload', methods=['GET', 'POST'])
+def upload_meme():
+    # valid upload session get the image data
+    mediaBinary = request.data
+    upl = makeLocalStorageUploader()
+    cloudID, cloudURL = upl.uploadMedia(mediaBinary, 'mp4')
+
+    return make_json_response({'url': cloudURL})
 
 # running the code
 if __name__ == '__main__':
