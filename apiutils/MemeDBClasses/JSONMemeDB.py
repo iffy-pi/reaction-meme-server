@@ -1,5 +1,5 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
-from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
+from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
 class JSONMemeDB(MemeDBInterface):
@@ -15,7 +15,7 @@ class JSONMemeDB(MemeDBInterface):
             CloudID = "cloudID"
             CloudURL = "cloudURL"
 
-    def __init__(self, fileStorage:JSONDBFileStorage):
+    def __init__(self, fileStorage:JSONDBFileStorageInterface):
         self.db = None
         self.__dbLock = False
         self.fileStorage = fileStorage
@@ -27,7 +27,7 @@ class JSONMemeDB(MemeDBInterface):
         return JSONMemeDB.instance
 
     @staticmethod
-    def initSingleton(fileStorage:JSONDBFileStorage):
+    def initSingleton(fileStorage:JSONDBFileStorageInterface):
         JSONMemeDB.instance = JSONMemeDB(fileStorage)
 
     def initDB(self) -> None:

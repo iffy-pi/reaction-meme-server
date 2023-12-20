@@ -1,9 +1,9 @@
 import json
 
-from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
+from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.FileStorageClasses.PushBulletFileServer import PushBulletFileServer
 
-class PBFSFileStorage(JSONDBFileStorage):
+class PBFSFileStorageInterface(JSONDBFileStorageInterface):
     def __init__(self, accessToken, serverIdentifier):
         self.__pbfs = PushBulletFileServer(accessToken, serverIden=serverIdentifier, persistentStorage=True)
         self.__dbFilePath = "dbFiles/db.json"

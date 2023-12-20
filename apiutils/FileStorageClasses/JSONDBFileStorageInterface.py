@@ -1,4 +1,4 @@
-class JSONDBFileStorage:
+class JSONDBFileStorageInterface:
     def __init__(self):
         '''
         Ancestor class which implements all the required methods used by MediaDB

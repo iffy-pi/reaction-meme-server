@@ -4,13 +4,10 @@ import threading
 from flask import (Flask, redirect, render_template, request, url_for)
 from flask_cors import CORS
 
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.HTTPResponses import *
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
-from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.UploadSessionManager import UploadSessionManager
-from apiutils.configs.ServerConfig import ServerConfig
-from localMemeStorageServer.utils.storageServerUtils import makeLocalStorageUploader
+from apiutils.configs.ComponentOverrides import *
 
 # Initialize our server config
 if os.environ.get('JSON_ENV') is not None:
@@ -27,18 +24,15 @@ app = Flask(__name__)
 CORS(app)
 
 
-# Initialize the JSON Meme DB with PBFS File storage
-fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+fileStorage = getServerFileStorage()
+memeUploader = getServerMemeUploader()
+
 JSONMemeDB.initSingleton(fileStorage)
-
-# Initialize Meme Library with JSON DB and local storage uploader
 memeDB = JSONMemeDB.getSingleton()
-memeUploader = makeLocalStorageUploader()
-memeLib = MemeLibrary(memeDB, memeUploader)
 
-# Load the library from the database and index it
-# memeLib.loadLibrary()
-memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
+memeLib = MemeLibrary(memeDB, memeUploader)
+loadLibrary(memeLib)
+
 memeLib.indexLibrary()
 
 def validAccess(req:request):

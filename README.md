@@ -78,18 +78,83 @@ resp2 = requests.post(uploadUrl,
                       data=memeBinaryData)
 ```
 
-## Configuration Notes
-### Deployment Notes
+# Configuration Notes
+## Deployment Notes
 The current setup of the project has the following deployment configured:
 - The server is hosted on Vercel under my account as the reaction-meme-server project
 - The PushBullet account used for the file server is hosted with my bot email address.
 - Cloudinary hosts the meme media files, tied to my GitHub email
 
-### Environment Variables
+## Environment Variables
 Access tokens and other secret keys are all stored as environment variables on the Vercel project. You can also view the value of various environment variables by going into devenv/devenv.json or devenv/prodenv.json on your local PC.
 
 Within the code, all config values are managed with the ServerConfig class (apiutils/configs/ServerConfig.py) which provides different options to set the config variables. Use ServerConfig.setConfigFromJSON to set config variables from a JSON file.
 
+## Runtime Environments
+### Making environments with environment variables
+You can configure different runtime environments by setting the value of different environment variables. These variables are checked by the functions in apiutils/configs/ComponentOverrides.py.
+
+- `JSON_ENV`
+  - This env var is the path to the JSON file which will be used to initialize the server config
+- `FILE_STORAGE_OVERRIDE`
+  - Overrides the file storage used by the JSON Database
+  - Options:
+    - `local` to use local storage
+    - `pbfs` for PushBullet File Server
+- `MEME_STORAGE_OVERRIDE`
+  - Overrides the meme storage (where memes are uploaded to)
+  - Options:
+    - `local` to use local meme stoage server
+    - `cloudinary` for cloudinary storage
+- `INIT_LIB_FROM_CATALOG_OVERRIDE`
+  - If the env var exists, the library will be initialized from data/catalog.csv
+  - If it does not exist, the library will be initialized from the connected meme DB
+
+### Available Runtime Configurations
+There are different runtime configurations that have been made in PyCharm, which use the environment variables:
+- `api (prod)`
+  - Mirrors server running in production environment:
+    - File Storage: PBFS (ReactionMemeServer PB device)
+    - Meme DB: JSON Meme DB
+    - Meme Storage: Local (will switch to Cloudinary when officially released)
+    - Library Source: Loaded From DB
+  - Env Vars
+    - `JSON_ENV = C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\prodenv.json`
+
+
+- `api (dev)`
+  - Server in development
+    - File Storage: PBFS (ReactionMemeServer-DevEnv PB device)
+    - Meme DB: JSON Meme DB
+    - Meme Storage: Local
+    - Library Source: Loaded From DB
+  - Env Vars
+    - `JSON_ENV = C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv.json`
+
+
+- `api (dev + local)`
+  - Server in development but only local services are used
+    - File Storage: Local (RepoLocalFileStorage)
+    - Meme DB: JSON Meme DB
+    - Meme Storage: Local
+    - Library Source: Loaded From DB
+  - Env Vars
+    - `JSON_ENV = C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv.json`
+    - `FILE_STORAGE_OVERRIDE = local`
+    - `MEME_STORAGE_OVERRIDE = local`
+
+
+- `api (dev + local + catalog)`
+  - Server in development but only local services are used and library is initialized from catalog
+    - File Storage: Local (RepoLocalFileStorage)
+    - Meme DB: JSON Meme DB
+    - Meme Storage: Local 
+    - Library Source: data/catalog.csv
+  - Env Vars
+    - `JSON_ENV = C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv.json`
+    - `FILE_STORAGE_OVERRIDE = local`
+    - `MEME_STORAGE_OVERRIDE = local`
+    - `INIT_LIB_FROM_CATALOG = 1`
 
 # Software Details
 ***This section is still in development, added for posterity***

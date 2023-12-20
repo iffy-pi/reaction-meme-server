@@ -1,9 +1,12 @@
 import os
 import json
-from apiutils.FileStorageClasses.JSONDBFileStorage import JSONDBFileStorage
+from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.configs.ServerConfig import ServerConfig
 
-class LocalFileStorage(JSONDBFileStorage):
+class RepoLocalFileStorageInterface(JSONDBFileStorageInterface):
+    '''
+    Stores the files to the repository project folder
+    '''
     def __init__(self):
         self.__dbFilePath = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'db.json')
 
