@@ -7,6 +7,9 @@ def add_access_control(resp):
     resp.headers['Access-Control-Allow-Origin'] = '*'
 
 def make_json_response( resp_dict:dict, status=200):
+    if 'success' not in resp_dict:
+        resp_dict['success'] = True
+
     # receives a dictionary and crafts the Flask JSON response object for it
     resp = Response(
         response=json.dumps(resp_dict), status=status, mimetype="text/plain"
@@ -27,6 +30,9 @@ def error_response(status:int, message:str=None, error_json=None):
 
     else:
         raise Exception('No content provided')
+
+    if 'success' not in error_json:
+        error_json['success'] = False
 
     resp = Response(
         response=json.dumps(content), status=status, mimetype="text/plain"

@@ -53,13 +53,30 @@ def saveAndReIndexLibrary():
 
 
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
-def route_get_meme(memeID):
+def route_download_meme(memeID):
     memeID = int(memeID)
     if not memeLib.hasMeme(memeID):
         return error_response(400, message=f"ID {memeID} does not exist in database")
 
     memeURL = memeLib.getMeme(memeID).getURL()
     return redirect(memeURL)
+
+
+@app.route('/memes/info/<int:memeID>', methods=['GET'])
+def route_info_meme(memeID):
+    memeID = int(memeID)
+    if not memeLib.hasMeme(memeID):
+        return error_response(400, message=f"ID {memeID} does not exist in database")
+
+    meme = memeLib.getMeme(memeID)
+    memeJSON = {
+        'id': meme.getID(),
+        'name': meme.getName(),
+        'tags': meme.getTags(),
+        'url': meme.getURL(),
+    }
+
+    return make_json_response(memeJSON)
 
 
 @app.route('/memes/search', methods=['GET'])
