@@ -31,13 +31,13 @@ def error_response(status:int, message:str=None, error_json=None):
     else:
         raise Exception('No content provided')
 
-    if 'success' not in error_json:
-        error_json['success'] = False
+    if 'success' not in content:
+        content['success'] = False
 
     resp = Response(
         response=json.dumps(content), status=status, mimetype="text/plain"
     )
 
     # resp.headers['Access-Control-Allow-Origin'] = '*'
-    if error_json is not None: resp.headers['Content-type'] = 'application/json'
+    resp.headers['Content-type'] = 'application/json'
     return resp
