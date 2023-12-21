@@ -106,113 +106,105 @@ CloudID,CloudURL,Name,Extension,Tags
 113,http://127.0.0.1:5001/local/meme/113,tom sneaking into room evil,jpg,"tom,devious,plotting,evil,sneaky,sly"
 114,http://127.0.0.1:5001/local/meme/114,joe biden ratio and seek help,jpg,"ratio,no job,no bitches,seek help,L"
 115,http://127.0.0.1:5001/local/meme/115,darwin scarlett witch,jpg,"scarlett witch,wanda,gumball,cunty,sassy,slay"
-116,http://127.0.0.1:5001/local/meme/116,,,
-117,http://127.0.0.1:5001/local/meme/117,,,
-118,http://127.0.0.1:5001/local/meme/118,,,
-119,http://127.0.0.1:5001/local/meme/119,,,
-120,http://127.0.0.1:5001/local/meme/120,,,
-121,http://127.0.0.1:5001/local/meme/121,,,
-122,http://127.0.0.1:5001/local/meme/122,,,
-123,http://127.0.0.1:5001/local/meme/123,,,
-124,http://127.0.0.1:5001/local/meme/124,,,
-125,http://127.0.0.1:5001/local/meme/125,,,
-126,http://127.0.0.1:5001/local/meme/126,,,
-127,http://127.0.0.1:5001/local/meme/127,,,
-128,http://127.0.0.1:5001/local/meme/128,,,
-129,http://127.0.0.1:5001/local/meme/129,,,
-130,http://127.0.0.1:5001/local/meme/130,,,
-131,http://127.0.0.1:5001/local/meme/131,,,
-132,http://127.0.0.1:5001/local/meme/132,,,
-133,http://127.0.0.1:5001/local/meme/133,,,
-134,http://127.0.0.1:5001/local/meme/134,,,
-135,http://127.0.0.1:5001/local/meme/135,,,
-136,http://127.0.0.1:5001/local/meme/136,,,
-137,http://127.0.0.1:5001/local/meme/137,,,
-138,http://127.0.0.1:5001/local/meme/138,,,
-139,http://127.0.0.1:5001/local/meme/139,,,
-140,http://127.0.0.1:5001/local/meme/140,,,
-141,http://127.0.0.1:5001/local/meme/141,,,
-142,http://127.0.0.1:5001/local/meme/142,,,
-143,http://127.0.0.1:5001/local/meme/143,,,
-144,http://127.0.0.1:5001/local/meme/144,,,
-145,http://127.0.0.1:5001/local/meme/145,,,
-146,http://127.0.0.1:5001/local/meme/146,,,
-147,http://127.0.0.1:5001/local/meme/147,,,
-148,http://127.0.0.1:5001/local/meme/148,,,
-149,http://127.0.0.1:5001/local/meme/149,,,
-150,http://127.0.0.1:5001/local/meme/150,,,
-151,http://127.0.0.1:5001/local/meme/151,,,
-152,http://127.0.0.1:5001/local/meme/152,,,
-153,http://127.0.0.1:5001/local/meme/153,,,
-154,http://127.0.0.1:5001/local/meme/154,,,
-155,http://127.0.0.1:5001/local/meme/155,,,
-156,http://127.0.0.1:5001/local/meme/156,,,
-157,http://127.0.0.1:5001/local/meme/157,,,
-158,http://127.0.0.1:5001/local/meme/158,,,
-159,http://127.0.0.1:5001/local/meme/159,,,
-160,http://127.0.0.1:5001/local/meme/160,,,
-161,http://127.0.0.1:5001/local/meme/161,,,
-162,http://127.0.0.1:5001/local/meme/162,,,
-163,http://127.0.0.1:5001/local/meme/163,,,
-164,http://127.0.0.1:5001/local/meme/164,,,
-165,http://127.0.0.1:5001/local/meme/165,,,
-166,http://127.0.0.1:5001/local/meme/166,,,
-167,http://127.0.0.1:5001/local/meme/167,,,
-168,http://127.0.0.1:5001/local/meme/168,,,
-169,http://127.0.0.1:5001/local/meme/169,,,
-170,http://127.0.0.1:5001/local/meme/170,,,
-171,http://127.0.0.1:5001/local/meme/171,,,
-172,http://127.0.0.1:5001/local/meme/172,,,
-173,http://127.0.0.1:5001/local/meme/173,,,
-174,http://127.0.0.1:5001/local/meme/174,,,
-175,http://127.0.0.1:5001/local/meme/175,,,
-176,http://127.0.0.1:5001/local/meme/176,,,
-177,http://127.0.0.1:5001/local/meme/177,,,
-178,http://127.0.0.1:5001/local/meme/178,,,
-179,http://127.0.0.1:5001/local/meme/179,,,
-180,http://127.0.0.1:5001/local/meme/180,,,
-181,http://127.0.0.1:5001/local/meme/181,,,
-182,http://127.0.0.1:5001/local/meme/182,,,
-183,http://127.0.0.1:5001/local/meme/183,,,
-184,http://127.0.0.1:5001/local/meme/184,,,
-185,http://127.0.0.1:5001/local/meme/185,,,
-186,http://127.0.0.1:5001/local/meme/186,,,
-187,http://127.0.0.1:5001/local/meme/187,,,
-188,http://127.0.0.1:5001/local/meme/188,,,
-189,http://127.0.0.1:5001/local/meme/189,,,
-190,http://127.0.0.1:5001/local/meme/190,,,
-191,http://127.0.0.1:5001/local/meme/191,,,
-192,http://127.0.0.1:5001/local/meme/192,,,
-193,http://127.0.0.1:5001/local/meme/193,,,
-194,http://127.0.0.1:5001/local/meme/194,,,
-195,http://127.0.0.1:5001/local/meme/195,,,
-196,http://127.0.0.1:5001/local/meme/196,,,
-197,http://127.0.0.1:5001/local/meme/197,,,
-198,http://127.0.0.1:5001/local/meme/198,,,
-199,http://127.0.0.1:5001/local/meme/199,,,
-200,http://127.0.0.1:5001/local/meme/200,,,
-201,http://127.0.0.1:5001/local/meme/201,,,
-202,http://127.0.0.1:5001/local/meme/202,,,
-203,http://127.0.0.1:5001/local/meme/203,,,
-204,http://127.0.0.1:5001/local/meme/204,,,
-205,http://127.0.0.1:5001/local/meme/205,,,
-206,http://127.0.0.1:5001/local/meme/206,,,
-207,http://127.0.0.1:5001/local/meme/207,,,
-208,http://127.0.0.1:5001/local/meme/208,,,
-209,http://127.0.0.1:5001/local/meme/209,,,
-210,http://127.0.0.1:5001/local/meme/210,,,
-211,http://127.0.0.1:5001/local/meme/211,,,
-212,http://127.0.0.1:5001/local/meme/212,,,
-213,http://127.0.0.1:5001/local/meme/213,,,
-214,http://127.0.0.1:5001/local/meme/214,,,
-215,http://127.0.0.1:5001/local/meme/215,,,
-216,http://127.0.0.1:5001/local/meme/216,,,
-217,http://127.0.0.1:5001/local/meme/217,,,
-218,http://127.0.0.1:5001/local/meme/218,,,
-219,http://127.0.0.1:5001/local/meme/219,,,
-220,http://127.0.0.1:5001/local/meme/220,,,
-221,http://127.0.0.1:5001/local/meme/221,,,
-222,http://127.0.0.1:5001/local/meme/222,,,
+116,http://127.0.0.1:5001/local/meme/116,pig looking at phone,jpg,"disgusted,confused,done,phone,weird"
+117,http://127.0.0.1:5001/local/meme/117,barbie elephant looking concerned,jpg,"disgusted,confused,slay,concerend,worried"
+118,http://127.0.0.1:5001/local/meme/118,ma as scarlett witch,jpg,"wanda,octavia spencer,ma,cunty,slay,marvel"
+119,http://127.0.0.1:5001/local/meme/119,are you gay squid game,jpg,"squid game,gay,rainbow flag,deadass"
+120,http://127.0.0.1:5001/local/meme/120,icarly driving through hell,jpg,"icarly,happy,hell,evil"
+121,http://127.0.0.1:5001/local/meme/121,scarlett johansson on red carpet,jpg,"marvel,black widow,bad outfit,red carpet,still,soldier,ugly"
+123,http://127.0.0.1:5001/local/meme/123,hit the slay button,jpg,"ru paul,gay,slay"
+124,http://127.0.0.1:5001/local/meme/124,hit the naur button,jpg,"ru paul,gay,naur"
+125,http://127.0.0.1:5001/local/meme/125,scarlett witch wendy williams,jpg,"excited,happy,fun,wanda,wendy,gagged"
+126,http://127.0.0.1:5001/local/meme/126,monster conspiracy christian woman yassified,jpg,"monster,illuminati,conspiracy,cleared,ate,gagged,yassified,slay"
+128,http://127.0.0.1:5001/local/meme/128,dog with wig staring,jpeg,"dog,confused,wig,staring,concerned"
+129,http://127.0.0.1:5001/local/meme/129,I have decided to stop praying for some of you,jpg,"done,over it,evil,praying"
+130,http://127.0.0.1:5001/local/meme/130,annalise keating mug shot,jpg,"how to get away with murder,done,sad,tired"
+131,http://127.0.0.1:5001/local/meme/131,reacting to you lying,jpg,"clocked,gagged,ate,cleared"
+132,http://127.0.0.1:5001/local/meme/132,olivia rodrigo naur,jpg,"naur,gay"
+133,http://127.0.0.1:5001/local/meme/133,guy staring down,jpg,"clocked,gagged,staring,read,clered"
+134,http://127.0.0.1:5001/local/meme/134,kamala harris screaming,jpg,"excited,happy,fun,kamala harris,screaming"
+136,http://127.0.0.1:5001/local/meme/136,wanda crying,jpg,"scarlett witch,wandavision,crying,sad,tired"
+138,http://127.0.0.1:5001/local/meme/138,scarlett witch smiling,jpg,"scarlett witch,smiling,happy,excited,ready"
+139,http://127.0.0.1:5001/local/meme/139,cat with slay eye brow,jpg,"cat,slay,eyebrow,gay,suspicious"
+140,http://127.0.0.1:5001/local/meme/140,scarlett witch with shopping bags,jpg,"wanda,shopping,happy,satisfied"
+141,http://127.0.0.1:5001/local/meme/141,no bitches,jpg,"megamind,no bitches"
+142,http://127.0.0.1:5001/local/meme/142,police officer about to get shot,jpg,"clocked,gagged,read,surprised,off guard"
+143,http://127.0.0.1:5001/local/meme/143,dog with daredevil mask,jpg,"dog,edgy,batman,werewolf,alone,loner"
+144,http://127.0.0.1:5001/local/meme/144,euphoria getting gagged,jpg,"gagged,embarassed,speechless,done"
+145,http://127.0.0.1:5001/local/meme/145,man ignoring getting twerked on,jpg,"sad,tired,done,party,dissociating"
+147,http://127.0.0.1:5001/local/meme/147,summer walker as a rocket,jpg,"summer walker,still,bad pose,embarassed"
+148,http://127.0.0.1:5001/local/meme/148,euphoria characters with gay eyebrow,jpg,"gay,eye brow,suspicious,confused,concerned"
+149,http://127.0.0.1:5001/local/meme/149,mariah carey in car confused,jpg,"mariah carey,embarassed,off guard,gagged"
+150,http://127.0.0.1:5001/local/meme/150,grandma ironing bisexual flag,jpg,"gay,gay rights,support,bisexual,bi"
+151,http://127.0.0.1:5001/local/meme/151,when I purposefully spread misinformation over the internet,jpg,"misinformation,emoji,laughing,evil,devious"
+152,http://127.0.0.1:5001/local/meme/152,euphoria character with gay eyebrow,jpg,"gay,eye brow,suspicious,confused,concerned"
+153,http://127.0.0.1:5001/local/meme/153,chloe x halle screaming but scary,jpg,"chloe,halle,euphoria,screaming,sad,crying,horror"
+154,http://127.0.0.1:5001/local/meme/154,cassie behind toilet door,jpg,"euphoria,scared,crying,sad,cassie,sydney,sweeney"
+155,http://127.0.0.1:5001/local/meme/155,euphoria audience laughing loudly,jpg,"euphoria,laughing,excited,happy,fun"
+156,http://127.0.0.1:5001/local/meme/156,nicki minaj giving side eye,jpg,"black girl,side eye,suspicious,concerned"
+157,http://127.0.0.1:5001/local/meme/157,mirabel doll staring down,jpg,"mirabel,encanto,suspicious,deadass,serious,done"
+158,http://127.0.0.1:5001/local/meme/158,female phone game character dirty,jpg,"dirty,done,messy,ugly,tired,old"
+159,http://127.0.0.1:5001/local/meme/159,euphoria nate with a gun,jpg,"euphoria,gun,deadass,scared,serious,evil,devious,plotting"
+160,http://127.0.0.1:5001/local/meme/160,timmy turner father wiping cum off mouth,jpg,"horny,fairly odd parents,timmy,turner,ate"
+161,http://127.0.0.1:5001/local/meme/161,zendaya falling backwards,jpg,"zendaya,gagged,done,falling,dead"
+162,http://127.0.0.1:5001/local/meme/162,taraji henson recording at oscars,jpg,"cookie,empire,recording,happy,proud"
+164,http://127.0.0.1:5001/local/meme/164,lady gaga is she sleeping or dead,jpg,"lady gaga,sleeping,confused"
+165,http://127.0.0.1:5001/local/meme/165,nobody want you fr,jpg,
+166,http://127.0.0.1:5001/local/meme/166,crocodile dead after drinking sprite,jpg,"mcdonalds,done,tired,over it,weak"
+167,http://127.0.0.1:5001/local/meme/167,no bitches but the riddler,jpg,"no bitches,batman,riddler,no lies"
+168,http://127.0.0.1:5001/local/meme/168,jim gordon I sent you nudes snap,jpg,"batman,jim gordon,nudes,sad,embarassed"
+169,http://127.0.0.1:5001/local/meme/169,black guy with wig excited,jpg,"happy,fun,excited,wig,cleared,ate,gagged"
+170,http://127.0.0.1:5001/local/meme/170,euphoria characters with huge smile,jpg,"euphoria,happy,funny,smiling,laughing,excited"
+171,http://127.0.0.1:5001/local/meme/171,hillary clinton yassified,jpg,"hillary clinton,yassified,gay,slay"
+172,http://127.0.0.1:5001/local/meme/172,hillary clinton ugly,jpg,"hillary clinton,gay,naur,old"
+173,http://127.0.0.1:5001/local/meme/173,cat saying ok meme,jpg,"cat,ok,done,over it,deadass"
+174,http://127.0.0.1:5001/local/meme/174,mama lets research,jpg,"gay,homophobic dog,homophobia,mama,research"
+175,http://127.0.0.1:5001/local/meme/175,sinister six at mcdonalds,jpg,"marvel,spiderman,sinister six,relaxed,chilling"
+176,http://127.0.0.1:5001/local/meme/176,man reading book with burnt bear,jpg,"stunned,scared,concerned,confused,suspicious,disgusted"
+177,http://127.0.0.1:5001/local/meme/177,squidward eating human heart,jpg,"spongebob,evil,horror"
+178,http://127.0.0.1:5001/local/meme/178,grandma being evil,png,"grandma,devious,plotting,evil,misinformation"
+179,http://127.0.0.1:5001/local/meme/179,batman looking confused,jpg,"batman,confused,concerned"
+180,http://127.0.0.1:5001/local/meme/180,not too fond of gay people,jpg,"gay,homophobic dog,homophobia"
+181,http://127.0.0.1:5001/local/meme/181,not homophobic just dont agree with the lifestyle,jpg,"gay,homophobia,homophobic dog"
+182,http://127.0.0.1:5001/local/meme/182,eternals bad looking doll,jpg,"tired,over it,done,ugly"
+183,http://127.0.0.1:5001/local/meme/183,I just dont think our kids should see it,jpg,"gay,homophobia,homophobic dog"
+184,http://127.0.0.1:5001/local/meme/184,no longer beefing with the gays god will handle that,jpg,"gay,homophobia,homophobic dog"
+185,http://127.0.0.1:5001/local/meme/185,I know what you are,jpg,"gay,homophobia,homophobic dog"
+186,http://127.0.0.1:5001/local/meme/186,demi lovato get a job stay away from her,jpg,"get a job,stay away from her,demi"
+187,http://127.0.0.1:5001/local/meme/187,maybe you just haven't found the right one yet,jpg,"gay,homophobia,homophobic dog"
+188,http://127.0.0.1:5001/local/meme/188,keep it in the bedroom,jpg,"gay,homophobia,homophobic dog"
+189,http://127.0.0.1:5001/local/meme/189,will smith chris rock slap scarlett witch,jpg,"will smith,chris rock,slap,scarlett witch,wanda"
+190,http://127.0.0.1:5001/local/meme/190,ikaris carrying ajak,jpg,"eternals,sad,done,crying,over it"
+191,http://127.0.0.1:5001/local/meme/191,cat falling down the stairs,jpg,"cat,gagged,overwhelmed,help,done"
+192,http://127.0.0.1:5001/local/meme/192,I just cant support that kind of mindset,jpg,"gay,homophobia,homophobic dog"
+193,http://127.0.0.1:5001/local/meme/193,it just isnt natural,jpg,"gay,homophobia,homophobic dog"
+194,http://127.0.0.1:5001/local/meme/194,ariana grande baby in ultrasound,png,"baby,slay,gay,ariana grande,ate"
+195,http://127.0.0.1:5001/local/meme/195,ma and morbius,jpg,"ma,octavia spencer,morbius"
+196,http://127.0.0.1:5001/local/meme/196,tobey maguire staring at camera,jpg,"staring,deadass,done,serious,scary"
+197,http://127.0.0.1:5001/local/meme/197,taylor swift with open mouth,jpg,"excited,happy,fun,laughing,funny"
+198,http://127.0.0.1:5001/local/meme/198,turning red crying for scarlett witch,jpg,"scarlett witch,happy,screaming"
+199,http://127.0.0.1:5001/local/meme/199,dog scared and hiding,jpg,"dog,scared,hiding,still,confused,concerned"
+200,http://127.0.0.1:5001/local/meme/200,no bitches moonknight,jpg,"moonknight,no bitches,marvel,mcu"
+201,http://127.0.0.1:5001/local/meme/201,scarlett witch donkey,jpg,"scarlett witch,donkey,wandavision,tired"
+202,http://127.0.0.1:5001/local/meme/202,no bitches sinister six,jpg,"no bitches,spiderman,sinister six,mcu,marvel"
+203,http://127.0.0.1:5001/local/meme/203,scarlett witch gagged a lil bit,jpg,"scarlett witch,wanda,gagged,embarassed"
+204,http://127.0.0.1:5001/local/meme/204,trish skinny legend clearing,jpg,"skinny legend,trish,ate,cleared,happy,satisified"
+205,http://127.0.0.1:5001/local/meme/205,at first I loled then I serioused,png,"dog,lol,serious,lock in"
+206,http://127.0.0.1:5001/local/meme/206,batman on facetime call,jpg,"confused,concerned,batman"
+208,http://127.0.0.1:5001/local/meme/208,man in suit posing,jpg,"ate,classy,cleared,gagged"
+209,http://127.0.0.1:5001/local/meme/209,tiger watching screen disgusted,jpg,"tiger,disgusted,watching,computer,tired"
+210,http://127.0.0.1:5001/local/meme/210,moonknight screaming,jpg,"screaming,scared,moonknight"
+211,http://127.0.0.1:5001/local/meme/211,nick minaj glitching,jpg,"nicki minaj,tired,sad,over it,crying,stressed"
+212,http://127.0.0.1:5001/local/meme/212,bucky horny screaming,jpg,"bucky,horny,mcu,marvel"
+214,http://127.0.0.1:5001/local/meme/214,oscar isaac thinking,jpg,"oscar isaac,confused,thinking,concerned"
+215,http://127.0.0.1:5001/local/meme/215,real life lois griffin,jpg,"lois griffin,gagged,surprised,shocked,speechless,read"
+216,http://127.0.0.1:5001/local/meme/216,ex homosexual shirt,jpg,"gay,homophobia,ex,homosexual,proud"
+217,http://127.0.0.1:5001/local/meme/217,moonknight screaming but smiling,jpg,"moonknight,screaming,happy,fun,excited"
+218,http://127.0.0.1:5001/local/meme/218,police officer gets caught wrestling person,jpg,"police,off guard,embarassed,surprised,gagged"
+219,http://127.0.0.1:5001/local/meme/219,monk is shocked,jpg,"monk,marvel,mcu,shocked,surprised,gagged"
+220,http://127.0.0.1:5001/local/meme/220,dog with people smiling,jpg,"excited,happy,crazy,dog,smiling,fun"
+221,http://127.0.0.1:5001/local/meme/221,scarlett witch at doorbell,jpg,"scarlett witch,tired,done,help"
+222,http://127.0.0.1:5001/local/meme/222,the pearly gates wont open for your kind,jpg,"gay,homophobia,homophobic dog,pearly gates"
 223,http://127.0.0.1:5001/local/meme/223,,,
 224,http://127.0.0.1:5001/local/meme/224,,,
 225,http://127.0.0.1:5001/local/meme/225,,,
