@@ -89,7 +89,7 @@ class MemeLibrary:
                 fileExt = row[3].strip().lower()
                 tags = row[4].strip().lower()
 
-                if any(t == '' for t in (cloudId, cloudURL, name, fileExt, tags)):
+                if any(t == '' for t in (cloudId, cloudURL, name, fileExt)):
                     break
 
                 tags = [ e.strip() for e in tags.split(',')]
