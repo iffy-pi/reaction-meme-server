@@ -99,7 +99,7 @@ def route_meme_search():
         'url': meme.getURL() }
     for meme in matchedMemes]
 
-    return make_json_response({ 'results' : collated, 'itemsPerPage': itemsPerPage, 'pageNo' : pageNo})
+    return make_json_response({ 'results' : collated, 'itemsPerPage': len(collated), 'pageNo' : pageNo})
 
 @app.route('/memes/browse', methods=['GET'])
 def route_meme_browse():
