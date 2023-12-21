@@ -1,8 +1,8 @@
 import os
 
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorageInterface
-from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorageInterface
+from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
+from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorage
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
 from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
@@ -17,16 +17,16 @@ def getServerFileStorage(verbose=True) -> JSONDBFileStorageInterface:
 
         if FILE_STORAGE_OVERRIDE == 'local':
             if verbose: print('OVERRIDE - File Storage: RepoLocal')
-            fileStorage = RepoLocalFileStorageInterface()
+            fileStorage = RepoLocalFileStorage()
         elif FILE_STORAGE_OVERRIDE == 'pbfs':
             if verbose: print('OVERRIDE - File Storage: PBFS')
-            fileStorage = PBFSFileStorageInterface(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+            fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
         else:
             raise Exception(f'Unrecognized file storage override key: "{FILE_STORAGE_OVERRIDE}"')
 
     else:
         if verbose: print('File Storage: PBFS')
-        fileStorage = PBFSFileStorageInterface(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+        fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
 
     return fileStorage
 
