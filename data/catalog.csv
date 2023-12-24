@@ -205,142 +205,114 @@ CloudID,CloudURL,Name,Extension,Tags
 220,http://127.0.0.1:5001/local/meme/220,dog with people smiling,jpg,"excited,happy,crazy,dog,smiling,fun"
 221,http://127.0.0.1:5001/local/meme/221,scarlett witch at doorbell,jpg,"scarlett witch,tired,done,help"
 222,http://127.0.0.1:5001/local/meme/222,the pearly gates wont open for your kind,jpg,"gay,homophobia,homophobic dog,pearly gates"
-223,http://127.0.0.1:5001/local/meme/223,,,
-224,http://127.0.0.1:5001/local/meme/224,,,
-225,http://127.0.0.1:5001/local/meme/225,,,
-226,http://127.0.0.1:5001/local/meme/226,,,
-227,http://127.0.0.1:5001/local/meme/227,,,
-228,http://127.0.0.1:5001/local/meme/228,,,
-229,http://127.0.0.1:5001/local/meme/229,,,
-230,http://127.0.0.1:5001/local/meme/230,,,
-231,http://127.0.0.1:5001/local/meme/231,,,
-232,http://127.0.0.1:5001/local/meme/232,,,
-233,http://127.0.0.1:5001/local/meme/233,,,
-234,http://127.0.0.1:5001/local/meme/234,,,
-235,http://127.0.0.1:5001/local/meme/235,,,
-236,http://127.0.0.1:5001/local/meme/236,,,
-237,http://127.0.0.1:5001/local/meme/237,,,
-238,http://127.0.0.1:5001/local/meme/238,,,
-239,http://127.0.0.1:5001/local/meme/239,,,
-240,http://127.0.0.1:5001/local/meme/240,,,
-241,http://127.0.0.1:5001/local/meme/241,,,
-242,http://127.0.0.1:5001/local/meme/242,,,
-243,http://127.0.0.1:5001/local/meme/243,,,
-244,http://127.0.0.1:5001/local/meme/244,,,
-245,http://127.0.0.1:5001/local/meme/245,,,
-246,http://127.0.0.1:5001/local/meme/246,,,
-247,http://127.0.0.1:5001/local/meme/247,,,
-248,http://127.0.0.1:5001/local/meme/248,,,
-249,http://127.0.0.1:5001/local/meme/249,,,
-250,http://127.0.0.1:5001/local/meme/250,,,
-251,http://127.0.0.1:5001/local/meme/251,,,
-252,http://127.0.0.1:5001/local/meme/252,,,
-253,http://127.0.0.1:5001/local/meme/253,,,
-254,http://127.0.0.1:5001/local/meme/254,,,
-255,http://127.0.0.1:5001/local/meme/255,,,
-256,http://127.0.0.1:5001/local/meme/256,,,
-257,http://127.0.0.1:5001/local/meme/257,,,
-258,http://127.0.0.1:5001/local/meme/258,,,
-259,http://127.0.0.1:5001/local/meme/259,,,
-260,http://127.0.0.1:5001/local/meme/260,,,
-261,http://127.0.0.1:5001/local/meme/261,,,
-262,http://127.0.0.1:5001/local/meme/262,,,
-263,http://127.0.0.1:5001/local/meme/263,,,
-264,http://127.0.0.1:5001/local/meme/264,,,
-265,http://127.0.0.1:5001/local/meme/265,,,
-266,http://127.0.0.1:5001/local/meme/266,,,
-267,http://127.0.0.1:5001/local/meme/267,,,
-268,http://127.0.0.1:5001/local/meme/268,,,
-269,http://127.0.0.1:5001/local/meme/269,,,
-270,http://127.0.0.1:5001/local/meme/270,,,
-271,http://127.0.0.1:5001/local/meme/271,,,
-272,http://127.0.0.1:5001/local/meme/272,,,
-273,http://127.0.0.1:5001/local/meme/273,,,
-274,http://127.0.0.1:5001/local/meme/274,,,
-275,http://127.0.0.1:5001/local/meme/275,,,
-276,http://127.0.0.1:5001/local/meme/276,,,
-277,http://127.0.0.1:5001/local/meme/277,,,
-278,http://127.0.0.1:5001/local/meme/278,,,
-279,http://127.0.0.1:5001/local/meme/279,,,
-280,http://127.0.0.1:5001/local/meme/280,,,
-281,http://127.0.0.1:5001/local/meme/281,,,
-282,http://127.0.0.1:5001/local/meme/282,,,
-283,http://127.0.0.1:5001/local/meme/283,,,
-284,http://127.0.0.1:5001/local/meme/284,,,
-285,http://127.0.0.1:5001/local/meme/285,,,
-286,http://127.0.0.1:5001/local/meme/286,,,
-287,http://127.0.0.1:5001/local/meme/287,,,
-288,http://127.0.0.1:5001/local/meme/288,,,
-289,http://127.0.0.1:5001/local/meme/289,,,
-290,http://127.0.0.1:5001/local/meme/290,,,
-291,http://127.0.0.1:5001/local/meme/291,,,
-292,http://127.0.0.1:5001/local/meme/292,,,
-293,http://127.0.0.1:5001/local/meme/293,,,
-294,http://127.0.0.1:5001/local/meme/294,,,
-295,http://127.0.0.1:5001/local/meme/295,,,
-296,http://127.0.0.1:5001/local/meme/296,,,
-297,http://127.0.0.1:5001/local/meme/297,,,
-298,http://127.0.0.1:5001/local/meme/298,,,
-299,http://127.0.0.1:5001/local/meme/299,,,
-300,http://127.0.0.1:5001/local/meme/300,,,
-301,http://127.0.0.1:5001/local/meme/301,,,
-302,http://127.0.0.1:5001/local/meme/302,,,
-303,http://127.0.0.1:5001/local/meme/303,,,
-304,http://127.0.0.1:5001/local/meme/304,,,
-305,http://127.0.0.1:5001/local/meme/305,,,
-306,http://127.0.0.1:5001/local/meme/306,,,
-307,http://127.0.0.1:5001/local/meme/307,,,
-308,http://127.0.0.1:5001/local/meme/308,,,
-309,http://127.0.0.1:5001/local/meme/309,,,
-310,http://127.0.0.1:5001/local/meme/310,,,
-311,http://127.0.0.1:5001/local/meme/311,,,
-312,http://127.0.0.1:5001/local/meme/312,,,
-313,http://127.0.0.1:5001/local/meme/313,,,
-314,http://127.0.0.1:5001/local/meme/314,,,
-315,http://127.0.0.1:5001/local/meme/315,,,
-316,http://127.0.0.1:5001/local/meme/316,,,
-317,http://127.0.0.1:5001/local/meme/317,,,
-318,http://127.0.0.1:5001/local/meme/318,,,
-319,http://127.0.0.1:5001/local/meme/319,,,
-320,http://127.0.0.1:5001/local/meme/320,,,
-321,http://127.0.0.1:5001/local/meme/321,,,
-322,http://127.0.0.1:5001/local/meme/322,,,
-323,http://127.0.0.1:5001/local/meme/323,,,
-324,http://127.0.0.1:5001/local/meme/324,,,
-325,http://127.0.0.1:5001/local/meme/325,,,
-326,http://127.0.0.1:5001/local/meme/326,,,
-327,http://127.0.0.1:5001/local/meme/327,,,
-328,http://127.0.0.1:5001/local/meme/328,,,
-329,http://127.0.0.1:5001/local/meme/329,,,
-330,http://127.0.0.1:5001/local/meme/330,,,
-331,http://127.0.0.1:5001/local/meme/331,,,
-332,http://127.0.0.1:5001/local/meme/332,,,
-333,http://127.0.0.1:5001/local/meme/333,,,
-334,http://127.0.0.1:5001/local/meme/334,,,
-335,http://127.0.0.1:5001/local/meme/335,,,
-336,http://127.0.0.1:5001/local/meme/336,,,
-337,http://127.0.0.1:5001/local/meme/337,,,
-338,http://127.0.0.1:5001/local/meme/338,,,
-339,http://127.0.0.1:5001/local/meme/339,,,
-340,http://127.0.0.1:5001/local/meme/340,,,
-341,http://127.0.0.1:5001/local/meme/341,,,
-342,http://127.0.0.1:5001/local/meme/342,,,
-343,http://127.0.0.1:5001/local/meme/343,,,
-344,http://127.0.0.1:5001/local/meme/344,,,
-345,http://127.0.0.1:5001/local/meme/345,,,
-346,http://127.0.0.1:5001/local/meme/346,,,
-347,http://127.0.0.1:5001/local/meme/347,,,
-348,http://127.0.0.1:5001/local/meme/348,,,
-349,http://127.0.0.1:5001/local/meme/349,,,
-350,http://127.0.0.1:5001/local/meme/350,,,
-351,http://127.0.0.1:5001/local/meme/351,,,
-352,http://127.0.0.1:5001/local/meme/352,,,
-353,http://127.0.0.1:5001/local/meme/353,,,
-354,http://127.0.0.1:5001/local/meme/354,,,
-355,http://127.0.0.1:5001/local/meme/355,,,
-356,http://127.0.0.1:5001/local/meme/356,,,
+223,http://127.0.0.1:5001/local/meme/223,dog with gay eyebrow,jpg,"dog,gay,eyebrow,slay,cunty,suspicious"
+224,http://127.0.0.1:5001/local/meme/224,donkey in multiverse of madness,jpg,"donkey,scarlett witch,multiverse of madness,shrek"
+225,http://127.0.0.1:5001/local/meme/225,donkey face meme,jpg,"donkey,serious,deadass,really"
+226,http://127.0.0.1:5001/local/meme/226,multiverse of madness what mouth meme,jpg,"scarlett witch,wanda,gagged,speechless,marvel,mcu"
+227,http://127.0.0.1:5001/local/meme/227,wendy williams scarlett witch outfit,jpg,"scarlett witch,wendy williams,satisfied,happy,excited,marvel,mcu"
+228,http://127.0.0.1:5001/local/meme/228,donkey on dr strange,jpg,"donkey,strange,multiverse of madness,marvel,mcu,scarlett witch"
+233,http://127.0.0.1:5001/local/meme/233,scarlett witch smiling,jpg,"marvel,mcu,scarlett witch,wanda,smiling,happy,excited"
+234,http://127.0.0.1:5001/local/meme/234,megan thee stallion on mirabel,jpg,"encanto,megan,happy,idk,funny,confused"
+235,http://127.0.0.1:5001/local/meme/235,euphoria with abbot elementary,jpg,"euphoria,suspcious,confused,concerned"
+240,http://127.0.0.1:5001/local/meme/240,scarlett witch stfu,jpg,"marvel,mcu,scarlett witch,wanda,multiverse of madness"
+241,http://127.0.0.1:5001/local/meme/241,auntie diaries,jpg,"gay,homophobic dog,homophobia"
+242,http://127.0.0.1:5001/local/meme/242,just my opinion,jpg,"gay,homophobia,homophobic dog,opinion"
+243,http://127.0.0.1:5001/local/meme/243,instant noodles recipe,jpg,"scarlett witch,wanda,mcu,marvel"
+244,http://127.0.0.1:5001/local/meme/244,tired of the gays,jpg,"gay,homophobic dog,homophobia"
+245,http://127.0.0.1:5001/local/meme/245,comforting the scarlett witch,jpg,"scarlett witch,wanda,mcu,marvel"
+247,http://127.0.0.1:5001/local/meme/247,was it real,jpg,"new rockstars,thumbnail,joker"
+248,http://127.0.0.1:5001/local/meme/248,love is love,jpg,"gay,homophobic dog,homophobia,love"
+249,http://127.0.0.1:5001/local/meme/249,fantastic four noodles,jpg,"scarlett witch,wanda,mcu,marvel"
+250,http://127.0.0.1:5001/local/meme/250,miley cyrus as scarlett witch,jpg,"scarlett witch,smiling,happy,excited,miley cyrus,marvel,mcu"
+251,http://127.0.0.1:5001/local/meme/251,she hulk carrying man,jpg,"shehulk,marvel,mcu,pegging,man,powerful"
+252,http://127.0.0.1:5001/local/meme/252,woman with large bob,jpg,"bob,side eye,concerned,suspicious"
+254,http://127.0.0.1:5001/local/meme/254,drake with nails,jpg,"gay,drake,bbl drake,embarassed,happy,satisfied"
+257,http://127.0.0.1:5001/local/meme/257,live wong reaction,jpg,"wong,honest reaction,marvel,mcu,reaction"
+258,http://127.0.0.1:5001/local/meme/258,was it his plan,jpg,"new rockstars,thumbnail,plan,cooked,suspicious,concerned"
+260,http://127.0.0.1:5001/local/meme/260,is earth doomed,jpg,"new rockstars,thumbnail,doomed,done,sad"
+262,http://127.0.0.1:5001/local/meme/262,gorr trying not to cough,jpg,"gorr,marvel,thor,mcu,confused,disgusted,embarassed"
+263,http://127.0.0.1:5001/local/meme/263,gorr looking at phone,jpg,"gorr,phone,confused,disgusted,looking at phone,concerned"
+264,http://127.0.0.1:5001/local/meme/264,what next,jpeg,"new rockstars,thumbnail,falcon,concerned"
+265,http://127.0.0.1:5001/local/meme/265,scarlett witch with gun,jpg,"scarlett wtich,wanda,marvel,mcu,gun,concerned"
+266,http://127.0.0.1:5001/local/meme/266,where is the body,jpg,"new rockstars,thumbnail,marvel,mcu"
+267,http://127.0.0.1:5001/local/meme/267,homeless,jpg,"new rockstars,thumbnail"
+268,http://127.0.0.1:5001/local/meme/268,facebook warned me about people like you,jpg,"gay,homophobia,homophobic dog"
+269,http://127.0.0.1:5001/local/meme/269,why cant you be normal,jpg,"gay,homophobia,homophobic dog"
+270,http://127.0.0.1:5001/local/meme/270,emoji as a comedian,jpg,"satisfied,happy,ate,cleared,gagged"
+272,http://127.0.0.1:5001/local/meme/272,if I wake up one more time,jpg,"sad,unhappy,depressed,done,tired"
+273,http://127.0.0.1:5001/local/meme/273,I cant do it anymore,jpg,"sad,unhappy,depressed,done,tired"
+274,http://127.0.0.1:5001/local/meme/274,I was thinking and then I started crying,jpg,"sad,unhappy,depressed,done,tired"
+275,http://127.0.0.1:5001/local/meme/275,at this point what is the point,jpg,"sad,unhappy,depressed,done,tired"
+276,http://127.0.0.1:5001/local/meme/276,donkey smirking,jpg,"donkey,shrek,happy,ate,cleared"
+277,http://127.0.0.1:5001/local/meme/277,christian walker flipping the rainbow flag,jpg,"gay,homophobia,rainbow flag,christian walker"
+278,http://127.0.0.1:5001/local/meme/278,are you guys lgbt or something,jpg,"ma,gay,homophobia,suspicious,concerned,octavia spencer"
+279,http://127.0.0.1:5001/local/meme/279,lgbt always remember your destination,jpg,"pride month,gay,homophobia,destination"
+282,http://127.0.0.1:5001/local/meme/282,awks,jpg,"awkard,confused,concerned,embarassed,idris elba,daniel craig"
+283,http://127.0.0.1:5001/local/meme/283,sigma male smiling,jpg,"sigma male,smiling,alpha,happy"
+284,http://127.0.0.1:5001/local/meme/284,what if im gay,jpg,"gay,homophobia,homophobic dog"
+285,http://127.0.0.1:5001/local/meme/285,lets hope its just a phase,jpg,"gay,homophobia,homophobic dog"
+286,http://127.0.0.1:5001/local/meme/286,don’t tell me youre one of them,jpg,"gay,homophobia,homophobic dog"
+289,http://127.0.0.1:5001/local/meme/289,man in suit posing,jpg,"happy,satisfied,ate,posing"
+290,http://127.0.0.1:5001/local/meme/290,as long as it isnt your whole personality,jpg,"gay,homophobia,homophobic dog"
+291,http://127.0.0.1:5001/local/meme/291,do you guys just put woke infront of everything,jpg,"woke,marvel,mcu,antman"
+292,http://127.0.0.1:5001/local/meme/292,cat with nerd glasses,jpg,"cat,nerd,well actually"
+293,http://127.0.0.1:5001/local/meme/293,scarlett witch ate,jpg,
+295,http://127.0.0.1:5001/local/meme/295,welcome to chick fil a,jpg,"gay,homophobia,homophobic dog"
+296,http://127.0.0.1:5001/local/meme/296,madison beer shocked,jpg,"confused,concerned,shocked,surprised,embarassed"
+297,http://127.0.0.1:5001/local/meme/297,you wouldnt get it,jpg,joker
+299,http://127.0.0.1:5001/local/meme/299,cat confused meme,jpg,"cat,confused,suspicious,concerned,side eye"
+300,http://127.0.0.1:5001/local/meme/300,mr fantasic mid teleport,jpg,"marvel,mcu,side eye,"
+301,http://127.0.0.1:5001/local/meme/301,scarlett witch smiling,jpg,"scarlett witch,wanda,marvel,mcu,happy,excited"
+302,http://127.0.0.1:5001/local/meme/302,youre going to burn,jpg,"gay,homophobic dog,homophobia"
+303,http://127.0.0.1:5001/local/meme/303,vecna in one piece dress,jpg,"vecna,gay,slay,ate,cleared,cunty,stranger things"
+304,http://127.0.0.1:5001/local/meme/304,dragged to hell,jpg,"new rockstars,thumbnail,wanda,scarlett witch"
+305,http://127.0.0.1:5001/local/meme/305,dog with under bite,jpg,"confused,dumb,concerned,weird,help,tired"
+306,http://127.0.0.1:5001/local/meme/306,fairly odd parents over it,jpg,"done,tired,sad,over it"
+308,http://127.0.0.1:5001/local/meme/308,dog rejecting vegetables,jpg,"dog,over it,sad,tired"
+309,http://127.0.0.1:5001/local/meme/309,help her meme,png,"tired,done,over it,help"
+310,http://127.0.0.1:5001/local/meme/310,scarlett witch smiling at strange,jpg,"scarlett witch,smiling,excited,happy"
+311,http://127.0.0.1:5001/local/meme/311,stop being gay,jpg,"gay,homophobia"
+312,http://127.0.0.1:5001/local/meme/312,are you gay dog,png,"gay,rainbow flag,lgbt,suspicious,concerned"
+313,http://127.0.0.1:5001/local/meme/313,you served now what,jpg,"slay,ate,cleared,cunty,happy,satisfied"
+314,http://127.0.0.1:5001/local/meme/314,fletcher confused,jpg,"fletcher,ant farm,confused,concerned,gagged,embarassed"
+315,http://127.0.0.1:5001/local/meme/315,fletcher explaining himself,jpg,"fletcher,ant farm,confused,concerned"
+316,http://127.0.0.1:5001/local/meme/316,fletcher smirking,jpg,"fletcher,ant farm,happy,excited,satisfied,ate,cleared"
+317,http://127.0.0.1:5001/local/meme/317,fletcher standing still,jpg,"fletcher,ant farm,gagged,embarassed"
+318,http://127.0.0.1:5001/local/meme/318,fletcher looking confused,jpg,"fletcher,ant farm,confused,concerned"
+319,http://127.0.0.1:5001/local/meme/319,tiger shocked being let out of cage,jpg,"tiger,shocked,scared,embarassed,gagged"
+321,http://127.0.0.1:5001/local/meme/321,guy with bomb staring at phone,jpg,"batman,tired,done,over it,stress,unhappy"
+322,http://127.0.0.1:5001/local/meme/322,spongebob double eyed meme,jpg,"spongebob,books,confused"
+323,http://127.0.0.1:5001/local/meme/323,girl getting side eye,jpg,"girl,suspicious,side eye,embarassed,gagged"
+324,http://127.0.0.1:5001/local/meme/324,girl with heart at her crotch,jpg,"horny,happy,love,attractive,inlove"
+325,http://127.0.0.1:5001/local/meme/325,drake with nails,png,"bbl drake,drake,gay,cunty"
+326,http://127.0.0.1:5001/local/meme/326,bbl drake getting a drink,png,"drake,gay,cunty,slay"
+327,http://127.0.0.1:5001/local/meme/327,bbl drake selfie,png,"drake,gay"
+328,http://127.0.0.1:5001/local/meme/328,ice age characters shocked,jpg,"shocked,surprised,done"
+329,http://127.0.0.1:5001/local/meme/329,and are they in the room with us right now,jpg,"mental illness,ill,questioning,imaginary"
+330,http://127.0.0.1:5001/local/meme/330,bbl drake in bed,png,"drake,bonnet,bbl drake,gay,peace,satisfied"
+331,http://127.0.0.1:5001/local/meme/331,of course I cum fast I got places to be,jpg,"soldier boy,the boys"
+332,http://127.0.0.1:5001/local/meme/332,fletcher but with yassified face,jpg,"fletcher,embarassed,confused,concerned"
+334,http://127.0.0.1:5001/local/meme/334,cat giving side eye,png,"cat,side eye,suspicious,concerned,confused"
+335,http://127.0.0.1:5001/local/meme/335,fighting the gay allegations again,jpg,"wolf,loner,gay,struggling"
+336,http://127.0.0.1:5001/local/meme/336,fighting the urge to make out with men,jpg,"wolf,loner,gay,struggling"
+337,http://127.0.0.1:5001/local/meme/337,people praying along with a dog,jpg,"praying,dog,hope"
+338,http://127.0.0.1:5001/local/meme/338,worst tweet ever,jpg,"new rockstars,thumbnail,worst tweet"
+339,http://127.0.0.1:5001/local/meme/339,welcome to rizz academy,jpg,"rizz,happy,excited"
+340,http://127.0.0.1:5001/local/meme/340,racoon screaming,jpg,"racoon,screaming,stressed,help,done,"
+341,http://127.0.0.1:5001/local/meme/341,woman holding screaming racoon,jpg,"racoon,screaming,stressed,help,done,"
+342,http://127.0.0.1:5001/local/meme/342,are you gay cat,jpg,"cat,suspicious,gay,rainbow flag"
+343,http://127.0.0.1:5001/local/meme/343,are you gay dog,jpg,"dog,suspicious,gay,rainbow flag"
+344,http://127.0.0.1:5001/local/meme/344,horse in car crash,jpg,"horse,car,tired,done,over it,stressed"
+345,http://127.0.0.1:5001/local/meme/345,its mathematics luv,jpg,"british,mathematics,satisfied,ate,cleared"
+346,http://127.0.0.1:5001/local/meme/346,youre gay transylvannia,jpg,"gay,dracula,hotel transylvannia,rainbow flag"
+347,http://127.0.0.1:5001/local/meme/347,wednesday are you gay,jpg,"gay,suspicious,rainbow flag,Wednesday,netflix"
+348,http://127.0.0.1:5001/local/meme/348,lgtv dog,jpg,"dog,concerned,confused,gay,suspicious,help"
+349,http://127.0.0.1:5001/local/meme/349,cock by freddy fazebear,jpg,"horny,cock,freddy,fnaf"
+351,http://127.0.0.1:5001/local/meme/351,are you gay horse,jpg,"horse,gay,suspicious,rainbow flag"
+352,http://127.0.0.1:5001/local/meme/352,are you gay cat,jpg,"cat,gay,suspicious,rainbow flag"
+353,http://127.0.0.1:5001/local/meme/353,chicken are you gay,jpg,"chicken,gay,suspicious,rainbow flag"
+354,http://127.0.0.1:5001/local/meme/354,soldier boy fuck you,jpg,"soldier boy,the boys,bold,satisfied,cleared,ate"
 357,http://127.0.0.1:5001/local/meme/357,,,
-358,http://127.0.0.1:5001/local/meme/358,,,
 359,http://127.0.0.1:5001/local/meme/359,,,
 360,http://127.0.0.1:5001/local/meme/360,,,
 361,http://127.0.0.1:5001/local/meme/361,,,
@@ -387,7 +359,6 @@ CloudID,CloudURL,Name,Extension,Tags
 402,http://127.0.0.1:5001/local/meme/402,,,
 403,http://127.0.0.1:5001/local/meme/403,,,
 404,http://127.0.0.1:5001/local/meme/404,,,
-405,http://127.0.0.1:5001/local/meme/405,,,
 406,http://127.0.0.1:5001/local/meme/406,,,
 407,http://127.0.0.1:5001/local/meme/407,,,
 408,http://127.0.0.1:5001/local/meme/408,,,
