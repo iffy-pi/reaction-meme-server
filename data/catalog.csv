@@ -312,104 +312,96 @@ CloudID,CloudURL,Name,Extension,Tags
 352,http://127.0.0.1:5001/local/meme/352,are you gay cat,jpg,"cat,gay,suspicious,rainbow flag"
 353,http://127.0.0.1:5001/local/meme/353,chicken are you gay,jpg,"chicken,gay,suspicious,rainbow flag"
 354,http://127.0.0.1:5001/local/meme/354,soldier boy fuck you,jpg,"soldier boy,the boys,bold,satisfied,cleared,ate"
-357,http://127.0.0.1:5001/local/meme/357,,,
-359,http://127.0.0.1:5001/local/meme/359,,,
-360,http://127.0.0.1:5001/local/meme/360,,,
-361,http://127.0.0.1:5001/local/meme/361,,,
-362,http://127.0.0.1:5001/local/meme/362,,,
-363,http://127.0.0.1:5001/local/meme/363,,,
-364,http://127.0.0.1:5001/local/meme/364,,,
-365,http://127.0.0.1:5001/local/meme/365,,,
-366,http://127.0.0.1:5001/local/meme/366,,,
-367,http://127.0.0.1:5001/local/meme/367,,,
-368,http://127.0.0.1:5001/local/meme/368,,,
-369,http://127.0.0.1:5001/local/meme/369,,,
-370,http://127.0.0.1:5001/local/meme/370,,,
-371,http://127.0.0.1:5001/local/meme/371,,,
-372,http://127.0.0.1:5001/local/meme/372,,,
-373,http://127.0.0.1:5001/local/meme/373,,,
-374,http://127.0.0.1:5001/local/meme/374,,,
-375,http://127.0.0.1:5001/local/meme/375,,,
-376,http://127.0.0.1:5001/local/meme/376,,,
-377,http://127.0.0.1:5001/local/meme/377,,,
-378,http://127.0.0.1:5001/local/meme/378,,,
-379,http://127.0.0.1:5001/local/meme/379,,,
-380,http://127.0.0.1:5001/local/meme/380,,,
-381,http://127.0.0.1:5001/local/meme/381,,,
-382,http://127.0.0.1:5001/local/meme/382,,,
-383,http://127.0.0.1:5001/local/meme/383,,,
-384,http://127.0.0.1:5001/local/meme/384,,,
-385,http://127.0.0.1:5001/local/meme/385,,,
-386,http://127.0.0.1:5001/local/meme/386,,,
-387,http://127.0.0.1:5001/local/meme/387,,,
-388,http://127.0.0.1:5001/local/meme/388,,,
-389,http://127.0.0.1:5001/local/meme/389,,,
-390,http://127.0.0.1:5001/local/meme/390,,,
-391,http://127.0.0.1:5001/local/meme/391,,,
-392,http://127.0.0.1:5001/local/meme/392,,,
-393,http://127.0.0.1:5001/local/meme/393,,,
-394,http://127.0.0.1:5001/local/meme/394,,,
-395,http://127.0.0.1:5001/local/meme/395,,,
-396,http://127.0.0.1:5001/local/meme/396,,,
-397,http://127.0.0.1:5001/local/meme/397,,,
-398,http://127.0.0.1:5001/local/meme/398,,,
-399,http://127.0.0.1:5001/local/meme/399,,,
-400,http://127.0.0.1:5001/local/meme/400,,,
-401,http://127.0.0.1:5001/local/meme/401,,,
-402,http://127.0.0.1:5001/local/meme/402,,,
-403,http://127.0.0.1:5001/local/meme/403,,,
-404,http://127.0.0.1:5001/local/meme/404,,,
-406,http://127.0.0.1:5001/local/meme/406,,,
-407,http://127.0.0.1:5001/local/meme/407,,,
-408,http://127.0.0.1:5001/local/meme/408,,,
-409,http://127.0.0.1:5001/local/meme/409,,,
-410,http://127.0.0.1:5001/local/meme/410,,,
-411,http://127.0.0.1:5001/local/meme/411,,,
-412,http://127.0.0.1:5001/local/meme/412,,,
-413,http://127.0.0.1:5001/local/meme/413,,,
-414,http://127.0.0.1:5001/local/meme/414,,,
-415,http://127.0.0.1:5001/local/meme/415,,,
-416,http://127.0.0.1:5001/local/meme/416,,,
-417,http://127.0.0.1:5001/local/meme/417,,,
-418,http://127.0.0.1:5001/local/meme/418,,,
-419,http://127.0.0.1:5001/local/meme/419,,,
-420,http://127.0.0.1:5001/local/meme/420,,,
-421,http://127.0.0.1:5001/local/meme/421,,,
-422,http://127.0.0.1:5001/local/meme/422,,,
-423,http://127.0.0.1:5001/local/meme/423,,,
-424,http://127.0.0.1:5001/local/meme/424,,,
-425,http://127.0.0.1:5001/local/meme/425,,,
-426,http://127.0.0.1:5001/local/meme/426,,,
-427,http://127.0.0.1:5001/local/meme/427,,,
-428,http://127.0.0.1:5001/local/meme/428,,,
-429,http://127.0.0.1:5001/local/meme/429,,,
-430,http://127.0.0.1:5001/local/meme/430,,,
-431,http://127.0.0.1:5001/local/meme/431,,,
-432,http://127.0.0.1:5001/local/meme/432,,,
-433,http://127.0.0.1:5001/local/meme/433,,,
-434,http://127.0.0.1:5001/local/meme/434,,,
-435,http://127.0.0.1:5001/local/meme/435,,,
-436,http://127.0.0.1:5001/local/meme/436,,,
-437,http://127.0.0.1:5001/local/meme/437,,,
-438,http://127.0.0.1:5001/local/meme/438,,,
-439,http://127.0.0.1:5001/local/meme/439,,,
-440,http://127.0.0.1:5001/local/meme/440,,,
-441,http://127.0.0.1:5001/local/meme/441,,,
-442,http://127.0.0.1:5001/local/meme/442,,,
-443,http://127.0.0.1:5001/local/meme/443,,,
-444,http://127.0.0.1:5001/local/meme/444,,,
-445,http://127.0.0.1:5001/local/meme/445,,,
-446,http://127.0.0.1:5001/local/meme/446,,,
-447,http://127.0.0.1:5001/local/meme/447,,,
-448,http://127.0.0.1:5001/local/meme/448,,,
-449,http://127.0.0.1:5001/local/meme/449,,,
-450,http://127.0.0.1:5001/local/meme/450,,,
-451,http://127.0.0.1:5001/local/meme/451,,,
-452,http://127.0.0.1:5001/local/meme/452,,,
-453,http://127.0.0.1:5001/local/meme/453,,,
-454,http://127.0.0.1:5001/local/meme/454,,,
-455,http://127.0.0.1:5001/local/meme/455,,,
-456,http://127.0.0.1:5001/local/meme/456,,,
-457,http://127.0.0.1:5001/local/meme/457,,,
-458,http://127.0.0.1:5001/local/meme/458,,,
-459,http://127.0.0.1:5001/local/meme/459,,,
+357,http://127.0.0.1:5001/local/meme/357,its a chicken salad,jpg,"chicken salad,ate,cleared,happy,excited,shh,period"
+359,http://127.0.0.1:5001/local/meme/359,tyler the creator shocked,jpg,"shocked,surprised,done,scared,gagged"
+362,http://127.0.0.1:5001/local/meme/362,wanda dancing lgbt,mp4,"dancing,happy,cleared,wanda,scarlett witch"
+363,http://127.0.0.1:5001/local/meme/363,millie bobby brown crying at rainbow flag,mp4,"gay,homophobia,rainbow flag,lgbt,crying,sad,millie"
+364,http://127.0.0.1:5001/local/meme/364,eating burger and then getting sick,mp4,"disgusted,sad,gagged,disgusting,burger,vomit"
+366,http://127.0.0.1:5001/local/meme/366,icespice scream cross over,mp4,"ice spice,scream,dancing,scary"
+367,http://127.0.0.1:5001/local/meme/367,dog moving around in apartment timelapse,mp4,"dog,excited,fast,stressed,happy,excited"
+368,http://127.0.0.1:5001/local/meme/368,shehulk clapping boom sound,mp4,"vine,vine boom,shehulk,marvel,mcu"
+369,http://127.0.0.1:5001/local/meme/369,pizza hut worker tying apron,mp4,"thick,cunt,happy,cleared,ate,gagged,gay"
+370,http://127.0.0.1:5001/local/meme/370,elena getting slapped,mp4,"vampire diaries.beyonce,unique,slapped,gagged,cleared,tvd"
+371,http://127.0.0.1:5001/local/meme/371,witches dancing to jays on my feet,mp4,"witches,dancing,halloween,miley cyrus,happy,excited"
+372,http://127.0.0.1:5001/local/meme/372,are you gay cow,jpg,"gay,suspicious,rainbow flag,cow"
+373,http://127.0.0.1:5001/local/meme/373,shut up your mouth obama,mp4,"obama,egypt,egyptian women"
+374,http://127.0.0.1:5001/local/meme/374,but im loyal to viltrum not this pathetic excuse for a civilization,mp4,"omniman,viltrum,done,loner,over it,tired"
+375,http://127.0.0.1:5001/local/meme/375,zods wife screaming for her husband,mp4,"husband,young justice,horny,inlove,married"
+376,http://127.0.0.1:5001/local/meme/376,mother takes daughters pen away while writing,mp4,"yapping,too much,tired,done,gagged,cleared"
+377,http://127.0.0.1:5001/local/meme/377,I crossdress in a wonderwoman outfit it makes me feel powerful,mov,"honest,gagged,power,woman,hot,horny"
+378,http://127.0.0.1:5001/local/meme/378,woman screaming n word,mp4,"woman,racist,karen,screaming"
+380,http://127.0.0.1:5001/local/meme/380,shout out to all my gay niggas,mp4,"gay,period,ate,cleared"
+381,http://127.0.0.1:5001/local/meme/381,be who you are for your pride,mp4,"gay,pride,happy,rainbow flag,be who you are"
+382,http://127.0.0.1:5001/local/meme/382,dog growling,mp4,"dog,angry,scared,concerned"
+383,http://127.0.0.1:5001/local/meme/383,ellen audience celebrating,mp4,"ellen,happy,excited,screaming,fun,celebrating"
+384,http://127.0.0.1:5001/local/meme/384,scarlett witch cunty walk,mp4,"scarlett witch,wanda,cunt,serving"
+385,http://127.0.0.1:5001/local/meme/385,bad bad bad idea,mov,"gorrilla glue girl,bad idea,stupid,dumb"
+386,http://127.0.0.1:5001/local/meme/386,not on my watch,mp4,"not on my watch,clocked,concerned,confused"
+388,http://127.0.0.1:5001/local/meme/388,thanos screaming but with ariana whistle note,mp4,"thanos,mcu,ariana grande,screaming,singing"
+389,http://127.0.0.1:5001/local/meme/389,monkey in dress,mp4,"happy,ate,serving,cleared,satisfied"
+390,http://127.0.0.1:5001/local/meme/390,cops dancing in elevator,mp4,"cops,police,happy,fun,dancing,satisfied"
+392,http://127.0.0.1:5001/local/meme/392,I never said lgbt last night I said sin,mp4,"gay,lgbt,homophobia,homophobic,christian"
+393,http://127.0.0.1:5001/local/meme/393,darwin insulting someone really fast,mp4,"darwin,gumball,disgusted,angry,mad,ate,cleared"
+394,http://127.0.0.1:5001/local/meme/394,girl crying but spotify ads stop her,mp4,"sad,crying,drama,gagged,embarassed"
+395,http://127.0.0.1:5001/local/meme/395,when I catch you let me tell you what I am going to do,mp4,"tokyo toni,soloplex,stomp your face into the cement,be prepared,mouth,fight,beat,angry"
+396,http://127.0.0.1:5001/local/meme/396,cat staring at someone ominously,mp4,"cat,staring,concerned,confused,side eye,suspicious"
+397,http://127.0.0.1:5001/local/meme/397,family guy peter being strapped while listening to adele,mp4,"family guy,sad,crying,music,good,help"
+398,http://127.0.0.1:5001/local/meme/398,kim getting thrown into water turning into beyonce,mp4,"kim kardashian,kim,beyonce,gagged,embarassed,I tried to change"
+399,http://127.0.0.1:5001/local/meme/399,cardi b giving side eye,mp4,"cardi b,side eye,suspicious,concerned,confused"
+400,http://127.0.0.1:5001/local/meme/400,icarly getting blindsided with bright light,mp4,"icarly,blind,blinded,bright light,screaming,too white"
+401,http://127.0.0.1:5001/local/meme/401,death drop everyone celebrating,mp4,"gagged,cleared,ate,dancing"
+402,http://127.0.0.1:5001/local/meme/402,man in suit posing video,mp4,"happy,excited,pleased,satisfied,cleared,ate"
+403,http://127.0.0.1:5001/local/meme/403,beyonce mirror breaking video with jiafei,mp4,"beyonce,jia fei,jiafei,happy,excited"
+404,http://127.0.0.1:5001/local/meme/404,bonnie incendia people in car burnt,mp4,"bonnie,tvd,the vampire diaries,ate,cleared"
+406,http://127.0.0.1:5001/local/meme/406,nollywood youre a disappointment,mp4,"nollywood,nigerian,disappointment,crazy"
+407,http://127.0.0.1:5001/local/meme/407,woman disintegrating I have to go,mp4,"gone,sad,happy,excited,embarassed,help"
+408,http://127.0.0.1:5001/local/meme/408,nun if I miss I slay,mp4,"ate,cleared,nun,slay,serving,gay"
+409,http://127.0.0.1:5001/local/meme/409,lego green lantern shaking ass,mp4,"lego,justice league,dc,green lantern,dancing,happy,fun,shaking ass,twerking"
+411,http://127.0.0.1:5001/local/meme/411,im out here sweating my ass of to keep my black from cracking,mp4,"baby girls,love you"
+412,http://127.0.0.1:5001/local/meme/412,cat being shocked at another cat,mp4,"cat,shocked,surprised,deadass,serious,sad,gagged"
+413,http://127.0.0.1:5001/local/meme/413,be who you are for your pride,mp4,"gay,pride,pride month"
+414,http://127.0.0.1:5001/local/meme/414,tokyo toni alexa kill yourself,mp4,"alexa,tokyo toni,done,tired,deadass"
+415,http://127.0.0.1:5001/local/meme/415,thats supsicious thats weird,mp4,"cardi b,suspicious,concerned,confused,weird"
+416,http://127.0.0.1:5001/local/meme/416,suspicious side eye montage,mp4,"suspicious,confused,concerned,side eye"
+417,http://127.0.0.1:5001/local/meme/417,nollywood skeleton disappearing with woman,mp4,"nollywood,nigerian,witchcraft,inlove,help"
+418,http://127.0.0.1:5001/local/meme/418,gorilla running in the rain,mp4,"gorilla,monkey,raining,embarassed,sad,gagged"
+419,http://127.0.0.1:5001/local/meme/419,millie bobby brown I am homophobic,mp4,"homophobic,gay,homophobia,millie bobby brown"
+420,http://127.0.0.1:5001/local/meme/420,dog giving side eye with among us background sound,mp4,"dog,suspicious,concerned,side eye,confused"
+421,http://127.0.0.1:5001/local/meme/421,homelander im smarter im better I am better,mp4,"homelander,superior,the boys"
+422,http://127.0.0.1:5001/local/meme/422,wig video,mp4,"wig,ate,cleared"
+423,http://127.0.0.1:5001/local/meme/423,ariel and donald duck and pooh dancing,mp4,"dancing,pooh,happy,excited"
+424,http://127.0.0.1:5001/local/meme/424,tiger eating with bbl finger pose,mp4,"tiger,ate,cleared,serving,gay"
+425,http://127.0.0.1:5001/local/meme/425,woman being dramatic over fake accident,mp4,"woman,crying,karen,sad,scared"
+426,http://127.0.0.1:5001/local/meme/426,can you vote video,mp4,"vote,no,video"
+427,http://127.0.0.1:5001/local/meme/427,chiropractor slamming rod into someones neck,mp4,"chiropractor,crazy,help,angry,mad,tired"
+428,http://127.0.0.1:5001/local/meme/428,man slipping on ice and landing onto pack of water,mp4,"gagged,slipped,embarassed,help,confused"
+429,http://127.0.0.1:5001/local/meme/429,im an nyu film school graduate rating spongebob,mp4,"spongebob,film,film critic"
+430,http://127.0.0.1:5001/local/meme/430,black panther cast confused,mp4,"black panther,suspicious,side eye,confused,concerned"
+432,http://127.0.0.1:5001/local/meme/432,iris edit she ate,mov,"iris,ate,cleared,gagged"
+433,http://127.0.0.1:5001/local/meme/433,so when yall are drinking blood how does that work do you put sugar in it,mp4,"tokyo toni,blood,illuminati,sugar in it,how does that work"
+434,http://127.0.0.1:5001/local/meme/434,listen to youre voice the way youre talking you sound like a female,mp4,"gay,homophobia,lgbt,homophobic,misogynistic"
+435,http://127.0.0.1:5001/local/meme/435,right infront of my salad,mp4,"gay,homophobia,salad,embarassed,pride,pride month"
+436,http://127.0.0.1:5001/local/meme/436,bumble bee twerking,mp4,"twerking,dancing,excited,happy,help"
+437,http://127.0.0.1:5001/local/meme/437,I have my half up half down am I giving ariani am I giving arianka or no,mp4,"azealia banks,ate,ariana grande,happy"
+438,http://127.0.0.1:5001/local/meme/438,cat being shocked at another cat,mp4,"cat,shocked,surprised,deadass,serious,sad,gagged"
+439,http://127.0.0.1:5001/local/meme/439,oh hell no showing gun knife taser,mp4,"gun,knife,fight,angry,taser"
+440,http://127.0.0.1:5001/local/meme/440,girl with bob saying hello,mp4,"girl,bob,hello,ate,serving,hair,wig"
+441,http://127.0.0.1:5001/local/meme/441,have you showered or bathed in the last couple of days,mp4,"shower,bathed,confused,concerned,dirty,messy"
+442,http://127.0.0.1:5001/local/meme/442,drake dancing,mp4,"drake,gay,bbl drake"
+443,http://127.0.0.1:5001/local/meme/443,tokyo toni why dont you take your kids and your dog,mp4,"tokyo toni,get to the bottom dig deep,insult,angry,help"
+444,http://127.0.0.1:5001/local/meme/444,nun with slay fit,mp4,"nun,slay,ate,cleared,gagged,outfit,serving"
+445,http://127.0.0.1:5001/local/meme/445,cat with a bob,mp4,"cat,bob,wig,slay,serving,nicki minaj"
+446,http://127.0.0.1:5001/local/meme/446,rest in peace to the chicks that are dying to be me,mp4,"ate,cleared,proud,satisfied,serving"
+447,http://127.0.0.1:5001/local/meme/447,cat making weird sounds,mp4,"cat,weird,hungry,help,confused"
+448,http://127.0.0.1:5001/local/meme/448,jia fei birthday cake,mp4,"jia fei,jiafei,birthday,cake,celebrating"
+449,http://127.0.0.1:5001/local/meme/449,wanda getting beat up by nicki ariana and beyonce,mp4,"wanda,scarlett witch,beat up,gagged,beyonce,nicki minaj,ariana grande"
+450,http://127.0.0.1:5001/local/meme/450,wendy williams and abby lee miller dancing,mp4,"wendy williams,abby lee miller,dancing,ate,cleared,happy,excited,satisfied"
+451,http://127.0.0.1:5001/local/meme/451,I aint got no tail gurl,mp4,"tail,gagged,help,cleared"
+452,http://127.0.0.1:5001/local/meme/452,woman singing into mic and cutting out,mp4,"singing,celebrating,gagged,happy,fun"
+453,http://127.0.0.1:5001/local/meme/453,dog getting sad seeing its reflection,mp4,"dog,gagged,sad,confused,concerned,help,embarassed"
+454,http://127.0.0.1:5001/local/meme/454,wanda waking up from dream sad,mp4,"wanda,scarlett witch,dream,sad,delusion,delulu,confused"
+455,http://127.0.0.1:5001/local/meme/455,homelander watching movie sad,mp4,"homelander,the boys,sad,done,over it,dissociating,checked out"
+456,http://127.0.0.1:5001/local/meme/456,olivia wilde satisfied after doing protest,mp4,"olivia wilde,satisfied,protest,we love america,ate,cleared,happy"
+457,http://127.0.0.1:5001/local/meme/457,mr crabs going to chum bucket and then explosion,mp4,"skimbabimdede,explosion,spongebob,crab,excited,happy"
+458,http://127.0.0.1:5001/local/meme/458,people saying mental slurs,mp4,"gay,homophobic,homophobia,slurs,lgbt"
+459,http://127.0.0.1:5001/local/meme/459,man throwing woman off boat because of pregnancy test,mp4,"angry,confused,concerned,suspcious"
