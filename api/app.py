@@ -137,7 +137,7 @@ def route_add_new_meme():
 
     # Create the entry in the database
     tags = [ r.strip() for r in request.json['tags'].split(',')]
-    meme = memeLib.makeMemeAndAddToLibrary(name=request.json['name'], tags=tags, fileExt=request.json['fileExt'])
+    meme = memeLib.addMemeToLibrary(name=request.json['name'], tags=tags, fileExt=request.json['fileExt'])
 
     # respond with the item informaion and an upload URL
     return make_json_response(

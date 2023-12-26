@@ -2,8 +2,9 @@
     "itemCount": 406,
     "items": {
         "0": {
-            "id": "0",
+            "id": 0,
             "name": "full time professional clown",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "clown",
@@ -15,8 +16,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/1"
         },
         "1": {
-            "id": "1",
+            "id": 1,
             "name": "thanos surprised at phone",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "thanos",
@@ -29,8 +31,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/2"
         },
         "2": {
-            "id": "2",
+            "id": 2,
             "name": "tenzin getting beat up",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "avatar",
@@ -43,8 +46,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/3"
         },
         "3": {
-            "id": "3",
+            "id": 3,
             "name": "im looking through my bible here and don't see anything about your opinion",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "priest",
@@ -56,8 +60,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/4"
         },
         "4": {
-            "id": "4",
+            "id": 4,
             "name": "ghost freak what is he talking about",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "ben 10",
@@ -70,8 +75,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/5"
         },
         "5": {
-            "id": "5",
+            "id": 5,
             "name": "lana del ray sitting chimpanzee",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "sad",
@@ -87,8 +93,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/6"
         },
         "6": {
-            "id": "6",
+            "id": 6,
             "name": "icarly you're gay meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "icarly",
@@ -102,8 +109,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/7"
         },
         "7": {
-            "id": "7",
+            "id": 7,
             "name": "confused monkey chinese flute song",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "monkey",
@@ -116,8 +124,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/8"
         },
         "8": {
-            "id": "8",
+            "id": 8,
             "name": "got me gagging",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "got me gagging",
@@ -130,8 +139,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/9"
         },
         "9": {
-            "id": "9",
+            "id": 9,
             "name": "were a peaceful racist group",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "self own",
@@ -144,8 +154,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/10"
         },
         "10": {
-            "id": "10",
+            "id": 10,
             "name": "please just give us a break",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "police",
@@ -157,8 +168,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/11"
         },
         "11": {
-            "id": "11",
+            "id": 11,
             "name": "mediaval big boobs girl walking away",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "medieval girl",
@@ -172,8 +184,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/12"
         },
         "12": {
-            "id": "12",
+            "id": 12,
             "name": "medieval girl big boobs and ass giggling",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "medieval girl",
@@ -187,8 +200,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/13"
         },
         "13": {
-            "id": "13",
+            "id": 13,
             "name": "oh that's not thinking she cleared",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "oh thats not",
@@ -203,8 +217,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/14"
         },
         "14": {
-            "id": "14",
+            "id": 14,
             "name": "monkey giving side eye",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "monkey",
@@ -217,8 +232,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/15"
         },
         "15": {
-            "id": "15",
+            "id": 15,
             "name": "white people in chains",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "white people",
@@ -233,8 +249,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/16"
         },
         "16": {
-            "id": "16",
+            "id": 16,
             "name": "blonde creator describing bad things about show (full frontal nudity etc)",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "grace randolph",
@@ -253,8 +270,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/17"
         },
         "17": {
-            "id": "17",
+            "id": 17,
             "name": "boss and ceo falling backwards",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "boss and ceo",
@@ -270,8 +288,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/18"
         },
         "18": {
-            "id": "18",
+            "id": 18,
             "name": "walking around store with empty shelves",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "target",
@@ -284,8 +303,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/19"
         },
         "19": {
-            "id": "19",
+            "id": 19,
             "name": "so the cocaines happening when does the crack come into play",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "crack",
@@ -300,8 +320,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/20"
         },
         "20": {
-            "id": "20",
+            "id": 20,
             "name": "i thought this was a classy party",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "surprised",
@@ -314,8 +335,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/21"
         },
         "21": {
-            "id": "21",
+            "id": 21,
             "name": "taylor swift typing on laptop",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "taylor swift",
@@ -330,8 +352,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/22"
         },
         "22": {
-            "id": "22",
+            "id": 22,
             "name": "girl losing it on call with finn wolfhard",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "girl",
@@ -345,8 +368,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/23"
         },
         "23": {
-            "id": "23",
+            "id": 23,
             "name": "wwe main presenter sad i don't wanna talk about it",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "wwe",
@@ -362,8 +386,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/24"
         },
         "24": {
-            "id": "24",
+            "id": 24,
             "name": "christian woman clearing with monster illuminati conspiracy",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "monster",
@@ -378,8 +403,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/26"
         },
         "25": {
-            "id": "25",
+            "id": 25,
             "name": "omniman i will burn this planet down",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "omniman",
@@ -393,8 +419,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/27"
         },
         "26": {
-            "id": "26",
+            "id": 26,
             "name": "the devil shivers when a clown starts morbing",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "morbius",
@@ -407,8 +434,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/28"
         },
         "27": {
-            "id": "27",
+            "id": 27,
             "name": "homophobic dog its not what it looks like",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "gay",
@@ -422,8 +450,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/29"
         },
         "28": {
-            "id": "28",
+            "id": 28,
             "name": "black guy suspicious side eye",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "black guy",
@@ -436,8 +465,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/30"
         },
         "29": {
-            "id": "29",
+            "id": 29,
             "name": "new rockstars did yoda fuck",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "new rockstars",
@@ -449,8 +479,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/31"
         },
         "30": {
-            "id": "30",
+            "id": 30,
             "name": "new rockstars idiot?",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "new rockstars",
@@ -466,8 +497,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/32"
         },
         "31": {
-            "id": "31",
+            "id": 31,
             "name": "omniman suspicious looking at phone",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "omniman",
@@ -480,8 +512,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/33"
         },
         "32": {
-            "id": "32",
+            "id": 32,
             "name": "wanda but donkey phase",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "wanda",
@@ -495,8 +528,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/34"
         },
         "33": {
-            "id": "33",
+            "id": 33,
             "name": "robin yelling kill yourself",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "robin",
@@ -510,8 +544,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/35"
         },
         "34": {
-            "id": "34",
+            "id": 34,
             "name": "kamala staring down someone",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "kamala",
@@ -525,8 +560,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/36"
         },
         "35": {
-            "id": "35",
+            "id": 35,
             "name": "bro thinks hes part of the team",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "drake",
@@ -539,8 +575,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/37"
         },
         "36": {
-            "id": "36",
+            "id": 36,
             "name": "scooby doo dressed as woman on airplane",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "scooby doo",
@@ -553,8 +590,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/38"
         },
         "37": {
-            "id": "37",
+            "id": 37,
             "name": "gta san andreas cj making out with cop",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "gta",
@@ -570,8 +608,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/39"
         },
         "38": {
-            "id": "38",
+            "id": 38,
             "name": "namor staring at wakanda queen",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "namor",
@@ -587,8 +626,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/40"
         },
         "39": {
-            "id": "39",
+            "id": 39,
             "name": "dog with wine and makeup eyebrow",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "dog",
@@ -603,8 +643,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/41"
         },
         "40": {
-            "id": "40",
+            "id": 40,
             "name": "tree with weird face",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "tree",
@@ -618,8 +659,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/42"
         },
         "41": {
-            "id": "41",
+            "id": 41,
             "name": "lg x bts meme",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "lg",
@@ -632,8 +674,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/43"
         },
         "42": {
-            "id": "42",
+            "id": 42,
             "name": "its joever",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "joever",
@@ -647,8 +690,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/44"
         },
         "43": {
-            "id": "43",
+            "id": 43,
             "name": "surprised black guy miles morales",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "shocked",
@@ -661,8 +705,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/45"
         },
         "44": {
-            "id": "44",
+            "id": 44,
             "name": "shocked skull with gay",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "shockeed",
@@ -675,8 +720,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/46"
         },
         "45": {
-            "id": "45",
+            "id": 45,
             "name": "cat with bro thinks he's him",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "cat",
@@ -690,8 +736,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/47"
         },
         "46": {
-            "id": "46",
+            "id": 46,
             "name": "new rockstars why did he do it",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "new rockstars",
@@ -705,8 +752,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/48"
         },
         "47": {
-            "id": "47",
+            "id": 47,
             "name": "homphobic dog with wine glass",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "gay",
@@ -720,8 +768,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/49"
         },
         "48": {
-            "id": "48",
+            "id": 48,
             "name": "my honest reaction",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "honest",
@@ -733,8 +782,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/50"
         },
         "49": {
-            "id": "49",
+            "id": 49,
             "name": "donkey on top of monica rambeau",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "monica",
@@ -748,8 +798,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/51"
         },
         "50": {
-            "id": "50",
+            "id": 50,
             "name": "homophobic dog sorry you were touched when you were young",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "gay",
@@ -765,8 +816,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/52"
         },
         "51": {
-            "id": "51",
+            "id": 51,
             "name": "kamala photoshopped onto thick woman",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "kamala",
@@ -781,8 +833,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/53"
         },
         "52": {
-            "id": "52",
+            "id": 52,
             "name": "oprah and whoopi goldberg photoshopped",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "oprah",
@@ -798,8 +851,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/54"
         },
         "53": {
-            "id": "53",
+            "id": 53,
             "name": "donkey slash morbius",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "donkey",
@@ -811,8 +865,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/55"
         },
         "54": {
-            "id": "54",
+            "id": 54,
             "name": "leading to psych ward",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "psych ward",
@@ -826,8 +881,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/56"
         },
         "55": {
-            "id": "55",
+            "id": 55,
             "name": "ice spice with nelson mandela",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ice spice",
@@ -840,8 +896,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/57"
         },
         "56": {
-            "id": "56",
+            "id": 56,
             "name": "sigma male on laptop",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sigma male",
@@ -853,8 +910,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/58"
         },
         "57": {
-            "id": "57",
+            "id": 57,
             "name": "gorilla plotting something devious",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gorilla",
@@ -869,8 +927,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/59"
         },
         "58": {
-            "id": "58",
+            "id": 58,
             "name": "everyone has pronouns",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "pronouns",
@@ -885,8 +944,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/60"
         },
         "59": {
-            "id": "59",
+            "id": 59,
             "name": "i am cringe but i am free cow on water",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cringe",
@@ -900,8 +960,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/61"
         },
         "60": {
-            "id": "60",
+            "id": 60,
             "name": "lebron james on fire",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "lebron james",
@@ -917,8 +978,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/62"
         },
         "61": {
-            "id": "61",
+            "id": 61,
             "name": "woman infront of slut sign",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "slut",
@@ -932,8 +994,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/63"
         },
         "62": {
-            "id": "62",
+            "id": 62,
             "name": "messi hes so mother meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "messi",
@@ -944,8 +1007,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/64"
         },
         "63": {
-            "id": "63",
+            "id": 63,
             "name": "new rockstars does he know",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -959,8 +1023,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/65"
         },
         "64": {
-            "id": "64",
+            "id": 64,
             "name": "dj khaled suffering from success",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dj khaled",
@@ -974,8 +1039,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/66"
         },
         "65": {
-            "id": "65",
+            "id": 65,
             "name": "she's so crazyyyy, love her!",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "shes so crazy",
@@ -990,8 +1056,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/67"
         },
         "66": {
-            "id": "66",
+            "id": 66,
             "name": "never let bro cook again",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "the menu",
@@ -1003,8 +1070,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/68"
         },
         "67": {
-            "id": "67",
+            "id": 67,
             "name": "the trademarks of homosexuality",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1015,8 +1083,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/69"
         },
         "68": {
-            "id": "68",
+            "id": 68,
             "name": "the trademarks of homosexuality",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1027,8 +1096,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/70"
         },
         "69": {
-            "id": "69",
+            "id": 69,
             "name": "gay lions noah's ark",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1039,8 +1109,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/72"
         },
         "70": {
-            "id": "70",
+            "id": 70,
             "name": "black guy shhhh be quiet",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "black",
@@ -1055,8 +1126,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/73"
         },
         "71": {
-            "id": "71",
+            "id": 71,
             "name": "beyonce fag repellent",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1069,8 +1141,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/74"
         },
         "72": {
-            "id": "72",
+            "id": 72,
             "name": "cow and dolphin in the ocean",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cow",
@@ -1085,8 +1158,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/75"
         },
         "73": {
-            "id": "73",
+            "id": 73,
             "name": "pride month to demon",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1098,8 +1172,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/78"
         },
         "74": {
-            "id": "74",
+            "id": 74,
             "name": "wojack smiling through the pain",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "wojack",
@@ -1112,8 +1187,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/79"
         },
         "75": {
-            "id": "75",
+            "id": 75,
             "name": "homelander watching movie sad",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "homelander",
@@ -1128,8 +1204,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/80"
         },
         "76": {
-            "id": "76",
+            "id": 76,
             "name": "this cat literally kills people and wants you to join him",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -1142,8 +1219,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/81"
         },
         "77": {
-            "id": "77",
+            "id": 77,
             "name": "terri joe kidnapped",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "terri joe",
@@ -1155,8 +1233,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/82"
         },
         "78": {
-            "id": "78",
+            "id": 78,
             "name": "homelander getting some air",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "homelander",
@@ -1169,8 +1248,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/83"
         },
         "79": {
-            "id": "79",
+            "id": 79,
             "name": "are you gay jesse pinkman",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "breaking bad",
@@ -1182,8 +1262,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/85"
         },
         "80": {
-            "id": "80",
+            "id": 80,
             "name": "are you gay ghost soldier",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1194,8 +1275,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/86"
         },
         "81": {
-            "id": "81",
+            "id": 81,
             "name": "are you gay freddy fazebear",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fnaf",
@@ -1208,8 +1290,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/87"
         },
         "82": {
-            "id": "82",
+            "id": 82,
             "name": "are you gay megan",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1221,8 +1304,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/88"
         },
         "83": {
-            "id": "83",
+            "id": 83,
             "name": "are you gay dog",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1235,8 +1319,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/89"
         },
         "84": {
-            "id": "84",
+            "id": 84,
             "name": "cat in spoon reflection",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -1249,8 +1334,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/90"
         },
         "85": {
-            "id": "85",
+            "id": 85,
             "name": "stephen amell actor protest",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gagged",
@@ -1263,8 +1349,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/91"
         },
         "86": {
-            "id": "86",
+            "id": 86,
             "name": "donald trump being arrested by kamala harris",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "kamala harris",
@@ -1277,8 +1364,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/92"
         },
         "87": {
-            "id": "87",
+            "id": 87,
             "name": "donald trump yassified",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "donald trump",
@@ -1292,8 +1380,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/93"
         },
         "88": {
-            "id": "88",
+            "id": 88,
             "name": "monkey getting caught embarassed",
+            "type": "image",
             "fileExt": "jpeg",
             "tags": [
                 "monkey",
@@ -1304,8 +1393,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/94"
         },
         "89": {
-            "id": "89",
+            "id": 89,
             "name": "hydrogen bomb vs coughing baby",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "unfair",
@@ -1315,8 +1405,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/95"
         },
         "90": {
-            "id": "90",
+            "id": 90,
             "name": "mayweather vs ryan's world",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "unfair",
@@ -1326,8 +1417,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/96"
         },
         "91": {
-            "id": "91",
+            "id": 91,
             "name": "tim cook giving side eye",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "apple",
@@ -1339,8 +1431,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/97"
         },
         "92": {
-            "id": "92",
+            "id": 92,
             "name": "medieval girl big boobs sad",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -1355,8 +1448,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/98"
         },
         "93": {
-            "id": "93",
+            "id": 93,
             "name": "troye sivan drag austin and ally",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "drag",
@@ -1369,8 +1463,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/99"
         },
         "94": {
-            "id": "94",
+            "id": 94,
             "name": "white girl at target happy",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "happy",
@@ -1383,8 +1478,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/101"
         },
         "95": {
-            "id": "95",
+            "id": 95,
             "name": "black girl suspicious",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "black girl",
@@ -1395,8 +1491,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/102"
         },
         "96": {
-            "id": "96",
+            "id": 96,
             "name": "six months",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -1408,8 +1505,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/104"
         },
         "97": {
-            "id": "97",
+            "id": 97,
             "name": "jordan and sam holding hands",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1423,8 +1521,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/106"
         },
         "98": {
-            "id": "98",
+            "id": 98,
             "name": "beluga whale smiling after scaring child",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "evil",
@@ -1438,8 +1537,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/107"
         },
         "99": {
-            "id": "99",
+            "id": 99,
             "name": "black girl suspicious",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "black girl",
@@ -1450,8 +1550,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/108"
         },
         "100": {
-            "id": "100",
+            "id": 100,
             "name": "monkey suspicious",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "monkey",
@@ -1464,8 +1565,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/109"
         },
         "101": {
-            "id": "101",
+            "id": 101,
             "name": "homophobic dog i know what i am",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1475,8 +1577,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/110"
         },
         "102": {
-            "id": "102",
+            "id": 102,
             "name": "chloe x halle screaming",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "screaming",
@@ -1489,8 +1592,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/111"
         },
         "103": {
-            "id": "103",
+            "id": 103,
             "name": "spongebob sinister fish",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "spongebob",
@@ -1503,8 +1607,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/112"
         },
         "104": {
-            "id": "104",
+            "id": 104,
             "name": "tom sneaking into room evil",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "tom",
@@ -1518,8 +1623,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/113"
         },
         "105": {
-            "id": "105",
+            "id": 105,
             "name": "joe biden ratio and seek help",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ratio",
@@ -1532,8 +1638,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/114"
         },
         "106": {
-            "id": "106",
+            "id": 106,
             "name": "darwin scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -1547,8 +1654,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/115"
         },
         "107": {
-            "id": "107",
+            "id": 107,
             "name": "pig looking at phone",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "disgusted",
@@ -1561,8 +1669,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/116"
         },
         "108": {
-            "id": "108",
+            "id": 108,
             "name": "barbie elephant looking concerned",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "disgusted",
@@ -1575,8 +1684,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/117"
         },
         "109": {
-            "id": "109",
+            "id": 109,
             "name": "ma as scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "wanda",
@@ -1590,8 +1700,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/118"
         },
         "110": {
-            "id": "110",
+            "id": 110,
             "name": "are you gay squid game",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "squid game",
@@ -1603,8 +1714,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/119"
         },
         "111": {
-            "id": "111",
+            "id": 111,
             "name": "icarly driving through hell",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "icarly",
@@ -1616,8 +1728,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/120"
         },
         "112": {
-            "id": "112",
+            "id": 112,
             "name": "scarlett johansson on red carpet",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "marvel",
@@ -1632,8 +1745,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/121"
         },
         "113": {
-            "id": "113",
+            "id": 113,
             "name": "hit the slay button",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ru paul",
@@ -1644,8 +1758,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/123"
         },
         "114": {
-            "id": "114",
+            "id": 114,
             "name": "hit the naur button",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ru paul",
@@ -1656,8 +1771,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/124"
         },
         "115": {
-            "id": "115",
+            "id": 115,
             "name": "scarlett witch wendy williams",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "excited",
@@ -1671,8 +1787,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/125"
         },
         "116": {
-            "id": "116",
+            "id": 116,
             "name": "monster conspiracy christian woman yassified",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "monster",
@@ -1688,8 +1805,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/126"
         },
         "117": {
-            "id": "117",
+            "id": 117,
             "name": "dog with wig staring",
+            "type": "image",
             "fileExt": "jpeg",
             "tags": [
                 "dog",
@@ -1702,8 +1820,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/128"
         },
         "118": {
-            "id": "118",
+            "id": 118,
             "name": "i have decided to stop praying for some of you",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "done",
@@ -1715,8 +1834,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/129"
         },
         "119": {
-            "id": "119",
+            "id": 119,
             "name": "annalise keating mug shot",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "how to get away with murder",
@@ -1728,8 +1848,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/130"
         },
         "120": {
-            "id": "120",
+            "id": 120,
             "name": "reacting to you lying",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "clocked",
@@ -1741,8 +1862,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/131"
         },
         "121": {
-            "id": "121",
+            "id": 121,
             "name": "olivia rodrigo naur",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "naur",
@@ -1752,8 +1874,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/132"
         },
         "122": {
-            "id": "122",
+            "id": 122,
             "name": "guy staring down",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "clocked",
@@ -1766,8 +1889,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/133"
         },
         "123": {
-            "id": "123",
+            "id": 123,
             "name": "kamala harris screaming",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "excited",
@@ -1780,8 +1904,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/134"
         },
         "124": {
-            "id": "124",
+            "id": 124,
             "name": "wanda crying",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -1794,8 +1919,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/136"
         },
         "125": {
-            "id": "125",
+            "id": 125,
             "name": "scarlett witch smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -1808,8 +1934,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/138"
         },
         "126": {
-            "id": "126",
+            "id": 126,
             "name": "cat with slay eye brow",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -1822,8 +1949,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/139"
         },
         "127": {
-            "id": "127",
+            "id": 127,
             "name": "scarlett witch with shopping bags",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "wanda",
@@ -1835,8 +1963,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/140"
         },
         "128": {
-            "id": "128",
+            "id": 128,
             "name": "no bitches",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "megamind",
@@ -1846,8 +1975,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/141"
         },
         "129": {
-            "id": "129",
+            "id": 129,
             "name": "police officer about to get shot",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "clocked",
@@ -1860,8 +1990,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/142"
         },
         "130": {
-            "id": "130",
+            "id": 130,
             "name": "dog with daredevil mask",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -1875,8 +2006,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/143"
         },
         "131": {
-            "id": "131",
+            "id": 131,
             "name": "euphoria getting gagged",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gagged",
@@ -1888,8 +2020,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/144"
         },
         "132": {
-            "id": "132",
+            "id": 132,
             "name": "man ignoring getting twerked on",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -1902,8 +2035,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/145"
         },
         "133": {
-            "id": "133",
+            "id": 133,
             "name": "summer walker as a rocket",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "summer walker",
@@ -1915,8 +2049,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/147"
         },
         "134": {
-            "id": "134",
+            "id": 134,
             "name": "euphoria characters with gay eyebrow",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1929,8 +2064,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/148"
         },
         "135": {
-            "id": "135",
+            "id": 135,
             "name": "mariah carey in car confused",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "mariah carey",
@@ -1942,8 +2078,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/149"
         },
         "136": {
-            "id": "136",
+            "id": 136,
             "name": "grandma ironing bisexual flag",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1956,8 +2093,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/150"
         },
         "137": {
-            "id": "137",
+            "id": 137,
             "name": "when i purposefully spread misinformation over the internet",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "misinformation",
@@ -1970,8 +2108,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/151"
         },
         "138": {
-            "id": "138",
+            "id": 138,
             "name": "euphoria character with gay eyebrow",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -1984,8 +2123,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/152"
         },
         "139": {
-            "id": "139",
+            "id": 139,
             "name": "chloe x halle screaming but scary",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "chloe",
@@ -2000,8 +2140,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/153"
         },
         "140": {
-            "id": "140",
+            "id": 140,
             "name": "cassie behind toilet door",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "euphoria",
@@ -2016,8 +2157,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/154"
         },
         "141": {
-            "id": "141",
+            "id": 141,
             "name": "euphoria audience laughing loudly",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "euphoria",
@@ -2030,8 +2172,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/155"
         },
         "142": {
-            "id": "142",
+            "id": 142,
             "name": "nicki minaj giving side eye",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "black girl",
@@ -2043,8 +2186,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/156"
         },
         "143": {
-            "id": "143",
+            "id": 143,
             "name": "mirabel doll staring down",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "mirabel",
@@ -2058,8 +2202,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/157"
         },
         "144": {
-            "id": "144",
+            "id": 144,
             "name": "female phone game character dirty",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dirty",
@@ -2073,8 +2218,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/158"
         },
         "145": {
-            "id": "145",
+            "id": 145,
             "name": "euphoria nate with a gun",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "euphoria",
@@ -2090,8 +2236,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/159"
         },
         "146": {
-            "id": "146",
+            "id": 146,
             "name": "timmy turner father wiping cum off mouth",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "horny",
@@ -2104,8 +2251,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/160"
         },
         "147": {
-            "id": "147",
+            "id": 147,
             "name": "zendaya falling backwards",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "zendaya",
@@ -2118,8 +2266,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/161"
         },
         "148": {
-            "id": "148",
+            "id": 148,
             "name": "taraji henson recording at oscars",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cookie",
@@ -2132,8 +2281,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/162"
         },
         "149": {
-            "id": "149",
+            "id": 149,
             "name": "lady gaga is she sleeping or dead",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "lady gaga",
@@ -2144,8 +2294,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/164"
         },
         "150": {
-            "id": "150",
+            "id": 150,
             "name": "nobody want you fr",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 ""
@@ -2154,8 +2305,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/165"
         },
         "151": {
-            "id": "151",
+            "id": 151,
             "name": "crocodile dead after drinking sprite",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "mcdonalds",
@@ -2168,8 +2320,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/166"
         },
         "152": {
-            "id": "152",
+            "id": 152,
             "name": "no bitches but the riddler",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "no bitches",
@@ -2181,8 +2334,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/167"
         },
         "153": {
-            "id": "153",
+            "id": 153,
             "name": "jim gordon i sent you nudes snap",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "batman",
@@ -2195,8 +2349,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/168"
         },
         "154": {
-            "id": "154",
+            "id": 154,
             "name": "black guy with wig excited",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "happy",
@@ -2211,8 +2366,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/169"
         },
         "155": {
-            "id": "155",
+            "id": 155,
             "name": "euphoria characters with huge smile",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "euphoria",
@@ -2226,8 +2382,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/170"
         },
         "156": {
-            "id": "156",
+            "id": 156,
             "name": "hillary clinton yassified",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "hillary clinton",
@@ -2239,8 +2396,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/171"
         },
         "157": {
-            "id": "157",
+            "id": 157,
             "name": "hillary clinton ugly",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "hillary clinton",
@@ -2252,8 +2410,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/172"
         },
         "158": {
-            "id": "158",
+            "id": 158,
             "name": "cat saying ok meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -2266,8 +2425,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/173"
         },
         "159": {
-            "id": "159",
+            "id": 159,
             "name": "mama lets research",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2280,8 +2440,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/174"
         },
         "160": {
-            "id": "160",
+            "id": 160,
             "name": "sinister six at mcdonalds",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "marvel",
@@ -2294,8 +2455,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/175"
         },
         "161": {
-            "id": "161",
+            "id": 161,
             "name": "man reading book with burnt bear",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "stunned",
@@ -2309,8 +2471,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/176"
         },
         "162": {
-            "id": "162",
+            "id": 162,
             "name": "squidward eating human heart",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "spongebob",
@@ -2321,8 +2484,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/177"
         },
         "163": {
-            "id": "163",
+            "id": 163,
             "name": "grandma being evil",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "grandma",
@@ -2335,8 +2499,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/178"
         },
         "164": {
-            "id": "164",
+            "id": 164,
             "name": "batman looking confused",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "batman",
@@ -2347,8 +2512,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/179"
         },
         "165": {
-            "id": "165",
+            "id": 165,
             "name": "not too fond of gay people",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2359,8 +2525,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/180"
         },
         "166": {
-            "id": "166",
+            "id": 166,
             "name": "not homophobic just dont agree with the lifestyle",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2371,8 +2538,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/181"
         },
         "167": {
-            "id": "167",
+            "id": 167,
             "name": "eternals bad looking doll",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "tired",
@@ -2384,8 +2552,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/182"
         },
         "168": {
-            "id": "168",
+            "id": 168,
             "name": "i just dont think our kids should see it",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2396,8 +2565,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/183"
         },
         "169": {
-            "id": "169",
+            "id": 169,
             "name": "no longer beefing with the gays god will handle that",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2408,8 +2578,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/184"
         },
         "170": {
-            "id": "170",
+            "id": 170,
             "name": "i know what you are",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2420,8 +2591,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/185"
         },
         "171": {
-            "id": "171",
+            "id": 171,
             "name": "demi lovato get a job stay away from her",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "get a job",
@@ -2432,8 +2604,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/186"
         },
         "172": {
-            "id": "172",
+            "id": 172,
             "name": "maybe you just haven't found the right one yet",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2444,8 +2617,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/187"
         },
         "173": {
-            "id": "173",
+            "id": 173,
             "name": "keep it in the bedroom",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2456,8 +2630,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/188"
         },
         "174": {
-            "id": "174",
+            "id": 174,
             "name": "will smith chris rock slap scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "will smith",
@@ -2470,8 +2645,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/189"
         },
         "175": {
-            "id": "175",
+            "id": 175,
             "name": "ikaris carrying ajak",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "eternals",
@@ -2484,8 +2660,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/190"
         },
         "176": {
-            "id": "176",
+            "id": 176,
             "name": "cat falling down the stairs",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -2498,8 +2675,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/191"
         },
         "177": {
-            "id": "177",
+            "id": 177,
             "name": "i just cant support that kind of mindset",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2510,8 +2688,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/192"
         },
         "178": {
-            "id": "178",
+            "id": 178,
             "name": "it just isnt natural",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2522,8 +2701,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/193"
         },
         "179": {
-            "id": "179",
+            "id": 179,
             "name": "ariana grande baby in ultrasound",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "baby",
@@ -2536,8 +2716,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/194"
         },
         "180": {
-            "id": "180",
+            "id": 180,
             "name": "ma and morbius",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ma",
@@ -2548,8 +2729,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/195"
         },
         "181": {
-            "id": "181",
+            "id": 181,
             "name": "tobey maguire staring at camera",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "staring",
@@ -2562,8 +2744,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/196"
         },
         "182": {
-            "id": "182",
+            "id": 182,
             "name": "taylor swift with open mouth",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "excited",
@@ -2576,8 +2759,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/197"
         },
         "183": {
-            "id": "183",
+            "id": 183,
             "name": "turning red crying for scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2588,8 +2772,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/198"
         },
         "184": {
-            "id": "184",
+            "id": 184,
             "name": "dog scared and hiding",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -2603,8 +2788,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/199"
         },
         "185": {
-            "id": "185",
+            "id": 185,
             "name": "no bitches moonknight",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "moonknight",
@@ -2616,8 +2802,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/200"
         },
         "186": {
-            "id": "186",
+            "id": 186,
             "name": "scarlett witch donkey",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2629,8 +2816,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/201"
         },
         "187": {
-            "id": "187",
+            "id": 187,
             "name": "no bitches sinister six",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "no bitches",
@@ -2643,8 +2831,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/202"
         },
         "188": {
-            "id": "188",
+            "id": 188,
             "name": "scarlett witch gagged a lil bit",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2656,8 +2845,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/203"
         },
         "189": {
-            "id": "189",
+            "id": 189,
             "name": "trish skinny legend clearing",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "skinny legend",
@@ -2671,8 +2861,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/204"
         },
         "190": {
-            "id": "190",
+            "id": 190,
             "name": "at first i loled then i serioused",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "dog",
@@ -2684,8 +2875,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/205"
         },
         "191": {
-            "id": "191",
+            "id": 191,
             "name": "batman on facetime call",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "confused",
@@ -2696,8 +2888,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/206"
         },
         "192": {
-            "id": "192",
+            "id": 192,
             "name": "man in suit posing",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ate",
@@ -2709,8 +2902,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/208"
         },
         "193": {
-            "id": "193",
+            "id": 193,
             "name": "tiger watching screen disgusted",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "tiger",
@@ -2723,8 +2917,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/209"
         },
         "194": {
-            "id": "194",
+            "id": 194,
             "name": "moonknight screaming",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "screaming",
@@ -2735,8 +2930,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/210"
         },
         "195": {
-            "id": "195",
+            "id": 195,
             "name": "nick minaj glitching",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "nicki minaj",
@@ -2750,8 +2946,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/211"
         },
         "196": {
-            "id": "196",
+            "id": 196,
             "name": "bucky horny screaming",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "bucky",
@@ -2763,8 +2960,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/212"
         },
         "197": {
-            "id": "197",
+            "id": 197,
             "name": "oscar isaac thinking",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "oscar isaac",
@@ -2776,8 +2974,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/214"
         },
         "198": {
-            "id": "198",
+            "id": 198,
             "name": "real life lois griffin",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "lois griffin",
@@ -2791,8 +2990,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/215"
         },
         "199": {
-            "id": "199",
+            "id": 199,
             "name": "ex homosexual shirt",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2805,8 +3005,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/216"
         },
         "200": {
-            "id": "200",
+            "id": 200,
             "name": "moonknight screaming but smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "moonknight",
@@ -2819,8 +3020,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/217"
         },
         "201": {
-            "id": "201",
+            "id": 201,
             "name": "police officer gets caught wrestling person",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "police",
@@ -2833,8 +3035,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/218"
         },
         "202": {
-            "id": "202",
+            "id": 202,
             "name": "monk is shocked",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "monk",
@@ -2848,8 +3051,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/219"
         },
         "203": {
-            "id": "203",
+            "id": 203,
             "name": "dog with people smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "excited",
@@ -2863,8 +3067,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/220"
         },
         "204": {
-            "id": "204",
+            "id": 204,
             "name": "scarlett witch at doorbell",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2876,8 +3081,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/221"
         },
         "205": {
-            "id": "205",
+            "id": 205,
             "name": "the pearly gates wont open for your kind",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -2889,8 +3095,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/222"
         },
         "206": {
-            "id": "206",
+            "id": 206,
             "name": "dog with gay eyebrow",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -2904,8 +3111,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/223"
         },
         "207": {
-            "id": "207",
+            "id": 207,
             "name": "donkey in multiverse of madness",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "donkey",
@@ -2917,8 +3125,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/224"
         },
         "208": {
-            "id": "208",
+            "id": 208,
             "name": "donkey face meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "donkey",
@@ -2930,8 +3139,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/225"
         },
         "209": {
-            "id": "209",
+            "id": 209,
             "name": "multiverse of madness what mouth meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2945,8 +3155,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/226"
         },
         "210": {
-            "id": "210",
+            "id": 210,
             "name": "wendy williams scarlett witch outfit",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -2961,8 +3172,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/227"
         },
         "211": {
-            "id": "211",
+            "id": 211,
             "name": "donkey on dr strange",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "donkey",
@@ -2976,8 +3188,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/228"
         },
         "212": {
-            "id": "212",
+            "id": 212,
             "name": "scarlett witch smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "marvel",
@@ -2992,8 +3205,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/233"
         },
         "213": {
-            "id": "213",
+            "id": 213,
             "name": "megan thee stallion on mirabel",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "encanto",
@@ -3007,8 +3221,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/234"
         },
         "214": {
-            "id": "214",
+            "id": 214,
             "name": "euphoria with abbot elementary",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "euphoria",
@@ -3020,8 +3235,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/235"
         },
         "215": {
-            "id": "215",
+            "id": 215,
             "name": "scarlett witch stfu",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "marvel",
@@ -3034,8 +3250,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/240"
         },
         "216": {
-            "id": "216",
+            "id": 216,
             "name": "auntie diaries",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3046,8 +3263,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/241"
         },
         "217": {
-            "id": "217",
+            "id": 217,
             "name": "just my opinion",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3059,8 +3277,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/242"
         },
         "218": {
-            "id": "218",
+            "id": 218,
             "name": "instant noodles recipe",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3072,8 +3291,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/243"
         },
         "219": {
-            "id": "219",
+            "id": 219,
             "name": "tired of the gays",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3084,8 +3304,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/244"
         },
         "220": {
-            "id": "220",
+            "id": 220,
             "name": "comforting the scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3097,8 +3318,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/245"
         },
         "221": {
-            "id": "221",
+            "id": 221,
             "name": "was it real",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3109,8 +3331,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/247"
         },
         "222": {
-            "id": "222",
+            "id": 222,
             "name": "love is love",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3122,8 +3345,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/248"
         },
         "223": {
-            "id": "223",
+            "id": 223,
             "name": "fantastic four noodles",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3135,8 +3359,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/249"
         },
         "224": {
-            "id": "224",
+            "id": 224,
             "name": "miley cyrus as scarlett witch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3151,8 +3376,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/250"
         },
         "225": {
-            "id": "225",
+            "id": 225,
             "name": "she hulk carrying man",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "shehulk",
@@ -3166,8 +3392,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/251"
         },
         "226": {
-            "id": "226",
+            "id": 226,
             "name": "woman with large bob",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "bob",
@@ -3179,8 +3406,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/252"
         },
         "227": {
-            "id": "227",
+            "id": 227,
             "name": "drake with nails",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3194,8 +3422,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/254"
         },
         "228": {
-            "id": "228",
+            "id": 228,
             "name": "live wong reaction",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "wong",
@@ -3208,8 +3437,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/257"
         },
         "229": {
-            "id": "229",
+            "id": 229,
             "name": "was it his plan",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3223,8 +3453,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/258"
         },
         "230": {
-            "id": "230",
+            "id": 230,
             "name": "is earth doomed",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3237,8 +3468,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/260"
         },
         "231": {
-            "id": "231",
+            "id": 231,
             "name": "gorr trying not to cough",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gorr",
@@ -3253,8 +3485,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/262"
         },
         "232": {
-            "id": "232",
+            "id": 232,
             "name": "gorr looking at phone",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gorr",
@@ -3268,8 +3501,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/263"
         },
         "233": {
-            "id": "233",
+            "id": 233,
             "name": "what next",
+            "type": "image",
             "fileExt": "jpeg",
             "tags": [
                 "new rockstars",
@@ -3281,8 +3515,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/264"
         },
         "234": {
-            "id": "234",
+            "id": 234,
             "name": "scarlett witch with gun",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett wtich",
@@ -3296,8 +3531,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/265"
         },
         "235": {
-            "id": "235",
+            "id": 235,
             "name": "where is the body",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3309,8 +3545,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/266"
         },
         "236": {
-            "id": "236",
+            "id": 236,
             "name": "homeless",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3320,8 +3557,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/267"
         },
         "237": {
-            "id": "237",
+            "id": 237,
             "name": "facebook warned me about people like you",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3332,8 +3570,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/268"
         },
         "238": {
-            "id": "238",
+            "id": 238,
             "name": "why cant you be normal",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3344,8 +3583,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/269"
         },
         "239": {
-            "id": "239",
+            "id": 239,
             "name": "emoji as a comedian",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "satisfied",
@@ -3358,8 +3598,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/270"
         },
         "240": {
-            "id": "240",
+            "id": 240,
             "name": "if i wake up one more time",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -3372,8 +3613,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/272"
         },
         "241": {
-            "id": "241",
+            "id": 241,
             "name": "i cant do it anymore",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -3386,8 +3628,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/273"
         },
         "242": {
-            "id": "242",
+            "id": 242,
             "name": "i was thinking and then i started crying",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -3400,8 +3643,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/274"
         },
         "243": {
-            "id": "243",
+            "id": 243,
             "name": "at this point what is the point",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sad",
@@ -3414,8 +3658,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/275"
         },
         "244": {
-            "id": "244",
+            "id": 244,
             "name": "donkey smirking",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "donkey",
@@ -3428,8 +3673,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/276"
         },
         "245": {
-            "id": "245",
+            "id": 245,
             "name": "christian walker flipping the rainbow flag",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3441,8 +3687,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/277"
         },
         "246": {
-            "id": "246",
+            "id": 246,
             "name": "are you guys lgbt or something",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "ma",
@@ -3456,8 +3703,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/278"
         },
         "247": {
-            "id": "247",
+            "id": 247,
             "name": "lgbt always remember your destination",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "pride month",
@@ -3469,8 +3717,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/279"
         },
         "248": {
-            "id": "248",
+            "id": 248,
             "name": "awks",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "awkard",
@@ -3484,8 +3733,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/282"
         },
         "249": {
-            "id": "249",
+            "id": 249,
             "name": "sigma male smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "sigma male",
@@ -3497,8 +3747,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/283"
         },
         "250": {
-            "id": "250",
+            "id": 250,
             "name": "what if im gay",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3509,8 +3760,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/284"
         },
         "251": {
-            "id": "251",
+            "id": 251,
             "name": "lets hope its just a phase",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3521,8 +3773,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/285"
         },
         "252": {
-            "id": "252",
+            "id": 252,
             "name": "dont tell me youre one of them",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3533,8 +3786,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/288"
         },
         "253": {
-            "id": "253",
+            "id": 253,
             "name": "man in suit posing",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "happy",
@@ -3546,8 +3800,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/289"
         },
         "254": {
-            "id": "254",
+            "id": 254,
             "name": "as long as it isnt your whole personality",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3558,8 +3813,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/290"
         },
         "255": {
-            "id": "255",
+            "id": 255,
             "name": "do you guys just put woke infront of everything",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "woke",
@@ -3571,8 +3827,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/291"
         },
         "256": {
-            "id": "256",
+            "id": 256,
             "name": "cat with nerd glasses",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -3583,8 +3840,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/292"
         },
         "257": {
-            "id": "257",
+            "id": 257,
             "name": "scarlett witch ate",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 ""
@@ -3593,8 +3851,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/293"
         },
         "258": {
-            "id": "258",
+            "id": 258,
             "name": "welcome to chick fil a",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3605,8 +3864,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/295"
         },
         "259": {
-            "id": "259",
+            "id": 259,
             "name": "madison beer shocked",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "confused",
@@ -3619,8 +3879,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/296"
         },
         "260": {
-            "id": "260",
+            "id": 260,
             "name": "you wouldnt get it",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "joker"
@@ -3629,8 +3890,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/297"
         },
         "261": {
-            "id": "261",
+            "id": 261,
             "name": "cat confused meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -3643,8 +3905,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/299"
         },
         "262": {
-            "id": "262",
+            "id": 262,
             "name": "mr fantasic mid teleport",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "marvel",
@@ -3656,8 +3919,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/300"
         },
         "263": {
-            "id": "263",
+            "id": 263,
             "name": "scarlett witch smiling",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3671,8 +3935,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/301"
         },
         "264": {
-            "id": "264",
+            "id": 264,
             "name": "youre going to burn",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3683,8 +3948,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/302"
         },
         "265": {
-            "id": "265",
+            "id": 265,
             "name": "vecna in one piece dress",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "vecna",
@@ -3699,8 +3965,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/303"
         },
         "266": {
-            "id": "266",
+            "id": 266,
             "name": "dragged to hell",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -3712,8 +3979,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/304"
         },
         "267": {
-            "id": "267",
+            "id": 267,
             "name": "dog with under bite",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "confused",
@@ -3727,8 +3995,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/305"
         },
         "268": {
-            "id": "268",
+            "id": 268,
             "name": "fairly odd parents over it",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "done",
@@ -3740,8 +4009,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/306"
         },
         "269": {
-            "id": "269",
+            "id": 269,
             "name": "dog rejecting vegetables",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -3753,8 +4023,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/308"
         },
         "270": {
-            "id": "270",
+            "id": 270,
             "name": "help her meme",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "tired",
@@ -3766,8 +4037,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/309"
         },
         "271": {
-            "id": "271",
+            "id": 271,
             "name": "scarlett witch smiling at strange",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "scarlett witch",
@@ -3779,8 +4051,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/310"
         },
         "272": {
-            "id": "272",
+            "id": 272,
             "name": "stop being gay",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -3790,8 +4063,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/311"
         },
         "273": {
-            "id": "273",
+            "id": 273,
             "name": "are you gay dog",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "gay",
@@ -3804,8 +4078,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/312"
         },
         "274": {
-            "id": "274",
+            "id": 274,
             "name": "you served now what",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "slay",
@@ -3819,8 +4094,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/313"
         },
         "275": {
-            "id": "275",
+            "id": 275,
             "name": "fletcher confused",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -3834,8 +4110,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/314"
         },
         "276": {
-            "id": "276",
+            "id": 276,
             "name": "fletcher explaining himself",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -3847,8 +4124,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/315"
         },
         "277": {
-            "id": "277",
+            "id": 277,
             "name": "fletcher smirking",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -3863,8 +4141,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/316"
         },
         "278": {
-            "id": "278",
+            "id": 278,
             "name": "fletcher standing still",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -3876,8 +4155,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/317"
         },
         "279": {
-            "id": "279",
+            "id": 279,
             "name": "fletcher looking confused",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -3889,8 +4169,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/318"
         },
         "280": {
-            "id": "280",
+            "id": 280,
             "name": "tiger shocked being let out of cage",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "tiger",
@@ -3903,8 +4184,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/319"
         },
         "281": {
-            "id": "281",
+            "id": 281,
             "name": "guy with bomb staring at phone",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "batman",
@@ -3918,8 +4200,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/321"
         },
         "282": {
-            "id": "282",
+            "id": 282,
             "name": "spongebob double eyed meme",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "spongebob",
@@ -3930,8 +4213,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/322"
         },
         "283": {
-            "id": "283",
+            "id": 283,
             "name": "girl getting side eye",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "girl",
@@ -3944,8 +4228,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/323"
         },
         "284": {
-            "id": "284",
+            "id": 284,
             "name": "girl with heart at her crotch",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "horny",
@@ -3958,8 +4243,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/324"
         },
         "285": {
-            "id": "285",
+            "id": 285,
             "name": "drake with nails",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "bbl drake",
@@ -3971,8 +4257,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/325"
         },
         "286": {
-            "id": "286",
+            "id": 286,
             "name": "bbl drake getting a drink",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "drake",
@@ -3984,8 +4271,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/326"
         },
         "287": {
-            "id": "287",
+            "id": 287,
             "name": "bbl drake selfie",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "drake",
@@ -3995,8 +4283,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/327"
         },
         "288": {
-            "id": "288",
+            "id": 288,
             "name": "ice age characters shocked",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "shocked",
@@ -4007,8 +4296,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/328"
         },
         "289": {
-            "id": "289",
+            "id": 289,
             "name": "and are they in the room with us right now",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "mental illness",
@@ -4020,8 +4310,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/329"
         },
         "290": {
-            "id": "290",
+            "id": 290,
             "name": "bbl drake in bed",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "drake",
@@ -4035,8 +4326,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/330"
         },
         "291": {
-            "id": "291",
+            "id": 291,
             "name": "of course i cum fast i got places to be",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "soldier boy",
@@ -4046,8 +4338,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/331"
         },
         "292": {
-            "id": "292",
+            "id": 292,
             "name": "fletcher but with yassified face",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "fletcher",
@@ -4059,8 +4352,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/332"
         },
         "293": {
-            "id": "293",
+            "id": 293,
             "name": "cat giving side eye",
+            "type": "image",
             "fileExt": "png",
             "tags": [
                 "cat",
@@ -4073,8 +4367,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/334"
         },
         "294": {
-            "id": "294",
+            "id": 294,
             "name": "fighting the gay allegations again",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "wolf",
@@ -4086,8 +4381,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/335"
         },
         "295": {
-            "id": "295",
+            "id": 295,
             "name": "fighting the urge to make out with men",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "wolf",
@@ -4099,8 +4395,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/336"
         },
         "296": {
-            "id": "296",
+            "id": 296,
             "name": "people praying along with a dog",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "praying",
@@ -4111,8 +4408,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/337"
         },
         "297": {
-            "id": "297",
+            "id": 297,
             "name": "worst tweet ever",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "new rockstars",
@@ -4123,8 +4421,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/338"
         },
         "298": {
-            "id": "298",
+            "id": 298,
             "name": "welcome to rizz academy",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "rizz",
@@ -4135,8 +4434,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/339"
         },
         "299": {
-            "id": "299",
+            "id": 299,
             "name": "racoon screaming",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "racoon",
@@ -4150,8 +4450,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/340"
         },
         "300": {
-            "id": "300",
+            "id": 300,
             "name": "woman holding screaming racoon",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "racoon",
@@ -4165,8 +4466,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/341"
         },
         "301": {
-            "id": "301",
+            "id": 301,
             "name": "are you gay cat",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -4178,8 +4480,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/342"
         },
         "302": {
-            "id": "302",
+            "id": 302,
             "name": "are you gay dog",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -4191,8 +4494,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/343"
         },
         "303": {
-            "id": "303",
+            "id": 303,
             "name": "horse in car crash",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "horse",
@@ -4206,8 +4510,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/344"
         },
         "304": {
-            "id": "304",
+            "id": 304,
             "name": "its mathematics luv",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "british",
@@ -4220,8 +4525,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/345"
         },
         "305": {
-            "id": "305",
+            "id": 305,
             "name": "youre gay transylvannia",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -4233,8 +4539,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/346"
         },
         "306": {
-            "id": "306",
+            "id": 306,
             "name": "wednesday are you gay",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -4247,8 +4554,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/347"
         },
         "307": {
-            "id": "307",
+            "id": 307,
             "name": "lgtv dog",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "dog",
@@ -4262,8 +4570,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/348"
         },
         "308": {
-            "id": "308",
+            "id": 308,
             "name": "cock by freddy fazebear",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "horny",
@@ -4275,8 +4584,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/349"
         },
         "309": {
-            "id": "309",
+            "id": 309,
             "name": "are you gay horse",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "horse",
@@ -4288,8 +4598,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/351"
         },
         "310": {
-            "id": "310",
+            "id": 310,
             "name": "are you gay cat",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "cat",
@@ -4301,8 +4612,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/352"
         },
         "311": {
-            "id": "311",
+            "id": 311,
             "name": "chicken are you gay",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "chicken",
@@ -4314,8 +4626,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/353"
         },
         "312": {
-            "id": "312",
+            "id": 312,
             "name": "soldier boy fuck you",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "soldier boy",
@@ -4329,8 +4642,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/354"
         },
         "313": {
-            "id": "313",
+            "id": 313,
             "name": "its a chicken salad",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "chicken salad",
@@ -4345,8 +4659,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/357"
         },
         "314": {
-            "id": "314",
+            "id": 314,
             "name": "tyler the creator shocked",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "shocked",
@@ -4359,8 +4674,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/359"
         },
         "315": {
-            "id": "315",
+            "id": 315,
             "name": "wanda dancing lgbt",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dancing",
@@ -4373,8 +4689,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/362"
         },
         "316": {
-            "id": "316",
+            "id": 316,
             "name": "millie bobby brown crying at rainbow flag",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -4389,8 +4706,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/363"
         },
         "317": {
-            "id": "317",
+            "id": 317,
             "name": "eating burger and then getting sick",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "disgusted",
@@ -4404,8 +4722,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/364"
         },
         "318": {
-            "id": "318",
+            "id": 318,
             "name": "icespice scream cross over",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "ice spice",
@@ -4417,8 +4736,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/366"
         },
         "319": {
-            "id": "319",
+            "id": 319,
             "name": "dog moving around in apartment timelapse",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dog",
@@ -4432,8 +4752,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/367"
         },
         "320": {
-            "id": "320",
+            "id": 320,
             "name": "shehulk clapping boom sound",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "vine",
@@ -4446,8 +4767,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/368"
         },
         "321": {
-            "id": "321",
+            "id": 321,
             "name": "pizza hut worker tying apron",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "thick",
@@ -4462,8 +4784,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/369"
         },
         "322": {
-            "id": "322",
+            "id": 322,
             "name": "elena getting slapped",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "vampire diaries.beyonce",
@@ -4477,8 +4800,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/370"
         },
         "323": {
-            "id": "323",
+            "id": 323,
             "name": "witches dancing to jays on my feet",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "witches",
@@ -4492,8 +4816,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/371"
         },
         "324": {
-            "id": "324",
+            "id": 324,
             "name": "are you gay cow",
+            "type": "image",
             "fileExt": "jpg",
             "tags": [
                 "gay",
@@ -4505,8 +4830,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/372"
         },
         "325": {
-            "id": "325",
+            "id": 325,
             "name": "shut up your mouth obama",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "obama",
@@ -4517,8 +4843,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/373"
         },
         "326": {
-            "id": "326",
+            "id": 326,
             "name": "but im loyal to viltrum not this pathetic excuse for a civilization",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "omniman",
@@ -4532,8 +4859,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/374"
         },
         "327": {
-            "id": "327",
+            "id": 327,
             "name": "zods wife screaming for her husband",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "husband",
@@ -4546,8 +4874,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/375"
         },
         "328": {
-            "id": "328",
+            "id": 328,
             "name": "mother takes daughters pen away while writing",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "yapping",
@@ -4561,8 +4890,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/376"
         },
         "329": {
-            "id": "329",
+            "id": 329,
             "name": "i crossdress in a wonderwoman outfit it makes me feel powerful",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "honest",
@@ -4576,8 +4906,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/377"
         },
         "330": {
-            "id": "330",
+            "id": 330,
             "name": "woman screaming n word",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "woman",
@@ -4589,8 +4920,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/378"
         },
         "331": {
-            "id": "331",
+            "id": 331,
             "name": "shout out to all my gay niggas",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -4602,8 +4934,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/380"
         },
         "332": {
-            "id": "332",
+            "id": 332,
             "name": "be who you are for your pride",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -4616,8 +4949,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/381"
         },
         "333": {
-            "id": "333",
+            "id": 333,
             "name": "dog growling",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dog",
@@ -4629,8 +4963,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/382"
         },
         "334": {
-            "id": "334",
+            "id": 334,
             "name": "ellen audience celebrating",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "ellen",
@@ -4644,8 +4979,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/383"
         },
         "335": {
-            "id": "335",
+            "id": 335,
             "name": "scarlett witch cunty walk",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "scarlett witch",
@@ -4657,8 +4993,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/384"
         },
         "336": {
-            "id": "336",
+            "id": 336,
             "name": "bad bad bad idea",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "gorrilla glue girl",
@@ -4670,8 +5007,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/385"
         },
         "337": {
-            "id": "337",
+            "id": 337,
             "name": "not on my watch",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "not on my watch",
@@ -4683,8 +5021,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/386"
         },
         "338": {
-            "id": "338",
+            "id": 338,
             "name": "thanos screaming but with ariana whistle note",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "thanos",
@@ -4697,8 +5036,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/388"
         },
         "339": {
-            "id": "339",
+            "id": 339,
             "name": "monkey in dress",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "happy",
@@ -4711,8 +5051,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/389"
         },
         "340": {
-            "id": "340",
+            "id": 340,
             "name": "cops dancing in elevator",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cops",
@@ -4726,8 +5067,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/390"
         },
         "341": {
-            "id": "341",
+            "id": 341,
             "name": "i never said lgbt last night i said sin",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -4740,8 +5082,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/392"
         },
         "342": {
-            "id": "342",
+            "id": 342,
             "name": "darwin insulting someone really fast",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "darwin",
@@ -4756,8 +5099,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/393"
         },
         "343": {
-            "id": "343",
+            "id": 343,
             "name": "girl crying but spotify ads stop her",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "sad",
@@ -4770,8 +5114,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/394"
         },
         "344": {
-            "id": "344",
+            "id": 344,
             "name": "when i catch you let me tell you what i am going to do",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "tokyo toni",
@@ -4787,8 +5132,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/395"
         },
         "345": {
-            "id": "345",
+            "id": 345,
             "name": "cat staring at someone ominously",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cat",
@@ -4802,8 +5148,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/396"
         },
         "346": {
-            "id": "346",
+            "id": 346,
             "name": "family guy peter being strapped while listening to adele",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "family guy",
@@ -4817,8 +5164,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/397"
         },
         "347": {
-            "id": "347",
+            "id": 347,
             "name": "kim getting thrown into water turning into beyonce",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "kim kardashian",
@@ -4832,8 +5180,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/398"
         },
         "348": {
-            "id": "348",
+            "id": 348,
             "name": "cardi b giving side eye",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cardi b",
@@ -4846,8 +5195,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/399"
         },
         "349": {
-            "id": "349",
+            "id": 349,
             "name": "icarly getting blindsided with bright light",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "icarly",
@@ -4861,8 +5211,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/400"
         },
         "350": {
-            "id": "350",
+            "id": 350,
             "name": "death drop everyone celebrating",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gagged",
@@ -4874,8 +5225,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/401"
         },
         "351": {
-            "id": "351",
+            "id": 351,
             "name": "man in suit posing video",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "happy",
@@ -4889,8 +5241,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/402"
         },
         "352": {
-            "id": "352",
+            "id": 352,
             "name": "beyonce mirror breaking video with jiafei",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "beyonce",
@@ -4903,8 +5256,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/403"
         },
         "353": {
-            "id": "353",
+            "id": 353,
             "name": "bonnie incendia people in car burnt",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "bonnie",
@@ -4917,8 +5271,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/404"
         },
         "354": {
-            "id": "354",
+            "id": 354,
             "name": "nollywood youre a disappointment",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "nollywood",
@@ -4930,8 +5285,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/406"
         },
         "355": {
-            "id": "355",
+            "id": 355,
             "name": "woman disintegrating i have to go",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gone",
@@ -4945,8 +5301,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/407"
         },
         "356": {
-            "id": "356",
+            "id": 356,
             "name": "nun if i miss i slay",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "ate",
@@ -4960,8 +5317,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/408"
         },
         "357": {
-            "id": "357",
+            "id": 357,
             "name": "lego green lantern shaking ass",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "lego",
@@ -4978,8 +5336,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/409"
         },
         "358": {
-            "id": "358",
+            "id": 358,
             "name": "im out here sweating my ass of to keep my black from cracking",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "baby girls",
@@ -4989,8 +5348,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/411"
         },
         "359": {
-            "id": "359",
+            "id": 359,
             "name": "cat being shocked at another cat",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cat",
@@ -5005,8 +5365,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/412"
         },
         "360": {
-            "id": "360",
+            "id": 360,
             "name": "be who you are for your pride",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -5017,8 +5378,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/413"
         },
         "361": {
-            "id": "361",
+            "id": 361,
             "name": "tokyo toni alexa kill yourself",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "alexa",
@@ -5031,8 +5393,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/414"
         },
         "362": {
-            "id": "362",
+            "id": 362,
             "name": "thats supsicious thats weird",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cardi b",
@@ -5045,8 +5408,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/415"
         },
         "363": {
-            "id": "363",
+            "id": 363,
             "name": "suspicious side eye montage",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "suspicious",
@@ -5058,8 +5422,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/416"
         },
         "364": {
-            "id": "364",
+            "id": 364,
             "name": "nollywood skeleton disappearing with woman",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "nollywood",
@@ -5072,8 +5437,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/417"
         },
         "365": {
-            "id": "365",
+            "id": 365,
             "name": "gorilla running in the rain",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gorilla",
@@ -5087,8 +5453,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/418"
         },
         "366": {
-            "id": "366",
+            "id": 366,
             "name": "millie bobby brown i am homophobic",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "homophobic",
@@ -5100,8 +5467,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/419"
         },
         "367": {
-            "id": "367",
+            "id": 367,
             "name": "dog giving side eye with among us background sound",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dog",
@@ -5114,8 +5482,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/420"
         },
         "368": {
-            "id": "368",
+            "id": 368,
             "name": "homelander im smarter im better i am better",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "homelander",
@@ -5126,8 +5495,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/421"
         },
         "369": {
-            "id": "369",
+            "id": 369,
             "name": "wig video",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "wig",
@@ -5138,8 +5508,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/422"
         },
         "370": {
-            "id": "370",
+            "id": 370,
             "name": "ariel and donald duck and pooh dancing",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dancing",
@@ -5151,8 +5522,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/423"
         },
         "371": {
-            "id": "371",
+            "id": 371,
             "name": "tiger eating with bbl finger pose",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "tiger",
@@ -5165,8 +5537,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/424"
         },
         "372": {
-            "id": "372",
+            "id": 372,
             "name": "woman being dramatic over fake accident",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "woman",
@@ -5179,8 +5552,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/425"
         },
         "373": {
-            "id": "373",
+            "id": 373,
             "name": "can you vote video",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "vote",
@@ -5191,8 +5565,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/426"
         },
         "374": {
-            "id": "374",
+            "id": 374,
             "name": "chiropractor slamming rod into someones neck",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "chiropractor",
@@ -5206,8 +5581,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/427"
         },
         "375": {
-            "id": "375",
+            "id": 375,
             "name": "man slipping on ice and landing onto pack of water",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gagged",
@@ -5220,8 +5596,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/428"
         },
         "376": {
-            "id": "376",
+            "id": 376,
             "name": "im an nyu film school graduate rating spongebob",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "spongebob",
@@ -5232,8 +5609,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/429"
         },
         "377": {
-            "id": "377",
+            "id": 377,
             "name": "black panther cast confused",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "black panther",
@@ -5246,8 +5624,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/430"
         },
         "378": {
-            "id": "378",
+            "id": 378,
             "name": "iris edit she ate",
+            "type": "video",
             "fileExt": "mov",
             "tags": [
                 "iris",
@@ -5259,8 +5638,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/432"
         },
         "379": {
-            "id": "379",
+            "id": 379,
             "name": "so when yall are drinking blood how does that work do you put sugar in it",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "tokyo toni",
@@ -5273,8 +5653,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/433"
         },
         "380": {
-            "id": "380",
+            "id": 380,
             "name": "listen to youre voice the way youre talking you sound like a female",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -5287,8 +5668,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/434"
         },
         "381": {
-            "id": "381",
+            "id": 381,
             "name": "right infront of my salad",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -5302,8 +5684,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/435"
         },
         "382": {
-            "id": "382",
+            "id": 382,
             "name": "bumble bee twerking",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "twerking",
@@ -5316,8 +5699,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/436"
         },
         "383": {
-            "id": "383",
+            "id": 383,
             "name": "i have my half up half down am i giving ariani am i giving arianka or no",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "azealia banks",
@@ -5329,8 +5713,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/437"
         },
         "384": {
-            "id": "384",
+            "id": 384,
             "name": "cat being shocked at another cat",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cat",
@@ -5345,8 +5730,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/438"
         },
         "385": {
-            "id": "385",
+            "id": 385,
             "name": "oh hell no showing gun knife taser",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gun",
@@ -5359,8 +5745,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/439"
         },
         "386": {
-            "id": "386",
+            "id": 386,
             "name": "girl with bob saying hello",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "girl",
@@ -5375,8 +5762,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/440"
         },
         "387": {
-            "id": "387",
+            "id": 387,
             "name": "have you showered or bathed in the last couple of days",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "shower",
@@ -5390,8 +5778,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/441"
         },
         "388": {
-            "id": "388",
+            "id": 388,
             "name": "drake dancing",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "drake",
@@ -5402,8 +5791,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/442"
         },
         "389": {
-            "id": "389",
+            "id": 389,
             "name": "tokyo toni why dont you take your kids and your dog",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "tokyo toni",
@@ -5416,8 +5806,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/443"
         },
         "390": {
-            "id": "390",
+            "id": 390,
             "name": "nun with slay fit",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "nun",
@@ -5432,8 +5823,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/444"
         },
         "391": {
-            "id": "391",
+            "id": 391,
             "name": "cat with a bob",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cat",
@@ -5447,8 +5839,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/445"
         },
         "392": {
-            "id": "392",
+            "id": 392,
             "name": "rest in peace to the chicks that are dying to be me",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "ate",
@@ -5461,8 +5854,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/446"
         },
         "393": {
-            "id": "393",
+            "id": 393,
             "name": "cat making weird sounds",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "cat",
@@ -5475,8 +5869,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/447"
         },
         "394": {
-            "id": "394",
+            "id": 394,
             "name": "jia fei birthday cake",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "jia fei",
@@ -5489,8 +5884,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/448"
         },
         "395": {
-            "id": "395",
+            "id": 395,
             "name": "wanda getting beat up by nicki ariana and beyonce",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "wanda",
@@ -5505,8 +5901,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/449"
         },
         "396": {
-            "id": "396",
+            "id": 396,
             "name": "wendy williams and abby lee miller dancing",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "wendy williams",
@@ -5522,8 +5919,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/450"
         },
         "397": {
-            "id": "397",
+            "id": 397,
             "name": "i aint got no tail gurl",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "tail",
@@ -5535,8 +5933,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/451"
         },
         "398": {
-            "id": "398",
+            "id": 398,
             "name": "woman singing into mic and cutting out",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "singing",
@@ -5549,8 +5948,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/452"
         },
         "399": {
-            "id": "399",
+            "id": 399,
             "name": "dog getting sad seeing its reflection",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "dog",
@@ -5565,8 +5965,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/453"
         },
         "400": {
-            "id": "400",
+            "id": 400,
             "name": "wanda waking up from dream sad",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "wanda",
@@ -5581,8 +5982,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/454"
         },
         "401": {
-            "id": "401",
+            "id": 401,
             "name": "homelander watching movie sad",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "homelander",
@@ -5597,8 +5999,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/455"
         },
         "402": {
-            "id": "402",
+            "id": 402,
             "name": "olivia wilde satisfied after doing protest",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "olivia wilde",
@@ -5613,8 +6016,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/456"
         },
         "403": {
-            "id": "403",
+            "id": 403,
             "name": "mr crabs going to chum bucket and then explosion",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "skimbabimdede",
@@ -5628,8 +6032,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/457"
         },
         "404": {
-            "id": "404",
+            "id": 404,
             "name": "people saying mental slurs",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "gay",
@@ -5642,8 +6047,9 @@
             "cloudURL": "http://127.0.0.1:5001/local/meme/458"
         },
         "405": {
-            "id": "405",
+            "id": 405,
             "name": "man throwing woman off boat because of pregnancy test",
+            "type": "video",
             "fileExt": "mp4",
             "tags": [
                 "angry",

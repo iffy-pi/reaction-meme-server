@@ -1,34 +1,40 @@
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType
+
 class MemeLibraryItem:
-    def __init__(self, id:int=None, name:str=None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None ):
+    def __init__(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None):
         self.id = id
         self.name =     name
         self.tags =     tags
         self.fileExt =  fileExt
         self.cloudID =  cloudID
         self.cloudURL = cloudURL
-
+        self.type = type
 
     @staticmethod
-    def getDefaultName():
+    def getDefaultName() -> str:
         return ''
 
     @staticmethod
-    def getDefaultFileExt():
+    def getDefaultType() -> MemeMediaType:
+        return MemeMediaType.UNKNOWN
+
+    @staticmethod
+    def getDefaultFileExt() -> str:
         return ''
 
     @staticmethod
-    def getDefaultTags():
+    def getDefaultTags() -> list[str]:
         return []
 
     @staticmethod
-    def getDefaultCloudID():
+    def getDefaultCloudID() -> str:
         return ''
 
     @staticmethod
-    def getDefaultCloudURL():
+    def getDefaultCloudURL() -> str:
         return ''
 
-    def setProperty(self, id:int=None, name:str=None, fileExt:str=None, tags:list[str]=None, cloudID:str=None, cloudURL:str=None):
+    def setProperty(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt:str=None, tags:list[str]=None, cloudID:str=None, cloudURL:str=None):
         """
         Set the property of the meme library item, any arguments left to None will not have the property value changed
         """
@@ -44,6 +50,8 @@ class MemeLibraryItem:
             self.cloudID = cloudID
         if cloudURL is not None:
             self.cloudURL = cloudURL
+        if type is not None:
+            self.type = type
 
     def getID(self) -> int:
         return self.id
@@ -53,6 +61,9 @@ class MemeLibraryItem:
 
     def getTags(self) -> list[str]:
         return self.tags
+
+    def getType(self) -> MemeMediaType:
+        return self.type
 
     def getFileExt(self) -> str:
         return self.fileExt
@@ -64,4 +75,4 @@ class MemeLibraryItem:
         return self.cloudURL
 
     def __str__(self):
-        return f'Meme(id={self.id}, name="{self.name}", ext="{self.fileExt}", tags={self.tags}, cloudId={self.cloudID}, url={self.cloudURL})'
+        return f'Meme(id={self.id}, name="{self.name}", {self.type}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.cloudID}, url={self.cloudURL})'

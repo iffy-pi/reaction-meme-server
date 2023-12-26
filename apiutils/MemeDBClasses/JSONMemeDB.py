@@ -1,6 +1,8 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromString
+
 
 class JSONMemeDB(MemeDBInterface):
     instance = None
@@ -10,6 +12,7 @@ class JSONMemeDB(MemeDBInterface):
         class ItemFields:
             ID = 'id'
             Name = "name"
+            Type = "type"
             FileExt = "fileExt"
             Tags = "tags"
             CloudID = "cloudID"
@@ -72,6 +75,7 @@ class JSONMemeDB(MemeDBInterface):
         return MemeLibraryItem(
             id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
             name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
+            type=getMediaTypeFromString(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
             cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],
@@ -81,12 +85,13 @@ class JSONMemeDB(MemeDBInterface):
     def getMemeItem(self, itemID:int) -> MemeLibraryItem:
         return self.__createMemeFromJSONItem(self.__getJSONItem(itemID))
 
-    def __addItemToDB(self, name, fileExt, tags, cloudID, cloudURL):
+    def __addItemToDB(self, name:str, type:MemeMediaType, fileExt:str, tags:list[str], cloudID:str, cloudURL:str):
         self.__getDBLock()
         itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
         self.db[JSONMemeDB.DBFields.Items][itemId] = {
-            JSONMemeDB.DBFields.ItemFields.ID           : itemId,
+            JSONMemeDB.DBFields.ItemFields.ID           : int(itemId),
             JSONMemeDB.DBFields.ItemFields.Name         : name,
+            JSONMemeDB.DBFields.ItemFields.Type         : type.value,
             JSONMemeDB.DBFields.ItemFields.FileExt      : fileExt,
             JSONMemeDB.DBFields.ItemFields.Tags         : tags,
             JSONMemeDB.DBFields.ItemFields.CloudID      : cloudID,
@@ -98,8 +103,11 @@ class JSONMemeDB(MemeDBInterface):
 
     def createItem(self) -> int:
         itId = self.__addItemToDB(
-            MemeLibraryItem.getDefaultName(), MemeLibraryItem.getDefaultFileExt(),
-            MemeLibraryItem.getDefaultTags(), MemeLibraryItem.getDefaultCloudID(),
+            MemeLibraryItem.getDefaultName(),
+            MemeMediaType.UNKNOWN,
+            MemeLibraryItem.getDefaultFileExt(),
+            MemeLibraryItem.getDefaultTags(),
+            MemeLibraryItem.getDefaultCloudID(),
             MemeLibraryItem.getDefaultCloudURL())
         return int(itId)
 
@@ -113,7 +121,7 @@ class JSONMemeDB(MemeDBInterface):
         memeItem.setProperty(id=itemId)
         self.updateItem(itemId, memeItem)
 
-    def __updateItemProperty(self, itemId:int, name:str=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ):
+    def __updateItemProperty(self, itemId:int, name:str=None, type:MemeMediaType=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ):
         self.__getDBLock()
         item = self.__getJSONItem(itemId, lockDB=False)
         if name is not None:
@@ -126,6 +134,8 @@ class JSONMemeDB(MemeDBInterface):
             item[JSONMemeDB.DBFields.ItemFields.CloudID] = cloudID
         if cloudURL is not None:
             item[JSONMemeDB.DBFields.ItemFields.CloudURL] = cloudURL
+        if type is not None:
+            item[JSONMemeDB.DBFields.ItemFields.Type] = type.value
         self.__releaseDBLock()
 
     def updateItem(self, itemId:int, item:MemeLibraryItem):
@@ -134,7 +144,7 @@ class JSONMemeDB(MemeDBInterface):
         If a property of memeItem is None, the field in the database is not updated
         """
         self.__updateItemProperty(itemId,
-                                  name=item.getName(), tags=item.getTags(),
+                                  name=item.getName(), type=item.getType(), tags=item.getTags(),
                                   fileExt=item.getFileExt(), cloudID=item.getCloudID(),
                                   cloudURL=item.getURL())
 

@@ -3,9 +3,9 @@ import csv
 
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeMediaType import getMediaTypeForExt
 from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
 from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
-
 
 class MemeLibrary:
     def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface):
@@ -36,12 +36,13 @@ class MemeLibrary:
 
         return cloudURL
 
-    def makeMemeAndAddToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, reIndexLibrary:bool=False) -> MemeLibraryItem:
+    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, reIndexLibrary:bool=False) -> MemeLibraryItem:
         """
         Creates a new item in the database with the available fields
         :return: The item ID in the database
         """
-        meme = MemeLibraryItem(id=None, name=name, fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
+        fileExt = fileExt.lower().replace('.', '')
+        meme = MemeLibraryItem(id=None, name=name, type=getMediaTypeForExt(fileExt), fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
 
         self.db.addMemeToDB(meme)
 
@@ -51,9 +52,10 @@ class MemeLibrary:
 
     def addAndUploadMeme(self, mediaBinary, name:str, fileExt:str, tags:list[str], reIndexLibrary:bool=False):
         # upload to cloudinary
+        fileExt = fileExt.lower().replace('.', '')
         cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, fileExt)
         # add to library
-        meme = self.makeMemeAndAddToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, reIndexLibrary=reIndexLibrary)
+        meme = self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, reIndexLibrary=reIndexLibrary)
 
     def addAndUploadMemeFrom(self, filePath, name, tags, reIndexLibrary=False):
         # first upload the file to cloudinary
@@ -86,15 +88,15 @@ class MemeLibrary:
                 cloudId = row[0].lower().strip()
                 cloudURL = row[1].lower().strip()
                 name = row[2].strip().lower()
-                fileExt = row[3].strip().lower()
+                fileExt = row[3].strip().lower().replace('.', '')
                 tags = row[4].strip().lower()
 
                 if any(t == '' for t in (cloudId, cloudURL, name, fileExt)):
                     break
 
                 tags = [ e.strip() for e in tags.split(',')]
-
-                self.db.addMemeToDB(MemeLibraryItem(None, name, fileExt, tags, cloudId, cloudURL))
+                mediaType = getMediaTypeForExt(fileExt)
+                self.db.addMemeToDB(MemeLibraryItem(None, name, mediaType, fileExt, tags, cloudId, cloudURL))
 
         # write the db
         # self.db.writeDB()
