@@ -33,7 +33,7 @@ class LocalStorageUploader(MemeUploaderInterface):
         nextId = int(config["nextID"])
 
         # save the binary to the location
-        filename = f"meme_{nextId}_uploaded.{fileExt}"
+        filename = f"meme_{nextId}.{fileExt}"
         with open(os.path.join(self.memeDir, filename), "wb") as file:
             file.write(mediaBinary)
 

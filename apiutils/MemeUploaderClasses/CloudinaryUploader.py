@@ -17,5 +17,5 @@ class CloudinaryUploader(MemeUploaderInterface):
     def uploadMedia(self, mediaBinary:bytes, fileExt) -> tuple[str, str]:
         resp = cloudinary.uploader.upload(mediaBinary, folder="memes", resource_type="auto")
         mediaID = str(resp['public_id'])
-        deliveryURL = cloudinary.utils.cloudinary_url(mediaID, resource_type=resp['resource_type'])
+        deliveryURL = cloudinary.utils.cloudinary_url(mediaID, resource_type=resp['resource_type'])[0]
         return mediaID, deliveryURL

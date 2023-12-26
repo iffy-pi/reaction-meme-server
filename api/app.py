@@ -72,6 +72,7 @@ def route_info_meme(memeID):
     memeJSON = {
         'id': meme.getID(),
         'name': meme.getName(),
+        'type': meme.getTypeString(),
         'tags': meme.getTags(),
         'url': meme.getURL(),
     }
@@ -144,6 +145,7 @@ def route_add_new_meme():
         {
             "id": meme.getID(),
             "name": meme.getName(),
+            'type': meme.getTypeString(),
             "tags" : meme.getTags(),
             "fileExt": meme.getFileExt(),
             "uploadURL": url_for("upload_meme", uploadKey=UploadSessionManager.getInstance().newUploadKey(meme.getID()), _external=True),
