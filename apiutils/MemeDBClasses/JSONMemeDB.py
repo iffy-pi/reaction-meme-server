@@ -1,7 +1,7 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromString
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromValue
 
 
 class JSONMemeDB(MemeDBInterface):
@@ -75,7 +75,7 @@ class JSONMemeDB(MemeDBInterface):
         return MemeLibraryItem(
             id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
             name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
-            type=getMediaTypeFromString(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
+            type=getMediaTypeFromValue(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
             cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],

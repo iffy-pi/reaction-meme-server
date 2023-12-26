@@ -23,7 +23,7 @@ def error_response(status:int, message:str=None, error_json=None):
     # crafts an erroneous message with the status and returns it
     
     if message is not None:
-        content = { 'message': message }
+        content = { 'error': message }
 
     elif error_json is not None:
         content = error_json
@@ -31,8 +31,8 @@ def error_response(status:int, message:str=None, error_json=None):
     else:
         raise Exception('No content provided')
 
-    if 'success' not in content:
-        content['success'] = False
+    if 'error' not in content:
+        content['error'] = True
 
     resp = Response(
         response=json.dumps(content), status=status, mimetype="text/plain"

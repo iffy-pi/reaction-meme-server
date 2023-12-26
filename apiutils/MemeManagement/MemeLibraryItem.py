@@ -65,6 +65,9 @@ class MemeLibraryItem:
     def getType(self) -> MemeMediaType:
         return self.type
 
+    def getTypeString(self) -> str:
+        return str(self.type.value)
+
     def getFileExt(self) -> str:
         return self.fileExt
 

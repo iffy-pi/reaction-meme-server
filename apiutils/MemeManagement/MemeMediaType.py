@@ -16,7 +16,7 @@ def getMediaTypeForExt(fileExt:str) -> MemeMediaType:
     else:
         return MemeMediaType.UNKNOWN
 
-def getMediaTypeFromString(st:str) -> MemeMediaType:
+def getMediaTypeFromValue(st:str) -> MemeMediaType:
     types = [
         MemeMediaType.IMAGE,
         MemeMediaType.VIDEO,
