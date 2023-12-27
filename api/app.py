@@ -51,11 +51,14 @@ def saveLibrary():
     """
     memeLib.saveLibrary()
 
-def testThreadCall():
+
+def threadCall(text:str):
     pb = PushBulletFileServer(ServerConfig.PBFS_ACCESS_TOKEN, serverIden=str(os.environ.get('TEMP_DEVELOPER_SERVER_IDEN')), persistentStorage=True)
-    data = "Hello World".encode()
+    data = text.encode()
     pb.write("/temp/test_call_result.txt", data)
     print('Written test call!')
+def testThreadCall():
+    threadCall("Call from thread!")
 
 
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
@@ -201,6 +204,7 @@ def set_test():
 
 @app.route('/test/thread')
 def test_thread():
+    threadCall("call from endpoint")
     threading.Thread(target=testThreadCall).start()
     return make_json_response({ 'message': 'Hello World'})
 
