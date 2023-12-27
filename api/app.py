@@ -29,6 +29,9 @@ memeLib.loadLibrary()
 
 memeLib.indexLibrary()
 
+class Test:
+    val = 1
+
 def validAccess(req:request):
     accToken = req.headers.get('Access-Token')
     if accToken is None:
@@ -177,6 +180,15 @@ def upload_meme(uploadKey):
     # Meme library has index mutex to synchronize requests for searching or adding to the index
     threading.Thread(target=saveAndReIndexLibrary).start()
     return make_json_response({'url': cloudURL})
+
+@app.route('/test/get')
+def get_test():
+    return make_json_response({"value": Test.val})
+
+@app.route('/test/set')
+def set_test():
+    Test.val = int(request.args.get("val"))
+    return make_json_response({"value": Test.val})
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
