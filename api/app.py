@@ -30,12 +30,6 @@ memeLib.loadLibrary()
 
 memeLib.indexLibrary()
 
-class Test:
-    def __init__(self):
-        self.val = 1
-
-t = Test()
-
 def validAccess(req:request):
     accToken = req.headers.get('Access-Token')
     if accToken is None:
@@ -50,16 +44,6 @@ def saveLibrary():
     :return:
     """
     memeLib.saveLibrary()
-
-
-def threadCall(text:str):
-    pb = PushBulletFileServer(ServerConfig.PBFS_ACCESS_TOKEN, serverIden=str(os.environ.get('TEMP_DEVELOPER_SERVER_IDEN')), persistentStorage=True)
-    data = text.encode()
-    pb.write("/temp/test_call_result.txt", data)
-    print('Written test call!')
-def testThreadCall():
-    threadCall("Call from thread!")
-
 
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
 def route_download_meme(memeID):
@@ -188,25 +172,13 @@ def upload_meme(uploadKey):
     # clear the upload session key
     sm.clearUploadKey(uploadKey)
 
-    # Use thread to save and reindex library asynchronously
+    # TODO: Use thread to save and reindex library asynchronously
     # Meme library has index mutex to synchronize requests for searching or adding to the index
-    threading.Thread(target=saveLibrary).start()
+    # threading.Thread(target=saveLibrary).start()
+    saveLibrary()
+
     return make_json_response({'url': cloudURL})
 
-@app.route('/test/get')
-def get_test():
-    return make_json_response({"value": t.val})
-
-@app.route('/test/set')
-def set_test():
-    t.val = int(request.args.get("val"))
-    return make_json_response({"value": t.val})
-
-@app.route('/test/thread')
-def test_thread():
-    threadCall("call from endpoint")
-    threading.Thread(target=testThreadCall).start()
-    return make_json_response({ 'message': 'Hello World'})
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
@@ -216,7 +188,6 @@ def index():
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Make cloud ready, how are we handling this JSON file?
 # TODO: Build the React client frontend :(((
-# TODO: Tag the remaining 400 memes
 
 # running the code
 if __name__ == '__main__':
