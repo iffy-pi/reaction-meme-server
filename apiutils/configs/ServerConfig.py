@@ -155,8 +155,9 @@ class ServerConfig:
     @staticmethod
     def initConfig():
         # If there is a JSON env option use it
-        jsonEnv = os.environ.get('JSON_ENV')
+        jsonEnv = os.environ.get('JSON_CONFIG')
         if jsonEnv is not None and os.path.exists(jsonEnv):
+            print(f'Initializing from JSON_CONFIG env variable: "{jsonEnv}"')
             ServerConfig.setConfigFromJSON(jsonEnv)
         else:
             ServerConfig.setConfigFromEnv()

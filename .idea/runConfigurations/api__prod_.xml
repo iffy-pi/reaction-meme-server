@@ -4,9 +4,9 @@
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
-      <env name="PYTHONUNBUFFERED" value="1" />
       <env name="FLASK_DEBUG" value="1" />
-      <env name="JSON_ENV" value="C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\prodenv.json" />
+      <env name="JSON_CONFIG" value="C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\config_jsons\prodenv.json" />
+      <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
     <option name="SDK_HOME" value="" />
     <option name="SDK_NAME" value="Python 3.10 (venv)" />

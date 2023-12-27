@@ -5,7 +5,7 @@
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="FLASK_DEBUG" value="1" />
-      <env name="JSON_ENV" value="C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\devenv.json" />
+      <env name="JSON_CONFIG" value="C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\config_jsons\devenv.json" />
       <env name="OVERRIDE_RMSVR_JSON_DB_FILE_STORAGE" value="local" />
       <env name="OVERRIDE_RMSVR_MEME_DB" value="json" />
       <env name="OVERRIDE_RMSVR_MEME_STORAGE" value="local" />
