@@ -3,6 +3,7 @@ import threading
 from flask import (Flask, redirect, request, url_for)
 from flask_cors import CORS
 
+from apiutils.FileStorageClasses.PushBulletFileServer import PushBulletFileServer
 from apiutils.HTTPResponses import *
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.UploadSessionManager import UploadSessionManager
@@ -30,7 +31,10 @@ memeLib.loadLibrary()
 memeLib.indexLibrary()
 
 class Test:
-    val = 1
+    def __init__(self):
+        self.val = 1
+
+t = Test()
 
 def validAccess(req:request):
     accToken = req.headers.get('Access-Token')
@@ -46,6 +50,12 @@ def saveLibrary():
     :return:
     """
     memeLib.saveLibrary()
+
+def testThreadCall():
+    pb = PushBulletFileServer(ServerConfig.PBFS_ACCESS_TOKEN, serverIden=str(os.environ.get('TEMP_DEVELOPER_SERVER_IDEN')), persistentStorage=True)
+    data = "Hello World".encode()
+    pb.write("/temp/test_call_result.txt", data)
+    print('Written test call!')
 
 
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
@@ -182,7 +192,17 @@ def upload_meme(uploadKey):
 
 @app.route('/test/get')
 def get_test():
-    return make_json_response({"value": Test.val})
+    return make_json_response({"value": t.val})
+
+@app.route('/test/set')
+def set_test():
+    t.val = int(request.args.get("val"))
+    return make_json_response({"value": t.val})
+
+@app.route('/test/thread')
+def test_thread():
+    threading.Thread(target=testThreadCall).start()
+    return make_json_response({ 'message': 'Hello World'})
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
