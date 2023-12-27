@@ -3,7 +3,7 @@ from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorag
 from apiutils.configs.ServerConfig import ServerConfig
 
 
-def saveLocalJSONDBIntoPBFS():
+def uploadLocalJSONDBToPBFS():
     """
     Saves data/db.json into PBFS so it matches
     """
@@ -13,3 +13,12 @@ def saveLocalJSONDBIntoPBFS():
     print('Writing data/db.json')
     pbfs.writeJSONDB(db)
     print('Done')
+
+def downloadPBFSJSONDBToLocal():
+    """
+    Downloads the JSON db file from PBFS and saves it into local db
+    """
+    pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+    lcfs = RepoLocalFileStorage()
+    db = pbfs.getJSONDB()
+    lcfs.writeJSONDB(db)

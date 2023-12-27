@@ -98,5 +98,8 @@ def convertToLocal(cloudURL) -> bool:
     if ServerConfig.MEME_STORAGE != MemeStorageOption.LOCAL:
         return False
 
+    if cloudURL is None:
+        return False
+
     # actual checking of the url
     return '127.0.0.1' not in cloudURL

@@ -7,12 +7,13 @@ def add_access_control(resp):
     resp.headers['Access-Control-Allow-Origin'] = '*'
 
 def make_json_response( resp_dict:dict, status=200):
-    if 'success' not in resp_dict:
-        resp_dict['success'] = True
-
+    data = {
+        'success' : True,
+        'payload': resp_dict
+    }
     # receives a dictionary and crafts the Flask JSON response object for it
     resp = Response(
-        response=json.dumps(resp_dict), status=status, mimetype="text/plain"
+        response=json.dumps(data), status=status, mimetype="text/plain"
     )
 
     # add_access_control(resp)
@@ -23,7 +24,7 @@ def error_response(status:int, message:str=None, error_json=None):
     # crafts an erroneous message with the status and returns it
     
     if message is not None:
-        content = { 'error': message }
+        content = { 'error_message': message }
 
     elif error_json is not None:
         content = error_json
@@ -33,6 +34,7 @@ def error_response(status:int, message:str=None, error_json=None):
 
     if 'error' not in content:
         content['error'] = True
+        content['success'] = False
 
     resp = Response(
         response=json.dumps(content), status=status, mimetype="text/plain"

@@ -40,13 +40,12 @@ def validAccess(req:request):
         return False
     return True
 
-def saveAndReIndexLibrary():
+def saveLibrary():
     """
-    Saves the library and reindexes, it will block index
+    Saves the library to database
     :return:
     """
     memeLib.saveLibrary()
-    memeLib.indexLibrary()
 
 
 @app.route('/memes/download/<int:memeID>', methods=['GET'])
@@ -135,7 +134,7 @@ def route_add_new_meme():
 
     # Create the entry in the database
     tags = [ r.strip() for r in request.json['tags'].split(',')]
-    meme = memeLib.addMemeToLibrary(name=request.json['name'], tags=tags, fileExt=request.json['fileExt'])
+    meme = memeLib.addMemeToLibrary(name=request.json['name'], tags=tags, fileExt=request.json['fileExt'], addMemeToIndex=True)
 
     # respond with the item informaion and an upload URL
     return make_json_response(
@@ -178,16 +177,11 @@ def upload_meme(uploadKey):
 
     # Use thread to save and reindex library asynchronously
     # Meme library has index mutex to synchronize requests for searching or adding to the index
-    threading.Thread(target=saveAndReIndexLibrary).start()
+    threading.Thread(target=saveLibrary).start()
     return make_json_response({'url': cloudURL})
 
 @app.route('/test/get')
 def get_test():
-    return make_json_response({"value": Test.val})
-
-@app.route('/test/set')
-def set_test():
-    Test.val = int(request.args.get("val"))
     return make_json_response({"value": Test.val})
 
 # for the root of the website, we would just pass in "/" for the url

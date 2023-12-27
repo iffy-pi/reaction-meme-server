@@ -27,7 +27,7 @@ if addRes['error'] is not None:
 	StopShortcut()
 
 
-uploadURL = addRes['uploadURL']
+uploadURL = addRes['payload.uploadURL']
 
 uploadRes = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, file=mediaItem )
 
@@ -40,9 +40,9 @@ if uploadRes['error'] is not None:
 	StopShortcut()
 
 text = f'''
-ID: {addRes['id']}
-Name: "{addRes['name']}"
-URL: {uploadRes['url']}
+ID: {addRes['payload.id']}
+Name: "{addRes['payload.name']}"
+URL: {uploadRes['payload.url']}
 '''
 
 Notification(title='Your meme has been uploaded', body=text, attachment=mediaItem)
