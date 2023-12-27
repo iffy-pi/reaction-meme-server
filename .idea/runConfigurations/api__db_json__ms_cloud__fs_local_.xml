@@ -1,15 +1,15 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="api (dev + local + catalog)" type="PythonConfigurationType" factoryName="Python">
+  <configuration default="false" name="api (db=json, ms=cloud, fs=local)" type="PythonConfigurationType" factoryName="Python">
     <module name="reaction-meme-server" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
-      <env name="PYTHONUNBUFFERED" value="1" />
-      <env name="FILE_STORAGE_OVERRIDE" value="local" />
       <env name="FLASK_DEBUG" value="1" />
-      <env name="INIT_LIB_FROM_CATALOG_OVERRIDE" value="1" />
       <env name="JSON_ENV" value="C:\Users\omnic\local\GitRepos\reaction-meme-server\devenv\devenv.json" />
-      <env name="MEME_STORAGE_OVERRIDE" value="local" />
+      <env name="OVERRIDE_RMSVR_JSON_DB_FILE_STORAGE" value="local" />
+      <env name="OVERRIDE_RMSVR_MEME_DB" value="json" />
+      <env name="OVERRIDE_RMSVR_MEME_STORAGE" value="cloudinary" />
+      <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
     <option name="SDK_HOME" value="" />
     <option name="SDK_NAME" value="Python 3.10 (venv)" />

@@ -6,50 +6,26 @@ from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorag
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
 from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
-from apiutils.configs.ServerConfig import ServerConfig
+from apiutils.configs.ServerConfig import ServerConfig, JSONDBFileStorageOption, MemeStorageOption
 from localMemeStorageServer.utils.storageServerUtils import makeLocalStorageUploader
 
 
-def getServerFileStorage(verbose=True) -> JSONDBFileStorageInterface:
-    FILE_STORAGE_OVERRIDE = os.environ.get('FILE_STORAGE_OVERRIDE')
-    if FILE_STORAGE_OVERRIDE is not None:
-        FILE_STORAGE_OVERRIDE = FILE_STORAGE_OVERRIDE.lower()
-
-        if FILE_STORAGE_OVERRIDE == 'local':
-            if verbose: print('OVERRIDE - File Storage: RepoLocal')
-            fileStorage = RepoLocalFileStorage()
-        elif FILE_STORAGE_OVERRIDE == 'pbfs':
-            if verbose: print('OVERRIDE - File Storage: PBFS')
-            fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
-        else:
-            raise Exception(f'Unrecognized file storage override key: "{FILE_STORAGE_OVERRIDE}"')
-
+def getServerFileStorage() -> JSONDBFileStorageInterface:
+    if ServerConfig.JSON_DB_FILE_STORAGE == JSONDBFileStorageOption.LOCAL:
+        return RepoLocalFileStorage()
+    elif ServerConfig.JSON_DB_FILE_STORAGE == JSONDBFileStorageOption.PBFS:
+        return PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
     else:
-        if verbose: print('File Storage: PBFS')
-        fileStorage = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
-
-    return fileStorage
+        raise Exception(f'Unrecognized file storage: "{ServerConfig.JSON_DB_FILE_STORAGE}"')
 
 
-def getServerMemeUploader(verbose=True) -> MemeUploaderInterface:
-    MEME_STORAGE_OVERRIDE = os.environ.get('MEME_STORAGE_OVERRIDE')
-    if MEME_STORAGE_OVERRIDE is not None:
-        MEME_STORAGE_OVERRIDE = MEME_STORAGE_OVERRIDE.lower()
-
-        if MEME_STORAGE_OVERRIDE == 'local':
-            if verbose: print('OVERRIDE - Meme Storage: Local')
-            memeUploader = makeLocalStorageUploader()
-        elif MEME_STORAGE_OVERRIDE == 'pbfs':
-            if verbose: print('OVERRIDE - Meme Storage: Cloudinary')
-            memeUploader = CloudinaryUploader()
-        else:
-            raise Exception(f'Unrecognized meme storage override key: "{MEME_STORAGE_OVERRIDE}"')
-
+def getServerMemeUploader() -> MemeUploaderInterface:
+    if ServerConfig.MEME_STORAGE == MemeStorageOption.LOCAL:
+        return makeLocalStorageUploader()
+    elif ServerConfig.MEME_STORAGE == MemeStorageOption.CLOUDINARY:
+        return CloudinaryUploader()
     else:
-        if verbose: print('Meme Storage: Local')
-        memeUploader = makeLocalStorageUploader()
-
-    return memeUploader
+        raise Exception(f'Unrecognized meme storage: "{ServerConfig.MEME_STORAGE}"')
 
 
 def loadLibrary(memeLib:MemeLibrary, verbose:bool=True):

@@ -1,7 +1,6 @@
-import os
 import threading
 
-from flask import (Flask, redirect, render_template, request, url_for)
+from flask import (Flask, redirect, request, url_for)
 from flask_cors import CORS
 
 from apiutils.HTTPResponses import *
@@ -10,14 +9,9 @@ from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ComponentOverrides import *
 
 # Initialize our server config
-if os.environ.get('JSON_ENV') is not None:
-    print('Loading Environment From JSON: '+ os.environ.get('JSON_ENV'))
-    ServerConfig.setConfigFromJSON(os.environ.get('JSON_ENV'))
-else:
-    ServerConfig.setConfigFromEnv()
-
-if ServerConfig.isDevEnv():
-    print('Development environment is being used!')
+ServerConfig.initConfig()
+print('')
+ServerConfig.printConfig()
 
 # initialize app flask object
 app = Flask(__name__)
@@ -31,7 +25,7 @@ JSONMemeDB.initSingleton(fileStorage)
 memeDB = JSONMemeDB.getSingleton()
 
 memeLib = MemeLibrary(memeDB, memeUploader)
-loadLibrary(memeLib)
+memeLib.loadLibrary()
 
 memeLib.indexLibrary()
 
