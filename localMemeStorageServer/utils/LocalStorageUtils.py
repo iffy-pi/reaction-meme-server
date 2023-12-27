@@ -84,7 +84,7 @@ def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple
     # return the info
     return localID, makeRemotelyAccessible(localURL)
 
-def convertToLocal(cloudURL) -> bool:
+def cloudMemeNeedsToBeConvertedToLocal(cloudURL) -> bool:
     """
     Returns if the given item needs to be converted into its local version
     :param cloudID:

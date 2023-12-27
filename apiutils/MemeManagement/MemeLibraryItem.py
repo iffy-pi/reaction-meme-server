@@ -1,5 +1,5 @@
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType
-from localMemeStorageServer.utils.LocalStorageUtils import convertToLocal, getLocalVersionForCloudMeme
+from localMemeStorageServer.utils.LocalStorageUtils import cloudMemeNeedsToBeConvertedToLocal, getLocalVersionForCloudMeme
 class MemeLibraryItem:
     def __init__(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None):
         self.id = id
@@ -71,19 +71,19 @@ class MemeLibraryItem:
     def getFileExt(self) -> str:
         return self.fileExt
 
-    def __getCheckedCloud(self) -> tuple[str, str]:
-        if not convertToLocal(self.cloudURL):
+    def __getCheckedCloud(self, autoConvertToLocal:bool) -> tuple[str, str]:
+        if not (autoConvertToLocal and cloudMemeNeedsToBeConvertedToLocal(self.cloudURL)):
             return self.cloudID, self.cloudURL
         return getLocalVersionForCloudMeme(self.cloudID, self.cloudURL, self.fileExt)
 
-    def getCloudID(self) -> str:
-        cloudId, _ = self.__getCheckedCloud()
+    def getCloudID(self, autoConvertToLocal=True) -> str:
+        cloudId, _ = self.__getCheckedCloud(autoConvertToLocal)
         return cloudId
 
-    def getURL(self) -> str:
-        _, cloudURL = self.__getCheckedCloud()
+    def getURL(self, autoConvertToLocal=True) -> str:
+        _, cloudURL = self.__getCheckedCloud(autoConvertToLocal)
         return cloudURL
 
     def __str__(self):
-        converted = '{}'.format(', convertedToLocal' if convertToLocal(self.cloudURL) else '')
+        converted = '{}'.format(', convertedToLocal' if cloudMemeNeedsToBeConvertedToLocal(self.cloudURL) else '')
         return f'Meme(id={self.id}, name="{self.name}", {self.type}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.getCloudID()}, url={self.getURL()}{converted})'
