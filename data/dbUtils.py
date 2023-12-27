@@ -3,7 +3,7 @@ import os
 
 from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
 from apiutils.configs.ServerConfig import ServerConfig
-from localMemeStorageServer.utils.storageServerUtils import getMemeFileName, getMemeDir
+from localMemeStorageServer.utils.LocalStorageUtils import getMemeFileName, getMemeDir
 
 
 def uploadLocalMemeToCloudinary(clUploader:CloudinaryUploader, memeId:int):

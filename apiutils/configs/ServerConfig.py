@@ -198,3 +198,9 @@ class ServerConfig:
     @staticmethod
     def isDevEnv():
         return ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.DEV
+
+    @staticmethod
+    def getFullPath(*paths) -> str:
+        """
+        Returns the full path of the item, with the project root included
+        """

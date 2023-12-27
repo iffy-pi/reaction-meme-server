@@ -4,6 +4,7 @@ This is a Flask server hosted on Vercel designed to manage my reaction meme libr
 It is hosted on Vercel at: https://reaction-meme-server.vercel.app/
 
 ## Using the API
+**NEEDS TO BE UPDATED**
 ### Access Tokens
 Anyone can download or search for memes, but as a security measure only people with access tokens can add new memes to the server.
 

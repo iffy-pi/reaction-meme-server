@@ -7,7 +7,7 @@ from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
 from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
 from apiutils.configs.ServerConfig import ServerConfig, JSONDBFileStorageOption, MemeStorageOption
-from localMemeStorageServer.utils.storageServerUtils import makeLocalStorageUploader
+from localMemeStorageServer.utils.LocalStorageUtils import makeLocalStorageUploader
 
 
 def getServerFileStorage() -> JSONDBFileStorageInterface:

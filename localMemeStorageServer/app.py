@@ -1,6 +1,6 @@
 from flask import (Flask,  send_from_directory, request)
 from flask_cors import CORS
-from localMemeStorageServer.utils.storageServerUtils import getMemeDir, makeLocalStorageUploader, getMemeFileName
+from localMemeStorageServer.utils.LocalStorageUtils import getMemeDir, makeLocalStorageUploader, getMemeFileName
 from apiutils.HTTPResponses import *
 
 # initialize app flask object
