@@ -68,7 +68,7 @@ class MemeLibrary:
         # add to library
         return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
 
-    def addAndUploadMemeFrom(self, filePath, name, tags, addMemeToIndex=False) -> MemeContainer | None:
+    def addAndUploadMemeFrom(self, filePath, name, tags, addMemeToIndex=False) -> MemeContainer:
         """
         Uploads the file from filepath to the configured meme media storage and configures a new entry in the database
         Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
