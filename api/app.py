@@ -134,10 +134,28 @@ def route_edit_meme(memeID):
     name = request.json.get("name")
     tags = request.json.get("tags")
 
-    print(request.json)
+    typesInfo = [
+        ('name', name, str, "String"),
+        ('tags', tags, list, "Array"),
+    ]
+
+    expectedTypeMsg = "name = JSON String, tags = JSON Array"
+
+    for paramName, paramVal, paramType, msgType in typesInfo:
+        if paramVal is None:
+            continue
+
+        if type(paramVal) != paramType:
+            return error_response(400,
+                                  message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
+
+    if name is not None:
+        if type(name) != str:
+            return error_response(400, message=f"'name' parameter must be a JSON String")
 
     if tags is not None:
-        tags = tags.split(',')
+        if type(tags) != list:
+            return error_response(400, message=f"'tags' parameter must be a JSON Array")
 
     # edit the meme
     memeLib.editMeme(memeID, name=name, tags=tags)
@@ -170,6 +188,18 @@ def route_add_new_meme():
     requiredKeys = ["name", "tags", "fileExt"]
     if any(k not in request.json for k in requiredKeys):
         return error_response(400, 'Request is missing one or multiple keys')
+
+    typesInfo = [
+        ('name', request.json['name'], str, "String"),
+        ('tags', request.json['tags'], list, "Array"),
+        ('fileExt', request.json['fileExt'], str, "String")
+    ]
+
+    expectedTypeMsg = "name = JSON String, tags = JSON Array, fileExt = JSON String"
+
+    for paramName, paramVal, paramType, msgType in typesInfo:
+        if type(paramVal) != paramType:
+            return error_response(400, message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
 
     # Create the entry in the database
     tags = [ r.strip() for r in request.json['tags'].split(',')]
@@ -221,6 +251,12 @@ def route_upload_meme(uploadKey):
 
     return make_json_response({'url': cloudURL})
 
+@app.route('/test')
+def test():
+    print(request.json)
+    you = request.json.get('you')
+    print(type(you) == list)
+    return make_json_response({'url': 'Hello'})
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')

@@ -12,9 +12,11 @@ information = {
 
 memeAddURL = f'{serverURL}/memes/add'
 
+tags = SplitText(information['tags'], ',')
+
 addRes = GetContentsOfURL(memeAddURL, method='POST', headers={'Access-Token': accessToken}, json={
 		'name': information['name'],
-		'tags': information['tags'],
+		'tags': tags,
 		'fileExt': information['fileExt']
 	})
 
