@@ -41,7 +41,7 @@ class MemeLibrary:
 
         return cloudURL
 
-    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeContainer | None:
+    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeContainer:
         """
         Creates a new item in the database with the available fields
         Returns a MemeLibraryItem if operation was successful else None
@@ -57,7 +57,7 @@ class MemeLibrary:
             self.indexMeme(meme)
         return meme
 
-    def addAndUploadMeme(self, mediaBinary:bytes, name:str, fileExt:str, tags:list[str], addMemeToIndex:bool=False) -> MemeContainer | None:
+    def addAndUploadMeme(self, mediaBinary:bytes, name:str, fileExt:str, tags:list[str], addMemeToIndex:bool=False) -> MemeContainer:
         """
         Uploads the mediaBinary to the configured meme media storage and configures a new entry in the database
         Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
