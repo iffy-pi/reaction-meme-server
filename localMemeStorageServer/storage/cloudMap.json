@@ -2440,5 +2440,11 @@
         "cloudURL": "http://res.cloudinary.com/du6q7wdat/image/upload/v1/memes/eb9xk1byozdmy57cfclq",
         "localID": "461",
         "localURL": "http://127.0.0.1:5001/local/meme/461"
+    },
+    "memes/ownqha2fot0xg0qzxyj7": {
+        "cloudID": "memes/ownqha2fot0xg0qzxyj7",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/ownqha2fot0xg0qzxyj7",
+        "localID": "462",
+        "localURL": "http://127.0.0.1:5001/local/meme/462"
     }
 }
