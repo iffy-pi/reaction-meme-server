@@ -1,4 +1,4 @@
-from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeContainer import MemeContainer
 
 class MemeDBException(Exception):
     def __init__(self, message):
@@ -53,7 +53,7 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def getMemeItem(self, itemID:int) -> MemeLibraryItem:
+    def getMemeItem(self, itemID:int) -> MemeContainer:
         """
         Returns a Meme Library Item for the given itemID
         """
@@ -66,7 +66,7 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def addMemeToDB(self, item:MemeLibraryItem) -> bool:
+    def addMemeToDB(self, item:MemeContainer) -> bool:
         """
         Adds a new Meme Library item to the media database
         Also updates item.id to match the ID of the item added to the database
@@ -75,7 +75,7 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def updateItem(self, itemId:int, memeItem:MemeLibraryItem) -> bool:
+    def updateItem(self, itemId:int, memeItem:MemeContainer) -> bool:
         """
         Updates the item pointed to by itemID with the contents of memeItem
         If a property of memeItem is None, the field in the database should not updated
@@ -84,7 +84,7 @@ class MemeDBInterface:
         raise Exception('Must implement in subclass')
 
 
-    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeLibraryItem]:
+    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:
         """
         Gets a set of memes from a given page
         :param itemsPerPage: The number of memes per page
@@ -93,7 +93,7 @@ class MemeDBInterface:
         """
         raise Exception('Must implement in subclass')
 
-    def getAllDBMemes(self) -> list[MemeLibraryItem]:
+    def getAllDBMemes(self) -> list[MemeContainer]:
         """
         Returns a list of all the memes in the database
         :return:

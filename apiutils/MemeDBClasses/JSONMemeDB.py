@@ -1,6 +1,6 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
-from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromValue
 
 
@@ -86,7 +86,7 @@ class JSONMemeDB(MemeDBInterface):
         return it
 
     def __createMemeFromJSONItem(self, jsonItem):
-        return MemeLibraryItem(
+        return MemeContainer(
             id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
             name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
             type=getMediaTypeFromValue(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
@@ -96,7 +96,7 @@ class JSONMemeDB(MemeDBInterface):
             cloudURL=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudURL]
             )
 
-    def getMemeItem(self, itemID:int) -> MemeLibraryItem:
+    def getMemeItem(self, itemID:int) -> MemeContainer:
         return self.__createMemeFromJSONItem(self.__getJSONItem(itemID))
 
     def __addItemToDB(self, name:str, type:MemeMediaType, fileExt:str, tags:list[str], cloudID:str, cloudURL:str):
@@ -118,15 +118,15 @@ class JSONMemeDB(MemeDBInterface):
 
     def createItem(self) -> int:
         itId = self.__addItemToDB(
-            MemeLibraryItem.getDefaultName(),
+            MemeContainer.getDefaultName(),
             MemeMediaType.UNKNOWN,
-            MemeLibraryItem.getDefaultFileExt(),
-            MemeLibraryItem.getDefaultTags(),
-            MemeLibraryItem.getDefaultCloudID(),
-            MemeLibraryItem.getDefaultCloudURL())
+            MemeContainer.getDefaultFileExt(),
+            MemeContainer.getDefaultTags(),
+            MemeContainer.getDefaultCloudID(),
+            MemeContainer.getDefaultCloudURL())
         return int(itId)
 
-    def addMemeToDB(self, memeItem:MemeLibraryItem) -> bool:
+    def addMemeToDB(self, memeItem:MemeContainer) -> bool:
         """
         Adds a new Meme Library item to the media database
         Also updates item.id to match the ID of the item added to the database
@@ -162,7 +162,7 @@ class JSONMemeDB(MemeDBInterface):
 
         return True
 
-    def updateItem(self, itemId:int, item:MemeLibraryItem) -> bool:
+    def updateItem(self, itemId:int, item:MemeContainer) -> bool:
         """
         Updates the item pointed to by itemID with the contents of memeItem
         If a property of memeItem is None, the field in the database is not updated
@@ -172,7 +172,7 @@ class JSONMemeDB(MemeDBInterface):
                                   fileExt=item.getFileExt(), cloudID=item.getCloudID(),
                                   cloudURL=item.getURL())
 
-    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeLibraryItem]:
+    def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:
         self.__errIfUnloadedDB()
         itemIds = list(self.db.get(JSONMemeDB.DBFields.Items).keys())
         itemCount = len(itemIds)
@@ -185,7 +185,7 @@ class JSONMemeDB(MemeDBInterface):
         selectedIds = itemIds[startOffset: min(itemCount, startOffset+itemsPerPage)]
         return [ self.getMemeItem(i) for i in selectedIds]
 
-    def getAllDBMemes(self) -> list[MemeLibraryItem]:
+    def getAllDBMemes(self) -> list[MemeContainer]:
         self.__errIfUnloadedDB()
         self.__getDBLock()
         res = [

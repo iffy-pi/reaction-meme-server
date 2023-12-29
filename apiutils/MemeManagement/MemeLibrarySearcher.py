@@ -5,7 +5,7 @@ from whoosh.fields import Schema, TEXT, KEYWORD, STORED
 from whoosh.qparser import OrGroup, MultifieldParser
 from whoosh.filedb.filestore import RamStorage
 
-from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
+from apiutils.MemeManagement.MemeContainer import MemeContainer
 
 class MemeLibrarySearcherException(Exception):
     def __init__(self, message):
@@ -59,7 +59,7 @@ class MemeLibrarySearcher:
     def __releaseIndexLock(self):
         self.__indexLock = False
 
-    def __addMemeToWriter(self, indexWriter, meme:MemeLibraryItem):
+    def __addMemeToWriter(self, indexWriter, meme:MemeContainer):
         # KEYFIELDS_RELEVANT_HERE
         indexWriter.add_document(memeID=meme.getID(),
                                  name=meme.getName(),
@@ -70,7 +70,7 @@ class MemeLibrarySearcher:
     def hasIndex(self):
         return self.__index is not None
 
-    def indexMemeList(self, memes:list[MemeLibraryItem]):
+    def indexMemeList(self, memes:list[MemeContainer]):
         """
         Indexes all the memes in the library, if index already exists, it is re-indexed
         :return:
@@ -89,7 +89,7 @@ class MemeLibrarySearcher:
         # release the lock
         self.__releaseIndexLock()
 
-    def indexMeme(self, meme:MemeLibraryItem):
+    def indexMeme(self, meme:MemeContainer):
         self.__getIndexLock()
         writer = self.__index.writer()
         self.__addMemeToWriter(writer, meme)

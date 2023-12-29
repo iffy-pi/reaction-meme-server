@@ -1,6 +1,9 @@
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType
 from localMemeStorageServer.utils.LocalStorageUtils import cloudMemeNeedsToBeConvertedToLocal, getLocalVersionForCloudMeme
-class MemeLibraryItem:
+class MemeContainer:
+    """
+    Class used as a data container for meme information. It is not connected to the meme library or the meme database that created it.
+    """
     def __init__(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None):
         self.id = id
         self.name =     name
