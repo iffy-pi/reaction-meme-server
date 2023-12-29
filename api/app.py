@@ -309,9 +309,7 @@ def test():
 def index():
     return make_json_response({ 'message': 'Welcome To Meme Server, checkout the API usage: https://github.com/iffy-pi/reaction-meme-server?tab=readme-ov-file#using-the-api'})
 
-# TODO: Add error handling for when library fails
 # TODO: Implement Apple Shortcuts client API :D
-# TODO: Make cloud ready, how are we handling this JSON file?
 # TODO: Build the React client frontend :(((
 
 # running the code
