@@ -61,10 +61,10 @@ def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple
     if cloudID in cloudMap:
         return cloudMap[cloudID]['localID'], makeRemotelyAccessible(cloudMap[cloudID]['localURL'])
 
-    print(f'Downloading {cloudID} to local repository ({cloudURL}')
+    print(f'Downloading {cloudID} to local repository ({cloudURL})')
 
     # download the meme from cloudinary
-    resp = requests.get('http://res.cloudinary.com/du6q7wdat/image/upload/v1/memes/kyxdqozu9587bgy7h75e')
+    resp = requests.get(cloudURL)
     if not resp.ok:
         raise Exception('Failed URL request!')
 
