@@ -1,11 +1,16 @@
 import os
 import csv
 
-from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
+from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 from apiutils.MemeManagement.MemeMediaType import getMediaTypeForExt
 from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
 from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
+
+class MemeLibraryException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 class MemeLibrary:
     def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface):
@@ -21,7 +26,7 @@ class MemeLibrary:
 
     def getMeme(self, itemId:int):
         if not self.hasMeme(itemId):
-            raise Exception("Item ID does not exist in db")
+            raise MemeLibraryException("Item ID does not exist in db")
         return self.db.getMemeItem(itemId)
 
     def uploadItemMedia(self, itemId:int, mediaBinary):
@@ -36,42 +41,54 @@ class MemeLibrary:
 
         return cloudURL
 
-    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeLibraryItem:
+    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeLibraryItem|None:
         """
         Creates a new item in the database with the available fields
-        :return: The item ID in the database
+        Returns a MemeLibraryItem if operation was successful else None
+        Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
         """
         fileExt = fileExt.lower().replace('.', '')
         meme = MemeLibraryItem(id=None, name=name, type=getMediaTypeForExt(fileExt), fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
 
-        self.db.addMemeToDB(meme)
+        if not self.db.addMemeToDB(meme):
+            return None
 
         if addMemeToIndex and not self.libSearcher.hasIndex():
             self.indexMeme(meme)
         return meme
 
-    def addAndUploadMeme(self, mediaBinary, name:str, fileExt:str, tags:list[str], addMemeToIndex:bool=False):
-        # upload to cloudinary
+    def addAndUploadMeme(self, mediaBinary:bytes, name:str, fileExt:str, tags:list[str], addMemeToIndex:bool=False) -> MemeLibraryItem|None:
+        """
+        Uploads the mediaBinary to the configured meme media storage and configures a new entry in the database
+        Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
+        """
+        # upload the media
         fileExt = fileExt.lower().replace('.', '')
         cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, fileExt)
         # add to library
-        meme = self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
+        return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
 
-    def addAndUploadMemeFrom(self, filePath, name, tags, addMemeToIndex=False):
+    def addAndUploadMemeFrom(self, filePath, name, tags, addMemeToIndex=False) -> MemeLibraryItem|None:
+        """
+        Uploads the file from filepath to the configured meme media storage and configures a new entry in the database
+        Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
+        """
         # first upload the file to cloudinary
         with open(filePath, 'rb') as file:
             mediaBinary = file.read()
-        self.addAndUploadMeme(mediaBinary, name, os.path.splitext(filePath)[1].replace('.', ''), tags, addMemeToIndex=addMemeToIndex)
+        return self.addAndUploadMeme(mediaBinary, name, os.path.splitext(filePath)[1].replace('.', ''), tags, addMemeToIndex=addMemeToIndex)
 
 
-    def editMeme(self, itemId:int, name: str = None, tags:list[str] = None):
+    def editMeme(self, itemId:int, name: str = None, tags:list[str] = None) -> bool:
         """
         Edits a meme in the database, allows you to edit the name or tags of the meme
+        Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
+        Returns true if the operation was completed
         """
         if not self.hasMeme(itemId):
-            raise Exception(f'ID "{itemId}" does not exist in database')
+            raise MemeLibraryException(f'ID "{itemId}" does not exist in database')
 
-        self.db.updateItem(itemId, MemeLibraryItem(name=name, tags=tags))
+        return self.db.updateItem(itemId, MemeLibraryItem(name=name, tags=tags))
 
 
     def makeLibraryFromCSV(self, csvFile):
@@ -155,14 +172,16 @@ class MemeLibrary:
         """
         return self.db.getGroupOfMemes(itemsPerPage, pageNo)
 
-    def saveLibrary(self):
+    def saveLibrary(self) -> bool:
         """
         Saves the contents of the library to the database
+        Returns true if the operation was completed successfully
         """
-        self.db.writeDB()
+        return self.db.writeDB()
 
-    def loadLibrary(self):
+    def loadLibrary(self) -> bool:
         """
         Loads the library from the database
+        Returns true if the operation was completed successfully
         """
-        self.db.loadDB()
+        return self.db.loadDB()

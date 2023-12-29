@@ -7,6 +7,10 @@ from whoosh.filedb.filestore import RamStorage
 
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
+class MemeLibrarySearcherException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 class MemeLibrarySearcher:
     """
@@ -94,7 +98,7 @@ class MemeLibrarySearcher:
     @contextmanager
     def getSearcher(self):
         if self.__index is None:
-            raise Exception('Database has not been indexed')
+            raise MemeLibrarySearcherException('Database has not been indexed')
 
         self.__getIndexLock()
         searcher = self.__index.searcher()

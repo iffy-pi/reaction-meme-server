@@ -8,5 +8,9 @@ class JSONDBFileStorageInterface:
     def getJSONDB(self) -> dict:
         raise Exception('Must be implemented in subclass')
     
-    def writeJSONDB(self, db:dict):
+    def writeJSONDB(self, db:dict) -> bool:
+        """
+        Writes the JSOB db to the file storage
+        Returns true if the operation was completed successfully
+        """
         raise Exception('Must be implemented in subclass')

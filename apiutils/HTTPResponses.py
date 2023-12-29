@@ -36,6 +36,8 @@ def error_response(status:int, message:str=None, error_json=None):
         content['error'] = True
         content['success'] = False
 
+    content['statusCode'] = status
+
     resp = Response(
         response=json.dumps(content), status=status, mimetype="text/plain"
     )

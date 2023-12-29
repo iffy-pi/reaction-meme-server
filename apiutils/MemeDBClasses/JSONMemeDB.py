@@ -1,4 +1,4 @@
-from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface
+from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromValue
@@ -41,28 +41,42 @@ class JSONMemeDB(MemeDBInterface):
         }
         self.__releaseDBLock()
 
-    def loadDB(self) -> None:
+    def isDBLoaded(self) -> bool:
+        return self.db is not None
+
+    def loadDB(self) -> bool:
         self.__getDBLock()
         self.db = self.fileStorage.getJSONDB()
+        res = self.db is not None
         self.__releaseDBLock()
+        return res
 
-    def unloadDB(self) -> None:
-        if self.db is None:
-            return
+    def unloadDB(self) -> bool:
+        if not self.isDBLoaded():
+            return True
 
         # removes all the keys in the dict
         self.db.clear()
         self.db = None
+        return True
 
-    def writeDB(self) -> None:
+    def __errIfUnloadedDB(self):
+        if not self.isDBLoaded():
+            raise MemeDBException("Database has not been loaded!")
+
+    def writeDB(self) -> bool:
+        self.__errIfUnloadedDB()
         self.__getDBLock()
-        self.fileStorage.writeJSONDB(self.db)
+        res =  self.fileStorage.writeJSONDB(self.db)
         self.__releaseDBLock()
+        return res
 
     def hasItem(self, itemID:int) -> bool:
+        self.__errIfUnloadedDB()
         return str(itemID) in self.db[JSONMemeDB.DBFields.Items]
 
     def __getJSONItem(self, itemId, lockDB=True):
+        self.__errIfUnloadedDB()
         if lockDB:
             self.__getDBLock()
         it = self.db.get(JSONMemeDB.DBFields.Items).get(str(itemId))
@@ -86,6 +100,7 @@ class JSONMemeDB(MemeDBInterface):
         return self.__createMemeFromJSONItem(self.__getJSONItem(itemID))
 
     def __addItemToDB(self, name:str, type:MemeMediaType, fileExt:str, tags:list[str], cloudID:str, cloudURL:str):
+        self.__errIfUnloadedDB()
         self.__getDBLock()
         itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
         self.db[JSONMemeDB.DBFields.Items][itemId] = {
@@ -111,7 +126,7 @@ class JSONMemeDB(MemeDBInterface):
             MemeLibraryItem.getDefaultCloudURL())
         return int(itId)
 
-    def addMemeToDB(self, memeItem:MemeLibraryItem) -> None:
+    def addMemeToDB(self, memeItem:MemeLibraryItem) -> bool:
         """
         Adds a new Meme Library item to the media database
         Also updates item.id to match the ID of the item added to the database
@@ -119,11 +134,17 @@ class JSONMemeDB(MemeDBInterface):
         """
         itemId = self.createItem()
         memeItem.setProperty(id=itemId)
-        self.updateItem(itemId, memeItem)
+        return self.updateItem(itemId, memeItem)
 
-    def __updateItemProperty(self, itemId:int, name:str=None, type:MemeMediaType=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ):
+    def __updateItemProperty(self, itemId:int, name:str=None, type:MemeMediaType=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ) -> bool:
+        self.__errIfUnloadedDB()
         self.__getDBLock()
         item = self.__getJSONItem(itemId, lockDB=False)
+
+        if item is None:
+            self.__releaseDBLock()
+            return False
+
         if name is not None:
             item[JSONMemeDB.DBFields.ItemFields.Name] = name
         if tags is not None:
@@ -136,19 +157,23 @@ class JSONMemeDB(MemeDBInterface):
             item[JSONMemeDB.DBFields.ItemFields.CloudURL] = cloudURL
         if type is not None:
             item[JSONMemeDB.DBFields.ItemFields.Type] = type.value
+
         self.__releaseDBLock()
 
-    def updateItem(self, itemId:int, item:MemeLibraryItem):
+        return True
+
+    def updateItem(self, itemId:int, item:MemeLibraryItem) -> bool:
         """
         Updates the item pointed to by itemID with the contents of memeItem
         If a property of memeItem is None, the field in the database is not updated
         """
-        self.__updateItemProperty(itemId,
+        return self.__updateItemProperty(itemId,
                                   name=item.getName(), type=item.getType(), tags=item.getTags(),
                                   fileExt=item.getFileExt(), cloudID=item.getCloudID(),
                                   cloudURL=item.getURL())
 
     def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeLibraryItem]:
+        self.__errIfUnloadedDB()
         itemIds = list(self.db.get(JSONMemeDB.DBFields.Items).keys())
         itemCount = len(itemIds)
         startOffset = (pageNo-1)  * itemsPerPage
@@ -161,6 +186,7 @@ class JSONMemeDB(MemeDBInterface):
         return [ self.getMemeItem(i) for i in selectedIds]
 
     def getAllDBMemes(self) -> list[MemeLibraryItem]:
+        self.__errIfUnloadedDB()
         self.__getDBLock()
         res = [
             self.__createMemeFromJSONItem(it)

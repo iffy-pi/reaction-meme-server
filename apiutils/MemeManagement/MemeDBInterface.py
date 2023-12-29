@@ -1,5 +1,10 @@
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 
+class MemeDBException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
 class MemeDBInterface:
     """
     Interface that must be implemented by classes which host the database for the MemeLibrary
@@ -13,21 +18,30 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def loadDB(self) -> None:
+    def loadDB(self) -> bool:
         """
         Load the database with data from actual database
+        Returns true if the operation was completed successfully.
         """
         raise Exception("Must implement in subclass")
 
-    def unloadDB(self) -> None:
+    def isDBLoaded(self) -> bool:
+        """
+        Returns a boolean value if the database has been loaded/connected to
+        """
+        raise Exception("Must implement in subclass")
+
+    def unloadDB(self) -> bool:
         """
         Unloads the database (all its objects and memory) from system
+        Returns true if the operation was completed successfully.
         """
         raise Exception("Must implement in subclass")
 
-    def writeDB(self) -> None:
+    def writeDB(self) -> bool:
         """
         Writes the database object to the actual database file
+        Returns true if the operation was completed successfully.
         """
         raise Exception("Must implement in subclass")
 
@@ -48,21 +62,24 @@ class MemeDBInterface:
     def createItem(self) -> int:
         """
         Creates an item in the database and returns the itemID
+        Returns -1 if item was failed to be created
         """
         raise Exception("Must implement in subclass")
 
-    def addMemeToDB(self, item:MemeLibraryItem) -> None:
+    def addMemeToDB(self, item:MemeLibraryItem) -> bool:
         """
         Adds a new Meme Library item to the media database
         Also updates item.id to match the ID of the item added to the database
         If a property of memeItem is None, the field in the database is initialized to its default value
+        Returns true if the operation was completed successfully.
         """
         raise Exception("Must implement in subclass")
 
-    def updateItem(self, itemId:int, memeItem:MemeLibraryItem):
+    def updateItem(self, itemId:int, memeItem:MemeLibraryItem) -> bool:
         """
         Updates the item pointed to by itemID with the contents of memeItem
         If a property of memeItem is None, the field in the database should not updated
+        Returns true if the operation was completed successfully.
         """
         raise Exception('Must implement in subclass')
 
