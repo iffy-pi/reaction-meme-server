@@ -63,6 +63,17 @@ class MemeLibrary:
             mediaBinary = file.read()
         self.addAndUploadMeme(mediaBinary, name, os.path.splitext(filePath)[1].replace('.', ''), tags, addMemeToIndex=addMemeToIndex)
 
+
+    def editMeme(self, itemId:int, name: str = None, tags:list[str] = None):
+        """
+        Edits a meme in the database, allows you to edit the name or tags of the meme
+        """
+        if not self.hasMeme(itemId):
+            raise Exception(f'ID "{itemId}" does not exist in database')
+
+        self.db.updateItem(itemId, MemeLibraryItem(name=name, tags=tags))
+
+
     def makeLibraryFromCSV(self, csvFile):
         """
         Reads the CSV file and creates the library from the data in the CSV file. The CSV file should be structured such that:

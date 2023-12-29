@@ -62,7 +62,7 @@ class MemeDBInterface:
     def updateItem(self, itemId:int, memeItem:MemeLibraryItem):
         """
         Updates the item pointed to by itemID with the contents of memeItem
-        If a property of memeItem is None, the field in the database is not updated
+        If a property of memeItem is None, the field in the database should not updated
         """
         raise Exception('Must implement in subclass')
 

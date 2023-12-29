@@ -44,7 +44,10 @@ def saveLibrary():
     """
     memeLib.saveLibrary()
 
-@app.route('/memes/download/<int:memeID>', methods=['GET'])
+
+
+
+@app.route('/download/<int:memeID>', methods=['GET'])
 def route_download_meme(memeID):
     memeID = int(memeID)
     if not memeLib.hasMeme(memeID):
@@ -54,7 +57,7 @@ def route_download_meme(memeID):
     return redirect(memeURL)
 
 
-@app.route('/memes/info/<int:memeID>', methods=['GET'])
+@app.route('/info/<int:memeID>', methods=['GET'])
 def route_info_meme(memeID):
     memeID = int(memeID)
     if not memeLib.hasMeme(memeID):
@@ -72,7 +75,7 @@ def route_info_meme(memeID):
     return make_json_response(memeJSON)
 
 
-@app.route('/memes/search', methods=['GET'])
+@app.route('/search', methods=['GET'])
 def route_meme_search():
     query = request.args.get("query")
 
@@ -94,7 +97,8 @@ def route_meme_search():
 
     return make_json_response({ 'results' : collated, 'itemsPerPage': len(collated), 'pageNo' : pageNo})
 
-@app.route('/memes/browse', methods=['GET'])
+
+@app.route('/browse', methods=['GET'])
 def route_meme_browse():
     itemsPerPage = request.args.get("per_page")
     pageNo = request.args.get("page")
@@ -117,7 +121,46 @@ def route_meme_browse():
 
     return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'pageNo' : pageNo})
 
-@app.route('/memes/add', methods=['GET', 'POST'])
+
+@app.route('/edit/<int:memeID>', methods=['POST'])
+def route_edit_meme(memeID):
+    if not validAccess(request):
+        return error_response(400, 'Invalid Access Token')
+
+    memeID = int(memeID)
+    if not memeLib.hasMeme(memeID):
+        return error_response(400, message=f"ID {memeID} does not exist in database")
+
+    name = request.json.get("name")
+    tags = request.json.get("tags")
+
+    print(request.json)
+
+    if tags is not None:
+        tags = tags.split(',')
+
+    # edit the meme
+    memeLib.editMeme(memeID, name=name, tags=tags)
+
+    # Save the changes to the library and reindex with new tags
+    memeLib.saveLibrary()
+    memeLib.indexLibrary()
+
+    # return the meme information
+    meme = memeLib.getMeme(memeID)
+    memeJSON = {
+        'id': meme.getID(),
+        'name': meme.getName(),
+        'type': meme.getTypeString(),
+        'tags': meme.getTags(),
+        'url': meme.getURL(),
+    }
+
+
+    return make_json_response(memeJSON)
+
+
+@app.route('/add', methods=['GET', 'POST'])
 def route_add_new_meme():
     # Only people with valid access tokens are allowed
     if not validAccess(request):
@@ -140,13 +183,13 @@ def route_add_new_meme():
             'type': meme.getTypeString(),
             "tags" : meme.getTags(),
             "fileExt": meme.getFileExt(),
-            "uploadURL": url_for("upload_meme", uploadKey=UploadSessionManager.getInstance().newUploadKey(meme.getID()), _external=True),
+            "uploadURL": url_for("route_upload_meme", uploadKey=UploadSessionManager.getInstance().newUploadKey(meme.getID()), _external=True),
         }
     )
 
 
-@app.route('/memes/upload/<uploadKey>', methods=['GET', 'POST'])
-def upload_meme(uploadKey):
+@app.route('/upload/<uploadKey>', methods=['GET', 'POST'])
+def route_upload_meme(uploadKey):
     if not validAccess(request):
         return error_response(400, 'Invalid Access Token')
 
@@ -182,8 +225,9 @@ def upload_meme(uploadKey):
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
 def index():
-    return make_json_response({ 'message': 'Hello World'})
+    return make_json_response({ 'message': 'Welcome To Meme Server, checkout the API usage: https://github.com/iffy-pi/reaction-meme-server?tab=readme-ov-file#using-the-api'})
 
+# TODO: Add error handling for when library fails
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Make cloud ready, how are we handling this JSON file?
 # TODO: Build the React client frontend :(((
