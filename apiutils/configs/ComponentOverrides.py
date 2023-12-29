@@ -4,10 +4,10 @@ from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileSto
 from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorage
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
-from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
-from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
+from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
+from apiutils.MemeStorageClasses.CloudinaryMemeStorage import CloudinaryMemeStorage
 from apiutils.configs.ServerConfig import ServerConfig, JSONDBFileStorageOption, MemeStorageOption
-from localMemeStorageServer.utils.LocalStorageUtils import makeLocalStorageUploader
+from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
 
 def getServerFileStorage() -> JSONDBFileStorageInterface:
@@ -19,11 +19,11 @@ def getServerFileStorage() -> JSONDBFileStorageInterface:
         raise Exception(f'Unrecognized file storage: "{ServerConfig.JSON_DB_FILE_STORAGE}"')
 
 
-def getServerMemeUploader() -> MemeUploaderInterface:
+def getServerMemeStorage() -> MemeStorageInterface:
     if ServerConfig.MEME_STORAGE == MemeStorageOption.LOCAL:
-        return makeLocalStorageUploader()
+        return makeLocalMemeStorage()
     elif ServerConfig.MEME_STORAGE == MemeStorageOption.CLOUDINARY:
-        return CloudinaryUploader()
+        return CloudinaryMemeStorage()
     else:
         raise Exception(f'Unrecognized meme storage: "{ServerConfig.MEME_STORAGE}"')
 

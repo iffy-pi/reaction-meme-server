@@ -5,7 +5,7 @@ from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBExcep
 from apiutils.MemeManagement.MemeLibraryItem import MemeLibraryItem
 from apiutils.MemeManagement.MemeMediaType import getMediaTypeForExt
 from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
-from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
+from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
 
 class MemeLibraryException(Exception):
     def __init__(self, message):
@@ -13,13 +13,13 @@ class MemeLibraryException(Exception):
         super().__init__(self.message)
 
 class MemeLibrary:
-    def __init__(self, db:MemeDBInterface, uploader:MemeUploaderInterface):
+    def __init__(self, db:MemeDBInterface, mediaStorage:MemeStorageInterface):
         """
         Class to manage database of reaction memes, will handle the loading, reading and writing of the JSON db file
         """
         self.db = db
         self.libSearcher = MemeLibrarySearcher()
-        self.uploader = uploader
+        self.mediaStorage = mediaStorage
 
     def hasMeme(self, itemId:int):
         return self.db.hasItem(itemId)
@@ -36,7 +36,7 @@ class MemeLibrary:
         :param mediaBinary: The binary data of the media to be uploaded
         :return: The cloud URL
         """
-        cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())
+        cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())
         self.db.updateItem(itemId, MemeLibraryItem(cloudID=cloudId, cloudURL=cloudURL))
 
         return cloudURL
@@ -64,7 +64,7 @@ class MemeLibrary:
         """
         # upload the media
         fileExt = fileExt.lower().replace('.', '')
-        cloudId, cloudURL = self.uploader.uploadMedia(mediaBinary, fileExt)
+        cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
         # add to library
         return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
 

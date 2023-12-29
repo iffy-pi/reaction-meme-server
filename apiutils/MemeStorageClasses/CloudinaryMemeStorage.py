@@ -1,11 +1,11 @@
 import cloudinary
 import cloudinary.uploader
 
-from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
+from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
 from apiutils.configs.ServerConfig import ServerConfig
 
 
-class CloudinaryUploader(MemeUploaderInterface):
+class CloudinaryMemeStorage(MemeStorageInterface):
     def __init__(self):
         # Configure cloudinary
         cloudinary.config(

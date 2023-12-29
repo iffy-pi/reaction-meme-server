@@ -1,13 +1,14 @@
 import json
 import os
 
-from apiutils.MemeManagement.MemeUploaderInterface import MemeUploaderInterface
+from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
 from apiutils.configs.ServerConfig import ServerConfig
 
 
-class LocalStorageUploader(MemeUploaderInterface):
+class LocalServerMemeStorage(MemeStorageInterface):
     """
-    Uploads to devenv/localmemes
+    Stores memes for use by localMemeStorageServer
+    Specifically stored under localMemeStorageServer/storage/memes
     """
     def __init__(self, configJSONFilePath:str, memeDir:str, addUploadedFlag=False):
         """

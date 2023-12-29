@@ -4,7 +4,7 @@ import socket
 
 import requests
 
-from apiutils.MemeUploaderClasses.LocalStorageUploader import LocalStorageUploader
+from apiutils.MemeStorageClasses.RepoLocalMemeStorage import LocalServerMemeStorage
 from os.path import join
 from apiutils.configs.ServerConfig import ServerConfig, MemeStorageOption
 
@@ -30,8 +30,8 @@ def getMemeDir():
 def getConfigJSONPath():
     return join(ServerConfig.PROJECT_ROOT, "localMemeStorageServer", "storage", "config.json")
 
-def makeLocalStorageUploader():
-    return LocalStorageUploader(
+def makeLocalMemeStorage():
+    return LocalServerMemeStorage(
         getConfigJSONPath(),
         getMemeDir(),
         addUploadedFlag=True
@@ -68,7 +68,7 @@ def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple
     if not resp.ok:
         raise Exception('Failed URL request!')
 
-    uploader = makeLocalStorageUploader()
+    uploader = makeLocalMemeStorage()
     localID, localURL = uploader.uploadMedia(resp.content, fileExt)
 
     # update the cloud map with the new info

@@ -1,12 +1,12 @@
 import json
 import os
 
-from apiutils.MemeUploaderClasses.CloudinaryUploader import CloudinaryUploader
+from apiutils.MemeStorageClasses.CloudinaryMemeStorage import CloudinaryMemeStorage
 from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import getMemeFileName, getMemeDir
 
 
-def uploadLocalMemeToCloudinary(clUploader:CloudinaryUploader, memeId:int):
+def uploadLocalMemeToCloudinary(clUploader:CloudinaryMemeStorage, memeId:int):
     # Uploads the given meme from the local storage server to cloudinary
     # Returning the new id and delivery URL
     filename = getMemeFileName(memeId)
@@ -27,7 +27,7 @@ def uploadLocalMemeToCloudinary(clUploader:CloudinaryUploader, memeId:int):
 
 
 def uploadMemesToCloudinary():
-    clu = CloudinaryUploader()
+    clu = CloudinaryMemeStorage()
 
     oldDBFile = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'db.json')
     newDBFile = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'newDB.json')

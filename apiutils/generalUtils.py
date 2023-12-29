@@ -7,7 +7,7 @@ from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
 from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorage
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.configs.ServerConfig import ServerConfig
-from localMemeStorageServer.utils.LocalStorageUtils import makeLocalStorageUploader
+from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
 
 def uploadLocalJSONDBToPBFS():
@@ -53,7 +53,7 @@ def downloadNewMemesFromCloud(jsonDB:JSONMemeDB):
         if not resp.ok:
             raise Exception('Failed URL request!')
 
-        uploader = makeLocalStorageUploader()
+        uploader = makeLocalMemeStorage()
         localID, localURL = uploader.uploadMedia(resp.content, meme.getFileExt())
 
         # update the cloud map with the new info

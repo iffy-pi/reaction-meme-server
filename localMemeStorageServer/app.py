@@ -1,6 +1,6 @@
 from flask import (Flask,  send_from_directory, request)
 from flask_cors import CORS
-from localMemeStorageServer.utils.LocalStorageUtils import getMemeDir, makeLocalStorageUploader, getMemeFileName
+from localMemeStorageServer.utils.LocalStorageUtils import getMemeDir, makeLocalMemeStorage, getMemeFileName
 from apiutils.HTTPResponses import *
 
 # initialize app flask object
@@ -25,7 +25,7 @@ def index():
 def upload_meme():
     # valid upload session get the image  data
     mediaBinary = request.data
-    upl = makeLocalStorageUploader()
+    upl = makeLocalMemeStorage()
     cloudID, cloudURL = upl.uploadMedia(mediaBinary, 'mp4')
 
     return make_json_response({'url': cloudURL})

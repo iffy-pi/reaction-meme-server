@@ -20,12 +20,12 @@ CORS(app)
 
 
 fileStorage = getServerFileStorage()
-memeUploader = getServerMemeUploader()
+memeStorage = getServerMemeStorage()
 
 JSONMemeDB.initSingleton(fileStorage)
 memeDB = JSONMemeDB.getSingleton()
 
-memeLib = MemeLibrary(memeDB, memeUploader)
+memeLib = MemeLibrary(memeDB, memeStorage)
 
 if not memeLib.loadLibrary():
     raise Exception('There was an error loading the library!')
