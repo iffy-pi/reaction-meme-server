@@ -45,7 +45,9 @@ def saveLibrary() -> bool:
     """
     return memeLib.saveLibrary()
 
-def serverErrorResponse(e):
+def serverErrorResponse(e: Exception):
+    print(f'Exception Occured: {e}')
+    traceback.print_exc()
     return error_response(500, f"Unexpected Server Error")
 
 @app.route('/download/<int:memeID>', methods=['GET'])
@@ -58,8 +60,6 @@ def route_download_meme(memeID):
         memeURL = memeLib.getMeme(memeID).getURL()
         return redirect(memeURL)
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -81,8 +81,6 @@ def route_info_meme(memeID):
 
         return make_json_response(memeJSON)
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -109,8 +107,6 @@ def route_meme_search():
 
         return make_json_response({'results': collated, 'itemsPerPage': len(collated), 'pageNo': pageNo})
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -138,8 +134,6 @@ def route_meme_browse():
 
         return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'pageNo': pageNo})
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -198,8 +192,6 @@ def route_edit_meme(memeID):
 
         return make_json_response(memeJSON)
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -247,8 +239,6 @@ def route_add_new_meme():
             }
         )
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 
@@ -287,8 +277,6 @@ def route_upload_meme(uploadKey):
         return make_json_response({'url': cloudURL})
 
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 @app.route('/test')
@@ -300,8 +288,6 @@ def test():
         raise Exception('Failure!')
         return make_json_response({'url': 'Hello'})
     except Exception as e:
-        print(f'Exception Occured: {e}')
-        traceback.print_exc()
         return serverErrorResponse(e)
 
 # for the root of the website, we would just pass in "/" for the url
