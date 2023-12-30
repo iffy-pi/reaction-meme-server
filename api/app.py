@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 from apiutils.HTTPResponses import *
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
+from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeMediaType import memeMediaTypeToString, MemeMediaType, stringToMemeMediaType
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ComponentOverrides import *
@@ -51,6 +52,16 @@ def serverErrorResponse(e: Exception):
     traceback.print_exc()
     return error_response(500, f"Unexpected Server Error")
 
+def makeMemeJSON(meme: MemeContainer) -> dict:
+    return {
+            'id': meme.getID(),
+            'name': meme.getName(),
+            'mediaType': meme.getMediaTypeString(),
+            'fileExt': meme.getFileExt(),
+            'tags': meme.getTags(),
+            'url': meme.getURL(),
+        }
+
 @app.route('/download/<int:memeID>', methods=['GET'])
 def route_download_meme(memeID):
     try:
@@ -72,15 +83,7 @@ def route_info_meme(memeID):
             return error_response(400, message=f"ID {memeID} does not exist in database")
 
         meme = memeLib.getMeme(memeID)
-        memeJSON = {
-            'id': meme.getID(),
-            'name': meme.getName(),
-            'type': meme.getMediaTypeString(),
-            'tags': meme.getTags(),
-            'url': meme.getURL(),
-        }
-
-        return make_json_response(memeJSON)
+        return make_json_response(makeMemeJSON(meme))
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -113,6 +116,7 @@ def route_meme_search():
         collated = [{
             'id': meme.getID(),
             'name': meme.getName(),
+            'mediaType': meme.getMediaTypeString(),
             'url': meme.getURL()}
             for meme in matchedMemes]
 
@@ -123,6 +127,7 @@ def route_meme_search():
 
 @app.route('/browse', methods=['GET'])
 def route_meme_browse():
+    # TODO: Support media type filters?
     try:
         itemsPerPage = request.args.get("per_page")
         pageNo = request.args.get("page")
@@ -140,6 +145,7 @@ def route_meme_browse():
         collated = [{
             'id': meme.getID(),
             'name': meme.getName(),
+            'mediaType': meme.getMediaTypeString(),
             'url': meme.getURL()}
             for meme in memes]
 
@@ -184,6 +190,11 @@ def route_edit_meme(memeID):
             if type(tags) != list:
                 return error_response(400, message=f"'tags' parameter must be a JSON Array")
 
+        # if no values to edit, just return the meme as it is
+        if all(param is None for param in [name, tags]):
+            meme = memeLib.getMeme(memeID)
+            return make_json_response(makeMemeJSON(meme))
+
         # edit the meme
         memeLib.editMeme(memeID, name=name, tags=tags)
 
@@ -193,19 +204,11 @@ def route_edit_meme(memeID):
 
         # return the meme information
         meme = memeLib.getMeme(memeID)
-        memeJSON = {
-            'id': meme.getID(),
-            'name': meme.getName(),
-            'type': meme.getMediaTypeString(),
-            'tags': meme.getTags(),
-            'url': meme.getURL(),
-        }
-
-        return make_json_response(memeJSON)
+        return make_json_response(makeMemeJSON(meme))
     except Exception as e:
         return serverErrorResponse(e)
 
-
+# TODO: edit endpoint so that users can provide a cloud ID and cloud URL themselves?
 @app.route('/add', methods=['GET', 'POST'])
 def route_add_new_meme():
     try:
@@ -241,7 +244,7 @@ def route_add_new_meme():
             {
                 "id": meme.getID(),
                 "name": meme.getName(),
-                'type': meme.getMediaTypeString(),
+                "mediaType": meme.getMediaTypeString(),
                 "tags": meme.getTags(),
                 "fileExt": meme.getFileExt(),
                 "uploadURL": url_for("route_upload_meme",
