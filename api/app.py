@@ -1,6 +1,6 @@
 # import threading
 
-from flask import (Flask, request)
+from flask import (Flask, request, send_from_directory)
 from flask_cors import CORS
 
 from api.endpoints import *
@@ -104,6 +104,9 @@ def test():
     except Exception as e:
         return serverErrorResponse(e)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(ServerConfig.PROJECT_ROOT, 'favicon.ico')
 
 
 # for the root of the website, we would just pass in "/" for the url
