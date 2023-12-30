@@ -6,7 +6,7 @@ def add_access_control(resp):
     # in our case we just always want all
     resp.headers['Access-Control-Allow-Origin'] = '*'
 
-def make_json_response( resp_dict:dict, status=200):
+def make_json_response( resp_dict:dict, status=200) -> Response:
     data = {
         'success' : True,
         'payload': resp_dict
@@ -20,7 +20,7 @@ def make_json_response( resp_dict:dict, status=200):
     resp.headers['Content-type'] = 'application/json'
     return resp
 
-def error_response(status:int, message:str=None, error_json=None):
+def error_response(status:int, message:str=None, error_json=None) -> Response:
     # crafts an erroneous message with the status and returns it
     
     if message is not None:

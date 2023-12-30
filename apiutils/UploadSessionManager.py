@@ -1,9 +1,17 @@
 import uuid
+from datetime import datetime, timedelta
+
+class Session:
+    def __init__(self, expiry:datetime, data:dict=None):
+        self.expiry = expiry
+        self.data = data
 
 class UploadSessionManager:
+    # 3 HOURS
+    SESSION_LIFE_TIME_SECONDS = 3 * 60 * 60
     instance = None
     def __init__(self):
-        self.activeSessionKeys = {}
+        self.activeSessionKeys = dict()
 
     @staticmethod
     def getInstance():
@@ -12,33 +20,51 @@ class UploadSessionManager:
         return UploadSessionManager.instance
 
 
-    def newUploadKey(self, itemId:int):
-        """
-        Adds a new session key for the given item ID, creates it with uuid
-        :param itemId:
-        :return: the session key
-        """
-        uploadKey = str(uuid.uuid4())
-        self.activeSessionKeys[uploadKey] = itemId
-        return uploadKey
+    def __newItem(self, kwargs:dict) -> Session:
+        return Session(
+            datetime.now() + timedelta(seconds=UploadSessionManager.SESSION_LIFE_TIME_SECONDS),
+            dict(kwargs)
+        )
 
-    def getIDForKey(self, uploadKey:str):
+    def newSession(self, **kwargs):
         """
-        Retrieves the itemID mapped to the given upload key
-        :param uploadKey:
-        :return:
+        Creates a new upload key with the expiry date
         """
-        if uploadKey not in self.activeSessionKeys:
-            return None
-        return self.activeSessionKeys[uploadKey]
-    def validUploadSession(self, uploadKey:str):
-        return uploadKey in self.activeSessionKeys
+        newKey = str(uuid.uuid4())
+        self.activeSessionKeys[newKey] = self.__newItem(kwargs)
 
-    def clearUploadKey(self, uploadKey:str):
-        if uploadKey in self.activeSessionKeys:
-            self.activeSessionKeys.pop(uploadKey)
+        return newKey
 
-    def clearAllKeys(self):
+    def getSessionData(self, sessionKey:str):
+        if not self.validSession(sessionKey):
+            raise Exception('Invalid Upload Session')
+
+        return self.activeSessionKeys[sessionKey].data
+
+
+    def validSession(self, sessionKey:str) -> bool:
+        if sessionKey not in self.activeSessionKeys:
+            return False
+
+        expiryTime = self.activeSessionKeys[sessionKey].expiry
+        if datetime.now() >= expiryTime:
+            return False
+
+        return True
+
+    def clearExpiredSessions(self):
+        for sessionKey in self.activeSessionKeys:
+            expiryTime = self.activeSessionKeys[sessionKey].expiry
+            if datetime.now() < expiryTime:
+                continue
+
+            self.activeSessionKeys.pop(sessionKey)
+
+    def clearSession(self, sessionKey:str):
+        if sessionKey in self.activeSessionKeys:
+            self.activeSessionKeys.pop(sessionKey)
+
+    def clearAllSessions(self):
         self.activeSessionKeys.clear()
 
 

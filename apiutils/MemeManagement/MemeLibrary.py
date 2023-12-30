@@ -41,6 +41,11 @@ class MemeLibrary:
 
         return cloudURL
 
+    def uploadMedia(self, mediaBinary:bytes, fileExt:str) -> tuple[str, str]:
+        # TODO: Add error checking for this function!
+        cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
+        return cloudId, cloudURL
+
     def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeContainer:
         """
         Creates a new item in the database with the available fields

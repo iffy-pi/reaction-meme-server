@@ -145,6 +145,8 @@ The request fields below should be encoded as URL parameters.
 #### Response
 Responds with the same data structure as [Browse Memes](#browse-memes).
 
+
+
 ### Add New Memes `privileged`
 Add new memes to the meme library. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
@@ -192,7 +194,7 @@ The JSON request body should include the following information. This is a [privi
 
 
 #### Upload Request: Response
-If successful, response body will include the following fields:
+If successful, response `payload` field will include:
 
 | Field       | Type   | Description                                                 |
 |-------------|--------|-------------------------------------------------------------|
@@ -209,7 +211,7 @@ POST <uploadURL>
 Your request should include the meme files bytes as a data/file body.
 
 #### Upload URL: Response
-If the upload is successful, the JSON response will include the following fields:
+If the upload is successful, the JSON response `payload` field will include the following:
 
 | Field      | Type   | Description                                                                             |
 |------------|--------|-----------------------------------------------------------------------------------------|
