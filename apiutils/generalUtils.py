@@ -21,11 +21,11 @@ def uploadLocalJSONDBToPBFS():
     pbfs.writeJSONDB(db)
     print('Done')
 
-def downloadPBFSJSONDBToLocal():
+def downloadPBFSJSONDBToLocal(serverIdentifier:str = ServerConfig.PBFS_SERVER_IDENTIFIER):
     """
     Downloads the JSON db file from PBFS and saves it into local db
     """
-    pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+    pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
     lcfs = RepoLocalFileStorage()
     db = pbfs.getJSONDB()
     lcfs.writeJSONDB(db)
@@ -68,3 +68,15 @@ def downloadNewMemesFromCloud(jsonDB:JSONMemeDB):
         json.dump(cloudMap, file, indent=4)
 
     print('Local Cloud Map Updated!')
+
+def matchLocalEnvToProd(prodServerIden:str):
+    """
+    Makes the local JSON DB and local meme storage match the production JSON DB and the memes in the cloud storage
+    Does this by downloading the JSON db from PushBullet
+    And downloaidng the new memes from cloud
+    """
+    print('Downloading DB...')
+    downloadPBFSJSONDBToLocal(serverIdentifier=prodServerIden)
+    print('Downloading New Cloud Memes...')
+    downloadNewMemesFromCloud(JSONMemeDB(RepoLocalFileStorage()))
+    print('Completed')
