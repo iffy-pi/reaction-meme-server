@@ -1,5 +1,8 @@
-from flask import request
+import traceback
 
+from flask import request, Response
+
+from apiutils.HTTPResponses import error_response
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
@@ -37,3 +40,9 @@ def makeMemeJSON(meme: MemeContainer) -> dict:
             'tags': meme.getTags(),
             'url': meme.getURL(),
         }
+
+
+def serverErrorResponse(e: Exception) -> Response:
+    print(f'Exception Occured: {e}')
+    traceback.print_exc()
+    return error_response(500, f"Unexpected Server Error")

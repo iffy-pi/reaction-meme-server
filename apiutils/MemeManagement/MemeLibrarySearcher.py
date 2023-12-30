@@ -63,7 +63,6 @@ class MemeLibrarySearcher:
         self.__indexLock = None
 
     # TODO: Is our mutex/semaphore lock stuff configured correctly, ELEC 377 review
-    # TODO: Do DB locks in db class
     def __isIndexLocked(self):
         return self.__indexLock
 

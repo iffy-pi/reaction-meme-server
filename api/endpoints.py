@@ -156,7 +156,7 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
         }
     )
 
-
+# TODO: Review this
 def uploadMemeRequest(fileExt) -> Response:
     if fileExt is None:
         return error_response(400, 'Missing parameter "fileExt"')
@@ -164,7 +164,7 @@ def uploadMemeRequest(fileExt) -> Response:
     # Create a new upload session key
     sessionKey = UploadSessionManager.getInstance().newSession(fileExt=fileExt)
     uploadUrl = url_for("route_upload_meme",
-                                     uploadKey=sessionKey,
+                                     sessionKey=sessionKey,
                                      _external=True)
 
     return make_json_response({'uploadURL': uploadUrl})

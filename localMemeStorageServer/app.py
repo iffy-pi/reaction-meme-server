@@ -20,15 +20,6 @@ def get_meme(id):
 def index():
     return make_json_response({ 'message': 'Hello World'})
 
-# TODO local uploading
-@app.route('/local/meme/upload', methods=['GET', 'POST'])
-def upload_meme():
-    # valid upload session get the image  data
-    mediaBinary = request.data
-    upl = makeLocalMemeStorage()
-    cloudID, cloudURL = upl.uploadMedia(mediaBinary, 'mp4')
-
-    return make_json_response({'url': cloudURL})
 
 # running the code
 if __name__ == '__main__':

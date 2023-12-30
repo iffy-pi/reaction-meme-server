@@ -10,41 +10,56 @@ information = {
 	'fileExt': ext
 }
 
-memeAddURL = f'{serverURL}/memes/add'
-
 tags = SplitText(information['tags'], ',')
 
-addRes = GetContentsOfURL(memeAddURL, method='POST', headers={'Access-Token': accessToken}, json={
-		'name': information['name'],
-		'tags': tags,
+# First do the upload request
+reqResp = GetContentsOfURL(f'{serverURL}/upload-request', method='POST', headers={'Access-Token': accessToken}, json={
 		'fileExt': information['fileExt']
 	})
 
-if addRes['error'] is not None:
+if reqResp['error'] is not None:
 	text = f'''
 	An error occured with the request:
-	{addRes['error']}
+	{reqResp['error_message']}
 	'''
 	QuickLook(text)
 	StopShortcut()
 
-
-uploadURL = addRes['payload.uploadURL']
+# Then upload the meme to the upload URL
+uploadURL = reqResp['payload.uploadURL']
 
 uploadRes = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, file=mediaItem )
 
 if uploadRes['error'] is not None:
 	text = f'''
 	An error occured with the request:
-	{uploadRes['error']}
+	{uploadRes['error_message']}
 	'''
 	QuickLook(text)
 	StopShortcut()
 
+
+addRes = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-Token': accessToken}, json={
+		'name': information['name'],
+		'tags': tags,
+		'fileExt': information['fileExt'],
+		'cloudID': uploadRes['payload.cloudID'],
+		'cloudURL': uploadRes['payload.cloudURL']
+	})
+
+if addRes['error'] is not None:
+	text = f'''
+	An error occured with the request:
+	{addRes['error_message']}
+	'''
+	QuickLook(text)
+	StopShortcut()
+
+
 text = f'''
 ID: {addRes['payload.id']}
 Name: "{addRes['payload.name']}"
-URL: {uploadRes['payload.url']}
+URL: {addRes['payload.url']}
 '''
 
 Notification(title='Your meme has been uploaded', body=text, attachment=mediaItem)

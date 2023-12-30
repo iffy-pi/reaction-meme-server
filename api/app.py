@@ -1,11 +1,10 @@
 # import threading
-import traceback
 
-from flask import (Flask, request, url_for)
+from flask import (Flask, request)
 from flask_cors import CORS
 
 from api.endpoints import *
-from api.functions import initAndIndexMemeLibrary, validAccess
+from api.functions import initAndIndexMemeLibrary, validAccess, serverErrorResponse
 from apiutils.HTTPResponses import *
 from apiutils.configs.ServerConfig import ServerConfig
 
@@ -20,11 +19,6 @@ CORS(app)
 
 # Initialize our library
 memeLib = initAndIndexMemeLibrary()
-
-def serverErrorResponse(e: Exception):
-    print(f'Exception Occured: {e}')
-    traceback.print_exc()
-    return error_response(500, f"Unexpected Server Error")
 
 
 @app.route('/download/<int:memeID>', methods=['GET'])
@@ -90,10 +84,10 @@ def route_upload_request():
         return serverErrorResponse(e)
 
 
-@app.route('/upload/<uploadKey>', methods=['POST'])
-def route_upload_meme(uploadKey):
+@app.route('/upload/<sessionKey>', methods=['POST'])
+def route_upload_meme(sessionKey):
     try:
-        return uploadMeme(uploadKey, request.data, memeLib)
+        return uploadMeme(sessionKey, request.data, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -110,10 +104,12 @@ def test():
     except Exception as e:
         return serverErrorResponse(e)
 
+
+
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
 def index():
-    return make_json_response({ 'message': 'Welcome To Meme Server, checkout the API usage: https://github.com/iffy-pi/reaction-meme-server?tab=readme-ov-file#using-the-api'})
+    return make_json_response({ 'message': 'Welcome To Meme Server, checkout the API usage: https://github.com/iffy-pi/reaction-meme-server?tab=readme-ov-file#api-documentation'})
 
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Build the React client frontend :(((
