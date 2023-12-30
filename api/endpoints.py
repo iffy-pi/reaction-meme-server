@@ -6,6 +6,10 @@ from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeTo
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ComponentOverrides import *
 
+class EndPointException(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 def getMemeInfo(memeID,  memeLib: MemeLibrary) -> Response:
     memeID = int(memeID)
@@ -43,24 +47,19 @@ def editMeme(memeID, name, tags, memeLib: MemeLibrary) -> Response:
             return error_response(400,
                                   message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
 
-    if name is not None:
-        if type(name) != str:
-            return error_response(400, message=f"'name' parameter must be a JSON String")
-
-    if tags is not None:
-        if type(tags) != list:
-            return error_response(400, message=f"'tags' parameter must be a JSON Array")
-
     # if no values to edit, just return the meme as it is
     if all(param is None for param in [name, tags]):
         meme = memeLib.getMeme(memeID)
         return make_json_response(makeMemeJSON(meme))
 
     # edit the meme
-    memeLib.editMeme(memeID, name=name, tags=tags)
+    if not memeLib.editMeme(memeID, name=name, tags=tags):
+        raise EndPointException(f'Failed to edit meme in the library, id={memeID}, name="{name}", tags={tags}')
 
     # Save the changes to the library and reindex with new tags
-    memeLib.saveLibrary()
+    if not memeLib.saveLibrary():
+        raise EndPointException('Failed to save the meme library')
+
     memeLib.indexLibrary()
 
     # return the meme information
@@ -139,10 +138,19 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
     # Create the entry in the database
     meme = memeLib.addMemeToLibrary(name=name, tags=tags, fileExt=fileExt, cloudID=cloudID, cloudURL=cloudURL, addMemeToIndex=True)
 
+    if meme is None:
+        d = {
+            'name': name, 'tags': tags, 'fileExt': fileExt, 'cloudID': cloudID, 'cloudURL': cloudURL
+        }
+        raise EndPointException(f'Failed to add meme to library: {d}')
+
     # TODO: Use thread to save and reindex library asynchronously
     # Meme library has index mutex to synchronize requests for searching or adding to the index
     # threading.Thread(target=saveLibrary).start()
-    memeLib.saveLibrary()
+    success = memeLib.saveLibrary()
+
+    if not success:
+        raise EndPointException('Failed to save the meme library')
 
     # respond with the item informaion and an upload URL
     return make_json_response(
@@ -156,7 +164,7 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
         }
     )
 
-# TODO: Review this
+
 def uploadMemeRequest(fileExt) -> Response:
     if fileExt is None:
         return error_response(400, 'Missing parameter "fileExt"')
@@ -180,6 +188,9 @@ def uploadMeme(sessionKey:str, data:bytes, memeLib: MemeLibrary ) -> Response:
 
     # perform the upload
     cloudID, cloudURL = memeLib.uploadMedia(data, fileExt)
+
+    if cloudID is None or cloudURL is None:
+        raise EndPointException('Failed to upload meme media')
 
     # return the ID and URL in the response
     return make_json_response(
