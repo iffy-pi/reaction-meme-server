@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 from apiutils.HTTPResponses import *
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
+from apiutils.MemeManagement.MemeMediaType import memeMediaTypeToString, MemeMediaType, stringToMemeMediaType
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ComponentOverrides import *
 
@@ -74,7 +75,7 @@ def route_info_meme(memeID):
         memeJSON = {
             'id': meme.getID(),
             'name': meme.getName(),
-            'type': meme.getTypeString(),
+            'type': meme.getMediaTypeString(),
             'tags': meme.getTags(),
             'url': meme.getURL(),
         }
@@ -92,20 +93,30 @@ def route_meme_search():
         if query is None or query == "":
             return error_response(400, 'No query found, use "query" for the URL parameter')
 
+        mediaTypeStr = request.args.get("media_type")
         itemsPerPage = request.args.get("per_page")
         pageNo = request.args.get("page")
 
         itemsPerPage = int(itemsPerPage) if itemsPerPage is not None else 10
         pageNo = int(pageNo) if pageNo is not None else 1
+        mediaType = None
 
-        matchedMemes = memeLib.findMemes(query, itemsPerPage=itemsPerPage, pageNo=pageNo)
+        if mediaTypeStr is not None:
+            mediaTypeStr = mediaTypeStr.lower()
+            acceptedTypeStrs = [ memeMediaTypeToString(MemeMediaType.IMAGE), memeMediaTypeToString(MemeMediaType.VIDEO)]
+            if mediaTypeStr not in acceptedTypeStrs:
+                return error_response(400, f'Invalid media type: "{mediaTypeStr}". Accepted types are: {acceptedTypeStrs}')
+
+            mediaType = stringToMemeMediaType(mediaTypeStr)
+
+        matchedMemes = memeLib.search(query, itemsPerPage=itemsPerPage, pageNo=pageNo, onlyMediaType=mediaType)
         collated = [{
             'id': meme.getID(),
             'name': meme.getName(),
             'url': meme.getURL()}
             for meme in matchedMemes]
 
-        return make_json_response({'results': collated, 'itemsPerPage': len(collated), 'pageNo': pageNo})
+        return make_json_response({'results': collated, 'itemCount': len(collated), 'pageNo': pageNo})
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -185,7 +196,7 @@ def route_edit_meme(memeID):
         memeJSON = {
             'id': meme.getID(),
             'name': meme.getName(),
-            'type': meme.getTypeString(),
+            'type': meme.getMediaTypeString(),
             'tags': meme.getTags(),
             'url': meme.getURL(),
         }
@@ -230,7 +241,7 @@ def route_add_new_meme():
             {
                 "id": meme.getID(),
                 "name": meme.getName(),
-                'type': meme.getTypeString(),
+                'type': meme.getMediaTypeString(),
                 "tags": meme.getTags(),
                 "fileExt": meme.getFileExt(),
                 "uploadURL": url_for("route_upload_meme",

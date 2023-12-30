@@ -1,4 +1,4 @@
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, memeMediaTypeToInt
 from localMemeStorageServer.utils.LocalStorageUtils import cloudMemeNeedsToBeConvertedToLocal, getLocalVersionForCloudMeme
 class MemeContainer:
     """
@@ -11,14 +11,14 @@ class MemeContainer:
         self.fileExt =  fileExt
         self.cloudID =  cloudID
         self.cloudURL = cloudURL
-        self.type = type
+        self.mediaType = type
 
     @staticmethod
     def getDefaultName() -> str:
         return ''
 
     @staticmethod
-    def getDefaultType() -> MemeMediaType:
+    def getDefaultMediaType() -> MemeMediaType:
         return MemeMediaType.UNKNOWN
 
     @staticmethod
@@ -37,7 +37,7 @@ class MemeContainer:
     def getDefaultCloudURL() -> str:
         return ''
 
-    def setProperty(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt:str=None, tags:list[str]=None, cloudID:str=None, cloudURL:str=None):
+    def setProperty(self, id:int=None, name:str=None, mediaType: MemeMediaType =None, fileExt:str=None, tags:list[str]=None, cloudID:str=None, cloudURL:str=None):
         """
         Set the property of the meme library item, any arguments left to None will not have the property value changed
         """
@@ -53,8 +53,8 @@ class MemeContainer:
             self.cloudID = cloudID
         if cloudURL is not None:
             self.cloudURL = cloudURL
-        if type is not None:
-            self.type = type
+        if mediaType is not None:
+            self.mediaType = mediaType
 
     def getID(self) -> int:
         return self.id
@@ -65,11 +65,18 @@ class MemeContainer:
     def getTags(self) -> list[str]:
         return self.tags
 
-    def getType(self) -> MemeMediaType:
-        return self.type
+    def getMediaType(self) -> MemeMediaType:
+        return self.mediaType
 
-    def getTypeString(self) -> str:
-        return str(self.type.value)
+    def getMediaTypeString(self) -> str:
+        if self.mediaType is None:
+            return "None"
+        return memeMediaTypeToString(self.mediaType)
+
+    def getMediaTypeInt(self) -> int:
+        if self.mediaType is None:
+            return -1
+        return memeMediaTypeToInt(self.mediaType)
 
     def getFileExt(self) -> str:
         return self.fileExt
@@ -89,4 +96,4 @@ class MemeContainer:
 
     def __str__(self):
         converted = '{}'.format(', convertedToLocal' if cloudMemeNeedsToBeConvertedToLocal(self.cloudURL) else '')
-        return f'Meme(id={self.id}, name="{self.name}", {self.type}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.getCloudID()}, url={self.getURL()}{converted})'
+        return f'Meme(id={self.id}, name="{self.name}", {self.mediaType}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.getCloudID()}, url={self.getURL()}{converted})'

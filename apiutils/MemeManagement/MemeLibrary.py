@@ -3,8 +3,8 @@ import csv
 
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.MemeManagement.MemeContainer import MemeContainer
-from apiutils.MemeManagement.MemeMediaType import getMediaTypeForExt
-from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher
+from apiutils.MemeManagement.MemeMediaType import getMediaTypeForExt, MemeMediaType
+from apiutils.MemeManagement.MemeLibrarySearcher import MemeLibrarySearcher, MemeSearchHit
 from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
 
 class MemeLibraryException(Exception):
@@ -141,27 +141,18 @@ class MemeLibrary:
 
         self.libSearcher.indexMeme(meme)
 
-
-    def findMemeURLs(self, query:str, itemsPerPage:int=10, pageNo:int=1) -> list[str]:
-        """
-        Get the URLs of memes which match the given search query
-        :param query: The search query
-        :param itemsPerPage: The number of items per page of search results
-        :param pageNo: The page in search results
-        :return: The list of meme URLs
-        """
-        return [self.libSearcher.getSearchResultAttr(res, memeURL=True) for res in self.libSearcher.search(query, itemsPerPage, pageNo)]
-
-    def findMemes(self, query:str, itemsPerPage:int=10, pageNo:int=1) -> list[MemeContainer]:
+    def search(self, query:str, itemsPerPage:int=10, pageNo:int=1, onlyMediaType:MemeMediaType=None, excludeMediaType: MemeMediaType = None) -> list[MemeContainer]:
         """
         Get the memes that match the search query
         :param query: The search query
         :param itemsPerPage: The number of items per page of search results
         :param pageNo: The page in search results
+        :param excludeMediaType: Exclude this meme media type from the search results
+        :param onlyMediaType: Search results should only be of this meme media type
         :return: The list of meme URLs
         """
-        results = self.libSearcher.search(query, itemsPerPage, pageNo)
-        ids = [ self.libSearcher.getSearchResultAttr(res, memeID=True) for res in results ]
+        results = self.libSearcher.search(query, itemsPerPage, pageNo, onlyMediaType=onlyMediaType, excludeMediaType=excludeMediaType)
+        ids = [ hit.memeID for hit in results ]
         return [ self.getMeme(memeId) for memeId in ids ]
 
     def browseMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:

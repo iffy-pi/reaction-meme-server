@@ -1,16 +1,33 @@
 from contextlib import contextmanager
 
+from whoosh import query
 from whoosh.analysis import StemmingAnalyzer
-from whoosh.fields import Schema, TEXT, KEYWORD, STORED
+from whoosh.fields import Schema, TEXT, KEYWORD, STORED, NUMERIC
 from whoosh.qparser import OrGroup, MultifieldParser
 from whoosh.filedb.filestore import RamStorage
+from whoosh.searching import Searcher
 
 from apiutils.MemeManagement.MemeContainer import MemeContainer
+from apiutils.MemeManagement.MemeMediaType import intToMemeMediaType, MemeMediaType, memeMediaTypeToInt
+
 
 class MemeLibrarySearcherException(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
+
+class MemeSearchHit:
+    """
+    A container class used to store a hit in the search.
+    A hit meaning a matching item in the index
+    """
+    def __init__(self, memeID: int, name:str, mediaType: int, memeURL:str):
+        # SCHEMA_FIELDS_RELEVANT_HERE
+        # Hit class should have properties for all the storable fields
+        self.memeID = memeID
+        self.name = name
+        self.mediaType = intToMemeMediaType(mediaType)
+        self.memeURL = memeURL
 
 class MemeLibrarySearcher:
     """
@@ -18,21 +35,22 @@ class MemeLibrarySearcher:
     """
     # Note: This has been configured to use a specific set of field names: memeID, name, tags
     # If the fields have been changed be sure to change all places marked with the comment:
-    # KEYFIELDS_RELEVANT_HERE
+    # SCHEMA_FIELDS_RELEVANT_HERE
     def __init__(self):
         # we create our scheme here
         # Each keyword argument is a field name in the schema
-        # KEYFIELDS_RELEVANT_HERE
+        # SCHEMA_FIELDS_RELEVANT_HERE
         self.__schema = Schema(
             memeID=STORED,
             memeURL=STORED,
             name=TEXT(stored=True, analyzer=StemmingAnalyzer()),
+            mediaType=NUMERIC(stored=True),
             tags=KEYWORD(lowercase=True, scorable=True, commas=True, analyzer=StemmingAnalyzer())
         )
 
         # Field parser for the query, the fieldnames list should match the field names above
         # Designed to search in both names and tag field, using an or-ing of results
-        # KEYFIELDS_RELEVANT_HERE
+        # SCHEMA_FIELDS_RELEVANT_HERE
         self.__queryParser =  MultifieldParser(
                 ["name", "tags"],
                 schema=self.__schema,
@@ -60,14 +78,15 @@ class MemeLibrarySearcher:
         self.__indexLock = False
 
     def __addMemeToWriter(self, indexWriter, meme:MemeContainer):
-        # KEYFIELDS_RELEVANT_HERE
+        # SCHEMA_FIELDS_RELEVANT_HERE
         indexWriter.add_document(memeID=meme.getID(),
                                  name=meme.getName(),
                                  tags=','.join(meme.getTags()),
-                                 memeURL=meme.getURL()
+                                 memeURL=meme.getURL(),
+                                 mediaType=meme.getMediaTypeInt()
                                  )
 
-    def hasIndex(self):
+    def hasIndex(self) -> bool:
         return self.__index is not None
 
     def indexMemeList(self, memes:list[MemeContainer]):
@@ -96,7 +115,7 @@ class MemeLibrarySearcher:
         self.__releaseIndexLock()
 
     @contextmanager
-    def getSearcher(self):
+    def getSearcher(self) -> Searcher:
         if self.__index is None:
             raise MemeLibrarySearcherException('Database has not been indexed')
 
@@ -108,31 +127,19 @@ class MemeLibrarySearcher:
             searcher.close()
             self.__releaseIndexLock()
 
-    def __hitToSearchResult(self, hit):
-        # KEYFIELDS_RELEVANT_HERE
-        return {"memeID": hit["memeID"],
-                  "name": hit["name"],
-                  "memeURL": hit["memeURL"],
-                  }
 
-    def __parseResults(self, results):
-        return [ self.__hitToSearchResult(hit) for hit in results ]
+    def search(self, queryStr:str, itemsPerPage, pageNo, onlyMediaType: MemeMediaType=None, excludeMediaType: MemeMediaType = None) -> list[MemeSearchHit]:
+        q = self.__queryParser.parse(queryStr)
+        filterTypeQuery = None
+        excludeTypeQuery = None
 
-    def search(self, query:str, itemsPerPage, pageNo):
-        q = self.__queryParser.parse(query)
         with self.getSearcher() as s:
-            results = s.search_page(q, pageNo, pagelen=itemsPerPage)
-            return self.__parseResults(results)
+            # SCHEMA_FIELDS_RELEVANT_HERE
+            if onlyMediaType is not None:
+                filterTypeQuery = query.Term("mediaType", str(memeMediaTypeToInt(onlyMediaType)))
 
-    def getSearchResultAttr(self, result, memeID:bool=False, name:bool=False, memeURL:bool=False):
-        """
-        Retrieves a stored property from the search results.
-        Simply set the property param of the property you would like to retrieve to true
-        """
-        # KEYFIELDS_RELEVANT_HERE
-        if memeID:
-            return result["memeID"]
-        if name:
-            return result["name"]
-        if memeURL:
-            return result["memeURL"]
+            if excludeMediaType is not None:
+                excludeTypeQuery = query.Term("mediaType", str(memeMediaTypeToInt(excludeMediaType)))
+
+            results = s.search_page(q, pageNo, pagelen=itemsPerPage, filter=filterTypeQuery, mask=excludeTypeQuery)
+            return [ MemeSearchHit(hit['memeID'], hit['name'], hit['mediaType'], hit['memeURL']) for hit in results ]

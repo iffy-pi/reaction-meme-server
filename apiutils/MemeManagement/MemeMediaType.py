@@ -3,9 +3,15 @@ VIDEO_EXTENSIONS = ('mov', 'mp4', 'webm', 'avi', '3g2', 'mpeg' '3gp', 'ts', 'ogv
 IMAGE_EXTENSIONS = ('jpg', 'jpeg', 'png', 'gif', 'heic', 'tiff', 'webp', 'ico', 'tif', 'svg', 'bmp')
 
 class MemeMediaType(Enum):
-    IMAGE = 'image'
-    VIDEO = 'video'
-    UNKNOWN = 'unknown'
+    UNKNOWN = 0
+    IMAGE = 1
+    VIDEO = 2
+
+STRING_MAP =  {
+    MemeMediaType.UNKNOWN : 'unknown',
+    MemeMediaType.IMAGE : 'image',
+    MemeMediaType.VIDEO : 'video',
+}
 
 def getMediaTypeForExt(fileExt:str) -> MemeMediaType:
     fileExt = fileExt.lower().replace('.', '')
@@ -16,15 +22,23 @@ def getMediaTypeForExt(fileExt:str) -> MemeMediaType:
     else:
         return MemeMediaType.UNKNOWN
 
-def getMediaTypeFromValue(st:str) -> MemeMediaType:
-    types = [
-        MemeMediaType.IMAGE,
-        MemeMediaType.VIDEO,
-        MemeMediaType.UNKNOWN
-    ]
+def stringToMemeMediaType(st:str) -> MemeMediaType:
+    types = list(MemeMediaType.__members__.values())
     st = st.lower()
     for t in types:
-        if st ==t.value:
+        if st == STRING_MAP[t]:
             return t
 
     raise Exception(f"Unknown type for string '{st}'")
+
+def memeMediaTypeToString(t: MemeMediaType) -> str:
+    return STRING_MAP[t]
+
+def memeMediaTypeToInt(t: MemeMediaType) -> int:
+    return t.value
+
+def intToMemeMediaType(i: int) -> MemeMediaType:
+    types = list(MemeMediaType.__members__.values())
+    for t in types:
+        if i == t.value:
+            return t

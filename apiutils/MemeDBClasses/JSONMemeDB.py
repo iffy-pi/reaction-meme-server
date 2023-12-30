@@ -1,7 +1,7 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeContainer import MemeContainer
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType, getMediaTypeFromValue
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, stringToMemeMediaType
 
 
 class JSONMemeDB(MemeDBInterface):
@@ -89,7 +89,7 @@ class JSONMemeDB(MemeDBInterface):
         return MemeContainer(
             id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
             name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
-            type=getMediaTypeFromValue(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
+            type=stringToMemeMediaType(jsonItem[JSONMemeDB.DBFields.ItemFields.Type]),
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
             cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],
@@ -168,9 +168,9 @@ class JSONMemeDB(MemeDBInterface):
         If a property of memeItem is None, the field in the database is not updated
         """
         return self.__updateItemProperty(itemId,
-                                  name=item.getName(), type=item.getType(), tags=item.getTags(),
-                                  fileExt=item.getFileExt(), cloudID=item.getCloudID(),
-                                  cloudURL=item.getURL())
+                                         name=item.getName(), type=item.getMediaType(), tags=item.getTags(),
+                                         fileExt=item.getFileExt(), cloudID=item.getCloudID(),
+                                         cloudURL=item.getURL())
 
     def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:
         self.__errIfUnloadedDB()
