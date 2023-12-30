@@ -9,5 +9,6 @@ class MemeStorageInterface:
     def uploadMedia(self, mediaBinary:bytes, fileExt) -> tuple[str, str]:
         """
         Upload the media binary to the storage service, returning the storage ID and delivery URL
+        Returns None, None if the operation failed
         """
         raise Exception("Must implement in subclass")

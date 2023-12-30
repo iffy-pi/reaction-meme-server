@@ -29,20 +29,24 @@ class MemeLibrary:
             raise MemeLibraryException("Item ID does not exist in db")
         return self.db.getMemeItem(itemId)
 
-    def uploadItemMedia(self, itemId:int, mediaBinary):
+    def uploadItemMedia(self, itemId:int, mediaBinary) -> str:
         """
         Uploads the media binary to the cloud and associates it with the item pointed to by the item ID
         :param itemId: The id of the item in the database
         :param mediaBinary: The binary data of the media to be uploaded
-        :return: The cloud URL
+        :return: The cloud URL, None if the operation was not completed successfully
         """
         cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())
-        self.db.updateItem(itemId, MemeContainer(cloudID=cloudId, cloudURL=cloudURL))
+
+        if cloudId is None or cloudURL is None:
+            return None
+
+        if not self.db.updateItem(itemId, MemeContainer(cloudID=cloudId, cloudURL=cloudURL)):
+            return None
 
         return cloudURL
 
     def uploadMedia(self, mediaBinary:bytes, fileExt:str) -> tuple[str, str]:
-        # TODO: Add error checking for this function!
         cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
         return cloudId, cloudURL
 
@@ -70,6 +74,10 @@ class MemeLibrary:
         # upload the media
         fileExt = fileExt.lower().replace('.', '')
         cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
+
+        if cloudId is None or cloudURL is None:
+            return None
+
         # add to library
         return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
 
