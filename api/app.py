@@ -24,7 +24,7 @@ memeLib = initAndIndexMemeLibrary()
 @app.route('/download/<int:memeID>', methods=['GET'])
 def route_download_meme(memeID):
     try:
-        downloadMeme(memeID, memeLib)
+        return downloadMeme(memeID, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
