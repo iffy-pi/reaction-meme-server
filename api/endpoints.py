@@ -192,6 +192,9 @@ def uploadMeme(sessionKey:str, data:bytes, memeLib: MemeLibrary ) -> Response:
     if cloudID is None or cloudURL is None:
         raise EndPointException('Failed to upload meme media')
 
+    # clear the session
+    um.clearSession(sessionKey)
+
     # return the ID and URL in the response
     return make_json_response(
         {

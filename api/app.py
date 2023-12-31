@@ -1,6 +1,6 @@
 # import threading
 
-from flask import (Flask, request, send_from_directory)
+from flask import (Flask, request, send_from_directory, render_template)
 from flask_cors import CORS
 
 from api.endpoints import *
@@ -109,10 +109,21 @@ def favicon():
     return send_from_directory(ServerConfig.PROJECT_ROOT, 'favicon.ico')
 
 
+@app.route('/media/<mediaName>')
+def getMedia(mediaName):
+    mediaName = str(mediaName)
+    mediaDir = os.path.join(ServerConfig.PROJECT_ROOT, 'media')
+
+    if not os.path.exists(os.path.join(mediaDir, mediaName)):
+        return error_response(400, "Unknown media!")
+
+    return send_from_directory(mediaDir, mediaName)
+
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
 def index():
-    return make_json_response({ 'message': 'Welcome To Meme Server, checkout the API usage: https://github.com/iffy-pi/reaction-meme-server?tab=readme-ov-file#api-documentation'})
+    return render_template('index.html', publicURL=url_for("index",
+                                     _external=True))
 
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Build the React client frontend :(((
