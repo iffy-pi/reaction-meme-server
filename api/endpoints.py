@@ -78,12 +78,7 @@ def browseMemes(itemsPerPage, pageNo, memeLib: MemeLibrary) -> Response:
     pageNo = int(pageNo)
 
     memes = memeLib.browseMemes(itemsPerPage, pageNo)
-    collated = [{
-        'id': meme.getID(),
-        'name': meme.getName(),
-        'mediaType': meme.getMediaTypeString(),
-        'url': meme.getURL()}
-        for meme in memes]
+    collated = [makeMemeJSON(meme) for meme in memes]
 
     return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'pageNo': pageNo})
 
@@ -98,19 +93,15 @@ def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary)
 
     if mediaTypeStr is not None:
         mediaTypeStr = mediaTypeStr.lower()
-        acceptedTypeStrs = [memeMediaTypeToString(MemeMediaType.IMAGE), memeMediaTypeToString(MemeMediaType.VIDEO)]
+        acceptedTypeStrs = ["all", memeMediaTypeToString(MemeMediaType.IMAGE), memeMediaTypeToString(MemeMediaType.VIDEO)]
         if mediaTypeStr not in acceptedTypeStrs:
             return error_response(400, f'Invalid media type: "{mediaTypeStr}". Accepted types are: {acceptedTypeStrs}')
 
-        mediaType = stringToMemeMediaType(mediaTypeStr)
+        if mediaTypeStr != "all":
+            mediaType = stringToMemeMediaType(mediaTypeStr)
 
     matchedMemes = memeLib.search(query, itemsPerPage=itemsPerPage, pageNo=pageNo, onlyMediaType=mediaType)
-    collated = [{
-        'id': meme.getID(),
-        'name': meme.getName(),
-        'mediaType': meme.getMediaTypeString(),
-        'url': meme.getURL()}
-        for meme in matchedMemes]
+    collated = [makeMemeJSON(meme) for meme in matchedMemes]
 
     return make_json_response({'results': collated, 'itemCount': len(collated), 'pageNo': pageNo})
 

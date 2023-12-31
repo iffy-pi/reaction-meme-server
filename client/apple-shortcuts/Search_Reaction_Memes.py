@@ -5,7 +5,6 @@ accessToken = RunShortcut('Get RMSVR Access Token')
 serverURL = '...'
 
 
-
 # vcard base64 photo icons
 servingSizeIcon = # ... , see servingSizeIcon.txt
 forwardIcon = # forwardIcon.txt
@@ -14,101 +13,51 @@ searchIcon = # searchIcon.txt
 cancelIcon = # cancelIcon.txt
 verifIcon = '★'
 
-
-resCount = 6
+resultsPerPage = 7
 searchExit = FALSE
 pageNo = 1
 
 text = f'''
-    Enter Food/ search query.
+    Enter meme search query.
     To cancel, enter an empty search query.
 '''
 
-query = AskForInput(Input.Text, prompt="What Food/Drink?")
+query = AskForInput(Input.Text, prompt=text)
 
+# Check if the query is empty
 updatedText = query.ReplaceText(' ', '')
 if updatedText is None:
     StopShortcut()
+
+searchMediaType = "all"
 
 for _ in range (50):
     if searchExit == FALSE:
         searchItems = {}
 
         # make the query and savethe items
-        url = URL(f"https://api.myfitnesspal.com/public/nutrition?q={query}&page={pageNo}&per_page={noSearchResults}")
+        url = URL(f"{serverURL}/search?query={query}&page={pageNo}&per_page={resultsPerPage}&media_type={searchMediaType}")
         res = Dictionary(GetContentsOfURL(URL))
 
-        for repeatItem in res['items']:
+        for repeatItem in res['payload.results']:
             # cache the item away using its id
-            tags = repeatItem['tags']
-            item = repeatItem['item']
+            item = repeatItem
             itemId = item['id']
             searchItems[ itemId ] = item
 
             # construct the vcard 
-            sizes = item['serving_sizes']
-            dix = sizes.atIndex(1)
-
-            num = Number(dix['value'])
-            servingSize = f"{num} {dix['unit']}"
-
-            if Count(sizes) > 1:
-                servingSize = f"{servingSize} (and more sizes)"
-
-
-            if item['brand_name'] is not None:
-                IFRESULT=f"{item['brand_name']} | {servingSize}"
-            else:
-                IFRESULT = f"{servingSize}"
-
-            subtitle = IFRESULT
-
-            dix = item['nutritional_contents']
-            
-            # if a food has no energy dictionary, add a zeroed out dictionary
-            # avoids key errors when accessing nested value key for missing energy dictionary
-            if item['nutritional_contents.energy'] is None:
-                dix['energy'] = {
-                    "unit": "calories",
-                    "value": 0
-                },
-
-                item['nutritional_contents'] = dix
-                searchItems[itemId] = item
-
-            # only add the subtitle if all the relevant keys exist in the food
-            res = FilterFiles(dix.keys, whereAny=[
-                    'Name' == 'energy',
-                    'Name' == 'carbohydrates',
-                    'Name' == 'fat',
-                    'Name' == 'protein'
-                ])
-
-            if Count(res) == 4:
-                # In shortcuts, you can access nested keys using dot notation
-                # so item['a.b.c'] is equivalent to python item['a']['b']['c']
-                # Note this is actually a literal \n, not a newline character
-                subtitle = f'''
-                    {subtitle}\nCals: {item['nutritional_contents.energy.value']} ⸱ Carbs: {item['nutritional_contents.carbohydrates']}g ⸱ Fat: {item['nutritional_contents.fat']}g ⸱ Protein: {item['nutritional_contents.protein']}g
-                '''
-
-            # Add verifIcon if it is a best match
-            files = FilterFiles(tags, whereAny=['Name' == 'canonical', 'Name' == 'best_match'])
-            if Count(files) == 2:
-                IFRESULT = f' {verifIcon}'
-            else:
-                IFRESULT = ''
-            
+            tags = CombineText(item['tags'], ',')
             text = f'''
             BEGIN:VCARD
             VERSION:3.0
-            N;CHARSET=UTF-8:{item['description']}{IFRESULT}
-            ORG;CHARSET=UTF-8:{subtitle}
+            N;CHARSET=UTF-8:{item['name']}
+            ORG;CHARSET=UTF-8:{tags}
             NOTE;CHARSET=UTF-8:{itemId}
             END:VCARD
             '''
             
             REPEATRESULTS.append(text)
+        
         itemCards = REPEATRESULTS
 
         # Add next, previous, new search and cancel search buttons
@@ -136,6 +85,14 @@ for _ in range (50):
 
             BEGIN:VCARD
             VERSION:3.0
+            N;CHARSET=utf-8:Apply search filter
+            ORG:Filter for specific media type or other items
+            NOTE;CHARSET=UTF-8:Filter
+            {searchIcon}
+            END:VCARD
+
+            BEGIN:VCARD
+            VERSION:3.0
             N;CHARSET=utf-8:New Search
             ORG: Try a different query
             NOTE;CHARSET=UTF-8:New
@@ -144,7 +101,7 @@ for _ in range (50):
 
             BEGIN:VCARD
             VERSION:3.0
-            N;CHARSET=utf-8:Cancel Search
+            N;CHARSET=utf-8:Exit
             ORG:No food will be selected
             NOTE;CHARSET=UTF-8:Cancel
             {searchIcon}
@@ -156,7 +113,6 @@ for _ in range (50):
 
         text = f'''
         "{query}" Search Results ⸱ Page {pageNo}
-        {verifIcon} - Verified Best Matches
         '''
 
         chosenItem = ChooseFrom(contacts, prompt=text)
@@ -173,10 +129,23 @@ for _ in range (50):
                 Alert("This is the first page of the search!")
                 pageNo = pageNo + 1
 
+        if chosenItem.Notes == 'Filter':
+            isControlItem = TRUE
+            Menu('Select Filter'):
+                case 'Images Only':
+                    MENURESULT = "images"
+                case 'Videos Only':
+                    MENURESULT = "video"
+                case 'All Types':
+                    MENURESULT = "all"
+
+            searchMediaType = MENURESULT
+            pageNo = 1
+
         if chosenItem.Notes == 'New':
             isControlItem = TRUE
-            res = RunShorctut(NutriDix['Search Algorithm'])
-            StopShortcut(output = res)
+            RunShorctut('Search Reaction Memes')
+            StopShortcut()
 
         if chosenItem.Notes == 'Cancel':
             isControlItem = TRUE
@@ -187,142 +156,38 @@ for _ in range (50):
             itemId = chosenItem.Notes
             item = searchItems[ itemId ]
 
-            # ask the user what serving size they want
-            # if only one size automatically select it
-            # first accumulate serving size information
+            # Download the meme and show the user
+            memeMedia = GetContentsOfURL(item['url'])
 
-            baseCal = item['nutritional_contents.energy.value']
+            QuickLook(memeMedia)
 
-            for repeatItem in item['serving_sizes']:
-                curSize = Dictionary(repeatItem)
-                servingVal = Number(curSize['value'])
-                num = baseCal * curSize['nutrition_multiplier']
-                sizeCal = RoundNumber(num, hundredths)
+            memeSaved = FALSE
 
-                # create the vcard
-                text = f'''
-                    BEGIN:VCARD
-                    VERSION:3.0
-                    N;CHARSET=UTF-8:{servingVal} {curSize['unit']}
-                    ORG;CHARSET=UTF-8:{sizeCal} (x{curSize['nutrition_multiplier']})
-                    NOTE;CHARSET=UTF-8:{curSize['nutrition_multiplier']}
-                    {servingSizeIcon}
-                    END:VCARD
-                    '''
-                REPEATRESULTS.append(text)
+            # present with menu on what they would like to do
+            Menu('What would you like to do?'):
+                case 'Save Meme':
+                    SaveToPhotoAlbum(memeMedia, 'Reaction Memes')
+                    memeSaved = TRUE
+                    Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
+                
+                case 'Back To Search':
+                    pass
 
-            if Count(REPEATRESULTS) == 1:
-                # if only one, skip selection
-                text = f'{REPEATRESULTS}'
-                contacts = macros.textToContacts(text)
-                chosenSize = contacts.getFirstItem()
-            else:
-                # For multiple sizes, add a back button to go back to search page
-                text = f'''
-                    BEGIN:VCARD
-                    VERSION:3.0
-                    N;CHARSET=UTF-8:Back
-                    ORG;CHARSET=UTF-8:Go Back To Search
-                    {backwardIcon}
-                    END:VCARD
-                    {REPEATRESULTS}
-                '''
-                # choose from it
-                renamedItem = SetName(text, 'vcard.vcf')
-                contacts = GetContacts(renamedItem)
+                case 'Exit':
+                    StopShortcut()
 
-                chosenSize = ChooseFrom(contacts, prompt="Which Serving Size?")
-
-
-            if chosenSize.Name != "Back"
-                # we have the users food now we just need to create it
-                # aggregate the needed information and send it out
-                searchExit = TRUE
-                selectedItem = item
-                selectedServingSize = Text(chosenSize.Name)
-                multiplier = Number(chosenSize.Notes)
-                nutrInfo = Dictionary(selectedItem['nutritional_contents'])
-
-                outputFood = {
-                    "Name":            item['description'],
-                    "Barcode":         "",
-                    "Serving Size":    selectedServingSize,
-                    "Calories":        nutrInfo['energy.value'],
-                    "Carbs":           nutrInfo['carbohydatrates'],
-                    "Sugar":           nutrInfo['sugar'],
-                    "Fiber":           nutrInfo['fiber'],
-                    "Protein":         nutrInfo['protein'],
-                    "Fat":             nutrInfo['fat'],
-                    "Monounsaturated": nutrInfo['monounsaturated_fat'],
-                    "Polyunsaturated": nutrInfo['polyunsaturated_fat'],
-                    "Saturated":       nutrInfo['saturated_fat'],
-                    "Trans":           0,
-                    "Sodium":          nutrInfo['sodium'],
-                    "Cholesterol":     nutrInfo['cholesterol'],
-                    "Potassium":       nutrInfo['potassium'],
-                    "VitA":            nutrInfo['vitamin_a'],
-                    "VitC":            nutrInfo['vitamin_c'],
-                    "Calcium":         nutrInfo['calcium'],
-                    "Iron":            nutrInfo['iron']
-                }
-
-
-                # apply servings multiplier on nutrients
-                file = GetFile(From='Shortcuts', 'FLS/Other/nutriKeys.txt')
-                nutrients = SplitText(file, '\n')
-                for item in nutrients:
-                    num = Number(outputFood[item])
-                    num = num * multiplier
-                    num = RoundNumber(num, hundredths)
-                    outputFood[item] = num
-
-                prompt = f'''
-                Search Result:
-                {outputFood['Name']} ({outputFood['Serving Size']})
-                Cals: {outputFood['Calories']} ⸱ Carbs: {outputFood['Carbs']}g ⸱ Fat: {outputFood['Fat']}g ⸱ Protein: {outputFood['Protein']}g
-                Sugar: {outputFood['Sugar']}g ⸱ Fiber: {outputFood['Fiber']}g ⸱ Saturated Fat: {outputFood['Saturated']}g
-                Sodium: {outputFood['Sodium']}mg ⸱ Cholesterol: {outputFood['Cholesterol']}mg ⸱ Potassium: {outputFood['Potassium']}mg
-                VitA: {outputFood['VitA']}% ⸱ VitC: {outputFood['VitC']}% ⸱ Calcium: {outputFood['Calcium']}% ⸱ Iron: {outputFood['Iron']}%
-                '''
-                Menu(prompt):
-                    case 'Accept':
-                        searchExit = TRUE
-                    case 'Edit':
-                        res = RunShorctut(NutriDix['Display Food Item'], input=outputFood)
-                        Menu('Save changes?')
-                            case 'Yes':
-                                searchExit = TRUE
-                                outputFood = res
-                            case 'No, use previous values':
-                                searchExit = TRUE
-                            case 'No, back to search':
-                                pass
+            # if saved then present with secondary options
+            if memeSaved == TRUE:
+                Menu('What would you like to do?'):
                     case 'Back To Search':
                         pass
 
-                    case 'Cancel Search':
+                    case 'New Search':
+                        RunShorctut('Search Reaction Memes')
                         StopShortcut()
 
-
-# used to generate id for shortcut
-outputFood['id'] = RunShorctut(NutriDix['GFID'])
-
-# vitamins are inputted as percentages, change them to exact values
-# source https://www.canada.ca/en/health-canada/services/understanding-food-labels/percent-daily-value.html
-vitDix = {
-    'VitA': 1000,
-    'VitC': 65,
-    'VitD': 1100,
-    'Iron': 14
-}
-
-for item in vitDix.keys():
-    # fractional value
-    num = (outputFood[item] / 100) * vitDix[item]
-    outputFood[item] = RoundNumber(num, hundredths)
-
-StopShortcut(output = outputFood)
-
+                    case 'Exit':
+                        StopShortcut()
 
 
 

@@ -11,7 +11,7 @@ For each API endpoint, a successful response will have a `success` field which i
 Erroneous responses (client and server errors) will have an `error` field set to true, and will always include an `error_message` field, which describes the cause of the error.
 
 ## Privileged Endpoints and Access Tokens
-An endpoint with `privileged` tag is a privileged endpoint. Requests to privileged endpoints must be authenticated with an access token, included in the request header.
+An endpoint with `(privileged)` tag is a privileged endpoint. Requests to privileged endpoints must be authenticated with an access token, included in the request header.
 
 ```python
 {
@@ -65,7 +65,7 @@ If successful, the `payload` field will be a dictionary which contains:
 
 
 
-### Edit Meme Information `privileged`
+### Edit Meme Information `(privileged)`
 This allows you to edit some of the information associated with a meme in the library. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
 #### Call
@@ -112,14 +112,7 @@ The `payload` field of the JSON response will contain the following keys:
 | `page`         | Number | The page number                                                                                                                         |
 | `results`      | Array  | The list of results retrieved.                                                                                                          |
 
-Each element of `results` will have:
-
-| Field       | Type   | Description                                               |
-|-------------|--------|-----------------------------------------------------------|
-| `id`        | Number | The ID of the meme in the library                         |
-| `name`      | String | The colloquial name of the meme e.g. "girl happy at mall" |
-| `mediaType` | String | The media type, either `"image"` or `"video"`             |
-| `url`       | String | The URL to download the meme from                         |
+Each element of `results` will have the same data structure as [Get Meme Information](#get-meme-information).
 
 
 
@@ -147,7 +140,7 @@ Responds with the same data structure as [Browse Memes](#browse-memes).
 
 
 
-### Add New Memes `privileged`
+### Add New Memes `(privileged)`
 Add new memes to the meme library. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
 #### Call
@@ -173,7 +166,7 @@ If successful, the server will echo the information of the new meme. Responds wi
 
 
 
-### Uploading Meme Media `privileged`
+### Uploading Meme Media `(privileged)`
 Upload the media (image/video bytes) of a meme to the server.
 
 This is a two-step process:
@@ -185,7 +178,7 @@ This is a two-step process:
 POST https://reaction-meme-server.vercel.app/upload-request
 ```
 
-#### Upload Request: Request `privileged`
+#### Upload Request: Request `(privileged)`
 The JSON request body should include the following information. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
 | Field     | Type   | Description                                             |
@@ -202,7 +195,7 @@ If successful, response `payload` field will include:
 
 **Note: For security, the upload URL has an access lifetime of 3 hours. That is, a connection to the endpoint will be rejected 3-hours after the URL has been generated.**
 
-#### Upload URL: Call & Request `privileged`
+#### Upload URL: Call & Request `(privileged)`
 Make a call to the `uploadURL` returned as a response to the upload request. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 ```
 POST <uploadURL>
