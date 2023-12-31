@@ -122,8 +122,8 @@ def getMedia(mediaName):
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')
 def index():
-    return render_template('index.html', publicURL=url_for("index",
-                                     _external=True))
+    hostURL = url_for("index", _external=True)
+    return render_template('index.html', publicURL=hostURL)
 
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Build the React client frontend :(((
