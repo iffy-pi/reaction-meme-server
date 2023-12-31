@@ -10,11 +10,11 @@ from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
 
-def uploadLocalJSONDBToPBFS():
+def uploadLocalJSONDBToPBFS(serverIdentifier:str = ServerConfig.PBFS_SERVER_IDENTIFIER):
     """
     Saves data/db.json into PBFS so it matches
     """
-    pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
+    pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
     lcfs = RepoLocalFileStorage()
     db = lcfs.getJSONDB()
     print('Writing data/db.json')

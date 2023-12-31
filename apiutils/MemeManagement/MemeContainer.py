@@ -22,6 +22,14 @@ class MemeContainer:
         return MemeMediaType.UNKNOWN
 
     @staticmethod
+    def getDefaultMediaTypeString() -> str:
+        return memeMediaTypeToString(MemeMediaType.UNKNOWN)
+
+    @staticmethod
+    def getDefaultMediaTypInt() -> int:
+        return memeMediaTypeToInt(MemeMediaType.UNKNOWN)
+
+    @staticmethod
     def getDefaultFileExt() -> str:
         return ''
 
