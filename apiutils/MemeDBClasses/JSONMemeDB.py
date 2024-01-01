@@ -1,7 +1,7 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeContainer import MemeContainer
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType, stringToMemeMediaType
+from apiutils.MemeManagement.MemeMediaType import stringToMemeMediaType
 
 
 class JSONMemeDB(MemeDBInterface):
@@ -89,7 +89,7 @@ class JSONMemeDB(MemeDBInterface):
         return MemeContainer(
             id=jsonItem[JSONMemeDB.DBFields.ItemFields.ID],
             name=jsonItem[JSONMemeDB.DBFields.ItemFields.Name],
-            type=stringToMemeMediaType(jsonItem[JSONMemeDB.DBFields.ItemFields.MediaType]),
+            mediaTypeStr=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaType],
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
             cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],

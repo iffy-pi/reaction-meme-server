@@ -1,17 +1,23 @@
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, memeMediaTypeToInt
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, memeMediaTypeToInt, \
+    stringToMemeMediaType
 from localMemeStorageServer.utils.LocalStorageUtils import cloudMemeNeedsToBeConvertedToLocal, getLocalVersionForCloudMeme
 class MemeContainer:
     """
     Class used as a data container for meme information. It is not connected to the meme library or the meme database that created it.
     """
-    def __init__(self, id:int=None, name:str=None, type: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None):
+    def __init__(self, id:int=None, name:str=None, mediaType: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None, mediaTypeStr:str=None):
         self.id = id
         self.name =     name
         self.tags =     tags
         self.fileExt =  fileExt
         self.cloudID =  cloudID
         self.cloudURL = cloudURL
-        self.mediaType = type
+
+        if mediaTypeStr is not None:
+            self.mediaType = stringToMemeMediaType(mediaTypeStr)
+
+        if mediaType is not None:
+            self.mediaType = mediaType
 
     @staticmethod
     def getDefaultName() -> str:
@@ -78,12 +84,12 @@ class MemeContainer:
 
     def getMediaTypeString(self) -> str:
         if self.mediaType is None:
-            return "None"
+            return None
         return memeMediaTypeToString(self.mediaType)
 
     def getMediaTypeInt(self) -> int:
         if self.mediaType is None:
-            return -1
+            return None
         return memeMediaTypeToInt(self.mediaType)
 
     def getFileExt(self) -> str:

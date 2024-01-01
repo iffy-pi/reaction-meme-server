@@ -95,14 +95,7 @@ def route_upload_meme(sessionKey):
 
 @app.route('/test')
 def test():
-    try:
-        print(request.json)
-        you = request.json.get('you')
-        print(type(you) == list)
-        raise Exception('Failure!')
-        return make_json_response({'url': 'Hello'})
-    except Exception as e:
-        return serverErrorResponse(e)
+    return error_response(400, 'Bad error')
 
 @app.route('/favicon.ico')
 def favicon():

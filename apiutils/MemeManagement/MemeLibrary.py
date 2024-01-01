@@ -57,7 +57,7 @@ class MemeLibrary:
         Note: This makes changes to the database loaded in memory, save/write the Library to push the changes to the remote database
         """
         fileExt = fileExt.lower().replace('.', '')
-        meme = MemeContainer(id=None, name=name, type=getMediaTypeForExt(fileExt), fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
+        meme = MemeContainer(id=None, name=name, mediaType=getMediaTypeForExt(fileExt), fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
 
         if not self.db.addMemeToDB(meme):
             return None
