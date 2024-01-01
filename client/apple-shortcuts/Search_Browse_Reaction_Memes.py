@@ -195,7 +195,8 @@ for _ in range (50):
             item = searchItems[ itemId ]
 
             # Download the meme and show the user
-            memeMedia = GetContentsOfURL(item['url'])
+            res = GetContentsOfURL(item['url'])
+            memeMedia = SetName(res, item['name'])
 
             QuickLook(memeMedia)
 
@@ -235,12 +236,19 @@ for _ in range (50):
 
                     # present with menu on what they would like to do
                     Menu(prompt):
-                        case 'Save Meme':
+                        case 'Save':
                             SaveToPhotoAlbum(memeMedia, 'Reaction Memes')
                             memeSaved = TRUE
                             Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
 
+                        case 'Save and Exit':
+                            SaveToPhotoAlbum(memeMedia, 'Reaction Memes')
+                            memeSaved = TRUE
+                            Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
+                            StopShortcut()
+
                         case 'View Meme':
+                            renamedItem = SetName(memeMedia, memeInfo['name'])
                             QuickLook(memeMedia)
 
                         case 'Edit Meme':
