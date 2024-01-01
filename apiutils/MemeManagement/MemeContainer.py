@@ -12,6 +12,7 @@ class MemeContainer:
         self.fileExt =  fileExt
         self.cloudID =  cloudID
         self.cloudURL = cloudURL
+        self.mediaType = None
 
         if mediaTypeStr is not None:
             self.mediaType = stringToMemeMediaType(mediaTypeStr)
