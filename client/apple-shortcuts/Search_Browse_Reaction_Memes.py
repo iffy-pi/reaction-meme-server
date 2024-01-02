@@ -237,14 +237,14 @@ for _ in range (50):
                     # present with menu on what they would like to do
                     Menu(prompt):
                         case 'Save':
-                            SaveToPhotoAlbum(memeMedia, 'Reaction Memes')
+                            RunShorctut('Save Meme To Local Library', input={ 'id': memeInfo['id'], 'url': memeInfo['url']})
                             memeSaved = TRUE
                             Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
+                            StopShortcut()
 
-                        case 'Save and Exit':
-                            SaveToPhotoAlbum(memeMedia, 'Reaction Memes')
-                            memeSaved = TRUE
-                            Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
+                        case 'Copy URL':
+                            CopyToClipboard(memeInfo['url'])
+                            Notification(title='URL has been copied to your clipboard', body=memeInfo['url'], attachment=memeMedia)
                             StopShortcut()
 
                         case 'View Meme':
@@ -278,10 +278,6 @@ for _ in range (50):
                                 StopShortcut()
 
                             Alert(f'Meme {memeInfo['id']} was edited successfully', showCancel=False)
-
-
-                        case 'Copy URL':
-                            CopyToClipboard(memeInfo['url'])
 
                         
                         case f'{buttonLabels['back']}':
