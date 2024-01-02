@@ -198,7 +198,7 @@ for _ in range (50):
             res = GetContentsOfURL(item['url'])
             memeMedia = SetName(res, item['name'])
 
-            QuickLook(memeMedia)
+            ShowResult(memeMedia)
 
             viewMemeLoopExit = FALSE
             memeSaved = FALSE
@@ -249,7 +249,7 @@ for _ in range (50):
 
                         case 'View Meme':
                             renamedItem = SetName(memeMedia, memeInfo['name'])
-                            QuickLook(memeMedia)
+                            ShowResult(memeMedia)
 
                         case 'Edit Meme':
                             editDix = {
