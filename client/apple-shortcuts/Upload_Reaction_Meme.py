@@ -13,33 +13,27 @@ information = {
 tags = SplitText(information['tags'], ',')
 
 # First do the upload request
-reqResp = GetContentsOfURL(f'{serverURL}/upload-request', method='POST', headers={'Access-Token': accessToken}, json={
+res = GetContentsOfURL(f'{serverURL}/upload-request', method='POST', headers={'Access-Token': accessToken}, json={
 		'fileExt': information['fileExt']
 	})
 
-if reqResp['error'] is not None:
-	text = f'''
-	An error occured with the request:
-	{reqResp['error_message']}
-	'''
-	QuickLook(text)
+if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
+
+reqResp = Dictionary(res)
 
 # Then upload the meme to the upload URL
 uploadURL = reqResp['payload.uploadURL']
 
-uploadRes = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, file=mediaItem )
+res = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, file=mediaItem )
 
-if uploadRes['error'] is not None:
-	text = f'''
-	An error occured with the request:
-	{uploadRes['error_message']}
-	'''
-	QuickLook(text)
+if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
 
+uploadRes = Dictionary(res)
 
-addRes = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-Token': accessToken}, json={
+
+res = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-Token': accessToken}, json={
 		'name': information['name'],
 		'tags': tags,
 		'fileExt': information['fileExt'],
@@ -47,14 +41,11 @@ addRes = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-To
 		'cloudURL': uploadRes['payload.cloudURL']
 	})
 
-if addRes['error'] is not None:
-	text = f'''
-	An error occured with the request:
-	{addRes['error_message']}
-	'''
-	QuickLook(text)
+
+if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
 
+addRes = Dictionary(res)
 
 text = f'''
 ID: {addRes['payload.id']}
