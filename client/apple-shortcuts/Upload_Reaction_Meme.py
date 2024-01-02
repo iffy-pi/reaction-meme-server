@@ -32,7 +32,6 @@ if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 
 uploadRes = Dictionary(res)
 
-
 res = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-Token': accessToken}, json={
 		'name': information['name'],
 		'tags': tags,
