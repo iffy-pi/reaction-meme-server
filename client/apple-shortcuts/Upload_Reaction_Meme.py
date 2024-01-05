@@ -1,7 +1,20 @@
 
+if ShortcutInput is not None:
+	IFRESULT = ShortcutInput
+else:
+	photo = SelectPhotos()
+	IFRESULT = EncodeMedia(photo)
+
+mediaItem = IFRESULT
+
+ShowResult(mediaItem)
+
 accessToken = RunShortcut('Get RMSVR Access Token')
 serverURL = '...'
-mediaItem = ShortcutInput
+
+# Save media item to reaction memes if not already
+savedPhotoName = RunShortcut('Check If Meme Is Uploaded', input=mediaItem)
+
 
 ext = GetDetailsOfFile('File Extension', mediaItem)
 information = {
@@ -45,6 +58,12 @@ if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
 
 addRes = Dictionary(res)
+
+RunShortcut('Save Meme To Local Library', input = {
+		'id': addRes['payload.id'],
+		'photo_name' : savedPhotoName
+	})
+
 
 text = f'''
 ID: {addRes['payload.id']}

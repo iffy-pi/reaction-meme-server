@@ -54,7 +54,12 @@ for _ in range (50):
 
         # make the query and savethe items
         url = URL(f"{baseURL}page={pageNo}&per_page={resultsPerPage}&media_type={searchMediaType}")
-        res = Dictionary(GetContentsOfURL(URL))
+        res = GetContentsOfURL(URL)
+        
+        if RunShortcut('Check RMSVR JSON Response', input=res) is None:
+            StopShortcut()
+
+        res = Dictionary()
 
         for repeatItem in res['payload.results']:
             # cache the item away using its id
@@ -239,7 +244,7 @@ for _ in range (50):
                         case 'Save':
                             RunShorctut('Save Meme To Local Library', input={ 'id': memeInfo['id'], 'url': memeInfo['url']})
                             memeSaved = TRUE
-                            Notification(title='Meme Saved', body=item['name'], attachment=memeMedia)
+                            Notification(title='Meme Saved', body=memeInfo['name'], attachment=memeMedia)
                             StopShortcut()
 
                         case 'Copy URL':
@@ -249,7 +254,7 @@ for _ in range (50):
 
                         case 'View Meme':
                             renamedItem = SetName(memeMedia, memeInfo['name'])
-                            ShowResult(memeMedia)
+                            QuickLook(memeMedia)
 
                         case 'Edit Meme':
                             editDix = {

@@ -11,8 +11,10 @@ localLib = Dictionary(file)
 
 localImgName = localLib[memeID]
 if localImgName is not None:
-	localMeme = FindPhotos('All Photos', filterAllAreTrue(album='Reaction Memes', name=localImgName), limit=1)
-
+	localMemePhoto = FindPhotos('All Photos', filterAllAreTrue(album='Reaction Memes', name=localImgName), limit=1)
+	# Encoding media so that .mov files are interpreted as videos instead of JPEG images
+	if localMemePhoto is not None:
+		localMeme = EncodeMedia(localMemePhoto)
 
 
 if localMeme is None:
@@ -23,7 +25,7 @@ if localMeme is None:
 else:
 	# There is a local meme, delete it and resave it
 	tempLocal = SaveFile(localMeme, To='Shortcuts/ReactionMemeServer/temp', overwrite=True)
-	DeletePhotos(localMeme)
+	DeletePhotos(localMemePhoto)
 	SaveToPhotoAlbum(tempLocal, 'Reaction Memes')
 
 
