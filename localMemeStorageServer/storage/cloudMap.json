@@ -2470,5 +2470,59 @@
         "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/qxeojmeprlcsqodf32pi",
         "localID": "466",
         "localURL": "http://127.0.0.1:5001/local/meme/466"
+    },
+    "memes/qwubyofaszqvsabyopbs": {
+        "cloudID": "memes/qwubyofaszqvsabyopbs",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/qwubyofaszqvsabyopbs",
+        "localID": "467",
+        "localURL": "http://127.0.0.1:5001/local/meme/467"
+    },
+    "memes/x6cdxypwxz08sbfmikpe": {
+        "cloudID": "memes/x6cdxypwxz08sbfmikpe",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/x6cdxypwxz08sbfmikpe",
+        "localID": "468",
+        "localURL": "http://127.0.0.1:5001/local/meme/468"
+    },
+    "memes/flrjb24j0rkcbvh5kbqj": {
+        "cloudID": "memes/flrjb24j0rkcbvh5kbqj",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/flrjb24j0rkcbvh5kbqj",
+        "localID": "469",
+        "localURL": "http://127.0.0.1:5001/local/meme/469"
+    },
+    "memes/sbcurul9tsls8g1fu8kk": {
+        "cloudID": "memes/sbcurul9tsls8g1fu8kk",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/sbcurul9tsls8g1fu8kk",
+        "localID": "470",
+        "localURL": "http://127.0.0.1:5001/local/meme/470"
+    },
+    "memes/jfk2nblbekgjftno711e": {
+        "cloudID": "memes/jfk2nblbekgjftno711e",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/jfk2nblbekgjftno711e",
+        "localID": "471",
+        "localURL": "http://127.0.0.1:5001/local/meme/471"
+    },
+    "memes/ppk3bd6zxocvkro6jgns": {
+        "cloudID": "memes/ppk3bd6zxocvkro6jgns",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/ppk3bd6zxocvkro6jgns",
+        "localID": "472",
+        "localURL": "http://127.0.0.1:5001/local/meme/472"
+    },
+    "memes/grkhnlnt7sifzph8gqey": {
+        "cloudID": "memes/grkhnlnt7sifzph8gqey",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/image/upload/v1/memes/grkhnlnt7sifzph8gqey",
+        "localID": "473",
+        "localURL": "http://127.0.0.1:5001/local/meme/473"
+    },
+    "memes/lyqrvm7lwcrpwxxg1ijf": {
+        "cloudID": "memes/lyqrvm7lwcrpwxxg1ijf",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/image/upload/v1/memes/lyqrvm7lwcrpwxxg1ijf",
+        "localID": "474",
+        "localURL": "http://127.0.0.1:5001/local/meme/474"
+    },
+    "memes/rakmsa5x0pg4hss79foa": {
+        "cloudID": "memes/rakmsa5x0pg4hss79foa",
+        "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/rakmsa5x0pg4hss79foa",
+        "localID": "475",
+        "localURL": "http://127.0.0.1:5001/local/meme/475"
     }
 }
