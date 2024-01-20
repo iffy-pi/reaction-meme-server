@@ -581,10 +581,11 @@ class PushBulletFileServer():
 
         return 0
 
-    def write(self, destPath: str, fileBinary) -> str:
+    def write(self, destPath: str, fileBinary, deleteOldVersion=True) -> str:
         ''' 
         Takes absolute file path using Linux addressing, e.g /path/to/file where / is the top most directory.
         `binary_contents` is the binary contents of the file to be uploaded
+        Set deleteOldVersion to false if you wish to keep previous versions of the uploaded file
         Returns the uploaded path if successful
         '''
 
@@ -610,7 +611,7 @@ class PushBulletFileServer():
         oldFileIden = parentDir.get(filename)
 
         # if there is then delete the old file since we are overwriting it
-        if oldFileIden is not None:
+        if deleteOldVersion and oldFileIden is not None:
              # delete the file from the server
             try:
                 self.__delete(oldFileIden)
