@@ -1,7 +1,7 @@
-# reaction-meme-server
+# reaction-meme-server-api
 This is a Flask server hosted on Vercel designed to manage my reaction meme library. It provides HTTP API end points to download, browse, search, edit and add memes to the reaction meme library.
 
-It is hosted on Vercel: https://reaction-meme-server.vercel.app/.
+It is hosted on Vercel: https://reaction-meme-server-api.vercel.app/.
 
 # API Documentation
 ## General Response Information
@@ -13,9 +13,9 @@ Erroneous responses (client and server errors) will have an `error` field set to
 ## Privileged Endpoints and Access Tokens
 An endpoint with `(privileged)` tag is a privileged endpoint. Requests to privileged endpoints must be authenticated with an access token, included in the request header.
 
-```python
+```json
 {
-    'Access-Token': '....' # Access Token Here
+    "Access-Token": "<your access token>"
 }
 ```
 
@@ -27,7 +27,7 @@ This endpoint allows you to download memes from the server. A call to this endpo
 
 #### Call
 ```
-GET https://reaction-meme-server.vercel.app/download/<memeID>
+GET https://reaction-meme-server-api.vercel.app/download/<memeID>
 ```
 Where `<memeID>` is the ID of the meme to download.
 
@@ -37,7 +37,7 @@ A redirect to the delivery URL of the meme media, which will then automatically 
 #### Example
 ```python
 import requests
-resp = requests.get('https://reaction-meme-server.vercel.app/download/2')
+resp = requests.get('https://reaction-meme-server-api.vercel.app/download/2')
 with open('meme.jpg', 'wb') as file:
     file.write(resp.content)
 ```
@@ -48,7 +48,7 @@ This returns stored information for a given meme in the library.
 
 #### Call
 ```
-GET https://reaction-meme-server.vercel.app/info/<memeID>
+GET https://reaction-meme-server-api.vercel.app/info/<memeID>
 ```
 
 #### Response
@@ -70,7 +70,7 @@ This allows you to edit some of the information associated with a meme in the li
 
 #### Call
 ```
-POST https://reaction-meme-server.vercel.app/edit/<memeID>
+POST https://reaction-meme-server-api.vercel.app/edit/<memeID>
 ```
 
 #### Request
@@ -91,7 +91,7 @@ Browse the meme library.
 
 #### Call
 ```
-GET https://reaction-meme-server.vercel.app/browse
+GET https://reaction-meme-server-api.vercel.app/browse
 ```
 
 #### Request
@@ -121,7 +121,7 @@ Search for memes in the library with a specific query. Queries are searched agai
 
 #### Call
 ```
-GET https://reaction-meme-server.vercel.app/search
+GET https://reaction-meme-server-api.vercel.app/search
 ```
 
 #### Request
@@ -145,7 +145,7 @@ Add new memes to the meme library. This is a [privileged endpoint and requires a
 
 #### Call
 ```
-POST https://reaction-meme-server.vercel.app/add
+POST https://reaction-meme-server-api.vercel.app/add
 ```
 
 #### Request
@@ -175,23 +175,19 @@ This is a two-step process:
 
 #### Upload Request: Call
 ```
-POST https://reaction-meme-server.vercel.app/upload-request
+GET https://reaction-meme-server-api.vercel.app/upload-request
 ```
 
 #### Upload Request: Request `(privileged)`
-The JSON request body should include the following information. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
-
-| Field     | Type   | Description                                             |
-|-----------|--------|---------------------------------------------------------|
-| `fileExt` | String | The meme's media file extension e.g. "jpg", "mp4", "png |
+This is a [privileged endpoint and therefore requires an access token in the request](#privileged-endpoints-and-access-tokens).
 
 
 #### Upload Request: Response
 If successful, response `payload` field will include:
 
-| Field       | Type   | Description                                                 |
-|-------------|--------|-------------------------------------------------------------|
-| `uploadURL` | String | The URL which will be used to upload the meme's file bytes. |
+| Field       | Type   | Description                                         |
+|-------------|--------|-----------------------------------------------------|
+| `uploadURL` | String | The URL which will be used to upload the meme file. |
 
 **Note: For security, the upload URL has an access lifetime of 3 hours. That is, a connection to the endpoint will be rejected 3-hours after the URL has been generated.**
 
@@ -200,8 +196,13 @@ Make a call to the `uploadURL` returned as a response to the upload request. Thi
 ```
 POST <uploadURL>
 ```
+Your request must include **(as a form)**:
 
-Your request should include the meme files bytes as a data/file body.
+| Field     | Type   | Description                                              |
+|-----------|--------|----------------------------------------------------------|
+| `file`    | File   | The meme media file                                      |
+| `fileExt` | String | The meme's media file extension e.g. "jpg", "mp4", "png" |
+
 
 #### Upload URL: Response
 If the upload is successful, the JSON response `payload` field will include the following:
@@ -215,20 +216,19 @@ If the upload is successful, the JSON response `payload` field will include the 
 #### Upload Example
 ```python
 import requests    
-with open('belugaWhale.jpg', 'rb') as file:
-    memeBinaryData = file.read()
-
+memeFile = 'beluga_whale.jpg'
+fileExt = 'jpg'
 # Enter your access token here
 accessToken = "abc123"
 
 # Make upload request
-resp = requests.post('https://reaction-meme-server.vercel.app/upload-request', headers = {'Access-Token': accessToken}, json={'fileExt': 'jpg'})
+resp = requests.get('https://reaction-meme-server-api.vercel.app/upload-request', headers = {'Access-Token': accessToken})
 
 # Get the upload URL from the response
 uploadUrl = resp.json()['uploadURL']
 
-# Use the upload URL to upload the meme binary dara
-resp2 = requests.post(uploadUrl, headers = {'Access-Token': accessToken}, data=memeBinaryData)
+# Use the upload URL to upload the meme file , make sure to include the file extension
+resp2 = requests.post(uploadUrl, headers = {'Access-Token': accessToken}, files={'file': open(memeFile, 'rb')}, data={'fileExt': fileExt})
 ```
 
 

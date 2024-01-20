@@ -1,4 +1,5 @@
 from flask import (redirect, Response, url_for)
+from werkzeug.utils import secure_filename
 
 from api.functions import makeMemeJSON
 from apiutils.HTTPResponses import error_response, make_json_response
@@ -156,29 +157,39 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
     )
 
 
-def uploadMemeRequest(fileExt) -> Response:
-    if fileExt is None:
-        return error_response(400, 'Missing parameter "fileExt"')
-
+def uploadMemeRequest() -> Response:
     # Create a new upload session key
-    sessionKey = UploadSessionManager.getInstance().newSession(fileExt=fileExt)
+    sessionKey = UploadSessionManager.getInstance().newSession()
     uploadUrl = url_for("route_upload_meme",
                                      sessionKey=sessionKey,
                                      _external=True)
 
     return make_json_response({'uploadURL': uploadUrl})
 
-
-def uploadMeme(sessionKey:str, data:bytes, memeLib: MemeLibrary ) -> Response:
+def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Response:
     um = UploadSessionManager.getInstance()
     if not um.validSession(sessionKey):
         return error_response(400, message=f"Invalid upload session")
 
-    # get the file extension
-    fileExt = um.getSessionData(sessionKey)['fileExt']
+    if 'fileExt' not in reqForm:
+        return error_response(400, "Missing parameter: 'fileExt'")
+
+    if 'file' not in reqFiles:
+        return error_response(400, "No file property included in upload request")
+
+    file = reqFiles['file']
+
+    if file.filename == '':
+        return error_response(400, "No selected file")
+
+    if not file:
+        return error_response(400, "File is empty or does not exist")
+
+    fileExt = reqForm['fileExt']
+    fileBytes = file.stream.read()
 
     # perform the upload
-    cloudID, cloudURL = memeLib.uploadMedia(data, fileExt)
+    cloudID, cloudURL = memeLib.uploadMedia(fileBytes, fileExt)
 
     if cloudID is None or cloudURL is None:
         raise EndPointException('Failed to upload meme media')

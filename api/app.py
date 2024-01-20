@@ -1,6 +1,6 @@
 # import threading
 
-from flask import (Flask, request, send_from_directory, render_template)
+from flask import (Flask, request, send_from_directory, render_template, flash)
 from flask_cors import CORS
 
 from api.endpoints import *
@@ -16,6 +16,7 @@ ServerConfig.printConfig()
 # initialize app flask object
 app = Flask(__name__)
 CORS(app)
+app.config['SECRET_KEY'] = ServerConfig.PBFS_ACCESS_TOKEN
 
 # Initialize our library
 memeLib = initAndIndexMemeLibrary()
@@ -76,10 +77,10 @@ def route_add_new_meme():
         return serverErrorResponse(e)
 
 
-@app.route('/upload-request', methods=['POST'])
+@app.route('/upload-request', methods=['GET'])
 def route_upload_request():
     try:
-        return uploadMemeRequest(request.json.get("fileExt"))
+        return uploadMemeRequest()
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -87,15 +88,12 @@ def route_upload_request():
 @app.route('/upload/<sessionKey>', methods=['POST'])
 def route_upload_meme(sessionKey):
     try:
-        return uploadMeme(sessionKey, request.data, memeLib)
+        if request.method != 'POST':
+            return error_response(400, 'Invalid Method')
+        return uploadMeme(sessionKey, request.files, request.form, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
-
-
-@app.route('/test')
-def test():
-    return error_response(400, 'Bad error')
 
 @app.route('/favicon.ico')
 def favicon():

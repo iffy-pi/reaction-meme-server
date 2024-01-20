@@ -14,7 +14,13 @@ if localImgName is not None:
 	localMemePhoto = FindPhotos('All Photos', filterAllAreTrue(album='Reaction Memes', name=localImgName), limit=1)
 	# Encoding media so that .mov files are interpreted as videos instead of JPEG images
 	if localMemePhoto is not None:
-		localMeme = EncodeMedia(localMemePhoto)
+		mediaType = GetDetailsOfImages('Media Type', localMemePhoto)
+		if mediaType == 'Video':
+			IFRESULT = EncodeMedia(localMemePhoto)
+		else:
+			IFRESULT = GetVariable(localMemePhoto)
+
+		localMeme = IFRESULT
 
 
 if localMeme is None:

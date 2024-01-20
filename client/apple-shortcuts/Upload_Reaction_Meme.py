@@ -2,8 +2,14 @@
 if ShortcutInput is not None:
 	IFRESULT = ShortcutInput
 else:
-	photo = SelectPhotos()
-	IFRESULT = EncodeMedia(photo)
+	photoMedia = SelectPhotos()
+	mediaType = GetDetailsOfImages('Media Type', photoMedia)
+	if mediaType == 'Video':
+		IFRESULT1 = EncodeMedia(photoMedia)
+	else:
+		IFRESULT1 = GetVariable(photoMedia)
+
+	IFRESULT = IFRESULT1
 
 mediaItem = IFRESULT
 
@@ -26,9 +32,7 @@ information = {
 tags = SplitText(information['tags'], ',')
 
 # First do the upload request
-res = GetContentsOfURL(f'{serverURL}/upload-request', method='POST', headers={'Access-Token': accessToken}, json={
-		'fileExt': information['fileExt']
-	})
+res = GetContentsOfURL(f'{serverURL}/upload-request', method='GET', headers={'Access-Token': accessToken})
 
 if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
@@ -38,7 +42,11 @@ reqResp = Dictionary(res)
 # Then upload the meme to the upload URL
 uploadURL = reqResp['payload.uploadURL']
 
-res = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, file=mediaItem )
+res = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, requestBody='Form', 
+							body={
+								'file': File(mediaItem)
+								'fileExt': Text(fileExt)
+								} )
 
 if RunShortcut('Check RMSVR JSON Response', input=res) is None:
 	StopShortcut()
