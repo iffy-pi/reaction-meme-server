@@ -103,6 +103,16 @@ class JSONMemeDB(MemeDBInterface):
         self.__errIfUnloadedDB()
         self.__getDBLock()
         itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
+
+        if itemId in self.db[JSONMemeDB.DBFields.Items]:
+            # If the item ID alredy exists, suggests a mismatch between item count and the actual list of items
+            # Reset and recalculate
+            self.db[JSONMemeDB.DBFields.ItemCount] = len(self.db[JSONMemeDB.DBFields.Items])
+            itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
+
+            if itemId in self.db[JSONMemeDB.DBFields.Items]:
+                raise MemeDBException('JSON Meme DB is in a bad state!')
+
         self.db[JSONMemeDB.DBFields.Items][itemId] = {
             JSONMemeDB.DBFields.ItemFields.ID           : int(itemId),
             JSONMemeDB.DBFields.ItemFields.Name         : name,
