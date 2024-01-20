@@ -9,11 +9,27 @@ from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
+def getServerName(serverIden):
+    # make request
+    res = requests.get('https://api.pushbullet.com/v2/devices',
+                       headers={'Access-Token': ServerConfig.PBFS_ACCESS_TOKEN})
+    devices = res.json()['devices']
+    foundNames = [ d['nickname'] for d in devices if d['iden'] == serverIden]
+    if len(foundNames) < 1:
+        raise Exception('No identifier found!')
 
+    return foundNames[0]
 def uploadLocalJSONDBToPBFS(serverIdentifier:str = ServerConfig.PBFS_SERVER_IDENTIFIER):
     """
     Saves data/db.json into PBFS so it matches
     """
+    print('This will upload the current version of data/db.json as the new CLOUD JSON file')
+    print(f'Uploading to server: {getServerName(serverIdentifier)}')
+    res = input('Are you SURE you want to do this? (y/n): ').strip().lower()
+    if res != 'y':
+        print('Exited!')
+        return
+
     pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
     lcfs = RepoLocalFileStorage()
     db = lcfs.getJSONDB()
@@ -25,6 +41,11 @@ def downloadPBFSJSONDBToLocal(serverIdentifier:str = ServerConfig.PBFS_SERVER_ID
     """
     Downloads the JSON db file from PBFS and saves it into local db
     """
+    print(f'Downloading from server: {getServerName(serverIdentifier)}')
+    res = input('Are you SURE you want to do this? (y/n): ').strip().lower()
+    if res != 'y':
+        print('Exited!')
+        return
     pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
     lcfs = RepoLocalFileStorage()
     db = pbfs.getJSONDB()
