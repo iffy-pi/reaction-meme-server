@@ -5,7 +5,7 @@ from whoosh.analysis import StemmingAnalyzer
 from whoosh.fields import Schema, TEXT, KEYWORD, STORED, NUMERIC
 from whoosh.qparser import OrGroup, MultifieldParser
 from whoosh.filedb.filestore import RamStorage
-from whoosh.searching import Searcher
+from whoosh.searching import Searcher, Hit
 
 from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeMediaType import intToMemeMediaType, MemeMediaType, memeMediaTypeToInt
@@ -21,13 +21,13 @@ class MemeSearchHit:
     A container class used to store a hit in the search.
     A hit meaning a matching item in the index
     """
-    def __init__(self, memeID: int, name:str, mediaType: int, memeURL:str):
+    def __init__(self, hit: Hit):
         # SCHEMA_FIELDS_RELEVANT_HERE
         # Hit class should have properties for all the storable fields
-        self.memeID = memeID
-        self.name = name
-        self.mediaType = intToMemeMediaType(mediaType)
-        self.memeURL = memeURL
+        self.memeID = hit['memeID']
+        self.name = hit['name']
+        self.mediaType = intToMemeMediaType(hit['mediaType'],)
+        self.memeURL = hit['memeURL']
 
 class MemeLibrarySearcher:
     """
@@ -141,4 +141,10 @@ class MemeLibrarySearcher:
                 excludeTypeQuery = query.Term("mediaType", str(memeMediaTypeToInt(excludeMediaType)))
 
             results = s.search_page(q, pageNo, pagelen=itemsPerPage, filter=filterTypeQuery, mask=excludeTypeQuery)
-            return [ MemeSearchHit(hit['memeID'], hit['name'], hit['mediaType'], hit['memeURL']) for hit in results ]
+            resultCount = results.scored_length()
+            startOffset = (pageNo - 1) * itemsPerPage
+
+            if startOffset < resultCount:
+                return [ MemeSearchHit(hit) for hit in results ]
+
+            return []
