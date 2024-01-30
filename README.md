@@ -1,9 +1,8 @@
-# reaction-meme-server-api
+# Reaction Meme Server API Documentation
 This is a Flask server hosted on Vercel designed to manage my reaction meme library. It provides HTTP API end points to download, browse, search, edit and add memes to the reaction meme library.
 
 It is hosted on Vercel: https://reaction-meme-server-api.vercel.app/.
 
-# API Documentation
 ## General Response Information
 For each API endpoint, a successful response will have a `success` field which is set to true, and the data of the response will be in the `payload` field.
 
@@ -21,20 +20,20 @@ An endpoint with `(privileged)` tag is a privileged endpoint. Requests to privil
 
 To get an access token, please contact the owner of the server.
 
-## Available Endpoints
-### Download Meme
+# Endpoints
+## Download Meme
 This endpoint allows you to download memes from the server. A call to this endpoint will redirect to a delivery URL for the meme media bytes.
 
-#### Call
+### Call
 ```
 GET https://reaction-meme-server-api.vercel.app/download/<memeID>
 ```
 Where `<memeID>` is the ID of the meme to download.
 
-#### Response
+### Response
 A redirect to the delivery URL of the meme media, which will then automatically download the meme.
 
-#### Example
+### Example
 ```python
 import requests
 resp = requests.get('https://reaction-meme-server-api.vercel.app/download/2')
@@ -43,15 +42,15 @@ with open('meme.jpg', 'wb') as file:
 ```
 
 
-### Get Meme Information
+## Get Meme Information
 This returns stored information for a given meme in the library.
 
-#### Call
+### Call
 ```
 GET https://reaction-meme-server-api.vercel.app/info/<memeID>
 ```
 
-#### Response
+### Response
 If successful, the `payload` field will be a dictionary which contains:
 
 | Field       | Type   | Description                                               |
@@ -65,15 +64,15 @@ If successful, the `payload` field will be a dictionary which contains:
 
 
 
-### Edit Meme Information `(privileged)`
+## Edit Meme Information `(privileged)`
 This allows you to edit some of the information associated with a meme in the library. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
-#### Call
+### Call
 ```
 POST https://reaction-meme-server-api.vercel.app/edit/<memeID>
 ```
 
-#### Request
+### Request
 The request should be sent as a JSON body.
 
 | Field  | Type   | Description                                 |
@@ -81,20 +80,20 @@ The request should be sent as a JSON body.
 | `name` | String | Optional, the new name of the meme          |
 | `tags` | Array  | Optional, the new list of tags for the meme |
 
-#### Response
+### Response
 Responds with the same data structure as [Get Meme Information](#get-meme-information).
 
 
 
-### Browse Memes
+## Browse Memes
 Browse the meme library.
 
-#### Call
+### Call
 ```
 GET https://reaction-meme-server-api.vercel.app/browse
 ```
 
-#### Request
+### Request
 The request fields below should be encoded as URL parameters.
 
 | Field      | Type   | Description                                                                                  |
@@ -103,7 +102,7 @@ The request fields below should be encoded as URL parameters.
 | `per_page` | Number | The number of memes on each page. This will change the number of pages available to retrieve |
 
 
-#### Response
+### Response
 The `payload` field of the JSON response will contain the following keys:
 
 | Field          | Type   | Description                                                                                                                             |
@@ -116,15 +115,15 @@ Each element of `results` will have the same data structure as [Get Meme Informa
 
 
 
-### Search For Memes
+## Search For Memes
 Search for memes in the library with a specific query. Queries are searched against the meme name and it's associated tags.
 
-#### Call
+### Call
 ```
 GET https://reaction-meme-server-api.vercel.app/search
 ```
 
-#### Request
+### Request
 The request fields below should be encoded as URL parameters.
 
 | Field        | Type   | Description                                                                                                                            |
@@ -135,20 +134,20 @@ The request fields below should be encoded as URL parameters.
 | `per_page`   | Number | Optional (default = 10), The number of search results (memes) on each page. This will change the number of pages available to retrieve |
 
 
-#### Response
+### Response
 Responds with the same data structure as [Browse Memes](#browse-memes).
 
 
 
-### Add New Memes `(privileged)`
+## Add New Memes `(privileged)`
 Add new memes to the meme library. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
-#### Call
+### Call
 ```
 POST https://reaction-meme-server-api.vercel.app/add
 ```
 
-#### Request
+### Request
 The request should be a JSON body with the following fields:
 
 | Field      | Type   | Description                                                                                                               |
@@ -157,32 +156,32 @@ The request should be a JSON body with the following fields:
 | `fileExt`  | String | The meme's media file extension e.g. "jpg", "mp4", "png"                                                                  |
 | `tags`     | Array  | The list of tags for the meme                                                                                             |
 | `cloudID`  | String | The meme's ID in the remote storage service (is gotten from [uploading the meme media](#uploading-meme-media-privileged)) |
-| `cloudURL` | String | The delivery URL to download the meme from ((is gotten from [uploading the meme media](#uploading-meme-media-privileged)) |
+| `cloudURL` | String | The delivery URL to download the meme from (is gotten from [uploading the meme media](#uploading-meme-media-privileged))  |
 
-The `cloudID` and `cloudURL` are provided by the server after successfully uploading the meme file bytes, see [Uploading Meme Media](#uploading-meme-media-privileged)
+The `cloudID` and `cloudURL` are provided by the server after successfully uploading the meme file bytes, see [Uploading Meme Media](#uploading-meme-media-privileged).
 
-#### Response
+### Response
 If successful, the server will echo the information of the new meme. Responds with the same data structure as [Get Meme Information](#get-meme-information).
 
 
 
-### Uploading Meme Media `(privileged)`
+## Uploading Meme Media `(privileged)`
 Upload the media (image/video bytes) of a meme to the server.
 
 This is a two-step process:
 - Make an upload request to get the upload URL
 - Send the file bytes to the upload URL with another request
 
-#### Upload Request: Call
+### Upload Request: Call
 ```
 GET https://reaction-meme-server-api.vercel.app/upload-request
 ```
 
-#### Upload Request: Request `(privileged)`
+### Upload Request: Request `(privileged)`
 This is a [privileged endpoint and therefore requires an access token in the request](#privileged-endpoints-and-access-tokens).
 
 
-#### Upload Request: Response
+### Upload Request: Response
 If successful, response `payload` field will include:
 
 | Field       | Type   | Description                                         |
@@ -191,7 +190,7 @@ If successful, response `payload` field will include:
 
 **Note: For security, the upload URL has an access lifetime of 3 hours. That is, a connection to the endpoint will be rejected 3-hours after the URL has been generated.**
 
-#### Upload URL: Call & Request `(privileged)`
+### Upload URL: Call & Request `(privileged)`
 Make a call to the `uploadURL` returned as a response to the upload request. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 ```
 POST <uploadURL>
@@ -204,7 +203,7 @@ Your request must include **(as a form)**:
 | `fileExt` | String | The meme's media file extension e.g. "jpg", "mp4", "png" |
 
 
-#### Upload URL: Response
+### Upload URL: Response
 If the upload is successful, the JSON response `payload` field will include the following:
 
 | Field      | Type   | Description                                                                             |
@@ -213,7 +212,7 @@ If the upload is successful, the JSON response `payload` field will include the 
 | `cloudURL` | String | The delivery URL from the remote storage service which the meme can be downloaded from. |
 
 
-#### Upload Example
+### Upload Example
 ```python
 import requests    
 memeFile = 'beluga_whale.jpg'
@@ -230,7 +229,3 @@ uploadUrl = resp.json()['uploadURL']
 # Use the upload URL to upload the meme file , make sure to include the file extension
 resp2 = requests.post(uploadUrl, headers = {'Access-Token': accessToken}, files={'file': open(memeFile, 'rb')}, data={'fileExt': fileExt})
 ```
-
-
-
-
