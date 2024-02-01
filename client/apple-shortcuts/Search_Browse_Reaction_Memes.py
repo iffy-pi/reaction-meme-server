@@ -17,6 +17,8 @@ resultsPerPage = 7
 searchExit = FALSE
 pageNo = 1
 browseMemes = FALSE
+noResultsForSearch = FALSE
+outOfResults = FALSE
 
 
 params = Dictionary(ShortcutInput)
@@ -74,6 +76,7 @@ for _ in range (50):
             VERSION:3.0
             N;CHARSET=UTF-8:{item['name']}
             ORG;CHARSET=UTF-8:{tags}
+            PHOTO;ENCODING=b;TYPE=JPEG:{item['thumbnail']}
             NOTE;CHARSET=UTF-8:{itemId}
             END:VCARD
             '''
@@ -81,6 +84,8 @@ for _ in range (50):
             REPEATRESULTS.append(text)
         
         itemCards = REPEATRESULTS
+        resultCount = Count(itemCards)
+
 
         if browseMemes == TRUE:
             IFRESULT = {
@@ -99,34 +104,52 @@ for _ in range (50):
         # Add next, previous, new search and cancel search buttons
         nextPage = pageNo+1
         prevPage = nextPage-2
-        
+
+        # If the current page has no results, we are out of results
+        # If we are out of results on the first page, then the search has no results
+
+        outOfResults = FALSE
+        if resultCount == 0:
+            outOfResults = TRUE
+            if prevPage == 0:
+                noResultsForSearch = TRUE
+                outOfResults = FALSE
+
+        # Only include page buttons and filtering if there was a result
+        if noResultsForSearch == TRUE:
+            IFRESULT = ''
+        else:
+            IFRESULT = f'''
+                BEGIN:VCARD
+                VERSION:3.0
+                N;CHARSET=utf-8:Next Page
+                ORG: Page {nextPage}
+                NOTE;CHARSET=UTF-8:Next
+                {forwardIcon}
+                END:VCARD
+
+                BEGIN:VCARD
+                VERSION:3.0
+                N;CHARSET=utf-8:Previous Page
+                ORG: Page {prevPage}
+                NOTE;CHARSET=UTF-8:Prev
+                {backwardIcon}
+                END:VCARD
+
+                BEGIN:VCARD
+                VERSION:3.0
+                N;CHARSET=utf-8:Filter Memes
+                ORG:Filter for specific media type or other items
+                NOTE;CHARSET=UTF-8:Filter
+                {searchIcon}
+                END:VCARD
+            '''
+        modBtns = IFRESULT
 
         text = f'''
             {itemCards}
 
-            BEGIN:VCARD
-            VERSION:3.0
-            N;CHARSET=utf-8:Next Page
-            ORG: Page {nextPage}
-            NOTE;CHARSET=UTF-8:Next
-            {forwardIcon}
-            END:VCARD
-
-            BEGIN:VCARD
-            VERSION:3.0
-            N;CHARSET=utf-8:Previous Page
-            ORG: Page {prevPage}
-            NOTE;CHARSET=UTF-8:Prev
-            {backwardIcon}
-            END:VCARD
-
-            BEGIN:VCARD
-            VERSION:3.0
-            N;CHARSET=utf-8:Filter Memes
-            ORG:Filter for specific media type or other items
-            NOTE;CHARSET=UTF-8:Filter
-            {searchIcon}
-            END:VCARD
+            {modBtns}
 
             BEGIN:VCARD
             VERSION:3.0
@@ -152,27 +175,42 @@ for _ in range (50):
             IFRESULT = 'Meme Library'
         else:
             IFRESULT = f'"{query}" Search Results'
-        
-        text = f'''
-            Reaction Meme Server
-            {IFRESULT} ⸱ Page {pageNo}
-        '''
 
-        chosenItem = ChooseFrom(contacts, prompt=text)
+        # If first page has no results, show no results prompt
+        if noResultsForSearch == TRUE:
+            IFRESULT1 = f'''
+                Reaction Meme Server
+                No Search Results for "{query}"
+            '''
+        else:
+            IFRESULT1 = f'''
+                Reaction Meme Server
+                {IFRESULT} ⸱ Page {pageNo}
+            '''
+        choosePrompt = IFRESULT1
+
+        if outOfResults == TRUE:
+            Alert(f'Page {prevPage} was the last page of search results', title='End of Search Results', showCancel=False)
+            IFRESULT = 'Prev'
+        else:
+            chosenItem = ChooseFrom(contacts, prompt=text)
+            IFRESULT = chosenItem.Notes
+        selectedBtnId = IFRESULT
+        
         isControlItem = FALSE
 
-        if chosenItem.Notes == 'Next':
+        if selectedBtnId == 'Next':
             isControlItem = TRUE
             pageNo = pageNo + 1
 
-        if chosenItem.Notes == 'Prev':
+        if selectedBtnId == 'Prev':
             isControlItem = TRUE
             pageNo = pageNo - 1
             if pageNo == 0:
                 Alert("This is the first page of the search!")
                 pageNo = pageNo + 1
 
-        if chosenItem.Notes == 'Filter':
+        if selectedBtnId == 'Filter':
             isControlItem = TRUE
             Menu('Select Filter'):
                 case 'Images Only':
@@ -185,18 +223,18 @@ for _ in range (50):
             searchMediaType = MENURESULT
             pageNo = 1
 
-        if chosenItem.Notes == 'New':
+        if selectedBtnId == 'New':
             isControlItem = TRUE
             RunShorctut('Search Reaction Memes')
             StopShortcut()
 
-        if chosenItem.Notes == 'Cancel':
+        if selectedBtnId == 'Cancel':
             isControlItem = TRUE
             StopShortcut()
         
         if isControlItem == FALSE:
             # then its not a control item
-            itemId = chosenItem.Notes
+            itemId = selectedBtnId
             item = searchItems[ itemId ]
 
             # Download the meme and show the user

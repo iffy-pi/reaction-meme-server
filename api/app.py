@@ -70,8 +70,8 @@ def route_add_new_meme():
         return addNewMeme(request.json.get("name"),
                           request.json.get("tags"),
                           request.json.get("fileExt"),
-                          request.json.get("cloudID"),
-                          request.json.get("cloudURL"),
+                          request.json.get("mediaID"),
+                          request.json.get("mediaURL"),
                           memeLib)
     except Exception as e:
         return serverErrorResponse(e)

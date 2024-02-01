@@ -38,7 +38,7 @@ def makeMemeJSON(meme: MemeContainer) -> dict:
             'mediaType': meme.getMediaTypeString(),
             'fileExt': meme.getFileExt(),
             'tags': meme.getTags(),
-            'url': meme.getURL(),
+            'url': meme.getMediaURL(),
             'thumbnail': meme.getThumbnail()
         }
 

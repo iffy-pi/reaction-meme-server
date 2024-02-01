@@ -38,28 +38,28 @@ class MemeLibrary:
         Uploads the media binary to the cloud and associates it with the item pointed to by the item ID
         :param itemId: The id of the item in the database
         :param mediaBinary: The binary data of the media to be uploaded
-        :return: The cloud URL, None if the operation was not completed successfully
+        :return: The media URL, None if the operation was not completed successfully
         """
         cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())
 
         if cloudId is None or cloudURL is None:
             return None
 
-        if not self.db.updateMeme(itemId, MemeContainer(cloudID=cloudId, cloudURL=cloudURL)):
+        if not self.db.updateMeme(itemId, MemeContainer(mediaID=cloudId, mediaURL=cloudURL)):
             return None
 
         return cloudURL
 
     def uploadMedia(self, mediaBinary:bytes, fileExt:str) -> tuple[str, str]:
-        cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
-        return cloudId, cloudURL
+        mediaID, mediaURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
+        return mediaID, mediaURL
 
-    def __makeB64Thumbnail(self, cloudID:str, mediaType:MemeMediaType) -> str:
+    def __makeB64Thumbnail(self, mediaID:str, mediaType:MemeMediaType) -> str:
         if mediaType == MemeMediaType.IMAGE:
-            imgBytes = self.mediaStorage.getMedia(cloudID)
+            imgBytes = self.mediaStorage.getMedia(mediaID)
 
         elif mediaType == MemeMediaType.VIDEO:
-            imgBytes = self.mediaStorage.videoToThumbnail(cloudID)
+            imgBytes = self.mediaStorage.videoToThumbnail(mediaID)
 
         else:
             raise Exception('Unknown media type for conversion')
@@ -68,7 +68,7 @@ class MemeLibrary:
         thumbnailB64 = ThumbnailMaker.makeBase64Thumbnail(imgBytes)
         return thumbnailB64
 
-    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, cloudID=None, cloudURL=None, addMemeToIndex:bool=False) -> MemeContainer:
+    def addMemeToLibrary(self, name=None, fileExt=None, tags=None, mediaID=None, mediaURL=None, addMemeToIndex:bool=False) -> MemeContainer:
         """
         Creates a new item in the database with the available fields
         Returns a MemeLibraryItem if operation was successful else None
@@ -76,10 +76,10 @@ class MemeLibrary:
         """
         fileExt = fileExt.lower().replace('.', '')
         mediaType = getMediaTypeForExt(fileExt)
-        meme = MemeContainer(id=None, name=name, mediaType=mediaType, fileExt=fileExt, tags=tags, cloudID=cloudID, cloudURL=cloudURL)
+        meme = MemeContainer(id=None, name=name, mediaType=mediaType, fileExt=fileExt, tags=tags, mediaID=mediaID, mediaURL=mediaURL)
 
-        if fileExt is not None and cloudID is not None:
-            meme.setProperty(thumbnail=self.__makeB64Thumbnail(cloudID, mediaType))
+        if fileExt is not None and mediaID is not None:
+            meme.setProperty(thumbnail=self.__makeB64Thumbnail(mediaID, mediaType))
 
         if not self.db.addMemeToDB(meme):
             return None
@@ -95,13 +95,13 @@ class MemeLibrary:
         """
         # upload the media
         fileExt = fileExt.lower().replace('.', '')
-        cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
+        mediaID, mediaURL = self.mediaStorage.uploadMedia(mediaBinary, fileExt)
 
-        if cloudId is None or cloudURL is None:
+        if mediaID is None or mediaURL is None:
             return None
 
         # add to library
-        return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, cloudID=cloudId, cloudURL=cloudURL, addMemeToIndex=addMemeToIndex)
+        return self.addMemeToLibrary(name=name, fileExt=fileExt, tags=tags, mediaID=mediaID, mediaURL=mediaURL, addMemeToIndex=addMemeToIndex)
 
     def addAndUploadMemeFrom(self, filePath, name, tags, addMemeToIndex=False) -> MemeContainer:
         """
@@ -133,13 +133,13 @@ class MemeLibrary:
             raise MemeLibraryException(f'ID "{memeID}" does not exist in database')
 
         meme = self.getMeme(memeID)
-        cloudID = meme.getCloudID()
+        mediaID = meme.getMediaID()
         mediaType = meme.getMediaType()
 
-        if cloudID is None:
+        if mediaID is None:
             raise MemeLibraryException('No Cloud ID is available for meme')
 
-        meme.setProperty(thumbnail=self.__makeB64Thumbnail(cloudID, mediaType))
+        meme.setProperty(thumbnail=self.__makeB64Thumbnail(mediaID, mediaType))
         return self.db.updateMeme(memeID, meme)
 
     def makeLibraryFromCSV(self, csvFile):
@@ -203,8 +203,7 @@ class MemeLibrary:
         :return: The list of meme URLs
         """
         results = self.libSearcher.search(query, itemsPerPage, pageNo, onlyMediaType=onlyMediaType, excludeMediaType=excludeMediaType)
-        ids = [ hit.memeID for hit in results ]
-        return [ self.getMeme(memeId) for memeId in ids ]
+        return [ self.getMeme(hit.memeID) for hit in results]
 
     def browseMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:
         """

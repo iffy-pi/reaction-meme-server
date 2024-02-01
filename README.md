@@ -155,10 +155,10 @@ The request should be a JSON body with the following fields:
 | `name`     | String | The colloquial name of the meme e.g. "girl happy at mall"                                                                 |
 | `fileExt`  | String | The meme's media file extension e.g. "jpg", "mp4", "png"                                                                  |
 | `tags`     | Array  | The list of tags for the meme                                                                                             |
-| `cloudID`  | String | The meme's ID in the remote storage service (is gotten from [uploading the meme media](#uploading-meme-media-privileged)) |
-| `cloudURL` | String | The delivery URL to download the meme from (is gotten from [uploading the meme media](#uploading-meme-media-privileged))  |
+| `mediaID`  | String | The meme's ID in the remote storage service (is gotten from [uploading the meme media](#uploading-meme-media-privileged)) |
+| `mediaURL` | String | The delivery URL to download the meme from (is gotten from [uploading the meme media](#uploading-meme-media-privileged))  |
 
-The `cloudID` and `cloudURL` are provided by the server after successfully uploading the meme file bytes, see [Uploading Meme Media](#uploading-meme-media-privileged).
+The `mediaID` and `mediaURL` are provided by the server after successfully uploading the meme file bytes, see [Uploading Meme Media](#uploading-meme-media-privileged).
 
 ### Response
 If successful, the server will echo the information of the new meme. Responds with the same data structure as [Get Meme Information](#get-meme-information).
@@ -208,8 +208,8 @@ If the upload is successful, the JSON response `payload` field will include the 
 
 | Field      | Type   | Description                                                                             |
 |------------|--------|-----------------------------------------------------------------------------------------|
-| `cloudID`  | String | The ID of the meme in the remote storage service.                                       |
-| `cloudURL` | String | The delivery URL from the remote storage service which the meme can be downloaded from. |
+| `mediaID`  | String | The ID of the meme in the remote storage service.                                       |
+| `mediaURL` | String | The delivery URL from the remote storage service which the meme can be downloaded from. |
 
 
 ### Upload Example

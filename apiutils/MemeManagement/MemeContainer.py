@@ -5,13 +5,13 @@ class MemeContainer:
     """
     Class used as a data container for meme information. It is not connected to the meme library or the meme database that created it.
     """
-    def __init__(self, id:int=None, name:str=None, mediaType: MemeMediaType =None, fileExt=None, tags:list[str]=None, cloudID=None, cloudURL=None, mediaTypeStr:str=None, thumbnail:str=None):
+    def __init__(self, id:int=None, name:str=None, mediaType: MemeMediaType =None, fileExt=None, tags:list[str]=None, mediaID=None, mediaURL=None, mediaTypeStr:str=None, thumbnail:str=None):
         self.id = id
         self.name =     name
         self.tags =     tags
         self.fileExt =  fileExt
-        self.cloudID =  cloudID
-        self.cloudURL = cloudURL
+        self.mediaID =  mediaID
+        self.mediaURL = mediaURL
         self.mediaType = None
         self.thumbnail = thumbnail
 
@@ -28,48 +28,12 @@ class MemeContainer:
             mediaType=MemeMediaType.UNKNOWN,
             fileExt='',
             tags=[],
-            cloudID='',
-            cloudURL='',
+            mediaID='',
+            mediaURL='',
             thumbnail=''
         )
 
-    @staticmethod
-    def getDefaultName() -> str:
-        return ''
-
-    @staticmethod
-    def getDefaultMediaType() -> MemeMediaType:
-        return MemeMediaType.UNKNOWN
-
-    @staticmethod
-    def getDefaultMediaTypeString() -> str:
-        return memeMediaTypeToString(MemeMediaType.UNKNOWN)
-
-    @staticmethod
-    def getDefaultMediaTypInt() -> int:
-        return memeMediaTypeToInt(MemeMediaType.UNKNOWN)
-
-    @staticmethod
-    def getDefaultFileExt() -> str:
-        return ''
-
-    @staticmethod
-    def getDefaultTags() -> list[str]:
-        return []
-
-    @staticmethod
-    def getDefaultCloudID() -> str:
-        return ''
-
-    @staticmethod
-    def getDefaultCloudURL() -> str:
-        return ''
-
-    @staticmethod
-    def getDefaultThumbnail() -> str:
-        return ''
-
-    def setProperty(self, id:int=None, name:str=None, mediaType:MemeMediaType =None, fileExt:str=None, tags:list[str]=None, cloudID:str=None, cloudURL:str=None, thumbnail:str=None):
+    def setProperty(self, id:int=None, name:str=None, mediaType:MemeMediaType =None, fileExt:str=None, tags:list[str]=None, mediaID:str=None, mediaURL:str=None, thumbnail:str=None):
         """
         Set the property of the meme library item, any arguments left to None will not have the property value changed
         """
@@ -81,10 +45,10 @@ class MemeContainer:
             self.fileExt = fileExt
         if tags is not None:
             self.tags = tags
-        if cloudID is not None:
-            self.cloudID = cloudID
-        if cloudURL is not None:
-            self.cloudURL = cloudURL
+        if mediaID is not None:
+            self.mediaID = mediaID
+        if mediaURL is not None:
+            self.mediaURL = mediaURL
         if mediaType is not None:
             self.mediaType = mediaType
         if thumbnail is not None:
@@ -119,19 +83,19 @@ class MemeContainer:
         return self.thumbnail
 
     def __getCheckedCloud(self, autoConvertToLocal:bool) -> tuple[str, str]:
-        if not (autoConvertToLocal and cloudMemeNeedsToBeConvertedToLocal(self.cloudURL)):
-            return self.cloudID, self.cloudURL
-        return getLocalVersionForCloudMeme(self.cloudID, self.cloudURL, self.fileExt)
+        if not (autoConvertToLocal and cloudMemeNeedsToBeConvertedToLocal(self.mediaURL)):
+            return self.mediaID, self.mediaURL
+        return getLocalVersionForCloudMeme(self.mediaID, self.mediaURL, self.fileExt)
 
-    def getCloudID(self, autoConvertToLocal=True) -> str:
-        cloudId, _ = self.__getCheckedCloud(autoConvertToLocal)
-        return cloudId
+    def getMediaID(self, autoConvertToLocal=True) -> str:
+        mediaId, _ = self.__getCheckedCloud(autoConvertToLocal)
+        return mediaId
 
-    def getURL(self, autoConvertToLocal=True) -> str:
-        _, cloudURL = self.__getCheckedCloud(autoConvertToLocal)
-        return cloudURL
+    def getMediaURL(self, autoConvertToLocal=True) -> str:
+        _, mediaURL = self.__getCheckedCloud(autoConvertToLocal)
+        return mediaURL
 
     def __str__(self):
-        converted = '{}'.format(', convertedToLocal' if cloudMemeNeedsToBeConvertedToLocal(self.cloudURL) else '')
+        converted = '{}'.format(', convertedToLocal' if cloudMemeNeedsToBeConvertedToLocal(self.mediaURL) else '')
         thStr = '...' if self.thumbnail is not None else ''
-        return f'Meme(id={self.id}, name="{self.name}", {self.mediaType}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.getCloudID()}, url={self.getURL()}{converted}, thumbnail="{thStr}")'
+        return f'Meme(id={self.id}, name="{self.name}", {self.mediaType}, ext="{self.fileExt}", tags={self.tags}, cloudId={self.getMediaID()}, url={self.getMediaURL()}{converted}, thumbnail="{thStr}")'

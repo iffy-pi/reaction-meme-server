@@ -25,7 +25,7 @@ def downloadMeme(memeID, memeLib: MemeLibrary) -> Response:
     if not memeLib.hasMeme(memeID):
         return error_response(400, message=f"ID {memeID} does not exist in database")
 
-    memeURL = memeLib.getMeme(memeID).getURL()
+    memeURL = memeLib.getMeme(memeID).getMediaURL()
     return redirect(memeURL)
 
 def editMeme(memeID, name, tags, memeLib: MemeLibrary) -> Response:
@@ -107,16 +107,16 @@ def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary)
     return make_json_response({'results': collated, 'itemCount': len(collated), 'pageNo': pageNo})
 
 
-def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> Response:
+def addNewMeme(name, tags, fileExt, mediaID, mediaURL, memeLib: MemeLibrary) -> Response:
     typesInfo = [
         ('name', name, str, "String"),
         ('tags', tags, list, "Array"),
         ('fileExt', fileExt, str, "String"),
-        ('cloudID', cloudID, str, "String"),
-        ('cloudURL', cloudURL, str, "String")
+        ('mediaID', mediaID, str, "String"),
+        ('mediaURL', mediaURL, str, "String")
     ]
 
-    expectedTypeMsg = "name: String, tags: Array, fileExt: String, cloudID: String, cloudURL: str"
+    expectedTypeMsg = "name: String, tags: Array, fileExt: String, mediaID: String, mediaURL: String"
 
     for paramName, paramVal, paramType, msgType in typesInfo:
         if paramVal is None:
@@ -128,11 +128,11 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
                                   message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
 
     # Create the entry in the database
-    meme = memeLib.addMemeToLibrary(name=name, tags=tags, fileExt=fileExt, cloudID=cloudID, cloudURL=cloudURL, addMemeToIndex=True)
+    meme = memeLib.addMemeToLibrary(name=name, tags=tags, fileExt=fileExt, mediaID=mediaID, mediaURL=mediaURL, addMemeToIndex=True)
 
     if meme is None:
         d = {
-            'name': name, 'tags': tags, 'fileExt': fileExt, 'cloudID': cloudID, 'cloudURL': cloudURL
+            'name': name, 'tags': tags, 'fileExt': fileExt, 'mediaID': mediaID, 'mediaURL': mediaURL
         }
         raise EndPointException(f'Failed to add meme to library: {d}')
 
@@ -152,7 +152,7 @@ def addNewMeme(name, tags, fileExt, cloudID, cloudURL, memeLib: MemeLibrary) -> 
             "mediaType": meme.getMediaTypeString(),
             "tags": meme.getTags(),
             "fileExt": meme.getFileExt(),
-            "url" : meme.getURL()
+            "url" : meme.getMediaURL()
         }
     )
 
@@ -189,9 +189,9 @@ def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Resp
     fileBytes = file.stream.read()
 
     # perform the upload
-    cloudID, cloudURL = memeLib.uploadMedia(fileBytes, fileExt)
+    mediaID, mediaURL = memeLib.uploadMedia(fileBytes, fileExt)
 
-    if cloudID is None or cloudURL is None:
+    if mediaID is None or mediaURL is None:
         raise EndPointException('Failed to upload meme media')
 
     # clear the session
@@ -200,7 +200,7 @@ def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Resp
     # return the ID and URL in the response
     return make_json_response(
         {
-            "cloudID": cloudID,
-            "cloudURL": cloudURL
+            "mediaID": mediaID,
+            "mediaURL": mediaURL
         }
     )

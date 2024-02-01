@@ -59,8 +59,8 @@ def downloadNewMemesFromCloud(jsonDB:JSONMemeDB):
         cloudMap = json.load(file)
 
     for meme in jsonDB.getAllDBMemes():
-        cloudID = meme.getCloudID(autoConvertToLocal=False)
-        cloudURL = meme.getURL(autoConvertToLocal=False)
+        cloudID = meme.getMediaID(autoConvertToLocal=False)
+        cloudURL = meme.getMediaURL(autoConvertToLocal=False)
 
         if cloudID is None:
             continue

@@ -57,8 +57,8 @@ res = GetContentsOfURL(f'{serverURL}/add', method='POST', headers={'Access-Token
 		'name': information['name'],
 		'tags': tags,
 		'fileExt': information['fileExt'],
-		'cloudID': uploadRes['payload.cloudID'],
-		'cloudURL': uploadRes['payload.cloudURL']
+		'mediaID': uploadRes['payload.mediaID'],
+		'mediaURL': uploadRes['payload.mediaURL']
 	})
 
 

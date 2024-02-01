@@ -66,8 +66,8 @@ class JSONMemeDB(MemeDBInterface):
             mediaTypeStr=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaType],
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
-            cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaID],
-            cloudURL=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaURL],
+            mediaID=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaID],
+            mediaURL=jsonItem[JSONMemeDB.DBFields.ItemFields.MediaURL],
             thumbnail=jsonItem[JSONMemeDB.DBFields.ItemFields.Thumbnail]
             )
 
@@ -91,8 +91,8 @@ class JSONMemeDB(MemeDBInterface):
             JSONMemeDB.DBFields.ItemFields.MediaType    : meme.getMediaTypeString(),
             JSONMemeDB.DBFields.ItemFields.FileExt      : meme.getFileExt(),
             JSONMemeDB.DBFields.ItemFields.Tags         : meme.getTags(),
-            JSONMemeDB.DBFields.ItemFields.MediaID      : meme.getCloudID(),
-            JSONMemeDB.DBFields.ItemFields.MediaURL     : meme.getURL(),
+            JSONMemeDB.DBFields.ItemFields.MediaID      : meme.getMediaID(),
+            JSONMemeDB.DBFields.ItemFields.MediaURL     : meme.getMediaURL(),
             JSONMemeDB.DBFields.ItemFields.Thumbnail    : meme.getThumbnail(),
         }
         self.db[JSONMemeDB.DBFields.ItemCount] += 1
@@ -111,8 +111,8 @@ class JSONMemeDB(MemeDBInterface):
         name = meme.getName()
         tags = meme.getTags()
         fileExt = meme.getFileExt()
-        cloudID = meme.getCloudID()
-        cloudURL = meme.getURL()
+        cloudID = meme.getMediaID()
+        cloudURL = meme.getMediaURL()
         mediaType = meme.getMediaTypeString()
         thumbnail = meme.getThumbnail()
 

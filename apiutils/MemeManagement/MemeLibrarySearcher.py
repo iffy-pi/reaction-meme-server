@@ -81,7 +81,7 @@ class MemeLibrarySearcher:
         indexWriter.add_document(memeID=meme.getID(),
                                  name=meme.getName(),
                                  tags=','.join(meme.getTags()),
-                                 memeURL=meme.getURL(),
+                                 memeURL=meme.getMediaURL(),
                                  mediaType=meme.getMediaTypeInt()
                                  )
 
