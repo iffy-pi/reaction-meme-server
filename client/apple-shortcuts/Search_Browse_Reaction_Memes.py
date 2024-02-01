@@ -14,6 +14,7 @@ cancelIcon = # cancelIcon.txt
 verifIcon = '★'
 
 resultsPerPage = 7
+maxTagChars = 40
 searchExit = FALSE
 pageNo = 1
 browseMemes = FALSE
@@ -75,13 +76,21 @@ for _ in range (50):
             searchItems[ itemId ] = item
 
             # construct the vcard 
-            tags = CombineText(item['tags'], ',')
             mediaType = mediaTypeMap[item['mediaType']]
+
+            tags = CombineText(item['tags'], ',')
+            splitText = SplitText(tags, everyCharacter=True)
+            if Count(splitText) > maxTagChars:
+                items = splitText.getItemFromList(1, maxTagChars)
+                combinedText = CombineText(items, '')
+                tags = f'{combinedText}...'
+
+
             text = f'''
             BEGIN:VCARD
             VERSION:3.0
             N;CHARSET=UTF-8:{item['name']}
-            ORG;CHARSET=UTF-8:{mediaType}
+            ORG;CHARSET=UTF-8:{mediaType} ⸱ {tags}
             PHOTO;ENCODING=b;TYPE=JPEG:{item['thumbnail']}
             NOTE;CHARSET=UTF-8:{itemId}
             END:VCARD
