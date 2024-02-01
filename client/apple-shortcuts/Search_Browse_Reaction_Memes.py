@@ -20,6 +20,11 @@ browseMemes = FALSE
 noResultsForSearch = FALSE
 outOfResults = FALSE
 
+mediaTypeMap = {
+    'image': 'Image',
+    'video': 'Video'
+}
+
 
 params = Dictionary(ShortcutInput)
 text = f'{params['function']}'
@@ -71,11 +76,12 @@ for _ in range (50):
 
             # construct the vcard 
             tags = CombineText(item['tags'], ',')
+            mediaType = mediaTypeMap[item['mediaType']]
             text = f'''
             BEGIN:VCARD
             VERSION:3.0
             N;CHARSET=UTF-8:{item['name']}
-            ORG;CHARSET=UTF-8:{tags}
+            ORG;CHARSET=UTF-8:{mediaType}
             PHOTO;ENCODING=b;TYPE=JPEG:{item['thumbnail']}
             NOTE;CHARSET=UTF-8:{itemId}
             END:VCARD
@@ -271,7 +277,7 @@ for _ in range (50):
                         [{tagsStr}]
                         
                         Media Type: 
-                        {memeInfo['mediaType']}
+                        {mediaTypeMap[memeInfo['mediaType']]}
                         
                         ID:
                         {memeInfo['id']}
