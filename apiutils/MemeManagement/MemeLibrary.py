@@ -56,8 +56,7 @@ class MemeLibrary:
 
     def __makeB64Thumbnail(self, cloudID:str, mediaType:MemeMediaType) -> str:
         if mediaType == MemeMediaType.IMAGE:
-            resp = requests.get(cloudID)
-            imgBytes = resp.content
+            imgBytes = self.mediaStorage.getMedia(cloudID)
 
         elif mediaType == MemeMediaType.VIDEO:
             imgBytes = self.mediaStorage.videoToThumbnail(cloudID)

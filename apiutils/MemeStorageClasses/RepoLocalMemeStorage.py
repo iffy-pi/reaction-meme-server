@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 
-from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
+from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface, MemeStorageException
 from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import getMemeFileForID
 
@@ -52,10 +52,20 @@ class LocalServerMemeStorage(MemeStorageInterface):
         # return the ID and url
         return str(nextId), cloudURL
 
+    def getMedia(self, cloudID) -> bytes:
+        memeFile = getMemeFileForID(cloudID)
+        if memeFile is None:
+            raise MemeStorageException('Meme file not found for this URL')
+
+        with open(memeFile, 'rb') as file:
+            bts = file.read()
+
+        return bts
+
     def videoToThumbnail(self, cloudID) -> bytes:
         memeFile = getMemeFileForID(cloudID)
         if memeFile is None:
-            raise Exception('Meme file not found for this URL')
+            raise MemeStorageException('Meme file not found for this URL')
 
         imgOut = os.path.join(ServerConfig.PROJECT_ROOT, 'localMemeStorageServer', 'temp.jpeg')
         child = subprocess.Popen(
@@ -66,13 +76,13 @@ class LocalServerMemeStorage(MemeStorageInterface):
 
         rc = child.returncode
         if rc != 0:
-            raise Exception('An error occurred converting the video with ffmpeg')
+            raise MemeStorageException('An error occurred converting the video with ffmpeg')
 
         # read the bytes
         with open(imgOut, 'rb') as file:
             bts = file.read()
 
-        # delete the image
+        # delete the temp image
         os.remove(imgOut)
 
         return bts
