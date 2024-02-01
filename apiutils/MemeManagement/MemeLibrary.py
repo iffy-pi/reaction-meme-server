@@ -26,12 +26,12 @@ class MemeLibrary:
         self.mediaStorage = mediaStorage
 
     def hasMeme(self, itemId:int):
-        return self.db.hasItem(itemId)
+        return self.db.hasMeme(itemId)
 
     def getMeme(self, itemId:int):
         if not self.hasMeme(itemId):
             raise MemeLibraryException("Item ID does not exist in db")
-        return self.db.getMemeItem(itemId)
+        return self.db.getMeme(itemId)
 
     def uploadItemMedia(self, itemId:int, mediaBinary) -> str:
         """
@@ -45,7 +45,7 @@ class MemeLibrary:
         if cloudId is None or cloudURL is None:
             return None
 
-        if not self.db.updateItem(itemId, MemeContainer(cloudID=cloudId, cloudURL=cloudURL)):
+        if not self.db.updateMeme(itemId, MemeContainer(cloudID=cloudId, cloudURL=cloudURL)):
             return None
 
         return cloudURL
@@ -123,7 +123,7 @@ class MemeLibrary:
         if not self.hasMeme(itemId):
             raise MemeLibraryException(f'ID "{itemId}" does not exist in database')
 
-        return self.db.updateItem(itemId, MemeContainer(name=name, tags=tags))
+        return self.db.updateMeme(itemId, MemeContainer(name=name, tags=tags))
 
     def addMemeThumbnail(self, memeID:int):
         """
@@ -140,7 +140,7 @@ class MemeLibrary:
             raise MemeLibraryException('No Cloud ID is available for meme')
 
         meme.setProperty(thumbnail=self.__makeB64Thumbnail(cloudID, mediaType))
-        return self.db.updateItem(memeID, meme)
+        return self.db.updateMeme(memeID, meme)
 
     def makeLibraryFromCSV(self, csvFile):
         """

@@ -22,6 +22,18 @@ class MemeContainer:
             self.mediaType = mediaType
 
     @staticmethod
+    def makeEmptyMeme():
+        return MemeContainer(
+            name='',
+            mediaType=MemeMediaType.UNKNOWN,
+            fileExt='',
+            tags=[],
+            cloudID='',
+            cloudURL='',
+            thumbnail=''
+        )
+
+    @staticmethod
     def getDefaultName() -> str:
         return ''
 

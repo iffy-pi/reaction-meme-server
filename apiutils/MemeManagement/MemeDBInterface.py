@@ -45,21 +45,21 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def hasItem(self, itemID:int) -> bool:
+    def hasMeme(self, memeID:int) -> bool:
         """
         Returns if the database contains the item id
-        :param itemID: The ID of the item
+        :param memeID: The ID of the item
         :return: boolean -> True if the ID is in the database, false if it isnt
         """
         raise Exception("Must implement in subclass")
 
-    def getMemeItem(self, itemID:int) -> MemeContainer:
+    def getMeme(self, itemID:int) -> MemeContainer:
         """
         Returns a Meme Library Item for the given itemID
         """
         raise Exception("Must implement in subclass")
 
-    def createItem(self) -> int:
+    def createMeme(self) -> int:
         """
         Creates an item in the database and returns the itemID
         Returns -1 if item was failed to be created
@@ -75,7 +75,7 @@ class MemeDBInterface:
         """
         raise Exception("Must implement in subclass")
 
-    def updateItem(self, itemId:int, memeItem:MemeContainer) -> bool:
+    def updateMeme(self, itemId:int, memeItem:MemeContainer) -> bool:
         """
         Updates the item pointed to by itemID with the contents of memeItem
         If a property of memeItem is None, the field in the database should not updated

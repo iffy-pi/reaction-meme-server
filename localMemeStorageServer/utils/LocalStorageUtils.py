@@ -105,7 +105,7 @@ def cloudMemeNeedsToBeConvertedToLocal(cloudURL) -> bool:
     if ServerConfig.MEME_STORAGE != MemeStorageOption.LOCAL:
         return False
 
-    if cloudURL is None:
+    if cloudURL is None or cloudURL is '':
         return False
 
     # actual checking of the url
