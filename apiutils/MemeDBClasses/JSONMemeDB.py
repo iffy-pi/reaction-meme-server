@@ -15,6 +15,7 @@ class JSONMemeDB(MemeDBInterface):
             MediaType = "mediaType"
             FileExt = "fileExt"
             Tags = "tags"
+            Thumbnail = "thumbnail"
             CloudID = "cloudID"
             CloudURL = "cloudURL"
 
@@ -93,13 +94,14 @@ class JSONMemeDB(MemeDBInterface):
             tags=jsonItem[JSONMemeDB.DBFields.ItemFields.Tags],
             fileExt=jsonItem[JSONMemeDB.DBFields.ItemFields.FileExt],
             cloudID=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudID],
-            cloudURL=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudURL]
+            cloudURL=jsonItem[JSONMemeDB.DBFields.ItemFields.CloudURL],
+            thumbnail=jsonItem[JSONMemeDB.DBFields.ItemFields.Thumbnail]
             )
 
     def getMemeItem(self, itemID:int) -> MemeContainer:
         return self.__createMemeFromJSONItem(self.__getJSONItem(itemID))
 
-    def __addItemToDB(self, name:str, mediaType:str, fileExt:str, tags:list[str], cloudID:str, cloudURL:str):
+    def __addItemToDB(self, name:str, mediaType:str, fileExt:str, tags:list[str], cloudID:str, cloudURL:str, thumbnail:str):
         self.__errIfUnloadedDB()
         self.__getDBLock()
         itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
@@ -116,11 +118,12 @@ class JSONMemeDB(MemeDBInterface):
         self.db[JSONMemeDB.DBFields.Items][itemId] = {
             JSONMemeDB.DBFields.ItemFields.ID           : int(itemId),
             JSONMemeDB.DBFields.ItemFields.Name         : name,
-            JSONMemeDB.DBFields.ItemFields.MediaType         : mediaType,
+            JSONMemeDB.DBFields.ItemFields.MediaType    : mediaType,
             JSONMemeDB.DBFields.ItemFields.FileExt      : fileExt,
             JSONMemeDB.DBFields.ItemFields.Tags         : tags,
             JSONMemeDB.DBFields.ItemFields.CloudID      : cloudID,
-            JSONMemeDB.DBFields.ItemFields.CloudURL     : cloudURL
+            JSONMemeDB.DBFields.ItemFields.CloudURL     : cloudURL,
+            JSONMemeDB.DBFields.ItemFields.Thumbnail    : thumbnail
         }
         self.db[JSONMemeDB.DBFields.ItemCount] += 1
         self.__releaseDBLock()
@@ -133,7 +136,8 @@ class JSONMemeDB(MemeDBInterface):
             MemeContainer.getDefaultFileExt(),
             MemeContainer.getDefaultTags(),
             MemeContainer.getDefaultCloudID(),
-            MemeContainer.getDefaultCloudURL())
+            MemeContainer.getDefaultCloudURL(),
+            MemeContainer.getDefaultThumbnail())
         return int(itId)
 
     def addMemeToDB(self, memeItem:MemeContainer) -> bool:
@@ -146,7 +150,7 @@ class JSONMemeDB(MemeDBInterface):
         memeItem.setProperty(id=itemId)
         return self.updateItem(itemId, memeItem)
 
-    def __updateItemProperty(self, itemId:int, name:str=None, mediaType:str=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None ) -> bool:
+    def __updateItemProperty(self, itemId:int, name:str=None, mediaType:str=None, tags:list[str]=None, fileExt=None, cloudID=None, cloudURL=None, thumbnail=None) -> bool:
         self.__errIfUnloadedDB()
         self.__getDBLock()
         item = self.__getJSONItem(itemId, lockDB=False)
@@ -167,6 +171,8 @@ class JSONMemeDB(MemeDBInterface):
             item[JSONMemeDB.DBFields.ItemFields.CloudURL] = cloudURL
         if mediaType is not None:
             item[JSONMemeDB.DBFields.ItemFields.MediaType] = mediaType
+        if thumbnail is not None:
+            item[JSONMemeDB.DBFields.ItemFields.Thumbnail] = thumbnail
 
         self.__releaseDBLock()
 
@@ -180,7 +186,7 @@ class JSONMemeDB(MemeDBInterface):
         return self.__updateItemProperty(itemId,
                                          name=item.getName(), mediaType=item.getMediaTypeString(), tags=item.getTags(),
                                          fileExt=item.getFileExt(), cloudID=item.getCloudID(),
-                                         cloudURL=item.getURL())
+                                         cloudURL=item.getURL(), thumbnail=item.getThumbnail())
 
     def getGroupOfMemes(self, itemsPerPage:int, pageNo:int) -> list[MemeContainer]:
         self.__errIfUnloadedDB()

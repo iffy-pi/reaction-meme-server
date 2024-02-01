@@ -39,6 +39,7 @@ def makeMemeJSON(meme: MemeContainer) -> dict:
             'fileExt': meme.getFileExt(),
             'tags': meme.getTags(),
             'url': meme.getURL(),
+            'thumbnail': meme.getThumbnail()
         }
 
 

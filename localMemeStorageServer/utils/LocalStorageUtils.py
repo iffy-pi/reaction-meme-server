@@ -4,7 +4,6 @@ import socket
 
 import requests
 
-from apiutils.MemeStorageClasses.RepoLocalMemeStorage import LocalServerMemeStorage
 from os.path import join
 from apiutils.configs.ServerConfig import ServerConfig, MemeStorageOption
 
@@ -31,6 +30,7 @@ def getConfigJSONPath():
     return join(ServerConfig.PROJECT_ROOT, "localMemeStorageServer", "storage", "config.json")
 
 def makeLocalMemeStorage():
+    from apiutils.MemeStorageClasses.RepoLocalMemeStorage import LocalServerMemeStorage
     return LocalServerMemeStorage(
         getConfigJSONPath(),
         getMemeDir(),
@@ -44,6 +44,13 @@ def getMemeFileName(id):
             return filename
 
     return None
+
+def getMemeFileForID(cloudID):
+    return os.path.join(getMemeDir(), getMemeFileName(cloudID))
+
+def getMemeFileForURL(cloudURL):
+    memeID = cloudURL.split('/')[-1]
+    return getMemeFileForID(memeID)
 
 def makeRemotelyAccessible(localURL):
     return localURL.replace('127.0.0.1', SYSTEM_IP)

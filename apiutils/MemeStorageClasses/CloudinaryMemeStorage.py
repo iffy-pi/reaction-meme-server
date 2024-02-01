@@ -1,5 +1,6 @@
 import cloudinary
 import cloudinary.uploader
+import requests
 
 from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
 from apiutils.configs.ServerConfig import ServerConfig
@@ -22,3 +23,8 @@ class CloudinaryMemeStorage(MemeStorageInterface):
         mediaID = str(resp['public_id'])
         deliveryURL = cloudinary.utils.cloudinary_url(mediaID, resource_type=resp['resource_type'])[0]
         return mediaID, deliveryURL
+
+    def videoToThumbnail(self, cloudID) -> bytes:
+        url = cloudinary.CloudinaryVideo(cloudID).video_thumbnail(start_offset=0)
+        resp = requests.get(url)
+        return resp.content
