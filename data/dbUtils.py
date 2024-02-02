@@ -29,8 +29,8 @@ def uploadLocalMemeToCloudinary(clUploader:CloudinaryMemeStorage, memeId:int):
 def uploadMemesToCloudinary():
     clu = CloudinaryMemeStorage()
 
-    oldDBFile = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'db.json')
-    newDBFile = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'newDB.json')
+    oldDBFile = ServerConfig.path('data', 'db.json')
+    newDBFile = ServerConfig.path('data', 'newDB.json')
 
     loadPath = oldDBFile
     if os.path.exists(newDBFile):

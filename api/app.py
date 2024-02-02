@@ -103,7 +103,7 @@ def favicon():
 @app.route('/media/<mediaName>')
 def getMedia(mediaName):
     mediaName = str(mediaName)
-    mediaDir = os.path.join(ServerConfig.PROJECT_ROOT, 'media')
+    mediaDir = ServerConfig.path('media')
 
     if not os.path.exists(os.path.join(mediaDir, mediaName)):
         return error_response(400, "Unknown media!")

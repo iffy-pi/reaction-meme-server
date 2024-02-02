@@ -8,9 +8,9 @@ class RepoLocalFileStorage(JSONDBFileStorageInterface):
     Stores the files to the repository project folder
     """
     def __init__(self):
-        self.__dbFilePath = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'db.json')
+        self.__dbFilePath = ServerConfig.path('data', 'db.json')
         if ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.TESTING:
-            self.__dbFilePath = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'testing_db.json')
+            self.__dbFilePath = ServerConfig.path('data', 'testing_db.json')
 
     def getJSONDB(self) -> dict:
         with open(self.__dbFilePath, 'r') as file:

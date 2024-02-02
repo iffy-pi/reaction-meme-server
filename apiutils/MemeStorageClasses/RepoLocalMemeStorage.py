@@ -67,7 +67,7 @@ class LocalServerMemeStorage(MemeStorageInterface):
         if memeFile is None:
             raise MemeStorageException('Meme file not found for this URL')
 
-        imgOut = os.path.join(ServerConfig.PROJECT_ROOT, 'localMemeStorageServer', 'temp.jpeg')
+        imgOut = ServerConfig.path('localMemeStorageServer', 'temp.jpeg')
         child = subprocess.Popen(
             ['ffmpeg.exe', '-i', memeFile, '-ss', '00:00:00.000', '-vframes', '1', imgOut, '-y', '-loglevel', '0'],
             stdout=subprocess.PIPE)

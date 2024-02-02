@@ -61,7 +61,7 @@ def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple
     If the meme does not exist in the local repository, it is downloaded from the cloudinary services
     :return tuple (local ID, local url)
     """
-    cloudMapPath = os.path.join(ServerConfig.PROJECT_ROOT, 'localMemeStorageServer', 'storage', 'cloudMap.json')
+    cloudMapPath = ServerConfig.path('localMemeStorageServer', 'storage', 'cloudMap.json')
     with open(cloudMapPath, 'r') as file:
         cloudMap = json.load(file)
 

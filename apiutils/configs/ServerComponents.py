@@ -32,7 +32,7 @@ def loadLibrary(memeLib:MemeLibrary, verbose:bool=True):
     INIT_LIB_FROM_CATALOG_OVERRIDE = os.environ.get('INIT_LIB_FROM_CATALOG_OVERRIDE') is not None
     if INIT_LIB_FROM_CATALOG_OVERRIDE:
         if verbose: print('OVERRIDE - Library Source: catalog.csv')
-        memeLib.makeLibraryFromCSV(os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'catalog.csv'))
+        memeLib.makeLibraryFromCSV(ServerConfig.path('data', 'catalog.csv'))
     else:
         if verbose: print('Library Source: database')
         memeLib.loadLibrary()

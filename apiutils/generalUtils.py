@@ -52,7 +52,7 @@ def downloadPBFSJSONDBToLocal(serverIdentifier:str = ServerConfig.PBFS_SERVER_ID
     lcfs.writeJSONDB(db)
 
 def downloadNewMemesFromCloud(jsonDB:JSONMemeDB):
-    cloudMapPath = os.path.join(ServerConfig.PROJECT_ROOT, 'localMemeStorageServer', 'storage', 'cloudMap.json')
+    cloudMapPath = ServerConfig.path('localMemeStorageServer', 'storage', 'cloudMap.json')
     jsonDB.loadDB()
 
     with open(cloudMapPath, 'r') as file:
