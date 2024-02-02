@@ -1,8 +1,8 @@
 __pycache__
 *.pyc
 .vscode
-devenv/test.py
-data/mock_cloud/
-data/indexdir/
-testing/
-devenv/
+/data/mock_cloud/
+/data/testing_db.json
+/data/indexdir/
+/testing/
+/devenv/

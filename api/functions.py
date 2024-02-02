@@ -6,7 +6,7 @@ from apiutils.HTTPResponses import error_response
 from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
-from apiutils.configs.ComponentOverrides import getServerFileStorage, getServerMemeStorage
+from apiutils.configs.ServerComponents import getServerFileStorage, getServerMemeStorage
 from apiutils.configs.ServerConfig import ServerConfig
 
 

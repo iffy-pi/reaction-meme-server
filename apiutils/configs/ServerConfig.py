@@ -19,6 +19,7 @@ class JSONDBFileStorageOption(Enum):
 class ProjectEnvironment(Enum):
     PROD = 'production'
     DEV = 'development'
+    TESTING = 'testing'
 
 
 def getTypeForValString(enumType, valStr: str):
@@ -201,7 +202,9 @@ class ServerConfig:
         return ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.DEV
 
     @staticmethod
-    def getFullPath(*paths) -> str:
+    def path(*paths) -> str:
         """
         Returns the full path of the item, with the project root included
         """
+        paths = (ServerConfig.PROJECT_ROOT,) + paths
+        return os.path.join(*paths)

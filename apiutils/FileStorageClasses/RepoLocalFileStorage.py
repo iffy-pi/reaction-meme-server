@@ -1,7 +1,7 @@
 import os
 import json
 from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
-from apiutils.configs.ServerConfig import ServerConfig
+from apiutils.configs.ServerConfig import ServerConfig, ProjectEnvironment
 
 class RepoLocalFileStorage(JSONDBFileStorageInterface):
     """
@@ -9,6 +9,8 @@ class RepoLocalFileStorage(JSONDBFileStorageInterface):
     """
     def __init__(self):
         self.__dbFilePath = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'db.json')
+        if ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.TESTING:
+            self.__dbFilePath = os.path.join(ServerConfig.PROJECT_ROOT, 'data', 'testing_db.json')
 
     def getJSONDB(self) -> dict:
         with open(self.__dbFilePath, 'r') as file:

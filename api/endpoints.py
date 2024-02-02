@@ -5,7 +5,7 @@ from api.functions import makeMemeJSON
 from apiutils.HTTPResponses import error_response, make_json_response
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, stringToMemeMediaType
 from apiutils.UploadSessionManager import UploadSessionManager
-from apiutils.configs.ComponentOverrides import *
+from apiutils.configs.ServerComponents import *
 
 class EndPointException(Exception):
     def __init__(self, message):
