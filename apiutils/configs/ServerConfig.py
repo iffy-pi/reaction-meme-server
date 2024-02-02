@@ -205,6 +205,13 @@ class ServerConfig:
     def path(*paths) -> str:
         """
         Returns the full path of the item, with the project root included
+        You can pass in path arguments e.g. ('folder', 'folder2', 'test.txt')
+        Or a forward-slash separated argument e.g. ('folder/folder2/test.txt')
         """
-        paths = (ServerConfig.PROJECT_ROOT,) + paths
+        pathList = []
+        for p in paths:
+            pathList += p.split('/')
+
+        paths = (ServerConfig.PROJECT_ROOT,) + tuple(pathList)
         return os.path.join(*paths)
+

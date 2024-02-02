@@ -30,8 +30,8 @@ def getConfigJSONPath():
     return join(ServerConfig.PROJECT_ROOT, "localMemeStorageServer", "storage", "config.json")
 
 def makeLocalMemeStorage():
-    from apiutils.MemeStorageClasses.RepoLocalMemeStorage import LocalServerMemeStorage
-    return LocalServerMemeStorage(
+    from apiutils.MemeStorageClasses.RepoLocalMemeStorage import RepoLocalMemeStorage
+    return RepoLocalMemeStorage(
         getConfigJSONPath(),
         getMemeDir(),
         addUploadedFlag=True

@@ -111,8 +111,8 @@ class JSONMemeDB(MemeDBInterface):
         name = meme.getName()
         tags = meme.getTags()
         fileExt = meme.getFileExt()
-        cloudID = meme.getMediaID()
-        cloudURL = meme.getMediaURL()
+        mediaID = meme.getMediaID()
+        mediaURL = meme.getMediaURL()
         mediaType = meme.getMediaTypeString()
         thumbnail = meme.getThumbnail()
 
@@ -122,10 +122,10 @@ class JSONMemeDB(MemeDBInterface):
             item[JSONMemeDB.DBFields.ItemFields.Tags] = tags
         if fileExt is not None:
             item[JSONMemeDB.DBFields.ItemFields.FileExt] = fileExt
-        if cloudID is not None:
-            item[JSONMemeDB.DBFields.ItemFields.MediaID] = cloudID
-        if cloudURL is not None:
-            item[JSONMemeDB.DBFields.ItemFields.MediaURL] = cloudURL
+        if mediaID is not None:
+            item[JSONMemeDB.DBFields.ItemFields.MediaID] = mediaID
+        if mediaURL is not None:
+            item[JSONMemeDB.DBFields.ItemFields.MediaURL] = mediaURL
         if mediaType is not None:
             item[JSONMemeDB.DBFields.ItemFields.MediaType] = mediaType
         if thumbnail is not None:

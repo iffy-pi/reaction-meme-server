@@ -7,7 +7,7 @@ from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import getMemeFileForID
 
 
-class LocalServerMemeStorage(MemeStorageInterface):
+class RepoLocalMemeStorage(MemeStorageInterface):
     """
     Stores memes for use by localMemeStorageServer
     Specifically stored under localMemeStorageServer/storage/memes
