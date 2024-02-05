@@ -61,6 +61,7 @@ If successful, the `payload` field will be a dictionary which contains:
 | `fileExt`   | String | The meme's media file extension e.g. "jpg", "mp4", "png"  |
 | `tags`      | Array  | The list of tags for the meme                             |
 | `url`       | String | The URL to download the meme from                         |
+| `thumbnail` | String | The base64 encoded 100x100 thumbnail of the meme media    |
 
 
 
@@ -188,7 +189,7 @@ If successful, response `payload` field will include:
 |-------------|--------|-----------------------------------------------------|
 | `uploadURL` | String | The URL which will be used to upload the meme file. |
 
-**Note: For security, the upload URL has an access lifetime of 3 hours. That is, a connection to the endpoint will be rejected 3-hours after the URL has been generated.**
+**Note: For security, the upload URL has an access lifetime of 3 hours. That is, an upload to the URL will be rejected if the upload URL has already been used or 3 hours have passed since the URL was generated.**
 
 ### Upload URL: Call & Request `(privileged)`
 Make a call to the `uploadURL` returned as a response to the upload request. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
