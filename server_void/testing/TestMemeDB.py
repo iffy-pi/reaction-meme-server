@@ -1,6 +1,9 @@
 import json
 
 from apiutils.configs.ServerConfig import ServerConfig
+from localMemeStorageServer.utils.LocalStorageUtils import cloudMemeNeedsToBeConvertedToLocal, \
+    getLocalVersionForCloudMeme
+
 
 class TestMemeDB:
     """
@@ -60,6 +63,13 @@ class TestMemeDB:
         if item is None:
             return None
 
+        mediaID = item[TestMemeDB.DBFields.ItemFields.MediaID]
+        mediaURL = item[TestMemeDB.DBFields.ItemFields.MediaURL]
+        fileExt = item[TestMemeDB.DBFields.ItemFields.FileExt]
+
+        if cloudMemeNeedsToBeConvertedToLocal(item[TestMemeDB.DBFields.ItemFields.MediaURL]):
+            mediaID, mediaURL = getLocalVersionForCloudMeme(mediaID, mediaURL, fileExt)
+
         results = {}
         if name:
             results['name'] = item[TestMemeDB.DBFields.ItemFields.Name]
@@ -68,11 +78,11 @@ class TestMemeDB:
         if mediaType:
             results['mediaType'] = item[TestMemeDB.DBFields.ItemFields.MediaType]
         if fileExt:
-            results['fileExt'] = item[TestMemeDB.DBFields.ItemFields.FileExt]
+            results['fileExt'] = fileExt
         if mediaID:
-            results['mediaID'] = item[TestMemeDB.DBFields.ItemFields.MediaID]
+            results['mediaID'] = mediaID
         if mediaURL:
-            results['mediaURL'] = item[TestMemeDB.DBFields.ItemFields.MediaURL]
+            results['mediaURL'] = mediaURL
         if thumbnail:
             results['thumbnail'] = item[TestMemeDB.DBFields.ItemFields.Thumbnail]
 
@@ -115,6 +125,9 @@ class TestMemeDB:
         }
         self.db[TestMemeDB.DBFields.ItemCount] += 1
         return itemId
+
+    def getNextID(self):
+        return self.db[TestMemeDB.DBFields.ItemCount]
 
     def deleteItem(self, itemId):
         if not self.inDB(itemId):

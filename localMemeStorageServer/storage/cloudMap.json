@@ -2542,5 +2542,11 @@
         "cloudURL": "http://res.cloudinary.com/du6q7wdat/video/upload/v1/memes/bwjavxl3rgm5vl3wrhfr",
         "localID": "485",
         "localURL": "http://127.0.0.1:5001/local/meme/485"
+    },
+    "378": {
+        "cloudID": "378",
+        "cloudURL": "http://192.168.2.101:5001/local/meme/378",
+        "localID": "495",
+        "localURL": "http://127.0.0.1:5001/local/meme/495"
     }
 }

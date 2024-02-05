@@ -91,15 +91,12 @@ def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple
     # return the info
     return localID, makeRemotelyAccessible(localURL)
 
-def cloudMemeNeedsToBeConvertedToLocal(cloudURL) -> bool:
+def cloudMemeNeedsToBeConvertedToLocal(cloudURL, ignoreEnv=False) -> bool:
     """
     Returns if the given item needs to be converted into its local version
-    :param cloudID:
-    :param cloudURL:
-    :return:
     """
     # Only allowed if in development
-    if not ServerConfig.isDevEnv():
+    if ignoreEnv or not (ServerConfig.isDevEnv() or ServerConfig.isTestEnv()):
         return False
 
     if ServerConfig.MEME_STORAGE != MemeStorageOption.LOCAL:
