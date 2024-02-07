@@ -2,6 +2,7 @@ import os
 from random import randint
 from unittest import TestCase
 import json
+import urllib.parse as urp
 
 import requests
 
@@ -52,17 +53,47 @@ class APITests(TestCase):
         memeID = randint(0, len(itemIds) - 1)
         return memeID
 
-    def meme_id_route_checks(self, route):
-        with self.subTest():
+
+    def meme_id_route_checks(self, route, post=False, headers=None):
+        with self.subTest(msg='Meme ID Route Checks'):
             # Subtest #1 : Test that non integer meme ID does not work
-            resp = requests.get(f'{route}/a')
-            self.assertEqual(resp.status_code, 404)
+            if post:
+                resp = requests.post(f'{route}/a', headers=headers)
+            else:
+                resp = requests.get(f'{route}/a', headers=headers)
+            self.assertEqual(404, resp.status_code, msg='Testing Invalid Meme ID')
 
             # Subtest #2 : Test that meme ID that doesn't exist in the database returns a not found response
             newID = TestMemeDB.getInstance().getNextID()
-            resp = requests.get(f'{route}/{newID}')
-            self.assertTrue('error' in resp.json())
+            if post:
+                resp = requests.post(f'{route}/{newID}', headers=headers)
+            else:
+                resp = requests.get(f'{route}/{newID}', headers=headers)
+            self.assertTrue('error' in resp.json(), msg='Testing Nonexistent Meme ID')
 
+    def privileged_endpoint_check(self, route):
+        with self.subTest(msg='Privileged Endpoint Checks'):
+            # Missing access token in header
+            resp = requests.post(route)
+            self.assertEqual(400, resp.status_code)
+
+            # Invalid access token in header
+            resp = requests.post(route, headers={'Access-Token': 'abc123'})
+            self.assertEqual(400, resp.status_code)
+
+    def check_meme_info_from_server(self, memeID, serverResp):
+        # Check if server responds in the correct format for the meme data
+        res = TestMemeDB.getInstance().get(memeID, name=True, mediaType=True, tags=True, fileExt=True, thumbnail=True, mediaURL=True)
+        expectedResp = {
+            'id': memeID,
+            'name': res['name'],
+            'mediaType': res['mediaType'],
+            'tags': res['tags'],
+            'fileExt': res['fileExt'],
+            'url': res['mediaURL'],
+            'thumbnail': res['thumbnail']
+        }
+        self.assertEqual(expectedResp, serverResp)
 
     def test_api_download_meme(self):
         tdb = TestMemeDB.getInstance()
@@ -79,7 +110,8 @@ class APITests(TestCase):
         # Get the bytes for the remote version
         resp = requests.get(APITests.makeServerRoute(f'download/{memeID}'))
         remoteImgBytes = resp.content
-        self.assertEqual(localImgBytes, remoteImgBytes)
+        self.assertEqual(localImgBytes, remoteImgBytes, msg='Downloaded media is correct')
+
 
     def test_api_get_meme(self):
         tdb = TestMemeDB.getInstance()
@@ -87,35 +119,195 @@ class APITests(TestCase):
         self.meme_id_route_checks(APITests.makeServerRoute('info'))
 
         memeID = APITests.getRandomMeme()
-        res = tdb.get(memeID, name=True, mediaType=True, tags=True, fileExt=True, thumbnail=True, mediaURL=True)
-        expectedResp = {
-            'id': memeID,
-            'name': res['name'],
-            'mediaType': res['mediaType'],
-            'tags': res['tags'],
-            'fileExt': res['fileExt'],
-            'url': res['mediaURL'],
-            'thumbnail': res['thumbnail']
+        resp = requests.get(APITests.makeServerRoute(f'info/{memeID}'))
+        self.assertTrue(resp.ok)
+        self.check_meme_info_from_server(memeID, resp.json()['payload'])
+
+    @staticmethod
+    def make_acc_token_header():
+        return {
+            'Access-Token': ServerConfig.ALLOWED_ACCESS_TOKENS[0]
         }
 
-        resp = requests.get(APITests.makeServerRoute(f'info/{memeID}'))
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.json()['payload'], expectedResp)
-
     def test_api_edit_meme(self):
-        self.assertEqual(1, 1)
+        # tdb = TestMemeDB.getInstance()
+        # tdb.loadDB()
+        memeID = APITests.getRandomMeme()
+        self.privileged_endpoint_check(APITests.makeServerRoute(f'edit/{memeID}'))
+        self.meme_id_route_checks(APITests.makeServerRoute('edit'), post=True, headers=APITests.make_acc_token_header())
 
-    def test_api_edit_meme_bad_access(self):
-        self.assertEqual(1, 1)
+        tdb = TestMemeDB.getInstance()
 
-    def test_api_edit_meme_bad_data(self):
-        self.assertEqual(1, 1)
+        with self.subTest('Editing Name'):
+            # Edit the meme
+            newName = 'new meme name for test'
+            memeID = APITests.getRandomMeme()
+            resp = requests.post(
+                APITests.makeServerRoute(f'edit/{memeID}'),
+                headers=APITests.make_acc_token_header(),
+                json= {
+                    'name': newName,
+                }
+            )
+            self.assertTrue(resp.ok, msg='Request Completed')
 
-    def test_api_search_meme(self):
-        self.assertEqual(1, 1)
+            # Load the db and check if the meme content matches what we expect
+            tdb.loadDB()
+            name = tdb.get(memeID, name=True)
+            self.assertEqual(newName, name, msg='Names Match')
+
+        with self.subTest('Editing Tags'):
+            newTags = ['Testing', 'tag', 'one']
+            memeID = APITests.getRandomMeme()
+            resp = requests.post(
+                APITests.makeServerRoute(f'edit/{memeID}'),
+                headers=APITests.make_acc_token_header(),
+                json={
+                    'tags': newTags,
+                }
+            )
+            self.assertTrue(resp.ok, msg='Request Completed')
+
+            # Load the db and check if the meme content matches what we expect
+            tdb.loadDB()
+            tags = tdb.get(memeID, tags=True)
+            self.assertEqual(newTags, tags, msg='Tags Match')
+
+        with self.subTest('Incorrect Name Data Type'):
+            memeID = APITests.getRandomMeme()
+            resp = requests.post(
+                APITests.makeServerRoute(f'edit/{memeID}'),
+                headers=APITests.make_acc_token_header(),
+                json={
+                    'name': 22,
+                }
+            )
+            self.assertEqual(400, resp.status_code)
+
+        with self.subTest('Incorrect Tags Data Type'):
+            newTags = 'Testing,tag,one'
+            memeID = APITests.getRandomMeme()
+            resp = requests.post(
+                APITests.makeServerRoute(f'edit/{memeID}'),
+                headers=APITests.make_acc_token_header(),
+                json={
+                    'tags': newTags,
+                }
+            )
+            self.assertEqual(400, resp.status_code)
+
+    def pagination_checks(self, baseRoute, routeRequiresPageParams=True, baseHasUrlParams=False):
+        # Checks to make sure page logic and URL encoded arguments work properly
+        combiner = '?'
+        if baseHasUrlParams:
+            combiner = '&'
+
+        with self.subTest('Page Parameter Checks'):
+            # Page cHECKS
+            resp = requests.get(baseRoute)
+            msg = 'Missing Page No and Items Per Page'
+
+            # If page paramaters are optional, then we expect it to pass otherwise we return a client error
+            if not routeRequiresPageParams:
+                self.assertTrue(resp.ok, msg=msg)
+            else:
+                self.assertEqual(400, resp.status_code, msg=msg)
+
+            # Try with invalid page params
+            resp = requests.get(f'{baseRoute}{combiner}page=abc&per_page=abc')
+            self.assertEqual(400, resp.status_code, msg='Invalid Page Parameters')
+
+            # Try without of range page params
+            resp = requests.get(f'{baseRoute}{combiner}page=-1&per_page=-3')
+            self.assertEqual(400, resp.status_code, msg='Out of Range Page Params #1')
+
+            # A page that is out of bounds, should just return an empty results list
+            resp = requests.get(f'{baseRoute}{combiner}page=9999&per_page=20')
+            self.assertEqual([], resp.json()['payload']['results'], msg='Empty results when page is out of range')
+
+    def check_media_types(self, baseRoute, baseHasURLParams=True):
+        combiner = '?'
+        if baseHasURLParams:
+            combiner = '&'
+
+        # Any other types than "images", "videos" or "all" should give client error
+        resp = requests.get(f'{baseRoute}{combiner}media_type=gif')
+        self.assertEqual(400, resp.status_code, msg='Testing unknown media type is rejected')
+
+        # Check that specific types return only their types
+        mediaTypes = ['image', 'video']
+        for mt in mediaTypes:
+            with self.subTest(f'Testing {mt} media type'):
+                resp = requests.get(f'{baseRoute}{combiner}media_type={mt}')
+                results = resp.json()['payload']['results']
+                self.assertTrue(
+                    all(res['mediaType'] == mt for res in results),
+                )
 
     def test_api_browse_meme(self):
-        self.assertEqual(1, 1)
+        browseRoute = APITests.makeServerRoute('browse')
+        self.pagination_checks(browseRoute)
+
+        pageNo = 1
+        itemsPerPage = 10
+
+        # check if the results and pages align
+        with self.subTest('Logical Behaviour'):
+            # browse a page
+            resp = requests.get(f'{browseRoute}?page={pageNo}&per_page={itemsPerPage}')
+            # Is a valid request
+            self.assertTrue(resp.ok, 'Request is valid')
+
+            js = resp.json()
+            self.assertTrue('payload' in js)
+
+            results = js['payload']
+
+            self.assertTrue('itemsPerPage' in results)
+            self.assertEqual(itemsPerPage, results['itemsPerPage'])
+            self.assertTrue('page' in results)
+            self.assertEqual(pageNo, results['page'])
+            self.assertTrue('results' in results)
+
+            TestMemeDB.getInstance().loadDB()
+
+            # check to make sure each meme matches the expected response format in the API docs
+            for res in results['results']:
+                self.assertTrue('id' in res)
+                self.check_meme_info_from_server(res['id'], res)
+
+    def test_api_search_meme(self):
+        # Test that query parameter is required
+        searchRoute = APITests.makeServerRoute('search')
+
+        # No query URL parameter should result in an error
+        resp = requests.get(f'{searchRoute}')
+        self.assertEqual(400, resp.status_code)
+
+        # Query as only URL parameter should pass, with default page being 1 and item being 10
+        resp = requests.get(f'{searchRoute}?query=happy')
+        self.assertTrue(resp.ok)
+        results = resp.json()['payload']
+        self.assertTrue('results' in results)
+        self.assertTrue('itemsPerPage' in results)
+        self.assertEqual(10, results['itemsPerPage'], msg='Matches default items per page mentioned in the documentation')
+        self.assertTrue('page' in results)
+        self.assertEqual(1, results['page'],
+                         msg='Matches default page no mentioned in the documentation')
+
+        # now do pagination checks
+        self.pagination_checks(f'{searchRoute}?query=happy', routeRequiresPageParams=False, baseHasUrlParams=True)
+
+        # Check the media type parameters
+        self.check_media_types(f'{searchRoute}?query=happy')
+
+        # Finally check if the results match api documentation
+        resp = requests.get(f'{searchRoute}?query=happy')
+        self.assertTrue(resp.ok)
+        results = resp.json()['payload']['results']
+        for res in results:
+            self.assertTrue('id' in res)
+            self.check_meme_info_from_server(res['id'], res)
 
     def test_api_upload_meme(self):
         self.assertEqual(1,1)

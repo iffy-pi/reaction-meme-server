@@ -120,10 +120,43 @@ for _ in range (50):
         nextPage = pageNo+1
         prevPage = nextPage-2
 
+        prevBtn = f'''
+            BEGIN:VCARD
+            VERSION:3.0
+            N;CHARSET=utf-8:Previous Page
+            ORG: Page {prevPage}
+            NOTE;CHARSET=UTF-8:Prev
+            {backwardIcon}
+            END:VCARD
+        '''
+
+        nextBtn = f'''
+            BEGIN:VCARD
+            VERSION:3.0
+            N;CHARSET=utf-8:Next Page
+            ORG: Page {nextPage}
+            NOTE;CHARSET=UTF-8:Next
+            {forwardIcon}
+            END:VCARD
+        '''
+
+        lastPageInfo = ''
+
+        if prevPage == 0:
+            prevBtn = ''
+
+
+        # If next page has no results dont show next page button
+        url = URL(f"{baseURL}page={nextPage}&per_page={resultsPerPage}&media_type={searchMediaType}")
+        res = GetContentsOfURL(url)
+        if Count(res['payload']['results']) == 0:
+            nextBtn = ''
+            lastPageInfo = ' (Last Page)'
+
+
         # If the current page has no results, we are out of results
         # If we are out of results on the first page, then the search has no results
-
-        outOfResults = FALSE
+       outOfResults = FALSE
         if resultCount == 0:
             outOfResults = TRUE
             if prevPage == 0:
@@ -135,21 +168,9 @@ for _ in range (50):
             IFRESULT = ''
         else:
             IFRESULT = f'''
-                BEGIN:VCARD
-                VERSION:3.0
-                N;CHARSET=utf-8:Next Page
-                ORG: Page {nextPage}
-                NOTE;CHARSET=UTF-8:Next
-                {forwardIcon}
-                END:VCARD
+                {nextBtn}
 
-                BEGIN:VCARD
-                VERSION:3.0
-                N;CHARSET=utf-8:Previous Page
-                ORG: Page {prevPage}
-                NOTE;CHARSET=UTF-8:Prev
-                {backwardIcon}
-                END:VCARD
+                {prevBtn}
 
                 BEGIN:VCARD
                 VERSION:3.0

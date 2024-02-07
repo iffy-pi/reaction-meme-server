@@ -106,11 +106,11 @@ The request fields below should be encoded as URL parameters.
 ### Response
 The `payload` field of the JSON response will contain the following keys:
 
-| Field          | Type   | Description                                                                                                                             |
-|----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `itemsPerPage` | Number | The number of items retrieved for the page. This may differ from the encoded URL parameter if less results were available for the page. |
-| `page`         | Number | The page number                                                                                                                         |
-| `results`      | Array  | The list of results retrieved.                                                                                                          |
+| Field          | Type   | Description                                                                              |
+|----------------|--------|------------------------------------------------------------------------------------------|
+| `itemsPerPage` | Number | The number of items per page requested. This will match the value passed in your request |
+| `page`         | Number | The page number                                                                          |
+| `results`      | Array  | The list of results retrieved.                                                           |
 
 Each element of `results` will have the same data structure as [Get Meme Information](#get-meme-information).
 

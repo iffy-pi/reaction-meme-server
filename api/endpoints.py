@@ -75,21 +75,44 @@ def browseMemes(itemsPerPage, pageNo, memeLib: MemeLibrary) -> Response:
     if pageNo is None:
         return error_response(400, '"page" is not included as a URL parameter')
 
-    itemsPerPage = int(itemsPerPage)
-    pageNo = int(pageNo)
+    try:
+        itemsPerPage = int(itemsPerPage)
+        pageNo = int(pageNo)
+    except ValueError:
+        return error_response(400, '"per_page" and/or "page" parameter is a non-integer value')
+
+    if itemsPerPage <= 0 or pageNo <= 0:
+        return error_response(400, 'Invalid values for "page" and/or "per_page" parameters')
 
     memes = memeLib.browseMemes(itemsPerPage, pageNo)
     collated = [makeMemeJSON(meme) for meme in memes]
 
-    return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'pageNo': pageNo})
+    return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'page': pageNo})
 
 
 def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary) -> Response:
     if query is None or query == "":
         return error_response(400, 'No query found, use "query" for the URL parameter')
 
-    itemsPerPage = int(itemsPerPage) if itemsPerPage is not None else 10
-    pageNo = int(pageNo) if pageNo is not None else 1
+    if itemsPerPage is not None:
+        try:
+            itemsPerPage = int(itemsPerPage)
+        except ValueError:
+            return error_response(400, '"per_page" parameter is a non-integer value')
+
+    if pageNo is not None:
+        try:
+            pageNo = int(pageNo)
+        except ValueError:
+            return error_response(400, '"page" parameter is a non-integer value')
+
+
+    itemsPerPage = itemsPerPage if itemsPerPage is not None else 10
+    pageNo = pageNo if pageNo is not None else 1
+
+    if itemsPerPage <= 0 or pageNo <= 0:
+        return error_response(400, 'Invalid values for "page" and/or "per_page" parameters')
+
     mediaType = None
 
     if mediaTypeStr is not None:
@@ -104,7 +127,7 @@ def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary)
     matchedMemes = memeLib.search(query, itemsPerPage=itemsPerPage, pageNo=pageNo, onlyMediaType=mediaType)
     collated = [makeMemeJSON(meme) for meme in matchedMemes]
 
-    return make_json_response({'results': collated, 'itemCount': len(collated), 'pageNo': pageNo})
+    return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'page': pageNo})
 
 
 def addNewMeme(name, tags, fileExt, mediaID, mediaURL, memeLib: MemeLibrary) -> Response:

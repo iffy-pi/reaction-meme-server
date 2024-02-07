@@ -96,7 +96,10 @@ def cloudMemeNeedsToBeConvertedToLocal(cloudURL, ignoreEnv=False) -> bool:
     Returns if the given item needs to be converted into its local version
     """
     # Only allowed if in development
-    if ignoreEnv or not (ServerConfig.isDevEnv() or ServerConfig.isTestEnv()):
+    if ignoreEnv:
+        return False
+
+    if ServerConfig.isProdEnv():
         return False
 
     if ServerConfig.MEME_STORAGE != MemeStorageOption.LOCAL:

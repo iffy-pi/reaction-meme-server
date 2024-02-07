@@ -63,12 +63,12 @@ class TestMemeDB:
         if item is None:
             return None
 
-        mediaID = item[TestMemeDB.DBFields.ItemFields.MediaID]
-        mediaURL = item[TestMemeDB.DBFields.ItemFields.MediaURL]
-        fileExt = item[TestMemeDB.DBFields.ItemFields.FileExt]
+        _mediaID = item[TestMemeDB.DBFields.ItemFields.MediaID]
+        _mediaURL = item[TestMemeDB.DBFields.ItemFields.MediaURL]
+        _fileExt = item[TestMemeDB.DBFields.ItemFields.FileExt]
 
-        if cloudMemeNeedsToBeConvertedToLocal(item[TestMemeDB.DBFields.ItemFields.MediaURL]):
-            mediaID, mediaURL = getLocalVersionForCloudMeme(mediaID, mediaURL, fileExt)
+        if cloudMemeNeedsToBeConvertedToLocal(_mediaURL):
+            _mediaID, _mediaURL = getLocalVersionForCloudMeme(_mediaID, _mediaURL, _fileExt)
 
         results = {}
         if name:
@@ -78,11 +78,11 @@ class TestMemeDB:
         if mediaType:
             results['mediaType'] = item[TestMemeDB.DBFields.ItemFields.MediaType]
         if fileExt:
-            results['fileExt'] = fileExt
+            results['fileExt'] = _fileExt
         if mediaID:
-            results['mediaID'] = mediaID
+            results['mediaID'] = _mediaID
         if mediaURL:
-            results['mediaURL'] = mediaURL
+            results['mediaURL'] = _mediaURL
         if thumbnail:
             results['thumbnail'] = item[TestMemeDB.DBFields.ItemFields.Thumbnail]
 

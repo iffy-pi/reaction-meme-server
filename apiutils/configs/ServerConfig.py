@@ -215,7 +215,11 @@ class ServerConfig:
         paths = (ServerConfig.PROJECT_ROOT,) + tuple(pathList)
         return os.path.join(*paths)
 
-    @classmethod
-    def isTestEnv(cls):
+    @staticmethod
+    def isTestEnv():
         return ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.TESTING
+
+    @staticmethod
+    def isProdEnv():
+        return ServerConfig.PROJECT_ENVIRONMENT == ProjectEnvironment.PROD
 
