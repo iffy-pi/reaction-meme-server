@@ -32,17 +32,17 @@ information = {
 tags = SplitText(information['tags'], ',')
 
 # First do the upload request
-res = GetContentsOfURL(f'{serverURL}/upload-request', method='GET', headers={'Access-Token': accessToken})
+# res = GetContentsOfURL(f'{serverURL}/upload-request', method='GET', headers={'Access-Token': accessToken})
 
-if RunShortcut('Check RMSVR JSON Response', input=res) is None:
-	StopShortcut()
+# if RunShortcut('Check RMSVR JSON Response', input=res) is None:
+# 	StopShortcut()
 
-reqResp = Dictionary(res)
+# reqResp = Dictionary(res)
 
-# Then upload the meme to the upload URL
-uploadURL = reqResp['payload.uploadURL']
+# # Then upload the meme to the upload URL
+# uploadURL = reqResp['payload.uploadURL']
 
-res = GetContentsOfURL(uploadURL, method='POST', headers={'Access-Token': accessToken}, requestBody='Form', 
+res = GetContentsOfURL(f'{serverURL}/upload', method='POST', headers={'Access-Token': accessToken}, requestBody='Form', 
 							body={
 								'file': File(mediaItem)
 								'fileExt': Text(fileExt)
