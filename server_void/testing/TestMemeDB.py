@@ -10,7 +10,7 @@ class TestMemeDB:
     Gets data from the testing DB, is designed to work independent of the code base
     """
     class DBFields:
-        ItemCount = "itemCount"
+        NextID = "nextID"
         Items = "items"
         class ItemFields:
             ID = 'id'
@@ -112,7 +112,7 @@ class TestMemeDB:
             item[TestMemeDB.DBFields.ItemFields.Thumbnail] = thumbnail
 
     def createItem(self):
-        itemId = str(self.db[TestMemeDB.DBFields.ItemCount])
+        itemId = str(self.db[TestMemeDB.DBFields.NextID])
         self.db[TestMemeDB.DBFields.Items][itemId] = {
             TestMemeDB.DBFields.ItemFields.ID: int(itemId),
             TestMemeDB.DBFields.ItemFields.Name: '',
@@ -123,11 +123,11 @@ class TestMemeDB:
             TestMemeDB.DBFields.ItemFields.MediaURL: '',
             TestMemeDB.DBFields.ItemFields.Thumbnail: '',
         }
-        self.db[TestMemeDB.DBFields.ItemCount] += 1
+        self.db[TestMemeDB.DBFields.NextID] += 1
         return itemId
 
     def getNextID(self):
-        return self.db[TestMemeDB.DBFields.ItemCount]
+        return self.db[TestMemeDB.DBFields.NextID]
 
     def deleteItem(self, itemId):
         if not self.inDB(itemId):
@@ -137,4 +137,4 @@ class TestMemeDB:
         self.db[TestMemeDB.DBFields.Items].pop(str(itemId))
 
         # decrement count
-        self.db[TestMemeDB.DBFields.ItemCount] -= 1
+        self.db[TestMemeDB.DBFields.NextID] -= 1

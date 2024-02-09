@@ -7,7 +7,7 @@ from apiutils.MemeManagement.MemeMediaType import stringToMemeMediaType
 class JSONMemeDB(MemeDBInterface):
     instance = None
     class DBFields:
-        ItemCount = "itemCount"
+        NextID = "nextID"
         Items = "items"
         class ItemFields:
             ID = 'id'
@@ -71,19 +71,29 @@ class JSONMemeDB(MemeDBInterface):
             thumbnail=jsonItem[JSONMemeDB.DBFields.ItemFields.Thumbnail]
             )
 
+    def genNewID(self, lockdb=True) -> int:
+        self.__errIfUnloadedDB()
+
+        if lockdb:
+            self.__getDBLock()
+
+        newId = self.db[JSONMemeDB.DBFields.NextID]
+        while str(newId) in self.db[JSONMemeDB.DBFields.Items]:
+            # If the id already exists, just skip it
+            newId += 1
+
+        # Increment it
+        self.db[JSONMemeDB.DBFields.NextID] = newId + 1
+
+        if lockdb:
+            self.__releaseDBLock()
+
+        return newId
+
     def __addItemToDB(self, meme:MemeContainer):
         self.__errIfUnloadedDB()
         self.__getDBLock()
-        itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
-
-        if itemId in self.db[JSONMemeDB.DBFields.Items]:
-            # If the item ID alredy exists, suggests a mismatch between item count and the actual list of items
-            # Reset and recalculate
-            self.db[JSONMemeDB.DBFields.ItemCount] = len(self.db[JSONMemeDB.DBFields.Items])
-            itemId = str(self.db[JSONMemeDB.DBFields.ItemCount])
-
-            if itemId in self.db[JSONMemeDB.DBFields.Items]:
-                raise MemeDBException('JSON Meme DB is in a bad state!')
+        itemId = str(self.genNewID(lockdb=False))
 
         self.db[JSONMemeDB.DBFields.Items][itemId] = {
             JSONMemeDB.DBFields.ItemFields.ID           : int(itemId),
@@ -95,7 +105,7 @@ class JSONMemeDB(MemeDBInterface):
             JSONMemeDB.DBFields.ItemFields.MediaURL     : meme.getMediaURL(),
             JSONMemeDB.DBFields.ItemFields.Thumbnail    : meme.getThumbnail(),
         }
-        self.db[JSONMemeDB.DBFields.ItemCount] += 1
+
         self.__releaseDBLock()
         return itemId
 
@@ -138,7 +148,7 @@ class JSONMemeDB(MemeDBInterface):
     def initDB(self) -> None:
         self.__getDBLock()
         self.db = {
-            JSONMemeDB.DBFields.ItemCount: 0,
+            JSONMemeDB.DBFields.NextID: 0,
             JSONMemeDB.DBFields.Items: {}
         }
         self.__releaseDBLock()

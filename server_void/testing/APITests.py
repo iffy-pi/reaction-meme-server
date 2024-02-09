@@ -37,11 +37,11 @@ class APITests(TestCase):
         print('Connected')
 
         # Download latest production db and save it for reference
-        print('Downloading Prod DB for reference....')
-        ServerConfig.setConfigFromJSON(ServerConfig.path('devenv', 'config_jsons', 'prodenv.json'))
-        pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
-        APITests.REFERENCE_PROD_DB = pbfs.getJSONDB()
+        print('Downloading data/db.json for reference....')
+        with open(ServerConfig.path('data/db.json'), 'r') as file:
+            APITests.REFERENCE_PROD_DB = json.load(file)
         print('Done')
+
         ServerConfig.setConfigFromJSON(ServerConfig.path('devenv/config_jsons/testenv.json'))
 
     def setUp(self):
@@ -437,6 +437,8 @@ class APITests(TestCase):
             self.assertTrue('id' in result)
             TestMemeDB.getInstance().loadDB()
             self.check_meme_info_from_server(result['id'], result)
+            print('Meme Added Successfully')
+            print(result)
 
 
 
