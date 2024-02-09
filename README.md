@@ -64,7 +64,7 @@ A meme response is a JSON dictionary which contains the following fields:
 | `fileExt`   | String | The meme's media file extension e.g. "jpg", "mp4", "png"  |
 | `tags`      | Array  | The list of tags for the meme                             |
 | `url`       | String | The URL to download the meme from                         |
-| `thumbnail` | String | The base64 encoded 100x100 thumbnail of the meme media    |
+| `thumbnail` | String | A 100x100 JPEG thumbnail encoded in base64                |
 
 
 
