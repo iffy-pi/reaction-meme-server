@@ -1,13 +1,11 @@
-from flask import (redirect, Response, url_for)
-from werkzeug.utils import secure_filename
-import mimetypes
-from werkzeug.datastructures import ImmutableMultiDict, FileStorage
+from flask import (redirect, Response)
+from typing import Union
+from werkzeug.datastructures import FileStorage
 
 from api.functions import makeMemeJSON
 from apiutils.HTTPResponses import error_response, make_json_response
 from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, stringToMemeMediaType, \
     isValidMediaType
-from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ServerComponents import *
 
 class EndPointException(Exception):
@@ -15,44 +13,26 @@ class EndPointException(Exception):
         self.message = message
         super().__init__(self.message)
 
-def getMemeInfo(memeID,  memeLib: MemeLibrary) -> Response:
-    memeID = int(memeID)
+def getMemeInfo(memeID: int,  memeLib: MemeLibrary) -> Response:
     if not memeLib.hasMeme(memeID):
         return error_response(400, message=f"ID {memeID} does not exist in database")
 
     meme = memeLib.getMeme(memeID)
     return make_json_response(makeMemeJSON(meme))
 
-def downloadMeme(memeID, memeLib: MemeLibrary) -> Response:
-    memeID = int(memeID)
+def downloadMeme(memeID: int, memeLib: MemeLibrary) -> Response:
     if not memeLib.hasMeme(memeID):
         return error_response(400, message=f"ID {memeID} does not exist in database")
 
     memeURL = memeLib.getMeme(memeID).getMediaURL()
     return redirect(memeURL)
 
-def editMeme(memeID, name, tags, memeLib: MemeLibrary) -> Response:
-    memeID = int(memeID)
+def editMeme(memeID: int, name: Union[str, None], tags: Union[list[str], None], memeLib: MemeLibrary) -> Response:
     if not memeLib.hasMeme(memeID):
         return error_response(400, message=f"ID {memeID} does not exist in database")
 
-    typesInfo = [
-        ('name', name, str, "String"),
-        ('tags', tags, list, "Array"),
-    ]
-
-    expectedTypeMsg = "name = JSON String, tags = JSON Array"
-
-    for paramName, paramVal, paramType, msgType in typesInfo:
-        if paramVal is None:
-            continue
-
-        if type(paramVal) != paramType:
-            return error_response(400,
-                                  message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
-
     # if no values to edit, just return the meme as it is
-    if all(param is None for param in [name, tags]):
+    if name is None and tags is None:
         meme = memeLib.getMeme(memeID)
         return make_json_response(makeMemeJSON(meme))
 
@@ -70,20 +50,8 @@ def editMeme(memeID, name, tags, memeLib: MemeLibrary) -> Response:
     meme = memeLib.getMeme(memeID)
     return make_json_response(makeMemeJSON(meme))
 
-def browseMemes(itemsPerPage, pageNo, memeLib: MemeLibrary) -> Response:
+def browseMemes(itemsPerPage: int, pageNo: int, memeLib: MemeLibrary) -> Response:
     # TODO: Support media type filters?
-    if itemsPerPage is None:
-        return error_response(400, '"per_page" is not included as a URL parameter')
-
-    if pageNo is None:
-        return error_response(400, '"page" is not included as a URL parameter')
-
-    try:
-        itemsPerPage = int(itemsPerPage)
-        pageNo = int(pageNo)
-    except ValueError:
-        return error_response(400, '"per_page" and/or "page" parameter is a non-integer value')
-
     if itemsPerPage <= 0 or pageNo <= 0:
         return error_response(400, 'Invalid values for "page" and/or "per_page" parameters')
 
@@ -93,22 +61,9 @@ def browseMemes(itemsPerPage, pageNo, memeLib: MemeLibrary) -> Response:
     return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'page': pageNo})
 
 
-def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary) -> Response:
-    if query is None or query == "":
+def searchMemes(query: str, itemsPerPage: Union[int, None], pageNo: Union[int, None], mediaTypeStr: Union[str, None], memeLib: MemeLibrary) -> Response:
+    if query == "":
         return error_response(400, 'No query found, use "query" for the URL parameter')
-
-    if itemsPerPage is not None:
-        try:
-            itemsPerPage = int(itemsPerPage)
-        except ValueError:
-            return error_response(400, '"per_page" parameter is a non-integer value')
-
-    if pageNo is not None:
-        try:
-            pageNo = int(pageNo)
-        except ValueError:
-            return error_response(400, '"page" parameter is a non-integer value')
-
 
     itemsPerPage = itemsPerPage if itemsPerPage is not None else 10
     pageNo = pageNo if pageNo is not None else 1
@@ -133,26 +88,7 @@ def searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib: MemeLibrary)
     return make_json_response({'results': collated, 'itemsPerPage': itemsPerPage, 'page': pageNo})
 
 
-def addNewMeme(name, tags, fileExt, mediaID, mediaURL, memeLib: MemeLibrary) -> Response:
-    typesInfo = [
-        ('name', name, str, "String"),
-        ('tags', tags, list, "Array"),
-        ('fileExt', fileExt, str, "String"),
-        ('mediaID', mediaID, str, "String"),
-        ('mediaURL', mediaURL, str, "String")
-    ]
-
-    expectedTypeMsg = "name: String, tags: Array, fileExt: String, mediaID: String, mediaURL: String"
-
-    for paramName, paramVal, paramType, msgType in typesInfo:
-        if paramVal is None:
-            return error_response(400,
-                                  message=f"'{paramName}' parameter is missing.")
-
-        if type(paramVal) != paramType:
-            return error_response(400,
-                                  message=f"'{paramName}' parameter must be a JSON {msgType}. Expected types are: {expectedTypeMsg}")
-
+def addNewMeme(name: str, tags: list, fileExt: str, mediaID: str, mediaURL: str, memeLib: MemeLibrary) -> Response:
     # Create the entry in the database
     meme = memeLib.addMemeToLibrary(name=name, tags=tags, fileExt=fileExt, mediaID=mediaID, mediaURL=mediaURL, addMemeToIndex=True)
 
@@ -174,16 +110,7 @@ def addNewMeme(name, tags, fileExt, mediaID, mediaURL, memeLib: MemeLibrary) -> 
     return make_json_response(makeMemeJSON(meme))
 
 
-def uploadMemeNew(reqForm: ImmutableMultiDict[str, str], reqFiles: ImmutableMultiDict[str, FileStorage], memeLib: MemeLibrary ) -> Response:
-    if 'fileExt' not in reqForm:
-        return error_response(400, "Missing parameter: 'fileExt'")
-
-    if 'file' not in reqFiles:
-        return error_response(400, "No file property included in upload request")
-
-    file = reqFiles['file']
-    fileExt = reqForm['fileExt']
-
+def uploadMeme(fileExt: str, file: FileStorage, memeLib: MemeLibrary ) -> Response:
     if file.filename == '':
         return error_response(400, "No selected file")
 

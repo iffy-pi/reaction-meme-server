@@ -47,3 +47,54 @@ def serverErrorResponse(e: Exception) -> Response:
     print(f'Exception Occured: {e}')
     traceback.print_exc()
     return error_response(500, f"Unexpected Server Error")
+
+def checkDictionaryParams(dix: dict, paramInfo: list[tuple]) -> tuple[bool, str]:
+    """
+    Parameter info is a list of tuples, where each tuple is:
+    ( <key in dictionary>, <boolean if required>, <expected type>)
+    Returns tuple:
+        boolean - If all parameters pass
+        str - Error message, None if all the parameters pass
+    """
+    pythonToJSONTypes = {
+        int: 'Number',
+        str: 'String',
+        list: 'Array',
+        float: 'Number',
+        dict: 'Dictionary'
+    }
+
+    typeMsgList = []
+    for paramKey, required, expectedType in paramInfo:
+        typeMsgList.append('{}{} = {}'.format(
+            '(Optional) ' if not required else '',
+            paramKey,
+            pythonToJSONTypes[expectedType],
+        ))
+
+    typeMsg = ', '.join(typeMsgList)
+    typeMsg = f'Expected Types: {typeMsg}'
+
+    for paramKey, required, expectedType in paramInfo:
+        # Check if the key exists
+        paramVal = dix.get(paramKey)
+        if paramVal is None:
+            if not required:
+                continue
+
+            message = f'"{paramKey}" is missing. {typeMsg}'
+            return False, message
+
+        # Check its data type
+        if type(paramVal) != expectedType:
+            message = f'"{paramKey}" must be a {pythonToJSONTypes[expectedType]}. {typeMsg}'
+            return False, message
+
+    return True, ''
+
+def checkReqJSONParameters(req:request, paramInfo:list[tuple]) -> tuple[bool, str]:
+    if not req.is_json:
+        return False, 'JSON content is missing from request'
+
+    return checkDictionaryParams(request.json, paramInfo)
+

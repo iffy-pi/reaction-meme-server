@@ -1,11 +1,11 @@
 # import threading
 
-from flask import (Flask, request, send_from_directory, render_template, flash)
+from flask import (Flask, request, send_from_directory, render_template, url_for)
 from flask_cors import CORS
-from werkzeug.datastructures import ImmutableMultiDict, FileStorage
 
 from api.endpoints import *
-from api.functions import initAndIndexMemeLibrary, validAccess, serverErrorResponse
+from api.functions import initAndIndexMemeLibrary, validAccess, serverErrorResponse, checkReqJSONParameters, \
+    checkDictionaryParams
 from apiutils.HTTPResponses import *
 from apiutils.configs.ServerConfig import ServerConfig
 
@@ -24,7 +24,7 @@ memeLib = initAndIndexMemeLibrary()
 
 
 @app.route('/download/<int:memeID>', methods=['GET'])
-def route_download_meme(memeID):
+def route_download_meme(memeID: int):
     try:
         return downloadMeme(memeID, memeLib)
     except Exception as e:
@@ -32,7 +32,7 @@ def route_download_meme(memeID):
 
 
 @app.route('/info/<int:memeID>', methods=['GET'])
-def route_info_meme(memeID):
+def route_info_meme(memeID: int):
     try:
         return getMemeInfo(memeID, memeLib)
     except Exception as e:
@@ -40,15 +40,23 @@ def route_info_meme(memeID):
 
 
 @app.route('/edit/<int:memeID>', methods=['POST'])
-def route_edit_meme(memeID):
+def route_edit_meme(memeID: int):
     try:
         if not validAccess(request):
             return error_response(400, 'Invalid Access Token')
-        name = None
-        tags = None
-        if request.is_json:
-            name = request.json.get("name")
-            tags = request.json.get("tags")
+
+        paramInfo = [
+            ('name', False, str),
+            ('tags', False, list)
+        ]
+
+        good, msg = checkReqJSONParameters(request, paramInfo)
+        if not good:
+            return error_response(400, msg)
+
+        name = request.json.get('name')
+        tags = request.json.get('tags')
+
         return editMeme(memeID, name, tags, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
@@ -57,7 +65,23 @@ def route_edit_meme(memeID):
 @app.route('/browse', methods=['GET'])
 def route_meme_browse():
     try:
-        return browseMemes(request.args.get("per_page"), request.args.get("page"), memeLib)
+        paramInfo = [
+            ('page', True, str),
+            ('per_page', True, str)
+        ]
+
+        good, msg = checkDictionaryParams(request.args, paramInfo)
+        if not good:
+            return error_response(400, msg)
+
+        try:
+            itemsPerPage = int(request.args['per_page'])
+            pageNo = int(request.args['page'])
+        except ValueError:
+            return error_response(400, '"per_page" and/or "page" parameter is a non-integer value')
+
+
+        return browseMemes(itemsPerPage, pageNo, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -65,7 +89,35 @@ def route_meme_browse():
 @app.route('/search', methods=['GET'])
 def route_meme_search():
     try:
-        return searchMemes(request.args.get("query"), request.args.get("per_page"), request.args.get("page"), request.args.get("media_type"), memeLib)
+        paramInfo = [
+            ('query', True, str),
+            ('page', False, str),
+            ('per_page', False, str),
+            ('media_type', False, str)
+        ]
+
+        good, msg = checkDictionaryParams(request.args, paramInfo)
+        if not good:
+            return error_response(400, msg)
+
+        query = request.args.get("query")
+        pageNo = request.args.get("page")
+        itemsPerPage = request.args.get("per_page")
+        mediaTypeStr = request.args.get("media_type")
+
+        if itemsPerPage is not None:
+            try:
+                itemsPerPage = int(itemsPerPage)
+            except ValueError:
+                return error_response(400, '"per_page" parameter is a non-integer value')
+
+        if pageNo is not None:
+            try:
+                pageNo = int(pageNo)
+            except ValueError:
+                return error_response(400, '"page" parameter is a non-integer value')
+
+        return searchMemes(query, itemsPerPage, pageNo, mediaTypeStr, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -75,6 +127,19 @@ def route_add_new_meme():
     try:
         if not validAccess(request):
             return error_response(400, 'Invalid Access Token')
+
+        paramInfo = [
+            ('name', True, str),
+            ('tags', True, list),
+            ('fileExt', True, str),
+            ('mediaID', True, str),
+            ('mediaURL', True, str,)
+        ]
+
+        good, msg = checkReqJSONParameters(request, paramInfo)
+        if not good:
+            return error_response(400, msg)
+
         return addNewMeme(request.json.get("name"),
                           request.json.get("tags"),
                           request.json.get("fileExt"),
@@ -83,6 +148,7 @@ def route_add_new_meme():
                           memeLib)
     except Exception as e:
         return serverErrorResponse(e)
+
 
 @app.route('/upload', methods=['POST'])
 def route_upload_meme():
@@ -93,7 +159,16 @@ def route_upload_meme():
         if not validAccess(request):
             return error_response(400, 'Invalid Access Token')
 
-        return uploadMemeNew(request.form, request.files, memeLib)
+        if 'fileExt' not in request.form:
+            return error_response(400, "Missing parameter: 'fileExt'")
+
+        if 'file' not in request.files:
+            return error_response(400, "No file property included in upload request")
+
+        file = request.files['file']
+        fileExt = request.form['fileExt']
+
+        return uploadMeme(fileExt, file, memeLib)
 
     except Exception as e:
         return serverErrorResponse(e)
@@ -113,16 +188,6 @@ def reset_meme_lib():
 def favicon():
     return send_from_directory(ServerConfig.PROJECT_ROOT, 'favicon.ico')
 
-
-@app.route('/media/<mediaName>')
-def getMedia(mediaName):
-    mediaName = str(mediaName)
-    mediaDir = ServerConfig.path('media')
-
-    if not os.path.exists(os.path.join(mediaDir, mediaName)):
-        return error_response(400, "Unknown media!")
-
-    return send_from_directory(mediaDir, mediaName)
 
 # for the root of the website, we would just pass in "/" for the url
 @app.route('/')

@@ -71,11 +71,11 @@ class APITests(TestCase):
             'Access-Token': ServerConfig.ALLOWED_ACCESS_TOKENS[0]
         }
 
-    def meme_id_route_checks(self, route, post=False, headers=None):
+    def meme_id_route_checks(self, route, post=False, headers=None, json=None):
         with self.subTest(msg='Meme ID Route Checks'):
             # Subtest #1 : Test that non integer meme ID does not work
             if post:
-                resp = requests.post(f'{route}/a', headers=headers)
+                resp = requests.post(f'{route}/a', headers=headers, json=json)
             else:
                 resp = requests.get(f'{route}/a', headers=headers)
             self.assertEqual(404, resp.status_code, msg='Testing Invalid Meme ID')
@@ -83,7 +83,7 @@ class APITests(TestCase):
             # Subtest #2 : Test that meme ID that doesn't exist in the database returns a not found response
             newID = TestMemeDB.getInstance().getNextID()
             if post:
-                resp = requests.post(f'{route}/{newID}', headers=headers)
+                resp = requests.post(f'{route}/{newID}', headers=headers, json=json)
             else:
                 resp = requests.get(f'{route}/{newID}', headers=headers)
 
@@ -195,7 +195,11 @@ class APITests(TestCase):
         # tdb.loadDB()
         memeID = APITests.getRandomMeme()
         self.privileged_endpoint_check(APITests.makeServerRoute(f'edit/{memeID}'))
-        self.meme_id_route_checks(APITests.makeServerRoute('edit'), post=True, headers=APITests.make_acc_token_header())
+        self.meme_id_route_checks(APITests.makeServerRoute('edit'), post=True, headers=APITests.make_acc_token_header(),
+                                  json={
+                                      'name': 'Test Name',
+                                      'tags': ['Testing']
+                                  })
 
         tdb = TestMemeDB.getInstance()
 
