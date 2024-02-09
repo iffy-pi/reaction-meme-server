@@ -31,11 +31,7 @@ def getConfigJSONPath():
 
 def makeLocalMemeStorage():
     from apiutils.MemeStorageClasses.RepoLocalMemeStorage import RepoLocalMemeStorage
-    return RepoLocalMemeStorage(
-        getConfigJSONPath(),
-        getMemeDir(),
-        addUploadedFlag=True
-    )
+    return RepoLocalMemeStorage()
 
 
 def getMemeFileName(id):
