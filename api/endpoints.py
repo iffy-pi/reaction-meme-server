@@ -1,9 +1,12 @@
 from flask import (redirect, Response, url_for)
 from werkzeug.utils import secure_filename
+import mimetypes
+from werkzeug.datastructures import ImmutableMultiDict, FileStorage
 
 from api.functions import makeMemeJSON
 from apiutils.HTTPResponses import error_response, make_json_response
-from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, stringToMemeMediaType
+from apiutils.MemeManagement.MemeMediaType import MemeMediaType, memeMediaTypeToString, stringToMemeMediaType, \
+    isValidMediaType
 from apiutils.UploadSessionManager import UploadSessionManager
 from apiutils.configs.ServerComponents import *
 
@@ -168,32 +171,10 @@ def addNewMeme(name, tags, fileExt, mediaID, mediaURL, memeLib: MemeLibrary) -> 
         raise EndPointException('Failed to save the meme library')
 
     # respond with the item informaion and an upload URL
-    return make_json_response(
-        {
-            "id": meme.getID(),
-            "name": meme.getName(),
-            "mediaType": meme.getMediaTypeString(),
-            "tags": meme.getTags(),
-            "fileExt": meme.getFileExt(),
-            "url" : meme.getMediaURL()
-        }
-    )
+    return make_json_response(makeMemeJSON(meme))
 
 
-def uploadMemeRequest() -> Response:
-    # Create a new upload session key
-    sessionKey = UploadSessionManager.getInstance().newSession()
-    uploadUrl = url_for("route_upload_meme",
-                                     sessionKey=sessionKey,
-                                     _external=True)
-
-    return make_json_response({'uploadURL': uploadUrl})
-
-def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Response:
-    um = UploadSessionManager.getInstance()
-    if not um.validSession(sessionKey):
-        return error_response(400, message=f"Invalid upload session")
-
+def uploadMemeNew(reqForm: ImmutableMultiDict[str, str], reqFiles: ImmutableMultiDict[str, FileStorage], memeLib: MemeLibrary ) -> Response:
     if 'fileExt' not in reqForm:
         return error_response(400, "Missing parameter: 'fileExt'")
 
@@ -201,6 +182,7 @@ def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Resp
         return error_response(400, "No file property included in upload request")
 
     file = reqFiles['file']
+    fileExt = reqForm['fileExt']
 
     if file.filename == '':
         return error_response(400, "No selected file")
@@ -208,17 +190,17 @@ def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Resp
     if not file:
         return error_response(400, "File is empty or does not exist")
 
-    fileExt = reqForm['fileExt']
+    # Check the MIME Types
+    if not isValidMediaType(fileExt):
+        return error_response(400, f".{fileExt} is not an accepted file type")
+
+    # Read the items and perform the upload
     fileBytes = file.stream.read()
 
-    # perform the upload
     mediaID, mediaURL = memeLib.uploadMedia(fileBytes, fileExt)
 
     if mediaID is None or mediaURL is None:
         raise EndPointException('Failed to upload meme media')
-
-    # clear the session
-    um.clearSession(sessionKey)
 
     # return the ID and URL in the response
     return make_json_response(
@@ -227,3 +209,51 @@ def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Resp
             "mediaURL": mediaURL
         }
     )
+
+# def uploadMemeRequest() -> Response:
+#     # Create a new upload session key
+#     sessionKey = UploadSessionManager.getInstance().newSession()
+#     uploadUrl = url_for("route_upload_meme",
+#                                      sessionKey=sessionKey,
+#                                      _external=True)
+#
+#     return make_json_response({'uploadURL': uploadUrl})
+#
+# def uploadMeme(sessionKey:str, reqFiles, reqForm, memeLib: MemeLibrary ) -> Response:
+#     um = UploadSessionManager.getInstance()
+#     if not um.validSession(sessionKey):
+#         return error_response(400, message=f"Invalid upload session")
+#
+#     if 'fileExt' not in reqForm:
+#         return error_response(400, "Missing parameter: 'fileExt'")
+#
+#     if 'file' not in reqFiles:
+#         return error_response(400, "No file property included in upload request")
+#
+#     file = reqFiles['file']
+#
+#     if file.filename == '':
+#         return error_response(400, "No selected file")
+#
+#     if not file:
+#         return error_response(400, "File is empty or does not exist")
+#
+#     fileExt = reqForm['fileExt']
+#     fileBytes = file.stream.read()
+#
+#     # perform the upload
+#     mediaID, mediaURL = memeLib.uploadMedia(fileBytes, fileExt)
+#
+#     if mediaID is None or mediaURL is None:
+#         raise EndPointException('Failed to upload meme media')
+#
+#     # clear the session
+#     um.clearSession(sessionKey)
+#
+#     # return the ID and URL in the response
+#     return make_json_response(
+#         {
+#             "mediaID": mediaID,
+#             "mediaURL": mediaURL
+#         }
+#     )

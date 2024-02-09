@@ -1,4 +1,5 @@
 from enum import Enum
+import mimetypes
 VIDEO_EXTENSIONS = ('mov', 'mp4', 'webm', 'avi', '3g2', 'mpeg' '3gp', 'ts', 'ogv')
 IMAGE_EXTENSIONS = ('jpg', 'jpeg', 'png', 'gif', 'heic', 'tiff', 'webp', 'ico', 'tif', 'svg', 'bmp')
 
@@ -13,14 +14,36 @@ STRING_MAP =  {
     MemeMediaType.VIDEO : 'video',
 }
 
-def getMediaTypeForExt(fileExt:str) -> MemeMediaType:
-    fileExt = fileExt.lower().replace('.', '')
-    if fileExt in VIDEO_EXTENSIONS:
-        return MemeMediaType.VIDEO
-    elif fileExt in IMAGE_EXTENSIONS:
+def getMediaTypeForMimeType(mime:str) -> MemeMediaType:
+    if mime.startswith('image/'):
         return MemeMediaType.IMAGE
+
+    elif mime.startswith('video/'):
+        return MemeMediaType.VIDEO
+
     else:
         return MemeMediaType.UNKNOWN
+
+def getMediaTypeForExt(fileExt:str) -> MemeMediaType:
+    fileExt = fileExt.lower().replace('.', '')
+    mime = mimetypes.guess_type(f'f.{fileExt}')[0]
+    if mime is None:
+        return MemeMediaType.UNKNOWN
+
+    return getMediaTypeForMimeType(mime)
+
+
+def isValidMediaType(fileExt:str=None, mimeType:str=None) -> bool:
+    if fileExt is None and mimeType is None:
+        raise Exception('No arguments provided')
+
+    mt = None
+    if fileExt is not None:
+        mt = getMediaTypeForExt(fileExt)
+    elif mimeType is not None:
+        mt = getMediaTypeForMimeType(mimeType)
+
+    return mt != MemeMediaType.UNKNOWN
 
 def stringToMemeMediaType(st:str) -> MemeMediaType:
     types = list(MemeMediaType.__members__.values())

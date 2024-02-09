@@ -169,34 +169,15 @@ If successful, the server will echo the information of the new meme. Responds wi
 ## Uploading Meme Media `(privileged)`
 Upload the media (image/video bytes) of a meme to the server.
 
-This is a two-step process:
-- Make an upload request to get the upload URL
-- Send the file bytes to the upload URL with another request
-
-### Upload Request: Call
+### Call
 ```
-GET https://reaction-meme-server-api.vercel.app/upload-request
+POST https://reaction-meme-server-api.vercel.app/upload
 ```
 
-### Upload Request: Request `(privileged)`
-This is a [privileged endpoint and therefore requires an access token in the request](#privileged-endpoints-and-access-tokens).
+### Request
+This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
 
-
-### Upload Request: Response
-If successful, response `payload` field will include:
-
-| Field       | Type   | Description                                         |
-|-------------|--------|-----------------------------------------------------|
-| `uploadURL` | String | The URL which will be used to upload the meme file. |
-
-**Note: For security, the upload URL has an access lifetime of 3 hours. That is, an upload to the URL will be rejected if the upload URL has already been used or 3 hours have passed since the URL was generated.**
-
-### Upload URL: Call & Request `(privileged)`
-Make a call to the `uploadURL` returned as a response to the upload request. This is a [privileged endpoint and requires an access token](#privileged-endpoints-and-access-tokens).
-```
-POST <uploadURL>
-```
-Your request must include **(as a form)**:
+Your request must include the following parameters, **as a form**:
 
 | Field     | Type   | Description                                              |
 |-----------|--------|----------------------------------------------------------|
@@ -204,7 +185,7 @@ Your request must include **(as a form)**:
 | `fileExt` | String | The meme's media file extension e.g. "jpg", "mp4", "png" |
 
 
-### Upload URL: Response
+### Response
 If the upload is successful, the JSON response `payload` field will include the following:
 
 | Field      | Type   | Description                                                                             |
@@ -221,12 +202,11 @@ fileExt = 'jpg'
 # Enter your access token here
 accessToken = "abc123"
 
-# Make upload request
-resp = requests.get('https://reaction-meme-server-api.vercel.app/upload-request', headers = {'Access-Token': accessToken})
+resp2 = requests.post(
+    'https://reaction-meme-server-api.vercel.app/upload', 
+    headers = {'Access-Token': accessToken}, 
+    files={'file': open(memeFile, 'rb')}, 
+    data={'fileExt': fileExt})
 
-# Get the upload URL from the response
-uploadUrl = resp.json()['uploadURL']
-
-# Use the upload URL to upload the meme file , make sure to include the file extension
-resp2 = requests.post(uploadUrl, headers = {'Access-Token': accessToken}, files={'file': open(memeFile, 'rb')}, data={'fileExt': fileExt})
+# Response is { 'payload': {'mediaID': ..., 'mediaURL': ...}
 ```

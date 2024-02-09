@@ -19,10 +19,13 @@ class APITests(TestCase):
     """
     API Testing, implemented according to API specification in README.
     """
-    MEME_SERVER_URL = 'http://127.0.0.1:5000'
+    MEME_SERVER_URL = 'http://127.0.0.1:5000' # Production tests are NOT supported
     LOCAL_MEME_STORAGE_SERVER_URL = 'http://127.0.0.1:5001'
+    REFERENCE_PROD_DB = None
+
     @classmethod
     def setUpClass(cls):
+        # Run at the beginning of the test case
         print(f'Checking connection to Lcoal Meme Storage Server: {APITests.LOCAL_MEME_STORAGE_SERVER_URL}')
         if not isServerReachable(APITests.LOCAL_MEME_STORAGE_SERVER_URL):
             raise Exception('Lcoal Meme Storage Server is not reachable')
@@ -30,18 +33,27 @@ class APITests(TestCase):
 
         print(f'Checking connection to Meme Server: {APITests.MEME_SERVER_URL}')
         if not isServerReachable(APITests.MEME_SERVER_URL):
-            raise Exception('Meme Server is not reachable')
+            raise Exception('Meme Server is not reachable, are you running "api (test)"')
         print('Connected')
 
-        # Download latest production db and apply it to the test db
-        print('Downloading Prod DB into testing....')
+        # Download latest production db and save it for reference
+        print('Downloading Prod DB for reference....')
         ServerConfig.setConfigFromJSON(ServerConfig.path('devenv', 'config_jsons', 'prodenv.json'))
         pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
-        with open(ServerConfig.path('data', 'testing_db.json'), 'w') as file:
-            json.dump(pbfs.getJSONDB(), file, indent=4)
+        APITests.REFERENCE_PROD_DB = pbfs.getJSONDB()
         print('Done')
         ServerConfig.setConfigFromJSON(ServerConfig.path('devenv/config_jsons/testenv.json'))
 
+    def setUp(self):
+        # Run at the beginning of every test
+        # Reset our test DB
+        with open(ServerConfig.path('data/testing_db.json'), 'w') as file:
+            json.dump(APITests.REFERENCE_PROD_DB, file, indent=4)
+
+        # Reset the server to use the prod db
+        resp = requests.get(APITests.makeServerRoute('admin/reset'), headers=self.make_acc_token_header())
+        if not resp.ok:
+            raise Exception('Could not reset server')
 
     @staticmethod
     def makeServerRoute(route:str):
@@ -53,6 +65,11 @@ class APITests(TestCase):
         memeID = randint(0, len(itemIds) - 1)
         return memeID
 
+    @staticmethod
+    def make_acc_token_header():
+        return {
+            'Access-Token': ServerConfig.ALLOWED_ACCESS_TOKENS[0]
+        }
 
     def meme_id_route_checks(self, route, post=False, headers=None):
         with self.subTest(msg='Meme ID Route Checks'):
@@ -69,7 +86,8 @@ class APITests(TestCase):
                 resp = requests.post(f'{route}/{newID}', headers=headers)
             else:
                 resp = requests.get(f'{route}/{newID}', headers=headers)
-            self.assertTrue('error' in resp.json(), msg='Testing Nonexistent Meme ID')
+
+            self.assertEqual(400, resp.status_code, msg='Testing Nonexistent Meme ID')
 
     def privileged_endpoint_check(self, route):
         with self.subTest(msg='Privileged Endpoint Checks'):
@@ -93,7 +111,56 @@ class APITests(TestCase):
             'url': res['mediaURL'],
             'thumbnail': res['thumbnail']
         }
-        self.assertEqual(expectedResp, serverResp)
+        self.assertEqual(expectedResp, serverResp, f'Meme Info Matches for Meme #{memeID}')
+
+    def pagination_checks(self, baseRoute, routeRequiresPageParams=True, baseHasUrlParams=False):
+        # Checks to make sure page logic and URL encoded arguments work properly
+        combiner = '?'
+        if baseHasUrlParams:
+            combiner = '&'
+
+        with self.subTest('Page Parameter Checks'):
+            # Page cHECKS
+            resp = requests.get(baseRoute)
+            msg = 'Missing Page No and Items Per Page'
+
+            # If page paramaters are optional, then we expect it to pass otherwise we return a client error
+            if not routeRequiresPageParams:
+                self.assertTrue(resp.ok, msg=msg)
+            else:
+                self.assertEqual(400, resp.status_code, msg=msg)
+
+            # Try with invalid page params
+            resp = requests.get(f'{baseRoute}{combiner}page=abc&per_page=abc')
+            self.assertEqual(400, resp.status_code, msg='Invalid Page Parameters')
+
+            # Try without of range page params
+            resp = requests.get(f'{baseRoute}{combiner}page=-1&per_page=-3')
+            self.assertEqual(400, resp.status_code, msg='Out of Range Page Params #1')
+
+            # A page that is out of bounds, should just return an empty results list
+            resp = requests.get(f'{baseRoute}{combiner}page=9999&per_page=20')
+            self.assertEqual([], resp.json()['payload']['results'], msg='Empty results when page is out of range')
+
+    def check_media_types(self, baseRoute, baseHasURLParams=True):
+        combiner = '?'
+        if baseHasURLParams:
+            combiner = '&'
+
+        # Any other types than "images", "videos" or "all" should give client error
+        resp = requests.get(f'{baseRoute}{combiner}media_type=gif')
+        self.assertEqual(400, resp.status_code, msg='Testing unknown media type is rejected')
+
+        # Check that specific types return only their types
+        mediaTypes = ['image', 'video']
+        for mt in mediaTypes:
+            with self.subTest(f'Testing {mt} media type'):
+                resp = requests.get(f'{baseRoute}{combiner}media_type={mt}')
+                results = resp.json()['payload']['results']
+                self.assertTrue(
+                    all(res['mediaType'] == mt for res in results),
+                )
+
 
     def test_api_download_meme(self):
         tdb = TestMemeDB.getInstance()
@@ -122,12 +189,6 @@ class APITests(TestCase):
         resp = requests.get(APITests.makeServerRoute(f'info/{memeID}'))
         self.assertTrue(resp.ok)
         self.check_meme_info_from_server(memeID, resp.json()['payload'])
-
-    @staticmethod
-    def make_acc_token_header():
-        return {
-            'Access-Token': ServerConfig.ALLOWED_ACCESS_TOKENS[0]
-        }
 
     def test_api_edit_meme(self):
         # tdb = TestMemeDB.getInstance()
@@ -196,54 +257,6 @@ class APITests(TestCase):
             )
             self.assertEqual(400, resp.status_code)
 
-    def pagination_checks(self, baseRoute, routeRequiresPageParams=True, baseHasUrlParams=False):
-        # Checks to make sure page logic and URL encoded arguments work properly
-        combiner = '?'
-        if baseHasUrlParams:
-            combiner = '&'
-
-        with self.subTest('Page Parameter Checks'):
-            # Page cHECKS
-            resp = requests.get(baseRoute)
-            msg = 'Missing Page No and Items Per Page'
-
-            # If page paramaters are optional, then we expect it to pass otherwise we return a client error
-            if not routeRequiresPageParams:
-                self.assertTrue(resp.ok, msg=msg)
-            else:
-                self.assertEqual(400, resp.status_code, msg=msg)
-
-            # Try with invalid page params
-            resp = requests.get(f'{baseRoute}{combiner}page=abc&per_page=abc')
-            self.assertEqual(400, resp.status_code, msg='Invalid Page Parameters')
-
-            # Try without of range page params
-            resp = requests.get(f'{baseRoute}{combiner}page=-1&per_page=-3')
-            self.assertEqual(400, resp.status_code, msg='Out of Range Page Params #1')
-
-            # A page that is out of bounds, should just return an empty results list
-            resp = requests.get(f'{baseRoute}{combiner}page=9999&per_page=20')
-            self.assertEqual([], resp.json()['payload']['results'], msg='Empty results when page is out of range')
-
-    def check_media_types(self, baseRoute, baseHasURLParams=True):
-        combiner = '?'
-        if baseHasURLParams:
-            combiner = '&'
-
-        # Any other types than "images", "videos" or "all" should give client error
-        resp = requests.get(f'{baseRoute}{combiner}media_type=gif')
-        self.assertEqual(400, resp.status_code, msg='Testing unknown media type is rejected')
-
-        # Check that specific types return only their types
-        mediaTypes = ['image', 'video']
-        for mt in mediaTypes:
-            with self.subTest(f'Testing {mt} media type'):
-                resp = requests.get(f'{baseRoute}{combiner}media_type={mt}')
-                results = resp.json()['payload']['results']
-                self.assertTrue(
-                    all(res['mediaType'] == mt for res in results),
-                )
-
     def test_api_browse_meme(self):
         browseRoute = APITests.makeServerRoute('browse')
         self.pagination_checks(browseRoute)
@@ -310,13 +323,116 @@ class APITests(TestCase):
             self.check_meme_info_from_server(res['id'], res)
 
     def test_api_upload_meme(self):
-        self.assertEqual(1,1)
+        uploadRoute = APITests.makeServerRoute('upload')
 
-    def test_api_upload_meme_bad_access(self):
-        self.assertEqual(1,1)
+        # privileged endpoint checks
+        self.privileged_endpoint_check(uploadRoute)
+
+        sampleImage = ServerConfig.path('server_void/testing/sample-image.jpg')
+        sampleImageExt = os.path.splitext(sampleImage)[1].replace('.', '')
+        sampleVid = ServerConfig.path('server_void/testing/sample-video.mp4')
+        sampleVidExt = os.path.splitext(sampleVid)[1].replace('.','')
+        sampleInvalidFile = ServerConfig.path('server_void/testing/sample-file.txt')
+        sampleInvalidFileExt = os.path.splitext(sampleInvalidFile)[1]
+
+        headers = self.make_acc_token_header()
+
+        with self.subTest('Missing Parameters'):
+            # Test for missing file extension
+            with open(sampleImage, 'rb') as file:
+                resp = requests.post(uploadRoute, headers=headers,
+                                      files={'file': file})
+                self.assertEqual(400, resp.status_code, msg='Missing File Extension')
+
+            # Test for missing file object
+            resp = requests.post(uploadRoute, headers=headers, data={'fileExt': sampleImageExt})
+            self.assertEqual(400, resp.status_code, msg='Missing File Item')
+
+        with self.subTest('Invalid Parameters'):
+            # Missing file property
+            resp = requests.post(uploadRoute, headers=headers, files={'file': None},
+                                 data={'fileExt': sampleImageExt})
+            self.assertEqual(400, resp.status_code, 'Missing File Properties')
+
+            with open(sampleInvalidFile, 'rb') as file:
+            # Invalid File Type
+                resp = requests.post(uploadRoute, headers=headers, files={'file': file}, data={'fileExt': sampleInvalidFileExt})
+                self.assertEqual(400, resp.status_code, 'Invalid File Type')
+
+
+        params = [
+            ('Image', sampleImage, sampleImageExt),
+            ('Video', sampleVid, sampleVidExt)
+        ]
+        for name, fp, ext in params:
+            with self.subTest(f'Uploading {name}'):
+                with open(fp, 'rb') as file:
+                    localBytes = file.read()
+
+                with open(fp, 'rb') as file:
+                    # Make the upload
+                    resp = requests.post(uploadRoute, headers=headers, files={'file': file},
+                                        data={'fileExt': ext})
+
+                self.assertTrue(resp.ok)
+                res = resp.json()['payload']
+                self.assertTrue('mediaID' in res)
+                self.assertTrue('mediaURL' in res)
+
+                # Check if the bytes match when we go to the mediaURL
+                resp = requests.get(res['mediaURL'])
+                self.assertTrue(resp.ok)
+                remoteBytes = resp.content
+
+                self.assertEqual(localBytes, remoteBytes, f'{name} content matches')
+
 
     def test_api_add_meme(self):
-        self.assertEqual(1, 1)
+        addRoute = APITests.makeServerRoute('add')
+        self.privileged_endpoint_check(addRoute)
 
-    def test_api_add_meme_bad_access(self):
-        self.assertEqual(1, 1)
+        # Then do parameter checks
+        parameters = [
+            ('name', 'test', 22),
+            ('fileExt', 'jpg', 23),
+            ('tags', ['test', 'test'], 'test,test'),
+            ('mediaID', '461', 22),
+            ('mediaURL', 'http://127.0.0.1:5001/local/meme/461', 23),
+        ]
+
+        goodReqJSON = {}
+        for paramName, goodParamValue, badParamValue in parameters:
+            goodReqJSON[paramName] = goodParamValue
+
+        headers = self.make_acc_token_header()
+        # First do missing parameter checks
+        with self.subTest('Missing Parameters'):
+            for paramName, goodParamValue, badParamValue in parameters:
+                # For each parameter, test if it is not included
+                badReq = dict(goodReqJSON)
+                badReq.pop(paramName)
+
+                resp = requests.post(addRoute, headers=headers, json=badReq)
+                self.assertEqual(400, resp.status_code, f'Missing Parameter: {paramName}')
+
+        with self.subTest('Invalid Parameter Types'):
+            for paramName, goodParamValue, badParamValue in parameters:
+                # For each parameter, test if it is not included
+                badReq = dict(goodReqJSON)
+                badReq[paramName] = badParamValue
+
+                resp = requests.post(addRoute, headers=headers, json=badReq)
+                self.assertEqual(400, resp.status_code, f'Missing Parameter: {paramName}')
+
+        self.maxDiff = 10000
+        # Now we check if we can actually add a new meme
+        with self.subTest('Logical Behaviour'):
+            resp = requests.post(addRoute, headers=headers, json=goodReqJSON)
+            self.assertTrue(resp.ok)
+            result = resp.json()['payload']
+            self.assertTrue('id' in result)
+            TestMemeDB.getInstance().loadDB()
+            self.check_meme_info_from_server(result['id'], result)
+
+
+

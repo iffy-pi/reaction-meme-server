@@ -55,6 +55,7 @@ class MemeLibrary:
         return mediaID, mediaURL
 
     def __makeB64Thumbnail(self, mediaID:str, mediaType:MemeMediaType) -> str:
+        imgBytes = None
         if mediaType == MemeMediaType.IMAGE:
             imgBytes = self.mediaStorage.getMedia(mediaID)
 
@@ -79,7 +80,13 @@ class MemeLibrary:
         meme = MemeContainer(id=None, name=name, mediaType=mediaType, fileExt=fileExt, tags=tags, mediaID=mediaID, mediaURL=mediaURL)
 
         if fileExt is not None and mediaID is not None:
-            meme.setProperty(thumbnail=self.__makeB64Thumbnail(mediaID, mediaType))
+            th = None
+            try:
+                th = self.__makeB64Thumbnail(mediaID, mediaType)
+            except Exception as e:
+                raise MemeLibraryException(f'Could not make thumbnail: {e}')
+
+            meme.setProperty(thumbnail=th)
 
         if not self.db.addMemeToDB(meme):
             return None
@@ -139,7 +146,13 @@ class MemeLibrary:
         if mediaID is None:
             raise MemeLibraryException('No Cloud ID is available for meme')
 
-        meme.setProperty(thumbnail=self.__makeB64Thumbnail(mediaID, mediaType))
+        th = None
+        try:
+            th = self.__makeB64Thumbnail(mediaID, mediaType)
+        except Exception as e:
+            raise MemeLibraryException(f'Could not make thumbnail: {e}')
+
+        meme.setProperty(thumbnail=th)
         return self.db.updateMeme(memeID, meme)
 
     def makeLibraryFromCSV(self, csvFile):

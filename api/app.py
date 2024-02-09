@@ -2,6 +2,7 @@
 
 from flask import (Flask, request, send_from_directory, render_template, flash)
 from flask_cors import CORS
+from werkzeug.datastructures import ImmutableMultiDict, FileStorage
 
 from api.endpoints import *
 from api.functions import initAndIndexMemeLibrary, validAccess, serverErrorResponse
@@ -43,7 +44,12 @@ def route_edit_meme(memeID):
     try:
         if not validAccess(request):
             return error_response(400, 'Invalid Access Token')
-        return editMeme(memeID, request.json.get("name"), request.json.get("tags"), memeLib)
+        name = None
+        tags = None
+        if request.is_json:
+            name = request.json.get("name")
+            tags = request.json.get("tags")
+        return editMeme(memeID, name, tags, memeLib)
     except Exception as e:
         return serverErrorResponse(e)
 
@@ -67,6 +73,8 @@ def route_meme_search():
 @app.route('/add', methods=['POST'])
 def route_add_new_meme():
     try:
+        if not validAccess(request):
+            return error_response(400, 'Invalid Access Token')
         return addNewMeme(request.json.get("name"),
                           request.json.get("tags"),
                           request.json.get("fileExt"),
@@ -76,23 +84,29 @@ def route_add_new_meme():
     except Exception as e:
         return serverErrorResponse(e)
 
-
-@app.route('/upload-request', methods=['GET'])
-def route_upload_request():
-    try:
-        return uploadMemeRequest()
-    except Exception as e:
-        return serverErrorResponse(e)
-
-
-@app.route('/upload/<sessionKey>', methods=['POST'])
-def route_upload_meme(sessionKey):
+@app.route('/upload', methods=['POST'])
+def route_upload_meme():
     try:
         if request.method != 'POST':
             return error_response(400, 'Invalid Method')
-        return uploadMeme(sessionKey, request.files, request.form, memeLib)
+
+        if not validAccess(request):
+            return error_response(400, 'Invalid Access Token')
+
+        return uploadMemeNew(request.form, request.files, memeLib)
+
     except Exception as e:
         return serverErrorResponse(e)
+
+
+@app.route('/admin/reset')
+def reset_meme_lib():
+    if not validAccess(request):
+        return error_response(400, 'Invalid Access Token')
+
+    global memeLib
+    memeLib = initAndIndexMemeLibrary()
+    return make_json_response({'message': 'Library Reset'})
 
 
 @app.route('/favicon.ico')

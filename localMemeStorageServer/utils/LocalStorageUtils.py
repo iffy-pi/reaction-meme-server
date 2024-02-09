@@ -23,11 +23,11 @@ def get_ip():
 SYSTEM_IP = get_ip()
 
 def getMemeDir():
-    return join(ServerConfig.PROJECT_ROOT, "localMemeStorageServer", "storage", "memes")
+    return ServerConfig.path('localMemeStorageServer/storage/memes')
 
 
 def getConfigJSONPath():
-    return join(ServerConfig.PROJECT_ROOT, "localMemeStorageServer", "storage", "config.json")
+    return ServerConfig.path('localMemeStorageServer/storage/config.json')
 
 def makeLocalMemeStorage():
     from apiutils.MemeStorageClasses.RepoLocalMemeStorage import RepoLocalMemeStorage
@@ -46,7 +46,7 @@ def getMemeFileName(id):
     return None
 
 def getMemeFileForID(cloudID):
-    return os.path.join(getMemeDir(), getMemeFileName(cloudID))
+    return join(getMemeDir(), getMemeFileName(cloudID))
 
 def getMemeFileForURL(cloudURL):
     memeID = cloudURL.split('/')[-1]
@@ -55,12 +55,19 @@ def getMemeFileForURL(cloudURL):
 def makeRemotelyAccessible(localURL):
     return localURL.replace('127.0.0.1', SYSTEM_IP)
 
+def isLocalMemeURL(cloudURL):
+    return ('127.0.0.1' in cloudURL) or (SYSTEM_IP in cloudURL)
+
 def getLocalVersionForCloudMeme(cloudID:str, cloudURL:str, fileExt:str) -> tuple[str, str]:
     """
     Returns the local ID and local URL for a meme stored in the cloud service
+    If the meme is already a local meme, then the ID and URL are returned unchanged
     If the meme does not exist in the local repository, it is downloaded from the cloudinary services
     :return tuple (local ID, local url)
     """
+    if isLocalMemeURL(cloudURL):
+        return cloudID, cloudURL
+
     cloudMapPath = ServerConfig.path('localMemeStorageServer', 'storage', 'cloudMap.json')
     with open(cloudMapPath, 'r') as file:
         cloudMap = json.load(file)
@@ -109,4 +116,4 @@ def cloudMemeNeedsToBeConvertedToLocal(cloudURL, ignoreEnv=False) -> bool:
         return False
 
     # actual checking of the url
-    return '127.0.0.1' not in cloudURL
+    return not isLocalMemeURL(cloudURL)
