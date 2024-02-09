@@ -184,6 +184,17 @@ def reset_meme_lib():
     return make_json_response({'message': 'Library Reset'})
 
 
+@app.route('/media/<mediaName>')
+def getMedia(mediaName):
+    mediaName = str(mediaName)
+    mediaDir = os.path.join(ServerConfig.PROJECT_ROOT, 'media')
+
+    if not os.path.exists(os.path.join(mediaDir, mediaName)):
+        return error_response(400, "Unknown media!")
+
+    return send_from_directory(mediaDir, mediaName)
+
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(ServerConfig.PROJECT_ROOT, 'favicon.ico')
