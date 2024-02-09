@@ -51,7 +51,10 @@ GET https://reaction-meme-server-api.vercel.app/info/<memeID>
 ```
 
 ### Response
-If successful, the `payload` field will be a dictionary which contains:
+If successful, the `payload` field will be a dictionary which contains a [Meme Response](#meme-response-format).
+
+### Meme Response Format
+A meme response is a JSON dictionary which contains the following fields:
 
 | Field       | Type   | Description                                               |
 |-------------|--------|-----------------------------------------------------------|
@@ -82,8 +85,7 @@ The request should be sent as a JSON body.
 | `tags` | Array  | Optional, the new list of tags for the meme |
 
 ### Response
-Responds with the same data structure as [Get Meme Information](#get-meme-information).
-
+Returns a [Meme Response](#meme-response-format).
 
 
 ## Browse Memes
@@ -112,7 +114,7 @@ The `payload` field of the JSON response will contain the following keys:
 | `page`         | Number | The page number                                                                          |
 | `results`      | Array  | The list of results retrieved.                                                           |
 
-Each element of `results` will have the same data structure as [Get Meme Information](#get-meme-information).
+Each element of `results` will be a [Meme Response](#meme-response-format).
 
 
 
@@ -162,7 +164,7 @@ The request should be a JSON body with the following fields:
 The `mediaID` and `mediaURL` are provided by the server after successfully uploading the meme file bytes, see [Uploading Meme Media](#uploading-meme-media-privileged).
 
 ### Response
-If successful, the server will echo the information of the new meme. Responds with the same data structure as [Get Meme Information](#get-meme-information).
+If successful, the server will echo the information of the newly created meme as a [Meme Response](#meme-response-format).
 
 
 
