@@ -99,6 +99,15 @@ There are different runtime configurations that have been made in PyCharm, which
 - `API Tests`
   - Runs the suite of tests designed for the reaction meme server
 
+# Server Testing
+The server is tested using Python unit tests on each of the endpoints defined in the documentation. These unit tests (defined in server_void/testing/APITests.py) were designed to ensure that the server performed correctly when parsing and handling requests.
+
+To run tests:
+1. Run the `local meme storage` configuration to start the local meme storage server
+2. Run the `api (test)` configuration to start the server in testing mode
+  - This switches the server to write to data/testing_db.json, which is inspected while running tests
+3. Run the actual tests with the `API Tests` configuration
+
 # Software Overview
 ***This section is still in development, added for posterity***
 

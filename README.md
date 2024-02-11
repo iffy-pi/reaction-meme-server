@@ -3,6 +3,8 @@ This is a Flask server hosted on Vercel designed to manage my reaction meme libr
 
 It is hosted on Vercel: https://reaction-meme-server-api.vercel.app/.
 
+Interested in the technical details? Read the [Technical README](./docs/technical_README.md).
+
 ## General Response Information
 For each API endpoint, a successful response will have a `success` field which is set to true, and the data of the response will be in the `payload` field.
 
