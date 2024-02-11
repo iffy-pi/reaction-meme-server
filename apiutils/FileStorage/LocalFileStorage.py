@@ -1,9 +1,9 @@
 import os
 import json
-from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
+from apiutils.FileStorage.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.configs.ServerConfig import ServerConfig, ProjectEnvironment
 
-class RepoLocalFileStorage(JSONDBFileStorageInterface):
+class LocalFileStorage(JSONDBFileStorageInterface):
     """
     Stores the files to the repository project folder
     """

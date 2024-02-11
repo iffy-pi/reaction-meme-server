@@ -33,11 +33,11 @@ class MemeLibrary:
             raise MemeLibraryException("Item ID does not exist in db")
         return self.db.getMeme(itemId)
 
-    def uploadItemMedia(self, itemId:int, mediaBinary) -> str:
+    def uploadMemeMedia(self, itemId:int, mediaBinary: bytes) -> str:
         """
         Uploads the media binary to the cloud and associates it with the item pointed to by the item ID
         :param itemId: The id of the item in the database
-        :param mediaBinary: The binary data of the media to be uploaded
+        :param mediaBinary: The bytes of the media to be uploaded
         :return: The media URL, None if the operation was not completed successfully
         """
         cloudId, cloudURL = self.mediaStorage.uploadMedia(mediaBinary, self.getMeme(itemId).getFileExt())

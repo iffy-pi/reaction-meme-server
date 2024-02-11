@@ -1,18 +1,18 @@
 import os
 
-from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
-from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorage
+from apiutils.FileStorage.JSONDBFileStorageInterface import JSONDBFileStorageInterface
+from apiutils.FileStorage.PBFSFileStorage import PBFSFileStorage
+from apiutils.FileStorage.LocalFileStorage import LocalFileStorage
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface
-from apiutils.MemeStorageClasses.CloudinaryMemeStorage import CloudinaryMemeStorage
+from apiutils.MemeStorage.CloudinaryMemeStorage import CloudinaryMemeStorage
 from apiutils.configs.ServerConfig import ServerConfig, JSONDBFileStorageOption, MemeStorageOption
 from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
 
 def getServerFileStorage() -> JSONDBFileStorageInterface:
     if ServerConfig.JSON_DB_FILE_STORAGE == JSONDBFileStorageOption.LOCAL:
-        return RepoLocalFileStorage()
+        return LocalFileStorage()
     elif ServerConfig.JSON_DB_FILE_STORAGE == JSONDBFileStorageOption.PBFS:
         return PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, ServerConfig.PBFS_SERVER_IDENTIFIER)
     else:

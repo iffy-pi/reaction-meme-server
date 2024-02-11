@@ -1,22 +1,15 @@
 import requests
 from apiutils.MemeManagement.MemeStorageInterface import MemeStorageInterface, MemeStorageException
 
-class RepoLocalMemeStorage(MemeStorageInterface):
+class LocalMemeStorage(MemeStorageInterface):
     """
-    Stores memes for use by localMemeStorageServer
-    Specifically stored under localMemeStorageServer/storage/memes
+    Communicates with local meme storage server running on port 5001
     """
     def __init__(self):
-        """
-        The class works in the following way:
-            The config file is used to keep track of the next ID to assign to a newly uploaded meme
-            When a new meme is uploaded, it is written to the memeDir with the naming format meme_{id}.{fileExt} (or with uploaded appended as mentioned above)
-            The config file is also updated when a new meme is added, the value of next ID is incremented.
-        """
         pass
 
     def storageServer(self, route):
-        return f'http://192.168.2.101:5001/{route}'
+        return f'http://127.0.0.1:5001/{route}'
 
     def uploadMedia(self, mediaBinary:bytes, fileExt) -> tuple[str, str]:
         resp = requests.post(self.storageServer(f'local/upload?fileExt={fileExt}'), data=mediaBinary)

@@ -3,9 +3,9 @@ import os
 
 import requests
 
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
-from apiutils.FileStorageClasses.RepoLocalFileStorage import RepoLocalFileStorage
-from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
+from apiutils.FileStorage.PBFSFileStorage import PBFSFileStorage
+from apiutils.FileStorage.LocalFileStorage import LocalFileStorage
+from apiutils.MemeDB.JSONMemeDB import JSONMemeDB
 from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage
 
@@ -31,7 +31,7 @@ def uploadLocalJSONDBToPBFS(serverIdentifier:str = ServerConfig.PBFS_SERVER_IDEN
         return
 
     pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
-    lcfs = RepoLocalFileStorage()
+    lcfs = LocalFileStorage()
     db = lcfs.getJSONDB()
     print('Writing data/db.json')
     pbfs.writeJSONDB(db)
@@ -47,7 +47,7 @@ def downloadPBFSJSONDBToLocal(serverIdentifier:str = ServerConfig.PBFS_SERVER_ID
         print('Exited!')
         return
     pbfs = PBFSFileStorage(ServerConfig.PBFS_ACCESS_TOKEN, serverIdentifier)
-    lcfs = RepoLocalFileStorage()
+    lcfs = LocalFileStorage()
     db = pbfs.getJSONDB()
     lcfs.writeJSONDB(db)
 
@@ -99,5 +99,5 @@ def matchLocalEnvToProd(prodServerIden:str):
     print('Downloading DB...')
     downloadPBFSJSONDBToLocal(serverIdentifier=prodServerIden)
     print('Downloading New Cloud Memes...')
-    downloadNewMemesFromCloud(JSONMemeDB(RepoLocalFileStorage()))
+    downloadNewMemesFromCloud(JSONMemeDB(LocalFileStorage()))
     print('Completed')

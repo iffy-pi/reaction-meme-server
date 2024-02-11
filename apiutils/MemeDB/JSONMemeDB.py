@@ -1,5 +1,5 @@
 from apiutils.MemeManagement.MemeDBInterface import MemeDBInterface, MemeDBException
-from apiutils.FileStorageClasses.JSONDBFileStorageInterface import JSONDBFileStorageInterface
+from apiutils.FileStorage.JSONDBFileStorageInterface import JSONDBFileStorageInterface
 from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeMediaType import stringToMemeMediaType
 

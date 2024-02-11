@@ -33,16 +33,35 @@ def getTypeForValString(enumType, valStr: str):
 class ServerConfig:
     # When a new config is added, also update get from JSON as well
     PROJECT_ROOT = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..', '..'))
+
     # Default values for the configuration
     PROJECT_ENVIRONMENT = ProjectEnvironment.DEV
+
+    # The name of the cloudinary server
     CLOUDINARY_CLOUD_NAME = ''
+
+    # Cloudinary API Key, gotten by going to Cloudinary Console > Settings > Access Keys
     CLOUDINARY_API_KEY = ''
+
+    # Cloudinary API secret, gotten by going to Cloudinary Console > Settings > Access Keys
     CLOUDINARY_API_SECRET = ''
+
+    # The MemeDB implementation being used,
     MEME_DB = MemeDBOption.JSON
+
+    # The Meme Storage being used, could be either local or cloudinary
     MEME_STORAGE = MemeStorageOption.CLOUDINARY
+
+    # The file storage being used for the JSON DB, either PushBullet or PBFS
     JSON_DB_FILE_STORAGE = JSONDBFileStorageOption.PBFS
+
+    # The access token for the PushBullet account
     PBFS_ACCESS_TOKEN = ''
+
+    # The server identifier for the device used in PushBullet as the PBFS
     PBFS_SERVER_IDENTIFIER = ''
+
+    # The list of access tokens used by the server for privileged activity.
     ALLOWED_ACCESS_TOKENS = []
 
     @staticmethod
@@ -80,6 +99,8 @@ class ServerConfig:
 
     @staticmethod
     def setConfigFromEnvDict(env: dict):
+        # These are the expected keys for the config variables either in JSON or with environment variables
+        # Multiple access tokens (for allowedAccessTokens) are separated with a semicolon e.g. "token1;token2"
         projEnv = env.get('RMSVR_PROJECT_ENVIRONMENT')
         cloudName = env.get('RMSVR_CLOUDINARY_CLOUD_NAME')
         apiKey = env.get('RMSVR_CLOUDINARY_API_KEY')

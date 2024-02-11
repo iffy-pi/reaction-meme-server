@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project Scope" pattern="((file[reaction-meme-server]:api/*||file[reaction-meme-server]:apiutils/*||file[reaction-meme-server]:data/*||file[reaction-meme-server]:devenv/*||file:.gitignore||file:memeSearch.py||file:README.md||file:requirements.txt||file:vercel.json)&amp;&amp;!file:__pycache__/*||file[reaction-meme-server]:apiutils//*||file[reaction-meme-server]:api//*||file[reaction-meme-server]:data//*||file[reaction-meme-server]:devenv//*||file[reaction-meme-server]:*/)&amp;&amp;!file[reaction-meme-server]:venv//*" />
+</component>

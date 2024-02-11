@@ -12,7 +12,7 @@ if project_dir not in sys.path:
     sys.path.append(project_dir)
 
 from apiutils.configs.ServerConfig import ServerConfig
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
+from apiutils.FileStorage.PBFSFileStorage import PBFSFileStorage
 from apiutils.generalUtils import getServerName
 
 PROD_ENV_JSON = "C:\\Users\\omnic\\OneDrive\\Computer Collection\\Reaction Meme Server\\config_jsons\\prodenv.json"

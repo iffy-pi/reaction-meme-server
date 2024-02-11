@@ -7,7 +7,7 @@ import urllib.parse as urp
 import requests
 
 from apiutils.configs.ServerConfig import ServerConfig
-from apiutils.FileStorageClasses.PBFSFileStorage import PBFSFileStorage
+from apiutils.FileStorage.PBFSFileStorage import PBFSFileStorage
 from server_void.testing.test_funcs import makeServerRoute, isServerReachable
 
 from localMemeStorageServer.utils.LocalStorageUtils import makeLocalMemeStorage, getLocalVersionForCloudMeme

@@ -30,8 +30,8 @@ def getConfigJSONPath():
     return ServerConfig.path('localMemeStorageServer/storage/config.json')
 
 def makeLocalMemeStorage():
-    from apiutils.MemeStorageClasses.RepoLocalMemeStorage import RepoLocalMemeStorage
-    return RepoLocalMemeStorage()
+    from apiutils.MemeStorage.LocalMemeStorage import LocalMemeStorage
+    return LocalMemeStorage()
 
 
 def getMemeFileName(id):
@@ -98,11 +98,7 @@ def cloudMemeNeedsToBeConvertedToLocal(cloudURL, ignoreEnv=False) -> bool:
     """
     Returns if the given item needs to be converted into its local version
     """
-    # Only allowed if in development
-    if ignoreEnv:
-        return False
-
-    if ServerConfig.isProdEnv():
+    if ServerConfig.isProdEnv() and not ignoreEnv:
         return False
 
     if ServerConfig.MEME_STORAGE != MemeStorageOption.LOCAL:

@@ -208,6 +208,9 @@ def index():
 
 # TODO: Implement Apple Shortcuts client API :D
 # TODO: Build the React client frontend :(((
+# TODO: Delete meme api, change meme media API
+#   Will require new delete meme stuff in MemeDBInterface
+#   Will require delete media stuff in MemeStorageInterface
 
 # running the code
 if __name__ == '__main__':

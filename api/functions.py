@@ -3,7 +3,7 @@ import traceback
 from flask import request, Response
 
 from apiutils.HTTPResponses import error_response
-from apiutils.MemeDBClasses.JSONMemeDB import JSONMemeDB
+from apiutils.MemeDB.JSONMemeDB import JSONMemeDB
 from apiutils.MemeManagement.MemeContainer import MemeContainer
 from apiutils.MemeManagement.MemeLibrary import MemeLibrary
 from apiutils.configs.ServerComponents import getServerFileStorage, getServerMemeStorage

@@ -17,6 +17,9 @@ CORS(app)
 
 @app.route('/local/meme/<int:mediaID>')
 def route_get_media(mediaID: int):
+    """
+    Responds with the bytes of the media for the given media ID
+    """
     memeName = getMemeFileName(mediaID)
     if memeName is None:
         return error_response(400, f"Meme {mediaID} not found")
@@ -26,6 +29,11 @@ def route_get_media(mediaID: int):
 
 @app.route('/local/upload', methods=['POST'])
 def route_upload_media():
+    """
+        Receives bytes of a media file and a file extension
+        Saves the media
+        Responds with the mediaID and mediaURL
+    """
     fileExt = request.args.get('fileExt')
 
     if fileExt is None:
@@ -61,6 +69,9 @@ def route_upload_media():
 
 @app.route('/local/thumbnail/<int:mediaID>')
 def route_make_thumbnail(mediaID: int):
+    """
+    Makes a thumbnail using ffmpeg for the video file pointed to by the media ID.
+    """
     memeFile = getMemeFileForID(mediaID)
 
     if memeFile is None:

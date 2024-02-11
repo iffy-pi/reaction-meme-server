@@ -1,7 +1,7 @@
 import json
 import os
 
-from apiutils.MemeStorageClasses.CloudinaryMemeStorage import CloudinaryMemeStorage
+from apiutils.MemeStorage.CloudinaryMemeStorage import CloudinaryMemeStorage
 from apiutils.configs.ServerConfig import ServerConfig
 from localMemeStorageServer.utils.LocalStorageUtils import getMemeFileName, getMemeDir
 
